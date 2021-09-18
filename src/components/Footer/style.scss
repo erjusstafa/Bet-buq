@@ -75,5 +75,24 @@
         font-weight: 800;
       }
     }
+
+    p {
+      color: #9a9a9a;
+      width: 100%;
+      text-align: center;
+      line-height: 25px;
+      margin: 0 auto;
+
+      .p {
+        color: #1ab7af;
+      }
+    }
+
+    .foot__img {
+      text-align: center;
+      > img {
+        text-align: center;
+      }
+    }
   }
 }

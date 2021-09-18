@@ -115,4 +115,24 @@
   font-size: 14px;
   font-weight: 800;
 }
+
+.footer_end .end p {
+  color: #9a9a9a;
+  width: 100%;
+  text-align: center;
+  line-height: 25px;
+  margin: 0 auto;
+}
+
+.footer_end .end p .p {
+  color: #1ab7af;
+}
+
+.footer_end .end .foot__img {
+  text-align: center;
+}
+
+.footer_end .end .foot__img > img {
+  text-align: center;
+}
 /*# sourceMappingURL=style.css.map */

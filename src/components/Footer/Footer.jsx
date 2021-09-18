@@ -58,7 +58,6 @@ const FooterMain = ({ F, index }) => {
     );
 };
 
-
 const FooterEnd = ({ F }) => {
     return (
         <div className="footer_end">
@@ -72,7 +71,20 @@ const FooterEnd = ({ F }) => {
                     }
                 </Link>
                 <p>
+                    Al acceder, seguir utilizando o navegar a través de este sitio, acepta que utilicemos
+                    ciertas cookies del navegador para mejorar su experiencia con nosotros. Solo utilizamos
+                    Cookies que mejorarán su experiencia con nosotros y no interferirán con su privacidad.
+                    <br />
+                    Consulte nuestra{" "}
+                    <Link className="p">Política de cookies</Link>
+
+                    para obtener más información sobre nuestro uso de cookies y cómo puede deshabilitar o
+                    administrar su uso si lo desea.
                 </p>
+                <div className={image === null ? "nuk ka te imazhe" : "foot__img"}>
+                    <img src={image["images"]} />
+                    <img src={image["fund"]} alt="" />
+                </div>
             </div>
         </div>
     )

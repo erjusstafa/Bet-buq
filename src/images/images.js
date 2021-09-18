@@ -5,6 +5,8 @@ export const image = {
   bonus: require("../assetss/bonus.png").default,
   gonzoa: require("../assetss/gonzoa.png").default,
   crazy: require("../assetss/crazy.png").default,
+  images: require("../assetss/footer.png").default,
+  fund: require("../assetss/fund.png").default,
 };
 
 export default image;
