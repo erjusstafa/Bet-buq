@@ -9,12 +9,10 @@ import { Link } from "react-router-dom"
 function Home() {
 
 
-
     const link = useSelector(state => state.betbuqsport.bet.allConfig.routes)
     const linkSlot = useSelector(state => state.betbuqsport.bet.allConfig.linkSlots)
 
     const BetLiveBook = useSelector((state) => state.betbuqsport.myApi?.result?.landing_page?.mini)
-
 
 
     return (
@@ -62,6 +60,8 @@ function SlotHome({ linkSlot }) {
 
 
 function CardSlot({ BetLiveBook }) {
+
+
 
     console.log("BetLiveBook", BetLiveBook);
     return (

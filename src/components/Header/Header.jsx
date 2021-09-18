@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useState } from 'react'
 import { useSelector } from 'react-redux'
 import "./style.css"
@@ -12,6 +12,12 @@ const Header = () => {
         password: ""
     })
 
+
+    let languages = {
+        en: "English",
+        it: "Italian"
+    }
+
     const [lang, setLang] = useState(true);
 
     const changeLang = () => {
@@ -20,10 +26,13 @@ const Header = () => {
 
     const social = useSelector(state => state.betbuqsport.bet.allConfig.socials)
     const link = useSelector(state => state.betbuqsport.bet.allConfig.routes)
+    const user = useSelector(state => state.betbuqsport.bet.allConfig.login)
 
     const handleSubmit = (e) => {
         e.preventDefault()
     }
+
+    console.log("user", user);
 
     return (
         <>
@@ -47,7 +56,7 @@ const Header = () => {
                         <span className="socials">
 
                             {
-                                Object.values(social).map((media, index) => (
+                                social && Object.values(social).map((media, index) => (
                                     <a href={media.url} key={index}>
                                         <i className={"fab fa-" + media.social} />
                                     </a>
@@ -58,8 +67,8 @@ const Header = () => {
                         <span className="lang" onChange={changeLang}>
                             <div className="lang">
                                 <select id="lang">
-                                    <option value="en">English</option>
-                                    <option value="al">Italian</option>
+                                    <option value="en">{languages.en || "English"}</option>
+                                    <option value="it">{languages.it || "Italian"}</option>
                                 </select>
                             </div>
                         </span>
@@ -94,8 +103,15 @@ const HeaderBottom = ({ link }) => {
 
 
 
+    useEffect(() => {
+        interval()
+    })
+
+
 
     const { hour, minute, seconds } = time;
+
+    console.log("time", time);
     return (
         <div className="home__other">
             <div className="other">
@@ -103,7 +119,7 @@ const HeaderBottom = ({ link }) => {
                     <img src={image.logo} alt="" />
                 </span>
 
-                <div className="date" onChange={interval}>
+                <div className="date" >
                     <span id="hour">{hour}</span>
                     <span id="minute">{minute}</span>
                     <span id="seconds">{seconds}</span>

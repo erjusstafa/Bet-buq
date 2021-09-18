@@ -16,6 +16,18 @@ const allConfig = {
     "currency-symbol": "€",
   },
 
+  login: {
+    Name: {
+      icon: "far fa-user",
+      placeholderEN: "Username",
+      placeholderIT: "Cognome",
+    },
+    Password: {
+      icon: "far fa-key",
+      placeholderIT: "Pasword",
+      placeholderEN: "Password",
+    },
+  },
   linkSlots: {
     link1: {
       name: "SportBook",
