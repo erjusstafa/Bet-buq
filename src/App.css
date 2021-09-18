@@ -1,38 +1,52 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+:root {
+  --dark-theme-zero: #2a373c;
+  --dark-theme-one: #313d42;
+  --dark-theme-two: #3c494e;
+  --dark-theme-three: #47565c;
+  --dark-theme-four: #52656d;
+  --dark-theme-five: #3c494e;
+  --dark-theme-six: #8d9da3;
+  --dark-theme-seven: #52a6af;
+  --brand-hilight-opaque: rgba(36, 36, 36, 0.6);
+  --text-color-dark-opaque: rgb(49 61 66);
+  --text-color-dark-shadow: rgba(5, 5, 5, 0.39);
+  --box-shadow: rgba(33, 33, 33, 0.8);
+  --switcher-btn-opaque: rgba(36, 36, 36, 0.6);
+  --betslip-footer-bg-opaque: rgba(33, 33, 33, 0.8);
+  --slots-nav-bg: rgba(5, 5, 5, 0.6);
+  --breadcrumb-border-color: rgba(36, 36, 36, 0.6);
+  --casino-nav-opaque: rgba(36, 36, 36, 0.7);
+  --header-color-opaque: hsla(0, 0%, 9%, 0.7);
+  --light-theme-one: #f2f2f2;
+  --light-theme-two: #f6fdff;
+  --light-theme-three: #d4d4d4;
+  --light-theme-four: #dbfaf8;
+  --light-theme-five: #cbfffc;
+  --light-theme-six: #b0fffb;
+  --odds-value-color: #3dfcf2;
+  --brand-color: #1ab7af;
+  --brand-bright-color: #1ecec5;
+  --brand-darker-color: #11807b;
+  --brand-dark-2-color: #0a534f;
+  --brand-light-3-color: #22dbd1;
+  --brand-light-2-color: #20e5db;
+  --brand-light-color: #17d7cd;
+  --color-on-brand: var(--light-theme-one);
+  --color-on-header-live-markets: #53676f;
+  --brand-color-shadow: rgba(248, 173, 22, 0.6);
+  --brand-color-op-8: rgba(248, 173, 22, 0.8);
+  --success-color: #40bf64;
+  --info-color: #2d9dcd;
+  --warning-color: #ffba24;
+  --danger-color: #d94a3a;
+  --neutral-color: #e2e2e2;
+  --success-color-op: rgba(64, 191, 100, 0.8);
+  --success-color-primary: #40bf64;
+  --success-color-secondary: #66cc83;
+  --success-color-dark: #339950;
+  --error-color-primary: #d94a3a;
+  --error-color-secondary: #bc3324;
+  --error-color-secondary-op: rgba(188, 51, 36, 0.8);
+  --favorite-color: var(--brand-color);
+  --bonus-button-bg: #2b2b2b;
 }

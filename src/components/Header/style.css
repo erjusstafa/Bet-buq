@@ -1,0 +1,209 @@
+.header {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  background: #3c494e;
+  border-bottom: 1px solid #475a61;
+  padding: 5px 0;
+  line-height: 42px;
+}
+
+.header__max {
+  width: 100%;
+  max-width: 1352px;
+  margin: 0px auto;
+  -webkit-transition: width 0.5s ease 0s;
+  transition: width 0.5s ease 0s;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.header__max .form ::-webkit-input-placeholder {
+  color: white;
+}
+
+.header__max .form :-ms-input-placeholder {
+  color: white;
+}
+
+.header__max .form ::-ms-input-placeholder {
+  color: white;
+}
+
+.header__max .form ::placeholder {
+  color: white;
+}
+
+.header__max .form input[type="text"],
+.header__max .form input[type="password"] {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  width: 135px;
+  height: 26px;
+  line-height: 21px;
+  font-size: 12px;
+  padding-left: 15px;
+  background-color: #313d42;
+  z-index: 1;
+  border-radius: 3px 0px 0px 3px;
+  border: 1px solid #11807b;
+  outline: 1px solid #11807b;
+  color: white;
+}
+
+.header__max .form #pikpytje {
+  width: 30px;
+  height: 26px;
+  margin: 0 20px;
+  background: #4a5c64;
+  border: 1px solid #313d42;
+  color: white;
+  line-height: 21px;
+  cursor: pointer;
+}
+
+.header__max .form #login,
+.header__max .form #register {
+  border: none;
+  outline: none;
+  width: auto;
+  position: relative;
+  height: 26px;
+  line-height: 21px;
+  margin: 0 10px;
+  padding: 0 20px;
+  background: #ffba24;
+  cursor: pointer;
+  color: #3f3f3f;
+}
+
+.header__max .social {
+  width: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  color: white;
+}
+
+.header__max .social .support .fas.fa-sms,
+.header__max .social .support i.fab.fa-instagram,
+.header__max .social .support i.fab.fa-facebook,
+.header__max .social .socials .fas.fa-sms,
+.header__max .social .socials i.fab.fa-instagram,
+.header__max .social .socials i.fab.fa-facebook {
+  color: #dfdfdf;
+  font-size: 26px;
+  margin: 0px 10px;
+  line-height: 44px;
+}
+
+.header__max .social .lang {
+  cursor: pointer;
+  text-transform: capitalize;
+  color: var(--text-color-gray);
+  text-align: center;
+  position: relative;
+  vertical-align: middle;
+  color: black;
+  outline: none;
+}
+
+.header__max .social .lang select#lang {
+  height: 30px;
+  color: #ffba24;
+  background: #4a5c64;
+}
+
+.home__other {
+  width: 100%;
+  display: -ms-grid;
+  display: grid;
+  background: #3c494e;
+  border-bottom: 1px solid #475a61;
+  height: 100px;
+  place-items: center;
+}
+
+.home__other .other {
+  width: 100%;
+  max-width: 1352px;
+  margin: 0px auto;
+  -webkit-transition: width 0.5s ease 0s;
+  transition: width 0.5s ease 0s;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.home__other .other .log > img {
+  height: 43px;
+  width: 145px;
+}
+
+.home__other .other .date {
+  width: 160px;
+  background: #4a5c64;
+  text-align: center;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 30% auto 30%;
+      grid-template-columns: 30% auto 30%;
+  height: 40px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: black;
+  /* padding: 0 20px; */
+  padding-left: 19px;
+}
+
+.home__other .other .date #hour,
+.home__other .other .date #minute,
+.home__other .other .date #seconds {
+  width: 30px;
+  height: 27px;
+  background: #ffba24;
+  display: -ms-grid;
+  display: grid;
+  place-items: center;
+}
+
+.home__other .other .route {
+  color: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row nowrap;
+          flex-flow: row nowrap;
+  position: relative;
+  top: 16px;
+}
+
+.home__other .other .route .route-link {
+  color: white;
+  margin: 0 15px;
+  font-size: 18px;
+}
+
+.home__other .other .route .tag {
+  position: absolute;
+  top: -17px;
+  word-spacing: 264px;
+  color: #ffba24;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 3px;
+}
+/*# sourceMappingURL=style.css.map */

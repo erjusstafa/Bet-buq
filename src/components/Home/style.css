@@ -1,0 +1,143 @@
+.home {
+  background: #3c494e;
+  width: 100%;
+  position: relative;
+  z-index: 999;
+  color: white;
+}
+
+.slotHome {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
+  background: #354044;
+  padding: 25px 0;
+  margin: 0 auto;
+}
+
+.slotHome__all {
+  width: 100%;
+  max-width: 1352px;
+  margin: 0 auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+
+.slotHome__all .all__link {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  line-height: 13px;
+}
+
+.slotHome__all .all__link > i {
+  display: -ms-grid;
+  display: grid;
+  place-items: center;
+  padding: 0 20px;
+  font-size: 30px;
+  color: #f0f0f0;
+  margin-bottom: 18px;
+}
+
+.slotHome__all .all__link > span > h2 {
+  font-weight: bold;
+  color: white;
+  font-size: 23px;
+}
+
+.slotHome__all .all__link > span > p {
+  color: #11807b;
+  font-weight: bold;
+}
+
+.card {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
+  background: #354044;
+  border-bottom: 1px solid #475a61;
+  padding: 55px 0;
+}
+
+.card__all {
+  width: 100%;
+  max-width: 1352px;
+  margin: 0 auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify !important;
+      -ms-flex-pack: justify !important;
+          justify-content: space-between !important;
+}
+
+.card__all .content {
+  position: relative;
+  height: 210px;
+  background: #435258;
+  width: 400px;
+  border-radius: 7px;
+}
+
+.card__all .content:hover .play__btn {
+  display: block;
+  position: absolute;
+  top: 70%;
+  left: 20px;
+  -webkit-transition: all 1s linear;
+  transition: all 1s linear;
+  background: #435258;
+  outline: none;
+  border: none;
+  color: white;
+}
+
+.card__all .content > img {
+  position: relative;
+  width: 100%;
+  margin-top: 46px;
+  border: 1px solid #11807b;
+}
+
+.card__all .content > h4 {
+  position: absolute;
+  top: 0;
+  font-weight: bolder;
+  font-size: 20px;
+  text-align: center;
+  margin-top: 7px;
+  color: #f1f1f1;
+  width: 100%;
+}
+
+.card__all .content > p {
+  position: absolute;
+  top: 40%;
+  left: 20px;
+  color: white;
+  font-size: 17px;
+  line-height: 19px;
+  margin-bottom: 2px;
+  text-shadow: 1px 1px #4b4949;
+  font-weight: 500;
+  width: 48%;
+}
+
+.card__all .content .play__btn {
+  display: none;
+}
+/*# sourceMappingURL=style.css.map */

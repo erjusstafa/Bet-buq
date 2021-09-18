@@ -1,0 +1,119 @@
+.home {
+  background: #3c494e;
+  width: 100%;
+  position: relative;
+  z-index: 999;
+  color: rgb(255, 255, 255);
+}
+
+.slotHome {
+  width: 100%;
+  display: flex;
+  flex-flow: row wrap;
+  background: #354044;
+  padding: 25px 0;
+  margin: 0 auto;
+
+  &__all {
+    width: 100%;
+    max-width: 1352px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-evenly;
+
+    .all__link {
+      display: flex;
+      line-height: 13px;
+
+      > i {
+        display: grid;
+        place-items: center;
+        padding: 0 20px;
+        font-size: 30px;
+        color: rgb(240, 240, 240);
+        margin-bottom: 18px;
+      }
+
+      > span {
+        > h2 {
+          font-weight: bold;
+          color: white;
+          font-size: 23px;
+        }
+        > p {
+          color: #11807b;
+          font-weight: bold;
+        }
+      }
+    }
+  }
+}
+
+.card {
+  display: flex;
+  flex-flow: row wrap;
+  background: #354044;
+  border-bottom: 1px solid rgb(71, 90, 97);
+  padding: 55px 0;
+
+  &__all {
+    width: 100%;
+    max-width: 1352px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between !important;
+
+    .content {
+      position: relative;
+      height: 210px;
+      background: #435258;
+      width: 400px;
+      border-radius: 7px;
+
+      &:hover .play__btn {
+        display: block;
+        position: absolute;
+        top: 70%;
+        left: 20px;
+        transition: all 1s linear;
+        background: #435258;
+        outline: none;
+        border: none;
+        color: white;
+      }
+      > img {
+        position: relative;
+        width: 100%;
+        margin-top: 46px;
+        border: 1px solid #11807b;
+      }
+
+      > h4 {
+        position: absolute;
+        top: 0;
+        font-weight: bolder;
+        font-size: 20px;
+        text-align: center;
+        margin-top: 7px;
+        color: rgb(241, 241, 241);
+        width: 100%;
+      }
+
+      > p {
+        position: absolute;
+        top: 40%;
+        left: 20px;
+        color: white;
+        font-size: 17px;
+        line-height: 19px;
+        margin-bottom: 2px;
+        text-shadow: 1px 1px rgb(75, 73, 73);
+        font-weight: 500;
+        width: 48%;
+      }
+      .play__btn {
+        display: none;
+      }
+    }
+  }
+}
