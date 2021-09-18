@@ -6,6 +6,7 @@ import Header from "../src/components/Header/Header";
 import Footer from "../src/components/Footer/Footer";
 import { useDispatch } from "react-redux";
 import { thunkApiHome } from "./redux-toolkit/store/store";
+import Popup from "./components/Popup/Popup";
 
 function App() {
   const dispatch = useDispatch();

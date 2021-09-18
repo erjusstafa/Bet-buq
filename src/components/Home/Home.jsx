@@ -13,8 +13,8 @@ function Home() {
     const link = useSelector(state => state.betbuqsport.bet.allConfig.routes)
     const linkSlot = useSelector(state => state.betbuqsport.bet.allConfig.linkSlots)
 
-    /*     const BetLiveBook = useSelector(state => state.betbuqsport["myApi"].result["landing_page"].mini)
-     */
+    const BetLiveBook = useSelector((state) => state.betbuqsport.myApi?.result?.landing_page?.mini)
+
 
 
     return (
@@ -25,15 +25,12 @@ function Home() {
             </div>
             <SliderHome />
             <SlotHome linkSlot={linkSlot} />
-            {/*             <CardSlot BetLiveBook={BetLiveBook} />
-            
- */}        </>
+            <CardSlot BetLiveBook={BetLiveBook} />
+
+        </>
     )
-
 }
-
 export default Home
-
 
 function SlotHome({ linkSlot }) {
     return (
@@ -41,7 +38,7 @@ function SlotHome({ linkSlot }) {
             <div className="slotHome">
                 <div className="slotHome__all">
                     {
-                        Object.values(linkSlot)
+                        linkSlot && Object.values(linkSlot)
                             .sort((a, b) =>
                                 a === b ? 0 : a < b ? 1 : -1
                             )
@@ -71,8 +68,8 @@ function CardSlot({ BetLiveBook }) {
         <div className="card">
             <div className="card__all">
 
-                {/*  {
-                    Object.values(BetLiveBook).map(B => (
+                {
+                    BetLiveBook && Object.values(BetLiveBook).map(B => (
                         <div className="content" key={B.order}>
                             <img src={image.gonzoa} alt="" />
                             <h4>{B.title}</h4>
@@ -80,7 +77,7 @@ function CardSlot({ BetLiveBook }) {
                             <Link className="play__btn"> {B.btn_text}</Link>
                         </div>
                     ))
-                } */}
+                }
             </div>
         </div>
     )

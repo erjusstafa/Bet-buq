@@ -23,19 +23,19 @@
           justify-content: space-between;
 }
 
-.header__max .form ::-webkit-input-placeholder {
+.header__max .form::-webkit-input-placeholder {
   color: white;
 }
 
-.header__max .form :-ms-input-placeholder {
+.header__max .form:-ms-input-placeholder {
   color: white;
 }
 
-.header__max .form ::-ms-input-placeholder {
+.header__max .form::-ms-input-placeholder {
   color: white;
 }
 
-.header__max .form ::placeholder {
+.header__max .form::placeholder {
   color: white;
 }
 
@@ -80,6 +80,7 @@
   background: #ffba24;
   cursor: pointer;
   color: #3f3f3f;
+  font-weight: bolder;
 }
 
 .header__max .social {
@@ -148,6 +149,8 @@
 .home__other .other .log > img {
   height: 43px;
   width: 145px;
+  -webkit-filter: drop-shadow(2px 4px 6px #000);
+          filter: drop-shadow(2px 4px 6px #000);
 }
 
 .home__other .other .date {

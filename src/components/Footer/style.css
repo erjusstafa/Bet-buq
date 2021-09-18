@@ -4,7 +4,6 @@
   display: -ms-flexbox;
   display: flex;
   background: #3c494e;
-  border-bottom: 1px solid #475a61;
   padding: 5px 0;
   line-height: 42px;
 }
@@ -21,6 +20,10 @@
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
 .footer__max .big__link {
@@ -31,6 +34,8 @@
   -webkit-box-pack: space-evenly;
       -ms-flex-pack: space-evenly;
           justify-content: space-evenly;
+  border-bottom: 1px solid #475a61;
+  padding: 32px 0px;
 }
 
 .footer__max .big__link .content > h2 {
@@ -40,5 +45,74 @@
   color: whitesmoke;
   font-size: 14px;
   font-weight: 500;
+}
+
+.footer__max .big__link .content > p.slug {
+  line-height: 9px;
+  font-size: 11px;
+  color: #ffffff;
+  opacity: 0.6;
+  cursor: poi;
+}
+
+.footer__max .big__link .content > p.slug:hover {
+  color: #1ab7af;
+}
+
+.footer_end {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  background: #3c494e;
+  padding: 20px 0;
+  line-height: 42px;
+}
+
+.footer_end .end {
+  width: 100%;
+  max-width: 700px;
+  margin: 0px auto;
+  -webkit-transition: width 0.5s ease 0s;
+  transition: width 0.5s ease 0s;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.footer_end .end > img {
+  height: 43px;
+  width: 145px;
+  -webkit-filter: grayscale(1);
+          filter: grayscale(1);
+  margin: 0 auto;
+}
+
+.footer_end .end .title {
+  width: 80%;
+  margin: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+
+.footer_end .end .title > h2 {
+  color: #52a6af;
+  font-size: 14px;
+  font-weight: 800;
 }
 /*# sourceMappingURL=style.css.map */

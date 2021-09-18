@@ -70,12 +70,12 @@
           flex-flow: row wrap;
   background: #354044;
   border-bottom: 1px solid #475a61;
-  padding: 55px 0;
+  padding: 35px 0;
 }
 
 .card__all {
   width: 100%;
-  max-width: 1352px;
+  max-width: 1243px;
   margin: 0 auto;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -98,12 +98,11 @@
   position: absolute;
   top: 70%;
   left: 20px;
-  -webkit-transition: all 1s linear;
-  transition: all 1s linear;
   background: #435258;
   outline: none;
   border: none;
   color: white;
+  padding: 5px 10px;
 }
 
 .card__all .content > img {
