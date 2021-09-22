@@ -1,15 +1,6 @@
-.home {
-  background: #3c494e;
-  width: 100%;
-  position: relative;
-  z-index: 999;
-  color: rgb(255, 255, 255);
-}
-
 .slotHome {
   width: 100%;
-  display: flex;
-  flex-flow: row wrap;
+
   background: #354044;
   padding: 25px 0;
   margin: 0 auto;
@@ -19,11 +10,13 @@
     max-width: 1352px;
     margin: 0 auto;
     display: flex;
+    flex-flow: row wrap;
     justify-content: space-evenly;
 
     .all__link {
       display: flex;
       line-height: 13px;
+      padding: 20px;
 
       > i {
         display: grid;
@@ -51,7 +44,6 @@
 
 .card {
   display: flex;
-  flex-flow: row wrap;
   background: #354044;
   border-bottom: 1px solid rgb(71, 90, 97);
   padding: 35px 0;
@@ -61,7 +53,12 @@
     max-width: 1243px;
     margin: 0 auto;
     display: flex;
+    flex-flow: row wrap;
     justify-content: space-between !important;
+
+    @media (max-width: 1235px) {
+      margin: 0 auto;
+    }
 
     .content {
       position: relative;
@@ -69,6 +66,12 @@
       background: #435258;
       width: 400px;
       border-radius: 7px;
+      @media (max-width: 1235px) {
+        margin: 20px auto;
+      }
+      @media (max-width: 443px) {
+        width: 100%;
+      }
 
       &:hover .play__btn {
         display: block;
@@ -97,6 +100,9 @@
         margin-top: 7px;
         color: rgb(241, 241, 241);
         width: 100%;
+        @media (max-width: 443px) {
+          font-size: 15px;
+        }
       }
 
       > p {
@@ -110,6 +116,11 @@
         text-shadow: 1px 1px rgb(75, 73, 73);
         font-weight: 500;
         width: 48%;
+        @media (max-width: 443px) {
+          text-align: center;
+          left: 40px;
+          font-size: 13px;
+        }
       }
       .play__btn {
         display: none;

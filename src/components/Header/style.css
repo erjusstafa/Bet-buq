@@ -23,6 +23,14 @@
           justify-content: space-between;
 }
 
+.header__max .form {
+  /* .fas.fa-user,
+      .fas.fa-key {
+        position: absolute;
+        left: 0;
+      } */
+}
+
 .header__max .form::-webkit-input-placeholder {
   color: white;
 }
@@ -93,6 +101,17 @@
   color: white;
 }
 
+.header__max .social .support,
+.header__max .social .socials {
+  border-right: 1px solid #354044;
+  cursor: pointer;
+}
+
+.header__max .social .support:hover,
+.header__max .social .socials:hover {
+  background-color: #45565e;
+}
+
 .header__max .social .support .fas.fa-sms,
 .header__max .social .support i.fab.fa-instagram,
 .header__max .social .support i.fab.fa-facebook,
@@ -105,6 +124,24 @@
   line-height: 44px;
 }
 
+.header__max .social .support {
+  border-left: 1px solid #354044;
+  border-right: 1px solid #354044;
+  cursor: pointer;
+}
+
+.header__max .social .support:hover {
+  background-color: #45565e;
+}
+
+.header__max .social span.lang {
+  border-right: 1px solid #354044;
+}
+
+.header__max .social span.lang:hover {
+  background-color: #45565e;
+}
+
 .header__max .social .lang {
   cursor: pointer;
   text-transform: capitalize;
@@ -114,6 +151,8 @@
   vertical-align: middle;
   color: black;
   outline: none;
+  padding: 0 7px;
+  cursor: pointer;
 }
 
 .header__max .social .lang select#lang {
@@ -128,7 +167,8 @@
   display: grid;
   background: #3c494e;
   border-bottom: 1px solid #475a61;
-  height: 100px;
+  min-height: 100px;
+  padding: 10px 0;
   place-items: center;
 }
 
@@ -141,9 +181,19 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+}
+
+@media (max-width: 617px) {
+  .home__other .other .log {
+    margin: auto;
+  }
 }
 
 .home__other .other .log > img {
@@ -170,6 +220,12 @@
   padding-left: 19px;
 }
 
+@media (max-width: 810px) {
+  .home__other .other .date {
+    display: none;
+  }
+}
+
 .home__other .other .date #hour,
 .home__other .other .date #minute,
 .home__other .other .date #seconds {
@@ -186,12 +242,17 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-flow: row nowrap;
-          flex-flow: row nowrap;
   position: relative;
   top: 16px;
+}
+
+@media (max-width: 440px) {
+  .home__other .other .route {
+    overflow-x: scroll;
+    max-width: auto;
+    padding: 8px 0;
+    background-color: #313d42;
+  }
 }
 
 .home__other .other .route .route-link {

@@ -18,12 +18,12 @@ const allConfig = {
 
   login: {
     Name: {
-      icon: "far fa-user",
+      icon: "fas fa-user",
       placeholderEN: "Username",
       placeholderIT: "Cognome",
     },
     Password: {
-      icon: "far fa-key",
+      icon: "fas fa-key",
       placeholderIT: "Pasword",
       placeholderEN: "Password",
     },

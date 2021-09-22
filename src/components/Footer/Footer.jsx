@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./style.css";
-import image from "../../images/images"
+import image from "../../images/images";
 import { Link } from "react-router-dom";
 
 const Footer = () => {
@@ -17,7 +17,6 @@ const Footer = () => {
         fullFooterHome();
     }, []);
 
-    console.log("footerApi", footerApi);
 
     return (
         <>
@@ -27,14 +26,11 @@ const Footer = () => {
                         Object.values(footerApi).map((F, index) => (
                             <>
                                 <FooterMain F={F} index={index} />
-                                <FooterEnd F={F} />
+                                <FooterEnd F={F} index={index} />
                             </>
                         ))}
                 </div>
             </div>
-
-
-
         </>
     );
 };
@@ -54,38 +50,38 @@ const FooterMain = ({ F, index }) => {
                     </div>
                 ))}
         </div>
-
     );
 };
 
-const FooterEnd = ({ F }) => {
+const FooterEnd = ({ F, index }) => {
+
     return (
         <div className="footer_end">
-            <div className="end">
+            <div className="end" key={index}>
                 <img src={image["logo"]} alt="" />
-                <Link className="title">
-                    {
-                        Object.values(F?.footer?.links).map(E => (
-                            <h2>{E.title}</h2>
-                        ))
-                    }
-                </Link>
-                <p>
-                    Al acceder, seguir utilizando o navegar a través de este sitio, acepta que utilicemos
-                    ciertas cookies del navegador para mejorar su experiencia con nosotros. Solo utilizamos
-                    Cookies que mejorarán su experiencia con nosotros y no interferirán con su privacidad.
-                    <br />
-                    Consulte nuestra{" "}
-                    <Link className="p">Política de cookies</Link>
+                <div className="title">
+                    {Object.values(F?.footer?.links).map((E) => (
+                        <Link to={E.slug} className={E && E.slug}>
+                            <h2 style={{ color: "#52a6af", fontSize: "14px", fontWeight: "800" }}>{E.title}</h2>
+                        </Link>
 
-                    para obtener más información sobre nuestro uso de cookies y cómo puede deshabilitar o
-                    administrar su uso si lo desea.
+                    ))}
+                </div>
+                <p>
+                    Al acceder, seguir utilizando o navegar a través de este sitio, acepta
+                    que utilicemos ciertas cookies del navegador para mejorar su
+                    experiencia con nosotros. Solo utilizamos Cookies que mejorarán su
+                    experiencia con nosotros y no interferirán con su privacidad.
+                    <br />
+                    Consulte nuestra <Link className="p">Política de cookies</Link>
+                    para obtener más información sobre nuestro uso de cookies y cómo puede
+                    deshabilitar o administrar su uso si lo desea.
                 </p>
                 <div className={image === null ? "nuk ka te imazhe" : "foot__img"}>
                     <img src={image["images"]} />
-                    <img src={image["fund"]} alt="" />
+                    <img style={{ objectFit: "none" }} src={image["fund"]} alt="" />
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};

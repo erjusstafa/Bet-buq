@@ -34,6 +34,12 @@
         color: white;
       }
 
+      /* .fas.fa-user,
+      .fas.fa-key {
+        position: absolute;
+        left: 0;
+      } */
+
       #pikpytje {
         width: 30px;
         height: 26px;
@@ -68,6 +74,11 @@
       color: white;
       .support,
       .socials {
+        border-right: 1px solid #354044;
+        cursor: pointer;
+        &:hover {
+          background-color: #45565e;
+        }
         .fas.fa-sms,
         i.fab.fa-instagram,
         i.fab.fa-facebook {
@@ -78,6 +89,22 @@
         }
       }
 
+      .support {
+        border-left: 1px solid #354044;
+        border-right: 1px solid #354044;
+        cursor: pointer;
+
+        &:hover {
+          background-color: #45565e;
+        }
+      }
+
+      span.lang {
+        border-right: 1px solid #354044;
+        &:hover {
+          background-color: #45565e;
+        }
+      }
       .lang {
         cursor: pointer;
         text-transform: capitalize;
@@ -87,7 +114,8 @@
         vertical-align: middle;
         color: black;
         outline: none;
-
+        padding: 0 7px;
+        cursor: pointer;
         select#lang {
           height: 30px;
           color: rgb(255, 186, 36);
@@ -103,7 +131,8 @@
   display: grid;
   background: #3c494e;
   border-bottom: 1px solid #475a61;
-  height: 100px;
+  min-height: 100px;
+  padding: 10px 0;
   place-items: center;
 
   .other {
@@ -112,9 +141,13 @@
     margin: 0px auto;
     transition: width 0.5s ease 0s;
     display: flex;
+    flex-flow: row wrap;
     justify-content: space-between;
 
     .log {
+      @media (max-width: 617px) {
+        margin: auto;
+      }
       > img {
         height: 43px;
         width: 145px;
@@ -133,6 +166,10 @@
       color: rgb(0, 0, 0);
       /* padding: 0 20px; */
       padding-left: 19px;
+
+      @media (max-width: 810px) {
+        display: none;
+      }
       #hour,
       #minute,
       #seconds {
@@ -147,9 +184,14 @@
     .route {
       color: white;
       display: flex;
-      flex-flow: row nowrap;
       position: relative;
       top: 16px;
+      @media (max-width: 440px) {
+        overflow-x: scroll;
+        max-width: auto;
+        padding: 8px 0;
+        background-color: #313d42;
+      }
 
       .route-link {
         color: white;

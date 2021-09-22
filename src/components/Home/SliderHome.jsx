@@ -9,6 +9,7 @@ const contentStyle = {
     color: "#fff",
     lineHeight: "160px",
     textAlign: "center",
+    objectFit: "cover"
 };
 
 

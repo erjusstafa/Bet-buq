@@ -5,13 +5,16 @@ import Home from "./components/Home/Home";
 import Header from "../src/components/Header/Header";
 import Footer from "../src/components/Footer/Footer";
 import { useDispatch } from "react-redux";
-import { thunkApiHome } from "./redux-toolkit/store/store";
+import { LiveCasinoApi, thunkApiHome } from "./redux-toolkit/store/store";
 import Popup from "./components/Popup/Popup";
+import CasinoLive from "./components/LiveCasino/CasinoLive";
 
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(thunkApiHome());
+    /*     dispatch(thunkApiHome("get_sliders"));
+     */
   }, [dispatch]);
 
   return (
@@ -19,9 +22,13 @@ function App() {
       <Router>
         <Header />
         <Switch>
-          <Route exact path="/" component={(props) => <Home />} />
+          <Route exact path="/" component={() => <Home />} />
+          <Route
+            exact
+            path="/live-casino"
+            component={() => <CasinoLive />}
+          />{" "}
         </Switch>
-
         <Footer />
       </Router>
     </div>

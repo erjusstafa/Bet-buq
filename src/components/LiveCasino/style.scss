@@ -1,0 +1,86 @@
+.live-casino {
+  width: 100%;
+
+  &-banner {
+    width: 100%;
+    background-image: url("https://content.playlogiq.com/storage/slider/16258252761006.png");
+    height: 400px;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    .banner_desc {
+      max-width: 1352px;
+      margin: 0 auto;
+      padding: 100px 0px 6px 0px;
+      position: relative;
+
+      > h4 {
+        margin: 0px 0px 25px;
+        font-size: 36px;
+        color: #f2f2f2;
+      }
+      > h6 {
+        margin: 25px 0px 0px;
+        font-size: 25px;
+        color: #f2f2f2;
+      }
+
+      .Play > button {
+        font-size: 24px;
+        color: #f2f2f2;
+        text-shadow: 1px 1px 6px var(--text-color-light-opaque);
+        position: absolute;
+        top: 294px;
+        white-space: nowrap;
+        background: #1ab7af;
+        border-radius: 3px;
+        padding: 8px 50px;
+        outline: none;
+        border: none;
+        cursor: pointer;
+        font-weight: 600;
+
+        &:hover {
+          background-color: #32e7de;
+        }
+      }
+    }
+  }
+}
+
+.link {
+  background: #313d42;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  align-self: center;
+  align-content: center;
+  max-width: 1352px;
+  margin: 0 auto;
+  border-bottom: 2px dashed rgb(144, 143, 143);
+  line-height: 0;
+  color: white;
+
+  &-live {
+    margin-right: 20px;
+    display: flex;
+    padding: 30px 0;
+    transform: translateX(-20px);
+    > p {
+      margin-left: 20px;
+      cursor: pointer;
+      margin-top: revert !important;
+      margin-bottom: revert !important;
+    }
+
+    .heart {
+      padding: 10px;
+      background: #4a5c64;
+      border-radius: 50px;
+      > i {
+        display: grid;
+        place-content: center;
+      }
+    }
+  }
+}
