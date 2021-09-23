@@ -16,12 +16,6 @@ export const thunkApiHome = createAsyncThunk(
   }
 );
 
-/* export const fullApiHome = createAsyncThunk("bet-buq/thunk", async () => {
-  return fetch(" https://api-new.betbuq.com/prematch/main?json&l=pt/")
-    .then((res) => res.json())
-    .catch((err) => console.log("has error bro allApi"));
-}); */
-
 export const LiveCasinoApi = createAsyncThunk(
   "bet-buq/LiveCasinoApi",
   async () => {

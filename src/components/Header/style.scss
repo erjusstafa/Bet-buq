@@ -79,6 +79,10 @@
         &:hover {
           background-color: #45565e;
         }
+
+        @media (max-width: "792px") {
+          border-right: none;
+        }
         .fas.fa-sms,
         i.fab.fa-instagram,
         i.fab.fa-facebook {
@@ -97,12 +101,19 @@
         &:hover {
           background-color: #45565e;
         }
+        @media (max-width: "792px") {
+          border-right: none;
+          border-left: none;
+        }
       }
 
       span.lang {
         border-right: 1px solid #354044;
         &:hover {
           background-color: #45565e;
+        }
+        @media (max-width: "792px") {
+          border-right: none;
         }
       }
       .lang {

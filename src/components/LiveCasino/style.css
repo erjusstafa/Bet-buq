@@ -68,7 +68,7 @@
   margin: 0 auto;
   border-bottom: 2px dashed #908f8f;
   line-height: 0;
-  color: white;
+  color: #e2e2e2;
 }
 
 .link-live {
@@ -81,11 +81,19 @@
           transform: translateX(-20px);
 }
 
-.link-live > p {
+.link-live > p,
+.link-live .all-games,
+.link-live .categories {
   margin-left: 20px;
   cursor: pointer;
   margin-top: revert !important;
   margin-bottom: revert !important;
+  color: #a7a7a7;
+}
+
+.link-live .all-games.active,
+.link-live .categories.active {
+  color: white;
 }
 
 .link-live .heart {
@@ -98,5 +106,23 @@
   display: -ms-grid;
   display: grid;
   place-content: center;
+}
+
+.link-live .Slot {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  max-width: 1352px;
+  margin: 0 auto;
+  /* .categories {
+      } */
+}
+
+.link-live .Slot > p {
+  margin-left: 20px;
+  cursor: pointer;
+  margin-top: revert !important;
+  margin-bottom: revert !important;
 }
 /*# sourceMappingURL=style.css.map */

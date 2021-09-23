@@ -112,6 +112,13 @@
   background-color: #45565e;
 }
 
+@media (max-width: 792px) {
+  .header__max .social .support,
+  .header__max .social .socials {
+    border-right: none;
+  }
+}
+
 .header__max .social .support .fas.fa-sms,
 .header__max .social .support i.fab.fa-instagram,
 .header__max .social .support i.fab.fa-facebook,
@@ -134,12 +141,25 @@
   background-color: #45565e;
 }
 
+@media (max-width: 792px) {
+  .header__max .social .support {
+    border-right: none;
+    border-left: none;
+  }
+}
+
 .header__max .social span.lang {
   border-right: 1px solid #354044;
 }
 
 .header__max .social span.lang:hover {
   background-color: #45565e;
+}
+
+@media (max-width: 792px) {
+  .header__max .social span.lang {
+    border-right: none;
+  }
 }
 
 .header__max .social .lang {

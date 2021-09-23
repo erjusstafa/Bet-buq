@@ -17,7 +17,6 @@ const Footer = () => {
         fullFooterHome();
     }, []);
 
-
     return (
         <>
             <div className="footer">
@@ -45,7 +44,7 @@ const FooterMain = ({ F, index }) => {
                         <h2 className={M && "name"}> {M?.name}</h2>
                         {M?.links &&
                             Object.values(M?.links).map((L) => (
-                                <p className={L && "slug"}>{L.title}</p>
+                                <p key={index} className={L && "slug"}>{L.title}</p>
                             ))}
                     </div>
                 ))}
@@ -54,17 +53,26 @@ const FooterMain = ({ F, index }) => {
 };
 
 const FooterEnd = ({ F, index }) => {
-
     return (
         <div className="footer_end">
-            <div className="end" key={index}>
+            <div className="end" >
                 <img src={image["logo"]} alt="" />
                 <div className="title">
                     {Object.values(F?.footer?.links).map((E) => (
-                        <Link to={E.slug} className={E && E.slug}>
-                            <h2 style={{ color: "#52a6af", fontSize: "14px", fontWeight: "800" }}>{E.title}</h2>
-                        </Link>
+                        <Link key={index}
+                            to={E.slug || "/"}
+                            className={E && E.slug}>
+                            <h2
 
+                                style={{
+                                    color: "#52a6af",
+                                    fontSize: "14px",
+                                    fontWeight: "800",
+                                }}
+                            >
+                                {E.title}
+                            </h2>
+                        </Link>
                     ))}
                 </div>
                 <p>
@@ -78,8 +86,8 @@ const FooterEnd = ({ F, index }) => {
                     deshabilitar o administrar su uso si lo desea.
                 </p>
                 <div className={image === null ? "nuk ka te imazhe" : "foot__img"}>
-                    <img src={image["images"]} />
-                    <img style={{ objectFit: "none" }} src={image["fund"]} alt="" />
+                    <img src={image["images"]} alt={""} />
+                    <img style={{ objectFit: "none" }} src={image["fund"]} alt={""} />
                 </div>
             </div>
         </div>

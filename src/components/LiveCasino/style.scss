@@ -59,18 +59,27 @@
   margin: 0 auto;
   border-bottom: 2px dashed rgb(144, 143, 143);
   line-height: 0;
-  color: white;
+  color: rgb(226, 226, 226);
 
   &-live {
     margin-right: 20px;
     display: flex;
     padding: 30px 0;
     transform: translateX(-20px);
-    > p {
+
+    > p,
+    .all-games,
+    .categories {
       margin-left: 20px;
       cursor: pointer;
       margin-top: revert !important;
       margin-bottom: revert !important;
+      color: rgb(167, 167, 167);
+    }
+
+    .all-games.active,
+    .categories.active {
+      color: rgb(255, 255, 255);
     }
 
     .heart {
@@ -81,6 +90,22 @@
         display: grid;
         place-content: center;
       }
+    }
+    .Slot {
+      display: flex;
+      width: 100%;
+      max-width: 1352px;
+      margin: 0 auto;
+
+      > p {
+        margin-left: 20px;
+        cursor: pointer;
+        margin-top: revert !important;
+        margin-bottom: revert !important;
+      }
+
+      /* .categories {
+      } */
     }
   }
 }

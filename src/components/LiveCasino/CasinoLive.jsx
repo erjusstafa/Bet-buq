@@ -11,70 +11,68 @@ function CasinoLive() {
         dispatch(LiveCasinoApi());
     }, [dispatch]);
 
-    const titlee = useSelector(
-        (state) =>
-            state.betbuqsport?.sliderApiHome?.result?.casino_live?.center["0"].title
-    );
-    const subTitlee = useSelector(
-        (state) =>
-            state.betbuqsport?.sliderApiHome?.result?.casino_live?.center["0"]
-                .subtitle
-    );
-    const btn_txtt = useSelector(
-        (state) =>
-            state.betbuqsport?.sliderApiHome?.result?.casino_live?.center["0"]
-                .btn_text
-    );
-    const btn_urll = useSelector(
-        (state) =>
-            state.betbuqsport?.sliderApiHome?.result?.casino_live?.center["0"].btn_url
-    );
-    const btn_targett = useSelector(
-        (state) =>
-            state.betbuqsport?.sliderApiHome?.result?.casino_live?.center["0"]
-                .btn_target
-    );
-    const btn_activee = useSelector(
-        (state) =>
-            state.betbuqsport?.sliderApiHome?.result?.casino_live?.center["0"].active
+    const bannerCasinoLive = useSelector(
+        (state) => state.betbuqsport.sliderApiHome.result?.casino_live
     );
 
     const allDataCasinoLive = useSelector(
         (state) => state?.betbuqsport?.LiveCasino?.result
     );
 
-    const [col, setCol] = useState("");
+    const [colorHeart, setColorHeart] = useState("");
+    const [toggle, setToggle] = useState(false);
+    const [active, setActive] = useState(false);
+    const [myindex, setMyIndex] = useState({ isActive: 0 });
 
-    const chngCol = () => {
-        setCol("red");
+    const ChangeIndex = (id) => {
+        setMyIndex({ isActive: id });
     };
+    const [category, setCategory] = useState(allDataCasinoLive);
+
+    const changeCategory = (category) => {
+        setCategory(category);
+    };
+
+    console.log("category", category);
+
+    const chngColorHeart = () => {
+        setColorHeart("red");
+    };
+
     return (
         <div style={{ background: "#313d42" }}>
             <div className="livecasino">
-                <BannerLiveCasino
-                    title={titlee}
-                    subTitle={subTitlee}
-                    btn_txt={btn_txtt}
-                    btn_url={btn_urll}
-                    btn_active={btn_activee}
-                    btn_target={btn_targett}
-                />
+                {Object.values(bannerCasinoLive || {}).map((B) => (
+                    <BannerLiveCasino B={B} />
+                ))}
             </div>
             <div className="link">
                 <div className="link-live">
-                    <span onClick={chngCol} className="heart">
+                    <span onClick={chngColorHeart} className="heart">
                         {" "}
-                        <i style={{ color: `${col}` }} class="far fa-heart" />
+                        <i style={{ color: `${colorHeart}` }} className="far fa-heart" />
                     </span>
-                    <p>All Games</p>
-                    {Object.keys(allDataCasinoLive?.categories || [])
+
+                    <p
+                        onClick={() => setActive(true)}
+                        className={"all-games " + (active ? "active" : "")}
+                    >
+                        All Games
+                    </p>
+                    {Object.values(allDataCasinoLive?.categories || [])
                         .sort((a, b) => a.order < b.order)
-                        .map((A, index) => (
+                        .map((A) => (
                             <>
-                                <p key={A.order || index} className={A?.replace(/\s+/g, "")}>
-                                    {A}
+                                <p
+                                    key={A.id}
+                                    onClick={() => ChangeIndex(A.id)}
+                                    className={
+                                        "categories" /* || (A?.name.replace(/\s+/g, "")) */ +
+                                        (myindex.isActive === A.id ? " active" : "")
+                                    }
+                                >
+                                    {A.name}
                                 </p>
-                                <Slots slotetLiveCasino={allDataCasinoLive?.providers} A={A} />
                             </>
                         ))}
                 </div>
@@ -82,32 +80,26 @@ function CasinoLive() {
                     <h3>helo</h3>
                 </div>
             </div>
+            <Kot Slots={allDataCasinoLive} toggle={toggle} />
         </div>
     );
 }
 
 export default CasinoLive;
 
-const BannerLiveCasino = ({
-    title,
-    subTitle,
-    btn_txt,
-    btn_url,
-    btn_active,
-    btn_target,
-}) => {
+const BannerLiveCasino = ({ B }) => {
     return (
         <>
             <div className="live-casino-banner">
                 <div className="banner_desc">
-                    <h4>{title}</h4>
-                    <h6>{subTitle}</h6>
+                    <h4>{B[0].title}</h4>
+                    <h6>{B[0].subtitle}</h6>
                     <Link
-                        className={btn_txt && btn_txt.split(" ")[0]}
-                        to={btn_url}
-                        target={btn_target}
+                        className={B[0].btn_text && B[0].btn_text.split(" ")[0]}
+                        to={B[0].btn_url}
+                        target={B[0].btn_target}
                     >
-                        <button>{btn_txt}</button>
+                        <button>{B[0].btn_text}</button>
                     </Link>
                 </div>
             </div>
@@ -115,23 +107,35 @@ const BannerLiveCasino = ({
     );
 };
 
-function Slots({ slotetLiveCasino, A }) {
-    console.log("slotetLiveCasino", slotetLiveCasino);
-    console.log("ABC", A);
-
+function Kot({ Slots, toggle }) {
     return (
-        <>
-            {Object.values(slotetLiveCasino || {}).map((Y) => (
-                <>
-                    {Object.values(Y["slots"]).map((E) => (
-                        <>
-                            <h2>{E?.categories?.name}</h2>
-
-                            {E.name === A.name && <img src={E.desktop_logo} alt="" />}
-                        </>
-                    ))}
-                </>
-            ))}
-        </>
+        <div className="Slot">
+            <TogggleSlots toggle={toggle} Slots={Slots} />
+        </div>
     );
 }
+
+const TogggleSlots = ({ toggle, Slots }) => {
+    return (
+        <>
+            {!toggle && (
+                <>
+                    (
+                    {Slots &&
+                        Object.values(Slots?.providers || {}).map((S, index) => (
+                            <>
+                                {Object.values(S?.slots).map((T) => (
+                                    <>
+                                        {console.log("TT", T)}
+
+                                        <img src={T.desktop_logo} alt="" />
+                                    </>
+                                ))}
+                            </>
+                        ))}
+                    )
+                </>
+            )}
+        </>
+    );
+};
