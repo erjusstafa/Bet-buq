@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from "react";
-import "./style.css";
+import "./style.scss";
 import { useSelector, useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
 import { LiveCasinoApi } from "../../redux-toolkit/store/store";
+import BannerLiveCasino from "./BannerLiveCasino";
+import { Link } from "react-router-dom";
+import LoadedCasino from "./LoadedCasino";
 
 function CasinoLive() {
     const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(LiveCasinoApi());
+        setLoading(false);
     }, [dispatch]);
 
     const bannerCasinoLive = useSelector(
@@ -19,123 +22,156 @@ function CasinoLive() {
         (state) => state?.betbuqsport?.LiveCasino?.result
     );
 
+    const [isLoading, setLoading] = useState(true);
     const [colorHeart, setColorHeart] = useState("");
-    const [toggle, setToggle] = useState(false);
-    const [active, setActive] = useState(false);
-    const [myindex, setMyIndex] = useState({ isActive: 0 });
+    const [myindex, setMyIndex] = useState({
+        favouriteId: (Math.random() * 1000).toFixed(),
+        idAllGames: (Math.random() * 1000).toFixed(),
+        isActive: null,
+    });
+
+    localStorage.getItem("myindex")
+
+    useEffect(() => {
+        localStorage.setItem("myindex", myindex.idAllGames)
+
+    })
+
+    let [txt, setTxt] = useState("");
 
     const ChangeIndex = (id) => {
         setMyIndex({ isActive: id });
-    };
-    const [category, setCategory] = useState(allDataCasinoLive);
-
-    const changeCategory = (category) => {
-        setCategory(category);
-    };
-
-    console.log("category", category);
-
-    const chngColorHeart = () => {
         setColorHeart("red");
     };
 
+    let heartIcon = "far fa-heart";
     return (
-        <div style={{ background: "#313d42" }}>
-            <div className="livecasino">
-                {Object.values(bannerCasinoLive || {}).map((B) => (
-                    <BannerLiveCasino B={B} />
-                ))}
-            </div>
-            <div className="link">
-                <div className="link-live">
-                    <span onClick={chngColorHeart} className="heart">
-                        {" "}
-                        <i style={{ color: `${colorHeart}` }} className="far fa-heart" />
-                    </span>
+        <>
+            {isLoading ? (
+                <LoadedCasino />
+            ) : (
+                <>
+                    <div className="livecasino">
+                        {Object.values(bannerCasinoLive || {}).map((B, b) => (
+                            <BannerLiveCasino B={B} b={b} />
+                        ))}
+                    </div>
+                    <div style={{ background: "#313d42" }}>
+                        <div className="link">
+                            <div className="link-live">
+                                <span onClick={() => ChangeIndex()} className="heart">
+                                    {" "}
+                                    <i style={{ color: `${colorHeart}` }} className={heartIcon} />
+                                </span>
 
-                    <p
-                        onClick={() => setActive(true)}
-                        className={"all-games " + (active ? "active" : "")}
-                    >
-                        All Games
-                    </p>
-                    {Object.values(allDataCasinoLive?.categories || [])
-                        .sort((a, b) => a.order < b.order)
-                        .map((A) => (
-                            <>
                                 <p
-                                    key={A.id}
-                                    onClick={() => ChangeIndex(A.id)}
+                                    onClick={() => ChangeIndex()}
                                     className={
-                                        "categories" /* || (A?.name.replace(/\s+/g, "")) */ +
-                                        (myindex.isActive === A.id ? " active" : "")
+                                        "all-games " +
+                                        (myindex.isActive === myindex.idAllGames ? "active" : "")
                                     }
                                 >
-                                    {A.name}
+                                    All Games
                                 </p>
-                            </>
-                        ))}
-                </div>
-                <div>
-                    <h3>helo</h3>
-                </div>
-            </div>
-            <Kot Slots={allDataCasinoLive} toggle={toggle} />
-        </div>
+                                {Object.values(allDataCasinoLive?.categories || {})
+                                    .sort((a, b) => a.order < b.order)
+                                    .map((A) => {
+                                        setTxt = A.name;
+
+                                        console.log("txtx", setTxt);
+                                        return (
+                                            <>
+                                                <p
+                                                    key={A.id}
+                                                    onClick={() => ChangeIndex(A.id)}
+                                                    className={
+                                                        A?.name
+                                                            .split(" ")[0]
+                                                            .replace(/\s+/g, "")
+                                                            .toLowerCase() +
+                                                        (myindex.isActive === A.id ? " active" : "")
+                                                    }
+                                                >
+                                                    {A.name}
+                                                </p>
+                                            </>
+                                        );
+                                    })}
+                            </div>
+
+                            <h3>helo</h3>
+                        </div>
+                        <ToggleSlots
+                            Slots={allDataCasinoLive}
+                            myindex={myindex.isActive}
+                            heartIcon={heartIcon}
+                            txt={setTxt}
+                        />
+                    </div>
+                </>
+            )}
+        </>
     );
 }
 
 export default CasinoLive;
 
-const BannerLiveCasino = ({ B }) => {
-    return (
-        <>
-            <div className="live-casino-banner">
-                <div className="banner_desc">
-                    <h4>{B[0].title}</h4>
-                    <h6>{B[0].subtitle}</h6>
-                    <Link
-                        className={B[0].btn_text && B[0].btn_text.split(" ")[0]}
-                        to={B[0].btn_url}
-                        target={B[0].btn_target}
-                    >
-                        <button>{B[0].btn_text}</button>
-                    </Link>
-                </div>
-            </div>
-        </>
-    );
-};
-
-function Kot({ Slots, toggle }) {
+const ToggleSlots = ({ Slots, myindex, heartIcon, txt }) => {
     return (
         <div className="Slot">
-            <TogggleSlots toggle={toggle} Slots={Slots} />
+            {Slots &&
+                Object.values(Slots?.providers || {}).map((T) => (
+                    <>
+                        {Object.values(T?.slots || {}).map((F, f) => {
+                            return (
+                                <>
+                                    {myindex
+                                        ? Object.values(
+                                            JSON.parse(F.categories || "{}")
+                                                .filter((Y) => Y.id === myindex)
+                                                .map((R) => (
+                                                    <div className="item-slots" key={R.id}>
+                                                        <Link to="/kot" className="link-slot">
+                                                            <img src={F.desktop_logo} alt="" />
+                                                        </Link>
+
+                                                        <span className="span">
+                                                            <p>{F.name}</p>
+                                                            <i
+                                                                className={heartIcon}
+                                                                style={{ marginTop: "-11px" }}
+                                                            />
+                                                        </span>
+                                                    </div>
+                                                ))
+                                        )
+                                        : Object.values(
+                                            JSON.parse(F.categories || {})
+                                                .map((R) => (
+                                                    <>
+                                                        {console.log("R.name", R.name)}
+
+                                                        <div className="item-slots-all" key={R.id}>
+                                                            <Link to="/kot" className="link-slot-all">
+                                                                <img src={F.desktop_logo} alt="" />
+                                                            </Link>
+
+                                                            <span className="span">
+                                                                <p>{F.name}</p>
+                                                                <i
+                                                                    className={heartIcon}
+                                                                    style={{ marginTop: "-11px" }}
+                                                                />
+                                                            </span>
+                                                        </div>
+                                                    </>
+                                                ))
+                                        )}
+                                </>
+                            );
+                        })}
+                    </>
+                ))}
         </div>
-    );
-}
-
-const TogggleSlots = ({ toggle, Slots }) => {
-    return (
-        <>
-            {!toggle && (
-                <>
-                    (
-                    {Slots &&
-                        Object.values(Slots?.providers || {}).map((S, index) => (
-                            <>
-                                {Object.values(S?.slots).map((T) => (
-                                    <>
-                                        {console.log("TT", T)}
-
-                                        <img src={T.desktop_logo} alt="" />
-                                    </>
-                                ))}
-                            </>
-                        ))}
-                    )
-                </>
-            )}
-        </>
     );
 };

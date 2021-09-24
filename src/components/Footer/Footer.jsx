@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./style.css";
+import "./style.scss";
 import image from "../../images/images";
 import { Link } from "react-router-dom";
 
@@ -23,10 +23,10 @@ const Footer = () => {
                 <div className="footer__max">
                     {footerApi &&
                         Object.values(footerApi).map((F, index) => (
-                            <>
+                            <div key={index}>
                                 <FooterMain F={F} index={index} />
                                 <FooterEnd F={F} index={index} />
-                            </>
+                            </div>
                         ))}
                 </div>
             </div>

@@ -67,19 +67,25 @@
     padding: 30px 0;
     transform: translateX(-20px);
 
-    > p,
-    .all-games,
-    .categories {
+    @media (max-width: 770px) {
+      flex-direction: column;
+    }
+
+    > p {
       margin-left: 20px;
       cursor: pointer;
       margin-top: revert !important;
       margin-bottom: revert !important;
+
       color: rgb(167, 167, 167);
     }
 
+    .link-category,
     .all-games.active,
-    .categories.active {
+    > p.active {
       color: rgb(255, 255, 255);
+
+      opacity: 1;
     }
 
     .heart {
@@ -91,21 +97,104 @@
         place-content: center;
       }
     }
-    .Slot {
+  }
+}
+
+.Slot {
+  display: flex;
+  flex-flow: row wrap;
+  width: 100%;
+  max-width: 1352px;
+  margin: 0 auto;
+  padding: 50px 0;
+
+  div.item-slots {
+    padding: 0 3px;
+    margin: auto;
+
+    .span {
       display: flex;
-      width: 100%;
-      max-width: 1352px;
-      margin: 0 auto;
-
-      > p {
-        margin-left: 20px;
-        cursor: pointer;
-        margin-top: revert !important;
-        margin-bottom: revert !important;
-      }
-
-      /* .categories {
-      } */
+      justify-content: space-around;
+      align-items: center;
+      color: #d4d4d4;
     }
+
+    .link-slot {
+      > img {
+        width: 187px;
+        height: 142px;
+        border-radius: 20px;
+        &:hover {
+          filter: brightness(0.7);
+        }
+      }
+    }
+  }
+
+  div.item-slots-all {
+    padding: 0 3px;
+    margin: auto;
+
+    .link-slot-all {
+      > img {
+        width: 321px;
+        height: 235px;
+        border-radius: 20px;
+        &:hover {
+          filter: brightness(0.7);
+        }
+      }
+    }
+
+    .span {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #d4d4d4;
+    }
+  }
+
+  > p {
+    margin-left: 20px;
+    cursor: pointer;
+    margin-top: revert !important;
+    margin-bottom: revert !important;
+  }
+
+  /* .categories {
+  } */
+}
+
+//loading
+.lds-hourglass {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+  &::after {
+    content: " ";
+    display: block;
+    border-radius: 50%;
+    width: 0;
+    height: 0;
+    margin: 8px;
+    box-sizing: border-box;
+    border: 32px solid #fff;
+    border-color: #fff transparent #fff transparent;
+    animation: lds-hourglass 1.2s infinite;
+  }
+}
+
+@keyframes lds-hourglass {
+  0% {
+    transform: rotate(0);
+    animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+  }
+  50% {
+    transform: rotate(900deg);
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+  100% {
+    transform: rotate(1800deg);
   }
 }

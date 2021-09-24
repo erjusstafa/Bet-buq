@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Popup from "./Popup";
-import "./style.css";
+import "./style.scss";
 const Index = () => {
     const [isOpen, setIsOpen] = useState(false);
 

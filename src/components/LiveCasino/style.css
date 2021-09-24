@@ -81,9 +81,16 @@
           transform: translateX(-20px);
 }
 
-.link-live > p,
-.link-live .all-games,
-.link-live .categories {
+@media (max-width: 770px) {
+  .link-live {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+}
+
+.link-live > p {
   margin-left: 20px;
   cursor: pointer;
   margin-top: revert !important;
@@ -91,9 +98,11 @@
   color: #a7a7a7;
 }
 
+.link-live .link-category,
 .link-live .all-games.active,
-.link-live .categories.active {
+.link-live > p.active {
   color: white;
+  opacity: 1;
 }
 
 .link-live .heart {
@@ -108,21 +117,143 @@
   place-content: center;
 }
 
-.link-live .Slot {
+.Slot {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
   width: 100%;
   max-width: 1352px;
   margin: 0 auto;
+  padding: 50px 0;
   /* .categories {
-      } */
+  } */
 }
 
-.link-live .Slot > p {
+.Slot div.item-slots {
+  padding: 0 3px;
+  margin: auto;
+}
+
+.Slot div.item-slots .span {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: #d4d4d4;
+}
+
+.Slot div.item-slots .link-slot > img {
+  width: 187px;
+  height: 142px;
+  border-radius: 20px;
+}
+
+.Slot div.item-slots .link-slot > img:hover {
+  -webkit-filter: brightness(0.7);
+          filter: brightness(0.7);
+}
+
+.Slot div.item-slots-all {
+  padding: 0 3px;
+  margin: auto;
+}
+
+.Slot div.item-slots-all .link-slot-all > img {
+  width: 321px;
+  height: 235px;
+  border-radius: 20px;
+}
+
+.Slot div.item-slots-all .link-slot-all > img:hover {
+  -webkit-filter: brightness(0.7);
+          filter: brightness(0.7);
+}
+
+.Slot div.item-slots-all .span {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: #d4d4d4;
+}
+
+.Slot > p {
   margin-left: 20px;
   cursor: pointer;
   margin-top: revert !important;
   margin-bottom: revert !important;
+}
+
+.lds-hourglass {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+
+.lds-hourglass::after {
+  content: " ";
+  display: block;
+  border-radius: 50%;
+  width: 0;
+  height: 0;
+  margin: 8px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border: 32px solid #fff;
+  border-color: #fff transparent #fff transparent;
+  -webkit-animation: lds-hourglass 1.2s infinite;
+          animation: lds-hourglass 1.2s infinite;
+}
+
+@-webkit-keyframes lds-hourglass {
+  0% {
+    -webkit-transform: rotate(0);
+            transform: rotate(0);
+    -webkit-animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+            animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+  }
+  50% {
+    -webkit-transform: rotate(900deg);
+            transform: rotate(900deg);
+    -webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+            animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+  100% {
+    -webkit-transform: rotate(1800deg);
+            transform: rotate(1800deg);
+  }
+}
+
+@keyframes lds-hourglass {
+  0% {
+    -webkit-transform: rotate(0);
+            transform: rotate(0);
+    -webkit-animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+            animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+  }
+  50% {
+    -webkit-transform: rotate(900deg);
+            transform: rotate(900deg);
+    -webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+            animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+  100% {
+    -webkit-transform: rotate(1800deg);
+            transform: rotate(1800deg);
+  }
 }
 /*# sourceMappingURL=style.css.map */

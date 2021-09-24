@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
-import "./style.css";
+import "./style.scss";
 import image from "../../images/images";
 import { Link } from "react-router-dom";
 
