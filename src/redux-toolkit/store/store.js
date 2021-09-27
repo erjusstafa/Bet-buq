@@ -38,7 +38,11 @@ let initialState = {
 const act = createSlice({
   name: "bet-buq",
   initialState,
-  reducers: {},
+  reducers: {
+    sortData: (state, action) => {
+      return alert("sdfed");
+    },
+  },
 
   extraReducers: {
     [thunkApiHome.fulfilled]: (state, { payload }) => {
@@ -53,42 +57,5 @@ const act = createSlice({
   },
 });
 
+export const { sortData } = act.actions;
 export default act.reducer;
-
-/* -------------------------------------------------------------------------------------------- */
-/* 
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import allConfig from "../../config/allConfig";
-
-export const thunkApiHome = createAsyncThunk(
-  "bet-buq/thunkApiHome",
-  async (dt) => {
-    return fetch(`${allConfig.contentManagementAPI}/${dt}`)
-      .then((res) => res.json())
-      .catch((err) => console.log("has err"));
-  }
-);
-
-let initialState = {
-  bet: { allConfig },
-  sliderApiHome: [],
-  LiveCasino: [],
-};
-
-const act = createSlice({
-  name: "bet-buq",
-  initialState,
-  reducers: {},
-
-  extraReducers: {
-    [thunkApiHome.fulfilled]: (state, action) => {
-      state.sliderApiHome = action.payload;
-      state.LiveCasino = action.payload;
-
-     
-    },
-  },
-});
-
-export default act.reducer;
- */

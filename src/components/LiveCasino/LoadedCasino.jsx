@@ -1,10 +1,9 @@
 import React from 'react'
+import { Spin } from 'antd';
 
 const LoadedCasino = () => {
     return (
-        <div class="lds-hourglass">
-
-        </div>
+        <Spin />
     )
 }
 

@@ -28,7 +28,6 @@
       .Play > button {
         font-size: 24px;
         color: #f2f2f2;
-        text-shadow: 1px 1px 6px var(--text-color-light-opaque);
         position: absolute;
         top: 294px;
         white-space: nowrap;
@@ -76,16 +75,16 @@
       cursor: pointer;
       margin-top: revert !important;
       margin-bottom: revert !important;
-
       color: rgb(167, 167, 167);
+      font-weight: bolder;
     }
 
     .link-category,
     .all-games.active,
     > p.active {
       color: rgb(255, 255, 255);
-
       opacity: 1;
+      font-weight: bold;
     }
 
     .heart {
@@ -98,34 +97,97 @@
       }
     }
   }
+
+  .search-game {
+    display: flex;
+    .search {
+      display: flex;
+      align-items: center;
+      align-content: center;
+      width: 200px;
+      background: #4e5d63;
+      padding: 20px;
+      border-right: 1px solid rgb(153, 152, 152);
+      > p,
+      .fas.fa-search {
+        margin: auto 0;
+        padding: 0 5px;
+        color: rgb(197, 197, 197);
+      }
+    }
+
+    .provider {
+      display: flex;
+      align-items: center;
+      align-content: center;
+      width: 200px;
+      background: #4e5d63;
+      padding: 20px;
+      > p,
+      .fas.fa-search {
+        margin: auto 0;
+        padding: 0 5px;
+        color: rgb(197, 197, 197);
+        margin-left: 80px;
+      }
+    }
+  }
 }
 
 .Slot {
   display: flex;
-  flex-flow: row wrap;
+  flex-flow: column nowrap;
   width: 100%;
   max-width: 1352px;
   margin: 0 auto;
-  padding: 50px 0;
+  padding: 20px 0;
 
-  div.item-slots {
-    padding: 0 3px;
-    margin: auto;
-
-    .span {
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
-      color: #d4d4d4;
+  .sort-category {
+    display: flex;
+    justify-content: space-between;
+    > h2 {
+      font-weight: bold;
+      font-size: 28px;
+      color: rgb(245, 245, 245);
     }
 
-    .link-slot {
-      > img {
-        width: 187px;
-        height: 142px;
-        border-radius: 20px;
-        &:hover {
-          filter: brightness(0.7);
+    > span {
+      color: rgb(255, 255, 255);
+      display: flex;
+      align-content: center;
+      justify-content: space-evenly;
+      margin: auto 0;
+
+      > h3 {
+        color: rgb(163, 160, 160);
+        padding: 0 20px;
+        cursor: pointer;
+      }
+    }
+  }
+  .slot-images {
+    display: flex;
+    flex-flow: row wrap;
+
+    div.item-slots {
+      padding: 0 3px;
+      margin: auto;
+
+      .span {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        color: #d4d4d4;
+      }
+
+      .link-slot {
+        > img {
+          width: 187px;
+          height: 142px;
+          border-radius: 10px;
+          &:hover {
+            filter: brightness(0.7);
+          }
         }
       }
     }
@@ -134,12 +196,15 @@
   div.item-slots-all {
     padding: 0 3px;
     margin: auto;
-
+    > h1 {
+      color: #ffba24;
+      font-weight: bold;
+    }
     .link-slot-all {
       > img {
         width: 321px;
         height: 235px;
-        border-radius: 20px;
+        border-radius: 10px;
         &:hover {
           filter: brightness(0.7);
         }
@@ -155,46 +220,66 @@
   }
 
   > p {
+    font-weight: bold;
     margin-left: 20px;
     cursor: pointer;
     margin-top: revert !important;
     margin-bottom: revert !important;
   }
-
-  /* .categories {
-  } */
 }
 
-//loading
-.lds-hourglass {
-  display: inline-block;
-  position: relative;
-  width: 80px;
-  height: 80px;
-  &::after {
-    content: " ";
-    display: block;
-    border-radius: 50%;
-    width: 0;
-    height: 0;
-    margin: 8px;
-    box-sizing: border-box;
-    border: 32px solid #fff;
-    border-color: #fff transparent #fff transparent;
-    animation: lds-hourglass 1.2s infinite;
-  }
-}
+//modal
+.modalBackground {
+  width: 100vw;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  height: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 1080px;
+  max-width: 1200px;
+  z-index: 1001;
+  .modalContainer {
+    height: 500px;
+    border-radius: 12px;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    display: flex;
+    flex-direction: column;
+    .titleCloseBtn {
+      display: flex;
+      justify-content: flex-end;
+      position: relative;
+      right: -67px;
+      top: -70px;
+      border-radius: 50%;
+      button {
+        background-color: white;
+        border: none;
+        color: #4a5c64;
+        cursor: pointer;
+        width: 40px;
+        height: 40px;
+        font-size: 17px;
+        font-weight: bold;
+        border-radius: 50%;
+      }
+    }
 
-@keyframes lds-hourglass {
-  0% {
-    transform: rotate(0);
-    animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
-  }
-  50% {
-    transform: rotate(900deg);
-    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
-  }
-  100% {
-    transform: rotate(1800deg);
+    .search-modal {
+      display: flex;
+      justify-content: space-between;
+      .search {
+        display: inherit;
+
+        .search-input {
+          max-width: 1000px;
+        }
+      }
+
+      .filters {
+        display: inherit;
+      }
+    }
   }
 }

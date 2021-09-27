@@ -24,8 +24,8 @@ const Footer = () => {
                     {footerApi &&
                         Object.values(footerApi).map((F, index) => (
                             <div key={index}>
-                                <FooterMain F={F} index={index} />
-                                <FooterEnd F={F} index={index} />
+                                <FooterMain F={F} />
+                                <FooterEnd F={F} />
                             </div>
                         ))}
                 </div>
@@ -35,16 +35,16 @@ const Footer = () => {
 };
 export default Footer;
 
-const FooterMain = ({ F, index }) => {
+const FooterMain = ({ F }) => {
     return (
         <div className="big__link">
             {F?.main &&
-                Object.values(F?.main).map((M, index) => (
-                    <div className="content" key={index}>
+                Object.values(F?.main).map((M, ind) => (
+                    <div className="content" key={ind}>
                         <h2 className={M && "name"}> {M?.name}</h2>
                         {M?.links &&
-                            Object.values(M?.links).map((L) => (
-                                <p key={index} className={L && "slug"}>{L.title}</p>
+                            Object.values(M?.links).map((L, indx) => (
+                                <p key={indx} className={L && "slug"}>{L.title}</p>
                             ))}
                     </div>
                 ))}
@@ -52,14 +52,14 @@ const FooterMain = ({ F, index }) => {
     );
 };
 
-const FooterEnd = ({ F, index }) => {
+const FooterEnd = ({ F, }) => {
     return (
         <div className="footer_end">
             <div className="end" >
                 <img src={image["logo"]} alt="" />
                 <div className="title">
-                    {Object.values(F?.footer?.links).map((E) => (
-                        <Link key={index}
+                    {Object.values(F?.footer?.links).map((E, indexKey) => (
+                        <Link key={indexKey}
                             to={E.slug || "/"}
                             className={E && E.slug}>
                             <h2
@@ -81,7 +81,7 @@ const FooterEnd = ({ F, index }) => {
                     experiencia con nosotros. Solo utilizamos Cookies que mejorarán su
                     experiencia con nosotros y no interferirán con su privacidad.
                     <br />
-                    Consulte nuestra <Link className="p">Política de cookies</Link>
+                    Consulte nuestra <Link to="/" className="p">Política de cookies</Link>
                     para obtener más información sobre nuestro uso de cookies y cómo puede
                     deshabilitar o administrar su uso si lo desea.
                 </p>

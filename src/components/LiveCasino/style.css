@@ -32,7 +32,6 @@
 .live-casino-banner .banner_desc .Play > button {
   font-size: 24px;
   color: #f2f2f2;
-  text-shadow: 1px 1px 6px var(--text-color-light-opaque);
   position: absolute;
   top: 294px;
   white-space: nowrap;
@@ -96,6 +95,7 @@
   margin-top: revert !important;
   margin-bottom: revert !important;
   color: #a7a7a7;
+  font-weight: bolder;
 }
 
 .link-live .link-category,
@@ -103,6 +103,7 @@
 .link-live > p.active {
   color: white;
   opacity: 1;
+  font-weight: bold;
 }
 
 .link-live .heart {
@@ -117,7 +118,105 @@
   place-content: center;
 }
 
+.link .search-game {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.link .search-game .search {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  width: 200px;
+  background: #4e5d63;
+  padding: 20px;
+  border-right: 1px solid #999898;
+}
+
+.link .search-game .search > p,
+.link .search-game .search .fas.fa-search {
+  margin: auto 0;
+  padding: 0 5px;
+  color: #c5c5c5;
+}
+
+.link .search-game .provider {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  width: 200px;
+  background: #4e5d63;
+  padding: 20px;
+}
+
+.link .search-game .provider > p,
+.link .search-game .provider .fas.fa-search {
+  margin: auto 0;
+  padding: 0 5px;
+  color: #c5c5c5;
+  margin-left: 80px;
+}
+
 .Slot {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column nowrap;
+          flex-flow: column nowrap;
+  width: 100%;
+  max-width: 1352px;
+  margin: 0 auto;
+  padding: 20px 0;
+}
+
+.Slot .sort-category {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.Slot .sort-category > h2 {
+  font-weight: bold;
+  font-size: 28px;
+  color: whitesmoke;
+}
+
+.Slot .sort-category > span {
+  color: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  margin: auto 0;
+}
+
+.Slot .sort-category > span > h3 {
+  color: #a3a0a0;
+  padding: 0 20px;
+  cursor: pointer;
+}
+
+.Slot .slot-images {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -125,20 +224,14 @@
   -webkit-box-direction: normal;
       -ms-flex-flow: row wrap;
           flex-flow: row wrap;
-  width: 100%;
-  max-width: 1352px;
-  margin: 0 auto;
-  padding: 50px 0;
-  /* .categories {
-  } */
 }
 
-.Slot div.item-slots {
+.Slot .slot-images div.item-slots {
   padding: 0 3px;
   margin: auto;
 }
 
-.Slot div.item-slots .span {
+.Slot .slot-images div.item-slots .span {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -150,13 +243,13 @@
   color: #d4d4d4;
 }
 
-.Slot div.item-slots .link-slot > img {
+.Slot .slot-images div.item-slots .link-slot > img {
   width: 187px;
   height: 142px;
-  border-radius: 20px;
+  border-radius: 10px;
 }
 
-.Slot div.item-slots .link-slot > img:hover {
+.Slot .slot-images div.item-slots .link-slot > img:hover {
   -webkit-filter: brightness(0.7);
           filter: brightness(0.7);
 }
@@ -166,10 +259,15 @@
   margin: auto;
 }
 
+.Slot div.item-slots-all > h1 {
+  color: #ffba24;
+  font-weight: bold;
+}
+
 .Slot div.item-slots-all .link-slot-all > img {
   width: 321px;
   height: 235px;
-  border-radius: 20px;
+  border-radius: 10px;
 }
 
 .Slot div.item-slots-all .link-slot-all > img:hover {
@@ -191,69 +289,84 @@
 }
 
 .Slot > p {
+  font-weight: bold;
   margin-left: 20px;
   cursor: pointer;
   margin-top: revert !important;
   margin-bottom: revert !important;
 }
 
-.lds-hourglass {
-  display: inline-block;
+.modalBackground {
+  width: 100vw;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  height: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  min-width: 1080px;
+  max-width: 1200px;
+  z-index: 1001;
+}
+
+.modalBackground .modalContainer {
+  height: 500px;
+  border-radius: 12px;
+  background-color: white;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+          box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.modalBackground .modalContainer .titleCloseBtn {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
   position: relative;
-  width: 80px;
-  height: 80px;
-}
-
-.lds-hourglass::after {
-  content: " ";
-  display: block;
+  right: -67px;
+  top: -70px;
   border-radius: 50%;
-  width: 0;
-  height: 0;
-  margin: 8px;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  border: 32px solid #fff;
-  border-color: #fff transparent #fff transparent;
-  -webkit-animation: lds-hourglass 1.2s infinite;
-          animation: lds-hourglass 1.2s infinite;
 }
 
-@-webkit-keyframes lds-hourglass {
-  0% {
-    -webkit-transform: rotate(0);
-            transform: rotate(0);
-    -webkit-animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
-            animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
-  }
-  50% {
-    -webkit-transform: rotate(900deg);
-            transform: rotate(900deg);
-    -webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
-            animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
-  }
-  100% {
-    -webkit-transform: rotate(1800deg);
-            transform: rotate(1800deg);
-  }
+.modalBackground .modalContainer .titleCloseBtn button {
+  background-color: white;
+  border: none;
+  color: #4a5c64;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  font-size: 17px;
+  font-weight: bold;
+  border-radius: 50%;
 }
 
-@keyframes lds-hourglass {
-  0% {
-    -webkit-transform: rotate(0);
-            transform: rotate(0);
-    -webkit-animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
-            animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
-  }
-  50% {
-    -webkit-transform: rotate(900deg);
-            transform: rotate(900deg);
-    -webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
-            animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
-  }
-  100% {
-    -webkit-transform: rotate(1800deg);
-            transform: rotate(1800deg);
-  }
+.modalBackground .modalContainer .search-modal {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.modalBackground .modalContainer .search-modal .search {
+  display: inherit;
+}
+
+.modalBackground .modalContainer .search-modal .search .search-input {
+  max-width: 1000px;
+}
+
+.modalBackground .modalContainer .search-modal .filters {
+  display: inherit;
 }
 /*# sourceMappingURL=style.css.map */
