@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import "./style.scss";
 import { useSelector, useDispatch } from "react-redux";
-import { LiveCasinoApi, sortData } from "../../redux-toolkit/store/store";
+import { LiveCasinoApi } from "../../redux-toolkit/store/store";
 import BannerLiveCasino from "./BannerLiveCasino";
 import LoadedCasino from "./LoadedCasino";
 import AllSlots from "./AllSlots";
 import ItemSlots from "./ItemSlots";
 import ModalCasino from "./ModalCasino";
-
+import Providers from "./Providers";
 function CasinoLive() {
     const dispatch = useDispatch();
 
@@ -24,25 +24,65 @@ function CasinoLive() {
         (state) => state?.betbuqsport?.LiveCasino?.result
     );
 
+    const logIn = useSelector((state) => state.betbuqsport.userLog);
+
     const [isLoading, setLoading] = useState(true);
     const [colorHeart, setColorHeart] = useState("");
 
     const [myindex, setMyIndex] = useState({
-        favouriteId: (Math.random() * 1000).toFixed(),
+        favouriteId: (Math.random() * 10000000).toFixed(),
         idAllGames: (Math.random() * 1000).toFixed(),
         isActive: null,
         isActiveText: "",
+
     });
+
+    /*  const uniqueList = [
+         "All",
+         ...new Set(
+             Object.values(allDataCasinoLive?.categories || {}).map(m => {
+                 return m.name; 
+             })
+         ),
+ 
+     ];
+ 
+ 
+     const [menuData, setMenuData] = useState(allDataCasinoLive?.categories);
+ 
+ 
+     const filterItem = (category) => {
+         if (category === "All") {
+             setMenuData(allDataCasinoLive?.categories);  
+             return;
+         }
+ 
+         else {
+             const updatedList = allDataCasinoLive?.categories.filter((m) => {
+                 return m.name === category; 
+             });
+ 
+             setMenuData(updatedList);
+         }
+     };
+  */
+
+    console.log("favouriteId", myindex.favouriteId);
+    console.log("idAllGames", myindex.idAllGames);
 
     const ChangeIndex = (id, name) => {
         setMyIndex({ isActive: id, isActiveText: name });
-        setColorHeart("red");
+        /* setColorHeart("red"); */
     };
 
-    const SortDataSlots = () => {
-        dispatch(sortData(myindex));
+    //load more
+    const [loadMore, setLoadMore] = useState({ load: 3 });
+
+    const moreSlots = () => {
+        setLoadMore({ load: loadMore.load + loadMore.load });
     };
 
+    //modal
     const [modalOpen, setModalOpen] = useState(false);
 
     //icon
@@ -50,6 +90,9 @@ function CasinoLive() {
     let searchIcon = "fas fa-search";
     let alignRight = "fas fa-align-right";
     let searchFor = "Search for a game";
+
+
+
     return (
         <>
             {isLoading ? (
@@ -68,15 +111,14 @@ function CasinoLive() {
                                     onClick={() => ChangeIndex()}
                                     className={
                                         "heart " +
-                                        (myindex.idAllGames === myindex.isActive ? "active" : "")
+                                        (myindex.isActive !== myindex.favouriteId ||
+                                            myindex.idAllGames !== myindex.favouriteId
+                                            ? "active"
+                                            : "")
                                     }
                                 >
                                     {" "}
-                                    <i
-                    /* style={{ color: `${colorHeart}` }} */ className={
-                                            heartIcon
-                                        }
-                                    />
+                                    <i style={{ color: `${colorHeart}` }} className={heartIcon} />
                                 </span>
 
                                 <p
@@ -141,8 +183,9 @@ function CasinoLive() {
                             myindex={myindex.isActive}
                             heartIcon={heartIcon}
                             mytxt={myindex.isActiveText}
-                            SortDataSlots={SortDataSlots}
-                            kot={myindex.idAllGames}
+                            loadMore={loadMore.load}
+                            loadKey={loadMore}
+                            moreSlots={moreSlots}
                         />
                     </div>
                 </>
@@ -153,7 +196,15 @@ function CasinoLive() {
 
 export default CasinoLive;
 
-const ToggleSlots = ({ Slots, myindex, heartIcon, mytxt, SortDataSlots, kot }) => {
+const ToggleSlots = ({
+    Slots,
+    myindex,
+    heartIcon,
+    mytxt,
+    loadMore,
+    loadKey,
+    moreSlots,
+}) => {
     return (
         <div className="Slot">
             <div className="sort-category">
@@ -162,65 +213,66 @@ const ToggleSlots = ({ Slots, myindex, heartIcon, mytxt, SortDataSlots, kot }) =
                         <h2>{mytxt}</h2>
                         <span>
                             <p>Sort By</p>
-                            <h3 onClick={SortDataSlots}>A-Z</h3>
+                            <h3>A-Z</h3>
                         </span>
                     </>
                 ) : (
-                    <>{kot && <h4>Top Games</h4>}</>
+                    <>{mytxt === "Top Games" && <h1>{mytxt}</h1>}</>
                 )}
             </div>
-            <div className="slot-images">
+            <div className={mytxt ? "slot-images" : "all-slot-images"}>
                 {Object.values(Slots?.providers || {}).map((T) => (
                     <>
-                        {Object.values(T?.slots || {}).map((F, f) => {
-                            return (
-                                <>
-                                    {myindex
-                                        ? Object.values(
-                                            JSON.parse(F.categories || "{}")
-                                                .filter((Y) => Y.id === myindex)
-                                                .map((R) => (
-                                                    <>
-                                                        {R.id === myindex && (
-                                                            <ItemSlots R={R} F={F} heartIcon={heartIcon} />
-                                                        )}
-                                                    </>
-                                                ))
-                                        )
-                                        : Object.values(
-                                            JSON.parse(F.categories || "{}")
-                                                .map((R) => (
-                                                    <>
-                                                        {
-                                                            R.name === "Top Games" && <div>
-
-                                                                <AllSlots
-                                                                    catId={R.id}
+                        {Object.values(T?.slots || {})
+                            .slice(0, loadMore)
+                            .map((F, f) => {
+                                return (
+                                    <>
+                                        {myindex
+                                            ? Object.values(
+                                                JSON.parse(F.categories || "{}")
+                                                    .filter((Y) => Y.id === myindex)
+                                                    .map((R) => (
+                                                        <>
+                                                            {R.id === myindex && (
+                                                                <ItemSlots
                                                                     R={R}
                                                                     F={F}
                                                                     heartIcon={heartIcon}
-                                                                /></div>
-                                                        }
-                                                        {
-                                                            R.name === "Roulette" && <div>
+                                                                />
+                                                            )}
+                                                        </>
+                                                    ))
+                                            )
+                                            : Object.values(
+                                                JSON.parse(F.categories || "{}").map((R) => (
+                                                    <>
+                                                        <div className="allslots">
+                                                            <AllSlots
+                                                                catId={R.id}
+                                                                R={R}
+                                                                F={F}
+                                                                heartIcon={heartIcon}
+                                                            />
 
-                                                                <AllSlots
-                                                                    catId={R.id}
-                                                                    R={R}
-                                                                    F={F}
-                                                                    heartIcon={heartIcon}
-                                                                /></div>
-                                                        }
+
+                                                        </div>
 
                                                     </>
                                                 ))
-                                        )}
-                                </>
-                            );
-                        })}
+                                            )}
+                                    </>
+                                );
+                            })}
+                        {/* 
+                        <Providers T={T} /> */}
                     </>
                 ))}
             </div>
+
+            <span className={"more"} onClick={() => moreSlots()}>
+                <i className="fas fa-sync-alt"></i>
+            </span>
         </div>
     );
 };

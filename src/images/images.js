@@ -7,6 +7,7 @@ export const image = {
   crazy: require("../assetss/crazy.png").default,
   images: require("../assetss/footer.png").default,
   fund: require("../assetss/fund.png").default,
+  topHours: require("../assetss/top-hours.png").default,
 };
 
 export default image;

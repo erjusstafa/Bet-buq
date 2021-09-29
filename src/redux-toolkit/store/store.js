@@ -33,14 +33,23 @@ let initialState = {
   bet: { allConfig },
   sliderApiHome: [],
   LiveCasino: [],
+  userLog: false,
 };
 
 const act = createSlice({
   name: "bet-buq",
   initialState,
   reducers: {
-    sortData: (state, action) => {
-      return alert("sdfed");
+    allGames: (state, action) => {
+      /*  return Object.values(state.LiveCasino.providers || {}).map((E) => (
+        <>
+            {Object.values(E.slots || {}).filter(Q => Q.name.toLowerCase().includes(action.payload.name.toLowerCase()) => (
+                <>
+                    <img src={Q.desktop_logo} alt="" />
+                </>
+            ))}
+        </>
+    )) */
     },
   },
 
@@ -57,5 +66,5 @@ const act = createSlice({
   },
 });
 
-export const { sortData } = act.actions;
+export const { allGames } = act.actions;
 export default act.reducer;

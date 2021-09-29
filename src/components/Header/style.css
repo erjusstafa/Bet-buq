@@ -223,7 +223,28 @@
           filter: drop-shadow(2px 4px 6px #000);
 }
 
-.home__other .other .date {
+.home__other .other .hour-top {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  height: 40px;
+}
+
+.home__other .other .hour-top .top > img {
+  height: 40px;
+}
+
+@media (max-width: 1024px) {
+  .home__other .other .hour-top .top > img {
+    display: none;
+  }
+}
+
+.home__other .other .hour-top .date {
   width: 160px;
   background: #4a5c64;
   text-align: center;
@@ -231,27 +252,27 @@
   display: grid;
   -ms-grid-columns: 30% auto 30%;
       grid-template-columns: 30% auto 30%;
-  height: 40px;
+  height: inherit;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  color: black;
+  color: white;
   /* padding: 0 20px; */
   padding-left: 19px;
 }
 
 @media (max-width: 810px) {
-  .home__other .other .date {
+  .home__other .other .hour-top .date {
     display: none;
   }
 }
 
-.home__other .other .date #hour,
-.home__other .other .date #minute,
-.home__other .other .date #seconds {
+.home__other .other .hour-top .date #hour,
+.home__other .other .hour-top .date #minute,
+.home__other .other .hour-top .date #seconds {
   width: 30px;
   height: 27px;
-  background: #ffba24;
+  background: #004e62;
   display: -ms-grid;
   display: grid;
   place-items: center;

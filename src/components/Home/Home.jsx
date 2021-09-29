@@ -21,8 +21,6 @@ function Home() {
         <>
 
             <SliderHome />
-
-
             <SlotHome linkSlot={linkSlot} />
             <CardSlot BetLiveBook={BetLiveBook} />
         </>
@@ -63,7 +61,7 @@ function CardSlot({ BetLiveBook }) {
                             <img src={image.gonzoa} alt="" />
                             <h4>{B.title}</h4>
                             <p>{B.subtitle}</p>
-                            <Link className="play__btn"> {B.btn_text}</Link>
+                            <Link to="/" className="play__btn">   {B.btn_text}</Link>
                         </div>
                     ))}
             </div>

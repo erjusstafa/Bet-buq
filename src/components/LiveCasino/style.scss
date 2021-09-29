@@ -59,15 +59,15 @@
   border-bottom: 2px dashed rgb(144, 143, 143);
   line-height: 0;
   color: rgb(226, 226, 226);
-
+  @media (max-width: 1088px) {
+    flex-direction: column-reverse;
+  }
   &-live {
-    margin-right: 20px;
     display: flex;
     padding: 30px 0;
-    transform: translateX(-20px);
-
-    @media (max-width: 770px) {
-      flex-direction: column;
+    min-width: 70%;
+    @media (max-width: 1088px) {
+      padding: unset;
     }
 
     > p {
@@ -79,6 +79,7 @@
       font-weight: bolder;
     }
 
+    .heart.active,
     .link-category,
     .all-games.active,
     > p.active {
@@ -91,6 +92,8 @@
       padding: 10px;
       background: #4a5c64;
       border-radius: 50px;
+      cursor: pointer;
+
       > i {
         display: grid;
         place-content: center;
@@ -100,6 +103,9 @@
 
   .search-game {
     display: flex;
+    justify-content: flex-end;
+    width: 100%;
+
     .search {
       display: flex;
       align-items: center;
@@ -108,6 +114,9 @@
       background: #4e5d63;
       padding: 20px;
       border-right: 1px solid rgb(153, 152, 152);
+      @media (max-width: 1088px) {
+        width: 80%;
+      }
       > p,
       .fas.fa-search {
         margin: auto 0;
@@ -123,12 +132,18 @@
       width: 200px;
       background: #4e5d63;
       padding: 20px;
+      @media (max-width: 1088px) {
+        min-width: auto;
+      }
       > p,
       .fas.fa-search {
         margin: auto 0;
         padding: 0 5px;
         color: rgb(197, 197, 197);
         margin-left: 80px;
+        @media (max-width: 1088px) {
+          margin: unset;
+        }
       }
     }
   }
@@ -166,8 +181,8 @@
     }
   }
   .slot-images {
-    display: flex;
-    flex-flow: row wrap;
+    display: grid;
+    grid-template-columns: repeat(7, auto);
 
     div.item-slots {
       padding: 0 3px;
@@ -185,11 +200,20 @@
           width: 187px;
           height: 142px;
           border-radius: 10px;
+          height: 112px;
+
           &:hover {
             filter: brightness(0.7);
           }
         }
       }
+    }
+  }
+
+  .all-slot-images {
+    display: grid;
+    grid-template-columns: repeat(4, auto);
+    @media (max-width: 1375px) {
     }
   }
 
@@ -207,6 +231,7 @@
         border-radius: 10px;
         &:hover {
           filter: brightness(0.7);
+          z-index: -1;
         }
       }
     }
@@ -219,6 +244,32 @@
     }
   }
 
+  > span {
+    text-align: center;
+    padding: 20px 0;
+    color: white;
+    cursor: pointer;
+    > .fas.fa-sync-alt {
+      color: inherit;
+      font-size: 30px;
+      animation: load 2s infinite linear;
+    }
+
+    @keyframes load {
+      0% {
+        transform: translateY(0px) rotate(0deg);
+        color: #1ab7af;
+      }
+      50% {
+        transform: translateY(10px) rotate(180deg);
+        color: #ffba24;
+      }
+      100% {
+        transform: translateY(0px) rotate(360deg);
+        color: #1ab7af;
+      }
+    }
+  }
   > p {
     font-weight: bold;
     margin-left: 20px;
@@ -238,22 +289,24 @@
   transform: translate(-50%, -50%);
   min-width: 1080px;
   max-width: 1200px;
-  z-index: 1001;
+  z-index: 999999;
   .modalContainer {
+    width: 100%;
     height: 500px;
-    border-radius: 12px;
+    border-radius: 5px;
     background-color: white;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     display: flex;
     flex-direction: column;
+
     .titleCloseBtn {
       display: flex;
-      justify-content: flex-end;
+      justify-content: center;
       position: relative;
-      right: -67px;
-      top: -70px;
+      right: -647px;
+      top: -52px;
       border-radius: 50%;
-      button {
+      > button {
         background-color: white;
         border: none;
         color: #4a5c64;
@@ -267,18 +320,63 @@
     }
 
     .search-modal {
+      position: absolute;
+      top: 0;
+      background: rgb(150, 148, 148);
+      box-sizing: border-box;
       display: flex;
+      width: 100%;
       justify-content: space-between;
+      height: 50px;
       .search {
-        display: inherit;
+        width: 100%;
+        display: flex;
+        position: relative;
 
         .search-input {
-          max-width: 1000px;
+          min-width: 98%;
+          border: none;
+          outline: none;
+          padding-left: 38px;
+          border-right: 1px solid rgb(196, 192, 192);
+          background: inherit;
+          &::placeholder {
+            color: rgb(48, 47, 47);
+          }
+        }
+        > i {
+          position: absolute;
+          top: 18px;
+          left: 15px;
         }
       }
 
       .filters {
-        display: inherit;
+        display: flex;
+        width: auto;
+        align-items: center;
+        padding: 0px 20px;
+
+        p {
+          margin: auto 0;
+          padding: 0 6px;
+        }
+      }
+    }
+
+    .content {
+      padding: 17px;
+      display: flex !important;
+      flex-flow: wrap row;
+      overflow-y: scroll;
+
+      span {
+        display: block;
+        padding: 5px;
+        > img {
+          width: 100px;
+          height: 100px;
+        }
       }
     }
   }

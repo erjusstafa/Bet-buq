@@ -132,10 +132,15 @@ const HeaderBottom = ({ link }) => {
                     <img src={image.logo} alt="" />
                 </Link>
 
-                <div className="date">
-                    <span id="hour">{hour}</span>
-                    <span id="minute">{minute}</span>
-                    <span id="seconds">{seconds}</span>
+                <div className="hour-top">
+                    <span className="top">
+                        <img src={image.topHours} alt="" />
+                    </span>
+                    <div className="date">
+                        <span id="hour">{hour}</span>
+                        <span id="minute">{minute}</span>
+                        <span id="seconds">{seconds}</span>
+                    </div>
                 </div>
                 <div className="route">
                     {Object.values(link).map((L, index) => (
