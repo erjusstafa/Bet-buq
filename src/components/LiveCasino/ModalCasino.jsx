@@ -6,37 +6,38 @@ const ModalCasino = ({
     searchFor,
     searchIcon,
     alignRight,
+    categories,
+    Provider,
 }) => {
-
-
-
-
-
     const [val, setVal] = useState("");
+    const [toggle, setToggle] = useState(false);
 
+    const handleToggle = () => {
+        setToggle(!toggle);
+    };
+
+    let providers = Object.keys(allDataCasinoLive?.providers || {}).map((D) => (
+        <>
+            <p>{D}</p>
+        </>
+    ));
+
+    //filter data
     const handleChange = (e) => {
-
         const searchWord = e.target.value;
         setVal(searchWord);
 
+        console.log("search", searchWord);
+        Object.values(allDataCasinoLive.providers || {}).map((E) => {
+            const kerko = Object.values(E.slots || {}).filter((Q) => {
+                return Q.name
+                    ? Q.name.toLowerCase().includes(searchWord.toLowerCase())
+                    : alert("isn't okay");
+            });
 
-        Object.values(allDataCasinoLive.providers || {}).filter((E) => {
-
-            const kerko = Object.values(E.slots || []).filter((Q) => {
-
-                return Q.name ? Q.name.toLowerCase().includes(searchWord.toLowerCase()) : alert("isn't okay")
-            })
-
-            return kerko
-        })
-
-
+            return kerko;
+        });
     };
-
-
-
-
-
 
     return (
         <div className="modalBackground">
@@ -51,8 +52,6 @@ const ModalCasino = ({
                     </button>
                 </div>
                 <form className="search-modal">
-
-
                     <span className="search">
                         <i className={searchIcon} />
                         <input
@@ -63,23 +62,52 @@ const ModalCasino = ({
                             onChange={handleChange}
                         />
                     </span>
-                    <span className="filters">
+                    <span className="filters" onClick={handleToggle}>
                         <p>Filters</p>
                         <i className={alignRight} />
                     </span>
                 </form>
                 {/**  modal content */}
-                <div className="content">
-                    {Object.values(allDataCasinoLive.providers || {}).map((E) => (
-                        <>
-                            {Object.values(E.slots || {}).map((Q) => (
-                                <span>
-                                    <img src={Q.desktop_logo} alt="" />
-                                    <h3>{Q.name}</h3>
-                                </span>
+                <div className={!toggle ? "content" : "content-toggle"}>
+                    <div className="one--content">
+                        {Object.values(allDataCasinoLive.providers || {}).map((E) => (
+                            <>
+                                {Object.values(E.slots || {}).map((Q) => (
+                                    <span>
+                                        <img src={Q.desktop_logo} alt="" />
+                                        <h3>{Q.name}</h3>
+                                    </span>
+                                ))}
+                            </>
+                        ))}
+                    </div>
+
+                    {toggle ? (
+                        <div className="two--content">
+                            {Object.keys(allDataCasinoLive).map((R) => (
+                                <>
+                                    <div>
+                                        {R === "categories" && (
+                                            <>
+                                                <h1>{R}</h1>
+                                                <p>{categories}</p>
+                                            </>
+                                        )}
+                                    </div>
+
+                                    <div>
+                                        {" "}
+                                        {R === "providers" && (
+                                            <>
+                                                <h1>{R}</h1>
+                                                <p>{providers}</p>
+                                            </>
+                                        )}
+                                    </div>
+                                </>
                             ))}
-                        </>
-                    ))}
+                        </div>
+                    ) : null}
                 </div>
             </div>
         </div>

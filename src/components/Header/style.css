@@ -293,6 +293,10 @@
     max-width: auto;
     padding: 8px 0;
     background-color: #313d42;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-flow: row wrap;
+            flex-flow: row wrap;
   }
 }
 

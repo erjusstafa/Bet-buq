@@ -34,7 +34,7 @@
       grid-template-columns: repeat(3, 2fr);
   justify-items: center;
   border-bottom: 1px solid #475a61;
-  padding: 32px 0px;
+  padding: 13px 0px;
 }
 
 @media (max-width: 480px) {

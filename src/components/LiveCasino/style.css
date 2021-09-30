@@ -90,6 +90,10 @@
 @media (max-width: 1088px) {
   .link-live {
     padding: unset;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-flow: row wrap;
+            flex-flow: row wrap;
   }
 }
 
@@ -438,7 +442,6 @@
 .modalBackground .modalContainer .search-modal {
   position: absolute;
   top: 0;
-  background: #969494;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   display: -webkit-box;
@@ -448,7 +451,8 @@
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  height: 50px;
+  height: 40px;
+  border-bottom: 1px solid #cfcfcf;
 }
 
 .modalBackground .modalContainer .search-modal .search {
@@ -464,7 +468,6 @@
   border: none;
   outline: none;
   padding-left: 38px;
-  border-right: 1px solid #c4c0c0;
   background: inherit;
 }
 
@@ -486,7 +489,7 @@
 
 .modalBackground .modalContainer .search-modal .search > i {
   position: absolute;
-  top: 18px;
+  top: 14px;
   left: 15px;
 }
 
@@ -507,6 +510,7 @@
 }
 
 .modalBackground .modalContainer .content {
+  width: 100%;
   padding: 17px;
   display: -webkit-box !important;
   display: -ms-flexbox !important;
@@ -516,15 +520,104 @@
       -ms-flex-flow: wrap row;
           flex-flow: wrap row;
   overflow-y: scroll;
+  background: #2f3f3e;
 }
 
-.modalBackground .modalContainer .content span {
+.modalBackground .modalContainer .content .one--content {
+  display: -webkit-box !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: wrap row;
+          flex-flow: wrap row;
+}
+
+.modalBackground .modalContainer .content .one--content > span {
   display: block;
   padding: 5px;
 }
 
-.modalBackground .modalContainer .content span > img {
+.modalBackground .modalContainer .content .one--content > span > h3 {
+  color: white;
+}
+
+.modalBackground .modalContainer .content .one--content > span > img {
   width: 100px;
   height: 100px;
+}
+
+.modalBackground .modalContainer .content-toggle {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 70% 30%;
+      grid-template-columns: 70% 30%;
+  width: 100%;
+  overflow-y: scroll;
+}
+
+.modalBackground .modalContainer .content-toggle .one--content {
+  display: -webkit-box !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: wrap row;
+          flex-flow: wrap row;
+  background-color: #2f3f3e;
+}
+
+.modalBackground .modalContainer .content-toggle .one--content > span {
+  display: block;
+  padding: 5px;
+}
+
+.modalBackground .modalContainer .content-toggle .one--content > span > h3 {
+  color: white;
+}
+
+.modalBackground .modalContainer .content-toggle .one--content > span > img {
+  width: 100px;
+  height: 100px;
+}
+
+.modalBackground .modalContainer .content-toggle .two--content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding: 20px 30px;
+}
+
+.modalBackground .modalContainer .content-toggle .two--content > div > h1 {
+  color: rgba(0, 0, 0, 0.87);
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: 50px;
+  text-transform: capitalize;
+}
+
+.modalBackground .modalContainer .content-toggle .two--content > div > p {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
+  font-weight: bold;
+  font-style: 13px;
+  font-weight: normal;
+  margin-top: 0;
+  margin-bottom: 1em;
+  padding: 2px 12px;
+  background-color: #f3f1df;
+  border-radius: 20px;
+  width: 20px;
 }
 /*# sourceMappingURL=style.css.map */

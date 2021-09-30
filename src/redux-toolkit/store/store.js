@@ -41,15 +41,19 @@ const act = createSlice({
   initialState,
   reducers: {
     allGames: (state, action) => {
-      /*  return Object.values(state.LiveCasino.providers || {}).map((E) => (
-        <>
-            {Object.values(E.slots || {}).filter(Q => Q.name.toLowerCase().includes(action.payload.name.toLowerCase()) => (
-                <>
-                    <img src={Q.desktop_logo} alt="" />
-                </>
-            ))}
-        </>
-    )) */
+      const sortArr = Object.values(
+        state.LiveCasino["result"].providers?.slots || {}
+      ).sort((a, b) => {
+        var nameA = a.name.toLowerCase(),
+          nameB = b.name.toLowerCase();
+        console.log("nameA", nameA);
+
+        if (nameA < nameB) return -1;
+        if (nameA > nameB) return 1;
+        return 0;
+      });
+
+      return sortArr;
     },
   },
 
