@@ -14,7 +14,7 @@ const ItemSlots = ({ R, F, heartIcon }) => {
                 </Link>
 
                 <span className="span">
-                    <p>{F.name /* .replace(/[ 0-9]/g, ' ') */}</p>
+                    <p>{R.name /* .replace(/[ 0-9]/g, ' ') */}</p>
                     <i className={heartIcon} style={{ marginTop: "-11px" }} />
                 </span>
             </div>

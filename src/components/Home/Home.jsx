@@ -1,15 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import "./style.scss";
 import image from "../../images/images";
 import SliderHome from "./SliderHome";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import SliderCasino from "./SliderCasino";
 
 function Home() {
-    const [slider, setSlider] = useState(false);
 
-    const link = useSelector((state) => state.betbuqsport.bet.allConfig.routes);
+    /*     const link = useSelector((state) => state.betbuqsport.bet.allConfig.routes); */
     const linkSlot = useSelector(
         (state) => state.betbuqsport.bet.allConfig.linkSlots
     );

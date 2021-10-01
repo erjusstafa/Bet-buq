@@ -65,6 +65,7 @@ const ModalCasino = ({
                     <span className="filters" onClick={handleToggle}>
                         <p>Filters</p>
                         <i className={alignRight} />
+                        <span class="search-providers-counter">0</span>
                     </span>
                 </form>
                 {/**  modal content */}
@@ -90,17 +91,18 @@ const ModalCasino = ({
                                         {R === "categories" && (
                                             <>
                                                 <h1>{R}</h1>
-                                                <p>{categories}</p>
+                                                <span>{categories}</span>
                                             </>
                                         )}
                                     </div>
+                                    <br />
 
                                     <div>
                                         {" "}
                                         {R === "providers" && (
                                             <>
                                                 <h1>{R}</h1>
-                                                <p>{providers}</p>
+                                                <span>{providers}</span>
                                             </>
                                         )}
                                     </div>

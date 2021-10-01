@@ -12,7 +12,7 @@ function CasinoLive() {
 
     useEffect(() => {
         dispatch(LiveCasinoApi());
-        setLoading(false);
+        setLoading(true);
     }, [dispatch]);
 
     const bannerCasinoLive = useSelector(
@@ -23,8 +23,6 @@ function CasinoLive() {
         (state) => state?.betbuqsport?.LiveCasino?.result
     );
 
-    const logIn = useSelector((state) => state.betbuqsport.userLog);
-
     const [isLoading, setLoading] = useState(true);
     const [colorHeart, setColorHeart] = useState("");
 
@@ -33,6 +31,7 @@ function CasinoLive() {
         idAllGames: (Math.random() * 1000).toFixed(),
         isActive: null,
         isActiveText: "",
+        textAllGames: "",
     });
 
     const ChangeIndex = (id, name) => {
@@ -45,33 +44,41 @@ function CasinoLive() {
     const moreSlots = () => {
         setLoadMore({ load: (loadMore.load += loadMore.load) });
     };
+
     //modal
     const [modalOpen, setModalOpen] = useState(false);
+
     //icon
     let heartIcon = "far fa-heart";
     let searchIcon = "fas fa-search";
     let alignRight = "fas fa-align-right";
     let searchFor = "Search for a game";
+
     let categories = Object.values(allDataCasinoLive?.categories || {})
-        /* .sort((a, b) => a.name.toLowerCase() > b.name.toLowerCase() ? 1 : -1) */
+    /*         .sort((a, b) => a.name.toLowerCase() > b.name.toLowerCase() ? 1 : -1)
+     */ .filter((A) => A.id !== 70 || ![70].includes(A.id))
         .map((A) => {
             return (
                 <>
-                    <p key={A.id}
-                        onClick={() => ChangeIndex(A.id, A.name)}
-                        className={
-                            A?.name.split(" ")[0].replace(/\s+/g, "").toLowerCase() +
-                            (myindex.isActive === A.id ? " active" : "")
-                        }>
-                        {A.name}
-                    </p>
+                    {A.name && (
+                        <p
+                            key={A.id}
+                            onClick={() => ChangeIndex(A.id, A.name)}
+                            className={
+                                A?.name.split(" ")[0].replace(/\s+/g, "").toLowerCase() +
+                                (myindex.isActive === A.id ? " active" : "")
+                            }
+                        >
+                            {A.name}
+                        </p>
+                    )}
                 </>
             );
         });
 
     return (
         <>
-            {isLoading ? (
+            {!isLoading ? (
                 <LoadedCasino />
             ) : (
                 <>
@@ -92,14 +99,17 @@ function CasinoLive() {
                                             (myindex.isActive !== myindex.favouriteId ||
                                                 myindex.idAllGames !== myindex.favouriteId
                                                 ? "active"
-                                                : "")}>
+                                                : "")
+                                        }
+                                    >
                                         {" "}
                                         <i
                                             style={{ color: `${colorHeart}` }}
                                             className={heartIcon}
                                         />
                                     </span>
-                                    <p onClick={() => ChangeIndex()}
+                                    <p
+                                        onClick={() => ChangeIndex()}
                                         className={
                                             "all-games " +
                                             (myindex.isActive === myindex.idAllGames ? "active" : "")
@@ -118,7 +128,8 @@ function CasinoLive() {
                                         className="provider "
                                         onClick={() => {
                                             setModalOpen(true);
-                                        }}>
+                                        }}
+                                    >
                                         <p>Providers</p>
                                         <i className={alignRight} />
                                     </span>
@@ -164,6 +175,7 @@ const ToggleSlots = ({
     moreSlots,
     dispatch,
 }) => {
+    console.log("isA", mytxt);
     return (
         <div className="Slot">
             <div className="sort-category">
@@ -176,7 +188,7 @@ const ToggleSlots = ({
                         </span>
                     </>
                 ) : (
-                    <>{mytxt === "Top Games" && <h1>{mytxt}</h1>}</>
+                    <h2>{mytxt}</h2>
                 )}
             </div>
             <div className={mytxt ? "slot-images" : "all-slot-images"}>
@@ -187,37 +199,93 @@ const ToggleSlots = ({
                             .map((F, f) => {
                                 return (
                                     <>
-                                        {myindex
-                                            ? Object.values(
+                                        {myindex ? (
+                                            Object.values(
                                                 JSON.parse(F.categories || "{}")
-                                                    /* .sort((a, b) => a.name > b.name ? -1 : 1) */
+                                                    .sort((a, b) => (a.name > b.name ? -1 : 1))
                                                     .filter((Y) => Y.id === myindex)
                                                     .map((R) => (
                                                         <>
                                                             {R.id === myindex && (
-                                                                <ItemSlots
-                                                                    R={R}
-                                                                    F={F}
-                                                                    heartIcon={heartIcon}
-                                                                />
+                                                                <ItemSlots R={R} F={F} heartIcon={heartIcon} />
                                                             )}
                                                         </>
                                                     ))
                                             )
-                                            : Object.values(
-                                                JSON.parse(F.categories || "{}").map((R) => (
-                                                    <>
-                                                        <div className="allslots">
-                                                            <AllSlots
-                                                                catId={R.id}
-                                                                R={R}
-                                                                F={F}
-                                                                heartIcon={heartIcon}
-                                                            />
-                                                        </div>
-                                                    </>
-                                                ))
-                                            )}
+                                        ) : (
+                                            <>
+                                                {Object.values(
+                                                    JSON.parse(F.categories || "{}").map((R) => (
+                                                        <>
+                                                            {R.name === "Top Games" && (
+                                                                <div className="allslots">
+                                                                    <AllSlots
+                                                                        catId={R.id}
+                                                                        R={R}
+                                                                        F={F}
+                                                                        heartIcon={heartIcon}
+                                                                    />
+                                                                </div>
+                                                            )}
+
+                                                            {R.name === "Roulette" && (
+                                                                <div className="allslots">
+                                                                    <AllSlots
+                                                                        catId={R.id}
+                                                                        R={R}
+                                                                        F={F}
+                                                                        heartIcon={heartIcon}
+                                                                    />
+                                                                </div>
+                                                            )}
+
+                                                            {R.name === "Blackjack" && (
+                                                                <div className="allslots">
+                                                                    <AllSlots
+                                                                        catId={R.id}
+                                                                        R={R}
+                                                                        F={F}
+                                                                        heartIcon={heartIcon}
+                                                                    />
+                                                                </div>
+                                                            )}
+
+                                                            {R.name === "Baccarat" && (
+                                                                <div className="allslots">
+                                                                    <AllSlots
+                                                                        catId={R.id}
+                                                                        R={R}
+                                                                        F={F}
+                                                                        heartIcon={heartIcon}
+                                                                    />
+                                                                </div>
+                                                            )}
+                                                            {R.name === "Poker & Sic Bo" && (
+                                                                <div className="allslots">
+                                                                    <AllSlots
+                                                                        catId={R.id}
+                                                                        R={R}
+                                                                        F={F}
+                                                                        heartIcon={heartIcon}
+                                                                    />
+                                                                </div>
+                                                            )}
+
+                                                            {R.name === "Game Show" && (
+                                                                <div className="allslots">
+                                                                    <AllSlots
+                                                                        catId={R.id}
+                                                                        R={R}
+                                                                        F={F}
+                                                                        heartIcon={heartIcon}
+                                                                    />
+                                                                </div>
+                                                            )}
+                                                        </>
+                                                    ))
+                                                )}
+                                            </>
+                                        )}
                                     </>
                                 );
                             })}

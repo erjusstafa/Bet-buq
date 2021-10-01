@@ -188,10 +188,10 @@
 
 .link .search-game .provider > p,
 .link .search-game .provider .fas.fa-search {
-  margin: auto 0;
+  margin: auto;
   padding: 0 5px;
   color: #c5c5c5;
-  margin-left: 80px;
+  margin-left: 68px;
 }
 
 @media (max-width: 1088px) {
@@ -396,6 +396,8 @@
   min-width: 1080px;
   max-width: 1200px;
   z-index: 999999;
+  -webkit-transition: 2s linear;
+  transition: 2s linear;
 }
 
 .modalBackground .modalContainer {
@@ -502,11 +504,27 @@
       -ms-flex-align: center;
           align-items: center;
   padding: 0px 20px;
+  position: relative;
 }
 
 .modalBackground .modalContainer .search-modal .filters p {
   margin: auto 0;
   padding: 0 6px;
+}
+
+.modalBackground .modalContainer .search-modal .filters .search-providers-counter {
+  position: absolute;
+  top: 0;
+  right: 4px;
+  width: 20px;
+  height: 20px;
+  background: #3838d1;
+  color: white;
+  border-radius: 50px;
+  display: -ms-grid;
+  display: grid;
+  place-content: center;
+  cursor: pointer;
 }
 
 .modalBackground .modalContainer .content {
@@ -589,7 +607,7 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  padding: 20px 30px;
+  padding: 20px 16px;
 }
 
 .modalBackground .modalContainer .content-toggle .two--content > div > h1 {
@@ -602,7 +620,7 @@
   text-transform: capitalize;
 }
 
-.modalBackground .modalContainer .content-toggle .two--content > div > p {
+.modalBackground .modalContainer .content-toggle .two--content > div > span {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -610,14 +628,16 @@
   -webkit-box-direction: normal;
       -ms-flex-flow: row wrap;
           flex-flow: row wrap;
+}
+
+.modalBackground .modalContainer .content-toggle .two--content > div > span > p {
   font-weight: bold;
   font-style: 13px;
   font-weight: normal;
-  margin-top: 0;
-  margin-bottom: 1em;
-  padding: 2px 12px;
-  background-color: #f3f1df;
-  border-radius: 20px;
-  width: 20px;
+  border-radius: 16px;
+  background-color: rgba(0, 0, 0, 0.12);
+  padding: 5px 12px;
+  margin: 5px;
+  cursor: pointer;
 }
 /*# sourceMappingURL=style.css.map */

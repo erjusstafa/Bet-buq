@@ -6,7 +6,6 @@ import Header from "../src/components/Header/Header";
 import Footer from "../src/components/Footer/Footer";
 import { useDispatch } from "react-redux";
 import { LiveCasinoApi, thunkApiHome } from "./redux-toolkit/store/store";
-import Popup from "./components/Popup/Popup";
 import CasinoLive from "./components/LiveCasino/CasinoLive";
 
 function App() {
