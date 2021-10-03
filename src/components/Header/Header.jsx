@@ -5,6 +5,7 @@ import "./style.scss";
 import image from "../../images/images";
 import { Link } from "react-router-dom";
 import allConfig from "../../config/allConfig";
+import PopupLoginRegister from "../LoginRegister/PopupLoginRegister";
 
 const Header = () => {
   const [form, setForm] = useState({
@@ -23,6 +24,11 @@ const Header = () => {
     setLang(!lang);
   };
 
+  const [openPopup, setOpenPopup] = useState(false);
+
+  const handleChangePopup = () => {
+    setOpenPopup(false);
+  };
   const social = useSelector(
     (state) => state.betbuqsport.bet.allConfig.socials
   );
@@ -44,7 +50,6 @@ const Header = () => {
               <span style={{ position: "relative" }}>
                 <input
                   type="text"
-                  style={{ position: "relative" }}
                   value={form.name}
                   onChange={(e) => setForm({ name: e.target.value })}
                   placeholder={
@@ -70,11 +75,20 @@ const Header = () => {
                 <i className={inputIcon && inputIcon.Password.icon} />
               </span>
               <button id="pikpytje">?</button>
-              <button id="login">{lang ? "Login" : "Accedere"}</button>
+              <button id="login" onClick={() => setOpenPopup(true)}>
+                {lang ? "Login" : "Accedere"}
+              </button>
               <button id="register">{lang ? "Register" : "Registrati"}</button>
             </form>
           </div>
-
+          {openPopup && (
+            <PopupLoginRegister
+              handleChangePopup={handleChangePopup}
+              inputIcon={inputIcon}
+              lang={lang}
+              open={openPopup}
+            />
+          )}
           <div className="social">
             <span className="support">
               <i className="fas fa-sms"></i>

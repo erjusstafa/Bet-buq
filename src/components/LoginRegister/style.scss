@@ -1,0 +1,204 @@
+.popupBackground {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 999999;
+  transition: 2s linear;
+
+  .popupContainer {
+    width: 377px;
+    height: 303px;
+    border-radius: 5px;
+    background-color: #313d42;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: zoomPopup 1s linear;
+
+    .titleCloseButtonLog {
+      cursor: pointer;
+
+      i.fas.fa-times {
+        position: absolute;
+        right: 7px;
+        top: 5px;
+        background: transparent;
+        outline: none;
+        border: none;
+        color: white;
+        font-size: 16px;
+        font-weight: 600;
+      }
+    }
+
+    /*  @keyframes zoomPopup {
+      0% {
+        transform: scale(0);
+        display: grid;
+        place-content: center;
+        place-items: center;
+      }
+      100% {
+        transform: scale(1);
+        display: grid;
+        place-content: center;
+        place-items: center;
+      }
+    }
+ */
+
+    //login
+
+    .login--Popup {
+      .logo {
+        position: relative;
+        top: 20px;
+
+        > img {
+          padding: 0 50px;
+          filter: drop-shadow(2px 4px 6px #000);
+          margin: 0 auto;
+          display: block;
+          height: 60px;
+        }
+      }
+
+      .form--login {
+        display: grid;
+        width: calc(100% - 138px);
+        margin: 45px auto;
+
+        input[type="email"],
+        input[type="text"],
+        input[type="password"] {
+          line-height: 30px;
+          border: none;
+          outline: none;
+          margin-top: 5px;
+          padding: 0 30px;
+        }
+
+        .create--acc,
+        .login--button {
+          border: none;
+          outline: none;
+          margin-top: 20px;
+          background-color: #f8ad1699;
+          color: white;
+          cursor: pointer;
+          font-weight: 800;
+
+          &:hover {
+            background-color: #1ab7af;
+          }
+        }
+
+        > p {
+          color: white;
+          text-align: end;
+          margin-top: 15px;
+          cursor: pointer;
+
+          &:hover {
+            color: #1ab7af;
+          }
+        }
+      }
+    }
+  }
+
+  .create--account--form {
+    width: 377px;
+    height: 332px;
+    border-radius: 5px;
+    background-color: #313d42;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: zoomPopup 1s linear;
+
+    .titleCloseButtonLog {
+      cursor: pointer;
+
+      i.fas.fa-times {
+        position: absolute;
+        right: 7px;
+        top: 5px;
+        background: transparent;
+        outline: none;
+        border: none;
+        color: white;
+        font-size: 16px;
+        font-weight: 600;
+      }
+    }
+
+    .login--Popup {
+      .logo {
+        position: relative;
+        top: 20px;
+
+        > img {
+          padding: 0 50px;
+          filter: drop-shadow(2px 4px 6px #000);
+          margin: 0 auto;
+          display: block;
+          height: 60px;
+        }
+      }
+
+      .form--login {
+        display: grid;
+        width: calc(100% - 138px);
+        margin: 45px auto;
+
+        input[type="email"],
+        input[type="text"],
+        input[type="password"] {
+          line-height: 30px;
+          border: none;
+          outline: none;
+          margin-top: 5px;
+          padding: 0 30px;
+        }
+
+        .create--acc,
+        .login--button {
+          border: none;
+          outline: none;
+          margin-top: 20px;
+          background-color: #f8ad1699;
+          color: white;
+          cursor: pointer;
+          font-weight: 800;
+
+          &:hover {
+            background-color: #1ab7af;
+          }
+        }
+
+        > p {
+          color: white;
+          text-align: end;
+          margin-top: 15px;
+          cursor: pointer;
+
+          &:hover {
+            color: #1ab7af;
+          }
+        }
+      }
+    }
+  }
+}

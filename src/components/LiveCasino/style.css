@@ -386,22 +386,23 @@
 }
 
 .modalBackground {
-  width: 100vw;
   position: fixed;
-  top: 50%;
-  left: 50%;
-  height: 50%;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
-  min-width: 1080px;
-  max-width: 1200px;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  /* height: 50%; */
+  background: rgba(0, 0, 0, 0.8);
+  /* min-width: 1080px;
+  max-width: 1200px; */
   z-index: 999999;
   -webkit-transition: 2s linear;
   transition: 2s linear;
 }
 
 .modalBackground .modalContainer {
-  width: 100%;
+  min-width: 1080px;
+  max-width: 1200px;
   height: 500px;
   border-radius: 5px;
   background-color: white;
@@ -414,6 +415,12 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  height: 500px;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
 }
 
 .modalBackground .modalContainer .titleCloseBtn {
@@ -424,8 +431,8 @@
       -ms-flex-pack: center;
           justify-content: center;
   position: relative;
-  right: -647px;
-  top: -52px;
+  right: -581px;
+  top: -44px;
   border-radius: 50%;
 }
 
