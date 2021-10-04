@@ -47,6 +47,7 @@ class PopupLoginRegister extends Component {
               <img src={image.logo} alt="" />
             </span>
 
+
             <form onSubmit={this.handleSubmit} className="form--login">
               {this.state.toggle ? (
                 <input
@@ -55,15 +56,15 @@ class PopupLoginRegister extends Component {
                   onChange={(e) => this.setState({ email: e.target.value })}
                   placeholder="Email"
                 />
-              ) : null}
+              ) : null
+              }
               <input
                 type="text"
                 value={this.state.name}
                 onChange={(e) => this.setState({ name: e.target.value })}
                 placeholder={
                   this.props.lang
-                    ? this.props.inputIcon.Name.placeholderEN
-                    : this.props.inputIcon.Name.placeholderIT
+                  && this.props.inputIcon.Name.placeholderEN
                 }
               />
               <input
@@ -73,8 +74,7 @@ class PopupLoginRegister extends Component {
                 onChange={(e) => this.setState({ password: e.target.value })}
                 placeholder={
                   this.props.lang
-                    ? this.props.inputIcon.Password.placeholderEN
-                    : this.props.inputIcon.Password.placeholderIT
+                  && this.props.inputIcon.Password.placeholderEN
                 }
               />
 
@@ -85,9 +85,10 @@ class PopupLoginRegister extends Component {
               )}
 
               <p onClick={this.toggleFunc}>
-                {this.state.toggle ? " Log - In" : "Create Account"}
+                {this.state.toggle ? " Log-In" : "Create Account"}
               </p>
             </form>
+
           </div>
         </div>
       </div>

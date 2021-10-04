@@ -1,14 +1,16 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { filterGames } from "../../redux-toolkit/store/store";
 
 const ModalCasino = ({
   setOpenModal,
   allDataCasinoLive,
-  searchFor,
-  searchIcon,
+  searchFor, searchIcon,
   alignRight,
   categories,
-  Provider,
+  Provider
 }) => {
+
   const [val, setVal] = useState("");
   const [toggle, setToggle] = useState(false);
 
@@ -16,30 +18,28 @@ const ModalCasino = ({
     setToggle(!toggle);
   };
 
-  let providers = Object.keys(allDataCasinoLive?.providers || {}).map((D) => (
-    <>
-      {" "}
-      <p>{D}</p>{" "}
-    </>
-  ));
+  const dispatch = useDispatch();
+  let providers = Object.keys(allDataCasinoLive?.providers || {}).map((D) => <p>{D}</p>);
 
   //filter data
   const handleChange = (e) => {
     const searchWord = e.target.value;
     setVal(searchWord);
-
-    console.log("search", searchWord);
-    Object.values(allDataCasinoLive.providers || {}).map((E) => {
-      const kerko = Object.values(E.slots || {}).filter((Q) => {
-        return Q.name
-          ? Q.name.toLowerCase().includes(searchWord.toLowerCase())
-          : alert("isn't okay");
-      });
-
-      return kerko;
-    });
+    /*   dispatch(filterGames({ name: val })) */
   };
 
+  const displaySlots = Object.values(allDataCasinoLive.providers || {}).map((E) => (
+    <>
+      {Object.values(E.slots || {})
+        .filter((Q) => (val === "" ? Q : Q.name.toLowerCase().includes(val.toLowerCase())))
+        .map((Q) => (
+          <span>
+            <img src={Q.desktop_logo} alt="" />
+            <h3>{Q.name}</h3>
+          </span>
+        ))}
+    </>
+  ));
   return (
     <div className="modalBackground">
       <div className="modalContainer">
@@ -55,13 +55,7 @@ const ModalCasino = ({
         <form className="search-modal">
           <span className="search">
             <i className={searchIcon} />
-            <input
-              type="text"
-              placeholder={searchFor}
-              className="search-input"
-              value={val}
-              onChange={handleChange}
-            />
+            <input type="text" placeholder={searchFor} className="search-input" value={val} onChange={handleChange} />
           </span>
           <span className="filters" onClick={handleToggle}>
             <p>Filters</p>
@@ -71,18 +65,7 @@ const ModalCasino = ({
         </form>
         {/**  modal content */}
         <div className={!toggle ? "content" : "content-toggle"}>
-          <div className="one--content">
-            {Object.values(allDataCasinoLive.providers || {}).map((E) => (
-              <>
-                {Object.values(E.slots || {}).map((Q) => (
-                  <span>
-                    <img src={Q.desktop_logo} alt="" />
-                    <h3>{Q.name}</h3>
-                  </span>
-                ))}
-              </>
-            ))}
-          </div>
+          <div className="one--content">{displaySlots.length > 0 ? displaySlots : <p>The data is missing</p>}</div>
 
           {toggle ? (
             <div className="two--content">

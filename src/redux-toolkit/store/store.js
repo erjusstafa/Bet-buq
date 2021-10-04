@@ -1,33 +1,27 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import allConfig from "../../config/allConfig";
 
-export const thunkApiHome = createAsyncThunk(
-  "betBuq/thunkApiHome",
-  async () => {
-    let prapashtes = {
-      home: "get_sliders",
-      /*       liveCasino: `/get_slots/${allConfig.skinName}/casino_live/ios?lang=en`,
-       */
-    };
+export const thunkApiHome = createAsyncThunk("betBuq/thunkApiHome", async () => {
+  let prapashtes = {
+    home: "get_sliders",
+    /*       liveCasino: `/get_slots/${allConfig.skinName}/casino_live/ios?lang=en`,
+     */
+  };
 
-    return fetch(`${allConfig.contentManagementAPI}/${prapashtes.home}/`)
-      .then((res) => res.json())
-      .catch((err) => console.log("has error bro"));
-  }
-);
+  return fetch(`${allConfig.contentManagementAPI}/${prapashtes.home}/`)
+    .then((res) => res.json())
+    .catch((err) => console.log("has error bro"));
+});
 
-export const LiveCasinoApi = createAsyncThunk(
-  "betBuq/LiveCasinoApi",
-  async () => {
-    let casinoLive = {
-      casino: `get_slots/${allConfig.skinName}/casino_live/ios?lang=en`,
-    };
+export const LiveCasinoApi = createAsyncThunk("betBuq/LiveCasinoApi", async () => {
+  let casinoLive = {
+    casino: `get_slots/${allConfig.skinName}/casino_live/ios?lang=en`,
+  };
 
-    return fetch(`${allConfig.contentManagementAPI}/${casinoLive.casino}`)
-      .then((res) => res.json())
-      .catch((err) => console.log("has error bro"));
-  }
-);
+  return fetch(`${allConfig.contentManagementAPI}/${casinoLive.casino}`)
+    .then((res) => res.json())
+    .catch((err) => console.log("has error bro"));
+});
 
 let initialState = {
   bet: { allConfig },
@@ -40,20 +34,12 @@ const act = createSlice({
   name: "betBuq",
   initialState,
   reducers: {
-    allGames: (state, action) => {
-      const sortArr = Object.values(
-        state.LiveCasino["result"].providers?.slots || {}
-      ).sort((a, b) => {
-        var nameA = a.name.toLowerCase(),
-          nameB = b.name.toLowerCase();
-        console.log("nameA", nameA);
-
-        if (nameA < nameB) return -1;
-        if (nameA > nameB) return 1;
-        return 0;
+    filterGames: (state, action) => {
+      Object.values(state.LiveCasino?.result?.providers || {}).map((E) => {
+        return Object.values(E.slots || {}).filter((Q) =>
+          Q.name === "" ? Q : Q.name.toLowerCase().includes(action.payload.name.toLowerCase())
+        );
       });
-
-      return sortArr;
     },
   },
 
@@ -70,5 +56,5 @@ const act = createSlice({
   },
 });
 
-export const { allGames } = act.actions;
+export const { filterGames } = act.actions;
 export default act.reducer;

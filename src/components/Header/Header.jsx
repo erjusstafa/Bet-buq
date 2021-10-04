@@ -25,10 +25,14 @@ const Header = () => {
   };
 
   const [openPopup, setOpenPopup] = useState(false);
+  const [openPopupRegister, setOpenPopupRegister] = useState(false);
 
   const handleChangePopup = () => {
     setOpenPopup(false);
+    setOpenPopupRegister(false)
   };
+
+
   const social = useSelector(
     (state) => state.betbuqsport.bet.allConfig.socials
   );
@@ -78,10 +82,10 @@ const Header = () => {
               <button id="login" onClick={() => setOpenPopup(true)}>
                 {lang ? "Login" : "Accedere"}
               </button>
-              <button id="register">{lang ? "Register" : "Registrati"}</button>
+              <button id="register" onClick={() => setOpenPopupRegister(true)}>{lang ? "Register" : "Registrati"}</button>
             </form>
           </div>
-          {openPopup && (
+          {(openPopup || openPopupRegister) && (
             <PopupLoginRegister
               handleChangePopup={handleChangePopup}
               inputIcon={inputIcon}
