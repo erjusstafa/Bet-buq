@@ -2,8 +2,8 @@
   width: 100%;
 
   background: #354044;
-  padding: 25px 0;
-  margin: 0 auto;
+  padding: 10px 0;
+  margin: auto auto;
 
   &__all {
     width: 100%;
@@ -13,10 +13,16 @@
     flex-flow: row wrap;
     justify-content: space-evenly;
 
+    @media (min-width: 204px) and (max-width: 700px) {
+      justify-content: flex-start;
+    }
+
     .all__link {
       display: flex;
       line-height: 13px;
       padding: 20px;
+      align-content: center;
+      align-items: end;
 
       > i {
         display: grid;
@@ -34,7 +40,7 @@
           font-size: 23px;
         }
         > p {
-          color: #11807b;
+          color: #3fa7a1;
           font-weight: bold;
         }
       }
@@ -46,15 +52,14 @@
   display: flex;
   background: #354044;
   border-bottom: 1px solid rgb(71, 90, 97);
-  padding: 35px 0;
-
+  padding-bottom: 35px;
   &__all {
     width: 100%;
     max-width: 1243px;
     margin: 0 auto;
     display: flex;
     flex-flow: row wrap;
-    justify-content: space-between !important;
+    justify-content: space-evenly;
 
     @media (max-width: 1235px) {
       margin: 0 auto;
@@ -62,9 +67,9 @@
 
     .content {
       position: relative;
-      height: 210px;
+      height: 190px;
       background: #435258;
-      width: 400px;
+      width: 380px;
       border-radius: 7px;
       @media (max-width: 1235px) {
         margin: 20px auto;
@@ -87,8 +92,10 @@
       > img {
         position: relative;
         width: 100%;
+        height: 130px;
         margin-top: 46px;
-        border: 1px solid #11807b;
+        border-top: 1px solid #1fb1a9;
+        border-bottom: 1px solid #1fb1a9;
       }
 
       > h4 {
@@ -124,6 +131,59 @@
       }
       .play__btn {
         display: none;
+      }
+    }
+  }
+}
+
+.banner1,
+.banner2 {
+  position: relative;
+
+  > span {
+    position: absolute;
+    top: 64px;
+    left: 110px;
+    line-height: 40px;
+
+    @media (max-width: 700px) {
+      top: 50px;
+      left: 60px;
+    }
+
+    > h1 {
+      font-size: 36px;
+      font-weight: 700;
+      color: white;
+      @media (max-width: 700px) {
+        font-size: 29px;
+      }
+    }
+
+    p {
+      font-size: 22px;
+      font-weight: 500;
+      color: white;
+      @media (max-width: 700px) {
+        font-size: 19px;
+      }
+    }
+    .button__Link {
+      position: relative;
+      top: 100px;
+      font-size: 24px;
+      color: #f2f2f2;
+      white-space: nowrap;
+      background: #1ab7af;
+      border-radius: 3px;
+      padding: 12px 70px;
+      outline: none;
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
+      @media (max-width: 700px) {
+        font-size: 20px;
+        padding: 8px 40px;
       }
     }
   }

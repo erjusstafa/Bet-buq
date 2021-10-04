@@ -1,8 +1,8 @@
 .slotHome {
   width: 100%;
   background: #354044;
-  padding: 25px 0;
-  margin: 0 auto;
+  padding: 10px 0;
+  margin: auto auto;
 }
 
 .slotHome__all {
@@ -21,12 +21,25 @@
           justify-content: space-evenly;
 }
 
+@media (min-width: 204px) and (max-width: 700px) {
+  .slotHome__all {
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+  }
+}
+
 .slotHome__all .all__link {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   line-height: 13px;
   padding: 20px;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: end;
 }
 
 .slotHome__all .all__link > i {
@@ -46,7 +59,7 @@
 }
 
 .slotHome__all .all__link > span > p {
-  color: #11807b;
+  color: #3fa7a1;
   font-weight: bold;
 }
 
@@ -56,7 +69,7 @@
   display: flex;
   background: #354044;
   border-bottom: 1px solid #475a61;
-  padding: 35px 0;
+  padding-bottom: 35px;
 }
 
 .card__all {
@@ -70,9 +83,9 @@
   -webkit-box-direction: normal;
       -ms-flex-flow: row wrap;
           flex-flow: row wrap;
-  -webkit-box-pack: justify !important;
-      -ms-flex-pack: justify !important;
-          justify-content: space-between !important;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
 }
 
 @media (max-width: 1235px) {
@@ -83,9 +96,9 @@
 
 .card__all .content {
   position: relative;
-  height: 210px;
+  height: 190px;
   background: #435258;
-  width: 400px;
+  width: 380px;
   border-radius: 7px;
 }
 
@@ -116,8 +129,10 @@
 .card__all .content > img {
   position: relative;
   width: 100%;
+  height: 130px;
   margin-top: 46px;
-  border: 1px solid #11807b;
+  border-top: 1px solid #1fb1a9;
+  border-bottom: 1px solid #1fb1a9;
 }
 
 .card__all .content > h4 {
@@ -160,5 +175,78 @@
 
 .card__all .content .play__btn {
   display: none;
+}
+
+.banner1,
+.banner2 {
+  position: relative;
+}
+
+.banner1 > span,
+.banner2 > span {
+  position: absolute;
+  top: 64px;
+  left: 110px;
+  line-height: 40px;
+}
+
+@media (max-width: 700px) {
+  .banner1 > span,
+  .banner2 > span {
+    top: 50px;
+    left: 60px;
+  }
+}
+
+.banner1 > span > h1,
+.banner2 > span > h1 {
+  font-size: 36px;
+  font-weight: 700;
+  color: white;
+}
+
+@media (max-width: 700px) {
+  .banner1 > span > h1,
+  .banner2 > span > h1 {
+    font-size: 29px;
+  }
+}
+
+.banner1 > span p,
+.banner2 > span p {
+  font-size: 22px;
+  font-weight: 500;
+  color: white;
+}
+
+@media (max-width: 700px) {
+  .banner1 > span p,
+  .banner2 > span p {
+    font-size: 19px;
+  }
+}
+
+.banner1 > span .button__Link,
+.banner2 > span .button__Link {
+  position: relative;
+  top: 100px;
+  font-size: 24px;
+  color: #f2f2f2;
+  white-space: nowrap;
+  background: #1ab7af;
+  border-radius: 3px;
+  padding: 12px 70px;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+@media (max-width: 700px) {
+  .banner1 > span .button__Link,
+  .banner2 > span .button__Link {
+    font-size: 20px;
+    padding: 8px 40px;
+  }
 }
 /*# sourceMappingURL=style.css.map */

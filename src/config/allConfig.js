@@ -16,6 +16,33 @@ const allConfig = {
     "currency-symbol": "€",
   },
 
+  getSlider: true,
+  slider: {
+    slider1: {
+      title: "WELCOME BONUS SPORT",
+      subtitle: "10 euros immediately + 50% bonus up to 250 EURO",
+      image_url: "/storage/slider/16093421317398.jpeg",
+      btn_text: "JOIN",
+      btn_url: "https://betbuq.com/pages/promos/general/welcome-bonus",
+      btn_target: "_self",
+      order: 2,
+      type: "center",
+      active: "yes",
+    },
+
+    slider2: {
+      title: "Cashout",
+      subtitle: "Cashout your bets anytime",
+      image_url: "/storage/slider/16234141092628.jpeg",
+      btn_text: "JOIN",
+      btn_url: "https://www.betbuq.com/prematch",
+      btn_target: "_self",
+      order: 3,
+      type: "center",
+      active: "yes",
+    },
+  },
+
   login: {
     Name: {
       icon: "fas fa-user",

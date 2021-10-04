@@ -81,90 +81,89 @@ function CasinoLive() {
 
     return (
         <>
-            {!isLoading ? (
-                <LoadedCasino />
-            ) : (
-                <>
-                    <div className="livecasino">
-                        {Object.values(bannerCasinoLive || {}).map((B, b) => (
-                            <BannerLiveCasino B={B} b={b} />
-                        ))}
+            <div className="livecasino">
+                {Object.values(bannerCasinoLive || {}).map((B, b) => (
+                    <BannerLiveCasino B={B} b={b} />
+                ))}
+            </div>
+
+            {!modalOpen ? (
+                <div style={{ background: "#313d42" }}>
+                    <div className="link">
+                        <div className="link-live">
+                            <span
+                                onClick={() => ChangeIndex()}
+                                className={
+                                    "heart " +
+                                    (myindex.isActive !== myindex.favouriteId ||
+                                        myindex.idAllGames !== myindex.favouriteId
+                                        ? "active"
+                                        : "")
+                                }
+                            >
+                                {" "}
+                                <i
+                                    style={{ color: `${colorHeart}` }}
+                                    className={heartIcon}
+                                />
+                            </span>
+                            <p
+                                onClick={() => ChangeIndex()}
+                                className={
+                                    "all-games " +
+                                    (myindex.isActive === myindex.idAllGames ? "active" : "")
+                                }
+                            >
+                                All Games
+                            </p>
+                            {categories}
+                        </div>
+                        <div className="search-game">
+                            <span className="search">
+                                <i className={searchIcon} />
+                                <p>{searchFor}</p>
+                            </span>
+                            <span
+                                className="provider "
+                                onClick={() => {
+                                    setModalOpen(true);
+                                }}
+                            >
+                                <p>Providers</p>
+                                <i className={alignRight} />
+                            </span>
+                        </div>
                     </div>
 
-                    {!modalOpen ? (
-                        <div style={{ background: "#313d42" }}>
-                            <div className="link">
-                                <div className="link-live">
-                                    <span
-                                        onClick={() => ChangeIndex()}
-                                        className={
-                                            "heart " +
-                                            (myindex.isActive !== myindex.favouriteId ||
-                                                myindex.idAllGames !== myindex.favouriteId
-                                                ? "active"
-                                                : "")
-                                        }
-                                    >
-                                        {" "}
-                                        <i
-                                            style={{ color: `${colorHeart}` }}
-                                            className={heartIcon}
-                                        />
-                                    </span>
-                                    <p
-                                        onClick={() => ChangeIndex()}
-                                        className={
-                                            "all-games " +
-                                            (myindex.isActive === myindex.idAllGames ? "active" : "")
-                                        }
-                                    >
-                                        All Games
-                                    </p>
-                                    {categories}
-                                </div>
-                                <div className="search-game">
-                                    <span className="search">
-                                        <i className={searchIcon} />
-                                        <p>{searchFor}</p>
-                                    </span>
-                                    <span
-                                        className="provider "
-                                        onClick={() => {
-                                            setModalOpen(true);
-                                        }}
-                                    >
-                                        <p>Providers</p>
-                                        <i className={alignRight} />
-                                    </span>
-                                </div>
-                            </div>
-
-                            <ToggleSlots
-                                Slots={allDataCasinoLive}
-                                myindex={myindex.isActive}
-                                heartIcon={heartIcon}
-                                mytxt={myindex.isActiveText}
-                                loadMore={loadMore.load}
-                                loadKey={loadMore}
-                                moreSlots={moreSlots}
-                                dispatch={dispatch}
-                                keysCateg={keysCateg}
-                            />
-                        </div>
-                    ) : (
-                        <ModalCasino
-                            setOpenModal={setModalOpen}
-                            allDataCasinoLive={allDataCasinoLive}
-                            searchFor={searchFor}
-                            searchIcon={searchIcon}
-                            alignRight={alignRight}
-                            categories={categories}
-                        />
-                    )}
-                </>
+                    <ToggleSlots
+                        Slots={allDataCasinoLive}
+                        myindex={myindex.isActive}
+                        heartIcon={heartIcon}
+                        mytxt={myindex.isActiveText}
+                        loadMore={loadMore.load}
+                        loadKey={loadMore}
+                        moreSlots={moreSlots}
+                        dispatch={dispatch}
+                        keysCateg={keysCateg}
+                    />
+                </div>
+            ) : (
+                <ModalCasino
+                    setOpenModal={setModalOpen}
+                    allDataCasinoLive={allDataCasinoLive}
+                    searchFor={searchFor}
+                    searchIcon={searchIcon}
+                    alignRight={alignRight}
+                    categories={categories}
+                />
             )}
         </>
-    );
+    )
+}
+      
+      )}
+    </>
+  );
 }
 
 export default CasinoLive;
@@ -268,48 +267,22 @@ const ToggleSlots = ({
                                                                 </div>
                                                             )}
 
-                                                            {R.name === "Roulette" && (
-                                                                <div className="allslots">
-                                                                    <AllSlots
-                                                                        catId={R.id}
-                                                                        R={R}
-                                                                        F={F}
-                                                                        heartIcon={heartIcon}
-                                                                    />
-                                                                </div>
-                                                            )}
+                              {R.name === "Roulette" && (
+                                <div className="allslots">
+                                  <h2>{R.name}</h2>
 
-                                                            {R.name === "Blackjack" && (
-                                                                <div className="allslots">
-                                                                    <AllSlots
-                                                                        catId={R.id}
-                                                                        R={R}
-                                                                        F={F}
-                                                                        heartIcon={heartIcon}
-                                                                    />
-                                                                </div>
-                                                            )}
+                                  <AllSlots
+                                    catId={R.id}
+                                    R={R}
+                                    F={F}
+                                    heartIcon={heartIcon}
+                                  />
+                                </div>
+                              )}
 
-                                                            {R.name === "Baccarat" && (
-                                                                <div className="allslots">
-                                                                    <AllSlots
-                                                                        catId={R.id}
-                                                                        R={R}
-                                                                        F={F}
-                                                                        heartIcon={heartIcon}
-                                                                    />
-                                                                </div>
-                                                            )}
-                                                            {R.name === "Poker & Sic Bo" && (
-                                                                <div className="allslots">
-                                                                    <AllSlots
-                                                                        catId={R.id}
-                                                                        R={R}
-                                                                        F={F}
-                                                                        heartIcon={heartIcon}
-                                                                    />
-                                                                </div>
-                                                            )}
+                              {R.name === "Blackjack" && (
+                                <div className="allslots">
+                                  <h2>{R.name}</h2>
 
                                                             {R.name === "Game Show" && (
                                                                 <div className="allslots">
@@ -335,9 +308,58 @@ const ToggleSlots = ({
                 ))}
             </div>
 
-            <span className={"more"} onClick={() => moreSlots()}>
-                <i className="fas fa-sync-alt"></i>
-            </span>
-        </div>
-    );
+            {R.name === "Baccarat" && (
+                <div className="allslots">
+                    <h2>{R.name}</h2>
+
+                    <AllSlots
+                        catId={R.id}
+                        R={R}
+                        F={F}
+                        heartIcon={heartIcon}
+                    />
+                </div>
+            )}
+            {R.name === "Poker & Sic Bo" && (
+                <div className="allslots">
+                    <h2>{R.name}</h2>
+
+                    <AllSlots
+                        catId={R.id}
+                        R={R}
+                        F={F}
+                        heartIcon={heartIcon}
+                    />
+                </div>
+            )}
+
+            {R.name === "Game Show" && (
+                <div className="allslots">
+                    <h2>{R.name}</h2>
+
+                    <AllSlots
+                        catId={R.id}
+                        R={R}
+                        F={F}
+                        heartIcon={heartIcon}
+                    />
+                </div>
+            )}
+        </>
+    ))
+                        )}
+                      </>
+                    )}
+                  </>
+                );
+              })}
+{/* <Providers T={T} /> */ }
+          </>
+        ))}
+      </div >
+    <span className={"more"} onClick={() => moreSlots()}>
+        <i className="fas fa-sync-alt"></i>
+    </span>
+    </div >
+  );
 };

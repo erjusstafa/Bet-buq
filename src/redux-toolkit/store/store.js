@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import allConfig from "../../config/allConfig";
 
 export const thunkApiHome = createAsyncThunk(
-  "bet-buq/thunkApiHome",
+  "betBuq/thunkApiHome",
   async () => {
     let prapashtes = {
       home: "get_sliders",
@@ -17,7 +17,7 @@ export const thunkApiHome = createAsyncThunk(
 );
 
 export const LiveCasinoApi = createAsyncThunk(
-  "bet-buq/LiveCasinoApi",
+  "betBuq/LiveCasinoApi",
   async () => {
     let casinoLive = {
       casino: `get_slots/${allConfig.skinName}/casino_live/ios?lang=en`,
@@ -37,7 +37,7 @@ let initialState = {
 };
 
 const act = createSlice({
-  name: "bet-buq",
+  name: "betBuq",
   initialState,
   reducers: {
     allGames: (state, action) => {
