@@ -55,8 +55,8 @@ function CasinoLive() {
     let searchFor = "Search for a game";
 
     let categories = Object.values(allDataCasinoLive?.categories || {})
-    /*         .sort((a, b) => a.name.toLowerCase() > b.name.toLowerCase() ? 1 : -1)
-     */ .filter((A) => A.id !== 70 || ![70].includes(A.id))
+        /*         .sort((a, b) => a.name.toLowerCase() > b.name.toLowerCase() ? 1 : -1)*/
+        .filter((A) => A.id !== 70 || ![70].includes(A.id))
         .map((A) => {
             return (
                 <>
@@ -75,6 +75,9 @@ function CasinoLive() {
                 </>
             );
         });
+
+
+    let keysCateg = Object.keys(allDataCasinoLive?.categories || {})
 
     return (
         <>
@@ -145,6 +148,7 @@ function CasinoLive() {
                                 loadKey={loadMore}
                                 moreSlots={moreSlots}
                                 dispatch={dispatch}
+                                keysCateg={keysCateg}
                             />
                         </div>
                     ) : (
@@ -174,8 +178,10 @@ const ToggleSlots = ({
     loadKey,
     moreSlots,
     dispatch,
+    keysCateg
 }) => {
-    console.log("isA", mytxt);
+
+
     return (
         <div className="Slot">
             <div className="sort-category">
@@ -188,7 +194,41 @@ const ToggleSlots = ({
                         </span>
                     </>
                 ) : (
-                    <h2>{mytxt}</h2>
+
+                    keysCateg === "Baccarat" &&
+                    <>
+                        <h2>Top Games</h2>
+                        {
+                            Object.values(Slots?.providers || {}).map((T) => (
+
+                                <>
+                                    {Object.values(T?.slots || {})
+                                        .slice(0, loadMore)
+                                        .map((F, f) => {
+                                            return (
+                                                <>
+                                                    {F.name === "Top Games" &&
+                                                        (
+                                                            Object.values(
+                                                                JSON.parse(F.categories || "{}")
+                                                                    .map((R) => (
+                                                                        <>
+
+                                                                            <h4>djffrfr;</h4>
+
+                                                                        </>
+                                                                    ))
+                                                            )
+                                                        )
+                                                    }
+                                                </>
+                                            );
+                                        })}
+                                </>
+                            ))}
+                    </>
+
+
                 )}
             </div>
             <div className={mytxt ? "slot-images" : "all-slot-images"}>
@@ -199,7 +239,7 @@ const ToggleSlots = ({
                             .map((F, f) => {
                                 return (
                                     <>
-                                        {myindex ? (
+                                        {myindex && (
                                             Object.values(
                                                 JSON.parse(F.categories || "{}")
                                                     .sort((a, b) => (a.name > b.name ? -1 : 1))
@@ -212,7 +252,7 @@ const ToggleSlots = ({
                                                         </>
                                                     ))
                                             )
-                                        ) : (
+                                        ) /* : (
                                             <>
                                                 {Object.values(
                                                     JSON.parse(F.categories || "{}").map((R) => (
@@ -284,8 +324,8 @@ const ToggleSlots = ({
                                                         </>
                                                     ))
                                                 )}
-                                            </>
-                                        )}
+                                            </>) */
+                                        }
                                     </>
                                 );
                             })}
