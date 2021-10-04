@@ -29,15 +29,8 @@ class PopupLoginRegister extends Component {
   render() {
     return (
       <div className="popupBackground">
-        <div
-          className={
-            !this.state.toggle ? "popupContainer" : "create--account--form"
-          }
-        >
-          <div
-            onClick={this.props.handleChangePopup}
-            className="titleCloseButtonLog"
-          >
+        <div className={!this.state.toggle ? "popupContainer" : "create--account--form"}>
+          <div onClick={this.props.handleChangePopup} className="titleCloseButtonLog">
             <i className="fas fa-times" />
           </div>
 
@@ -47,7 +40,6 @@ class PopupLoginRegister extends Component {
               <img src={image.logo} alt="" />
             </span>
 
-
             <form onSubmit={this.handleSubmit} className="form--login">
               {this.state.toggle ? (
                 <input
@@ -56,26 +48,19 @@ class PopupLoginRegister extends Component {
                   onChange={(e) => this.setState({ email: e.target.value })}
                   placeholder="Email"
                 />
-              ) : null
-              }
+              ) : null}
               <input
                 type="text"
                 value={this.state.name}
                 onChange={(e) => this.setState({ name: e.target.value })}
-                placeholder={
-                  this.props.lang
-                  && this.props.inputIcon.Name.placeholderEN
-                }
+                placeholder={this.props.lang && this.props.inputIcon.Name.placeholderEN}
               />
               <input
                 type="password"
                 name=""
                 value={this.state.password}
                 onChange={(e) => this.setState({ password: e.target.value })}
-                placeholder={
-                  this.props.lang
-                  && this.props.inputIcon.Password.placeholderEN
-                }
+                placeholder={this.props.lang && this.props.inputIcon.Password.placeholderEN}
               />
 
               {this.state.toggle ? (
@@ -84,11 +69,8 @@ class PopupLoginRegister extends Component {
                 <button className="login--button">LOGIN</button>
               )}
 
-              <p onClick={this.toggleFunc}>
-                {this.state.toggle ? " Log-In" : "Create Account"}
-              </p>
+              <p onClick={this.toggleFunc}>{this.state.toggle ? " Log-In" : "Create Account"}</p>
             </form>
-
           </div>
         </div>
       </div>

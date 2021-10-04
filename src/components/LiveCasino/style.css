@@ -463,6 +463,8 @@
   height: 40px;
   border-bottom: 1px solid #cfcfcf;
   background: white;
+  height: 59px;
+  z-index: 2;
 }
 
 .modalBackground .modalContainer .search-modal .search {
@@ -499,7 +501,7 @@
 
 .modalBackground .modalContainer .search-modal .search > i {
   position: absolute;
-  top: 14px;
+  top: 22px;
   left: 15px;
 }
 
@@ -548,9 +550,129 @@
           flex-flow: wrap row;
   overflow-y: scroll;
   background: #2f3f3e;
+  height: 100%;
 }
 
-.modalBackground .modalContainer .content .one--content {
+.modalBackground .modalContainer .content .tabsModal--contentOne {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.modalBackground .modalContainer .content .tabsModal--contentOne .add {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  position: relative;
+  top: 10px;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: 100%;
+}
+
+.modalBackground .modalContainer .content .tabsModal--contentOne .add .all--categ--provider {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
+  padding: 28px 0px;
+}
+
+.modalBackground .modalContainer .content .tabsModal--contentOne .add .all--categ--provider .added--categ--provider {
+  color: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background: #0000003b;
+  padding: 5px 10px;
+  margin: 7px;
+  border-radius: 20px;
+}
+
+.modalBackground .modalContainer .content .tabsModal--contentOne .add .all--categ--provider .added--categ--provider > p {
+  margin: auto;
+}
+
+.modalBackground .modalContainer .content .tabsModal--contentOne .add .all--categ--provider .added--categ--provider i.fas.fa-times {
+  margin: auto;
+  margin-left: 10px;
+  width: 21px;
+  height: 22px;
+  color: #111111;
+  z-index: 1;
+  opacity: 1;
+  border-radius: 50%;
+  background-color: lightgray;
+  display: -ms-grid;
+  display: grid;
+  place-content: center;
+}
+
+.modalBackground .modalContainer .content .tabsModal--contentOne .add .all--categ--provider button {
+  color: #48a39d;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background: #0000003b;
+  padding: 5px 10px;
+  margin: 7px;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  outline: none;
+}
+
+.modalBackground .modalContainer .content .tabsModal--contentOne .add > span {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 10px;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  width: 100%;
+}
+
+.modalBackground .modalContainer .content .tabsModal--contentOne .add > span > span {
+  color: #afaeae;
+  cursor: pointer;
+}
+
+.modalBackground .modalContainer .content .tabsModal--contentOne .add > span > span:last-child {
+  margin-left: 30px;
+}
+
+.modalBackground .modalContainer .content .tabsModal--contentOne .add > span span.active {
+  color: white !important;
+}
+
+.modalBackground .modalContainer .content .tabsModal--contentOne .add > div > span .one--content {
   display: -webkit-box !important;
   display: -ms-flexbox !important;
   display: flex !important;
@@ -560,23 +682,89 @@
           flex-flow: wrap row;
 }
 
-.modalBackground .modalContainer .content .one--content > p {
+.modalBackground .modalContainer .content .tabsModal--contentOne .add > div > span .one--content > p {
+  display: -ms-grid;
+  display: grid;
+  place-items: center;
+  place-content: center;
   padding: 30px 20px;
   color: white;
 }
 
-.modalBackground .modalContainer .content .one--content > span {
+.modalBackground .modalContainer .content .tabsModal--contentOne .add > div > span .one--content > div {
   display: block;
   padding: 5px;
 }
 
-.modalBackground .modalContainer .content .one--content > span > h3 {
-  color: white;
+.modalBackground .modalContainer .content .tabsModal--contentOne .add > div > span .one--content > div > span {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
 }
 
-.modalBackground .modalContainer .content .one--content > span > img {
-  width: 100px;
-  height: 100px;
+.modalBackground .modalContainer .content .tabsModal--contentOne .add > div > span .one--content > div > span > p {
+  color: white;
+  font-size: 12px;
+  margin: auto 0;
+}
+
+.modalBackground .modalContainer .content .tabsModal--contentOne .add > div > span .one--content > div > span i.far.fa-heart {
+  color: white;
+  margin: auto 0;
+}
+
+.modalBackground .modalContainer .content .tabsModal--contentOne .add > div > span .one--content > div > img {
+  width: 161px;
+  height: 150px;
+  border-radius: 14px;
+}
+
+.modalBackground .modalContainer .content .tabsModal--contentOne .add > div .fav--added {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
+}
+
+.modalBackground .modalContainer .content .tabsModal--contentOne .add > div .fav--added .item--fav {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin: 5px;
+}
+
+.modalBackground .modalContainer .content .tabsModal--contentOne .add > div .fav--added .item--fav > img {
+  width: 161px;
+  height: 150px;
+  border-radius: 14px;
+}
+
+.modalBackground .modalContainer .content .tabsModal--contentOne .add > div .fav--added .item--fav > span {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+.modalBackground .modalContainer .content .tabsModal--contentOne .add > div .fav--added .item--fav > span > p {
+  color: white;
+  font-size: 12px;
+  margin: auto 0;
+}
+
+.modalBackground .modalContainer .content .tabsModal--contentOne .add > div .fav--added .item--fav > span i.far.fa-heart {
+  color: white;
+  margin: auto 0;
 }
 
 .modalBackground .modalContainer .content-toggle {
@@ -586,9 +774,62 @@
       grid-template-columns: 70% 30%;
   width: 100%;
   overflow-y: scroll;
+  padding: 17px 0;
+  padding-left: 17px;
 }
 
-.modalBackground .modalContainer .content-toggle .one--content {
+.modalBackground .modalContainer .content-toggle .tabsModal--contentOne {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.modalBackground .modalContainer .content-toggle .tabsModal--contentOne .add {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  position: relative;
+  top: 10px;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: 100%;
+}
+
+.modalBackground .modalContainer .content-toggle .tabsModal--contentOne .add > span {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 10px;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  width: 100%;
+}
+
+.modalBackground .modalContainer .content-toggle .tabsModal--contentOne .add > span > span {
+  color: #afaeae;
+  cursor: pointer;
+}
+
+.modalBackground .modalContainer .content-toggle .tabsModal--contentOne .add > span > span:last-child {
+  margin-left: 30px;
+}
+
+.modalBackground .modalContainer .content-toggle .tabsModal--contentOne .add > span span.active {
+  color: white !important;
+}
+
+.modalBackground .modalContainer .content-toggle .tabsModal--contentOne .add > div > span .one--content {
   display: -webkit-box !important;
   display: -ms-flexbox !important;
   display: flex !important;
@@ -596,21 +837,155 @@
   -webkit-box-direction: normal;
       -ms-flex-flow: wrap row;
           flex-flow: wrap row;
-  background-color: #2f3f3e;
 }
 
-.modalBackground .modalContainer .content-toggle .one--content > span {
+.modalBackground .modalContainer .content-toggle .tabsModal--contentOne .add > div > span .one--content > p {
+  padding: 30px 20px;
+  color: white;
+}
+
+.modalBackground .modalContainer .content-toggle .tabsModal--contentOne .add > div > span .one--content > div {
   display: block;
   padding: 5px;
 }
 
-.modalBackground .modalContainer .content-toggle .one--content > span > h3 {
-  color: white;
+.modalBackground .modalContainer .content-toggle .tabsModal--contentOne .add > div > span .one--content > div > span {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
 }
 
-.modalBackground .modalContainer .content-toggle .one--content > span > img {
-  width: 100px;
-  height: 100px;
+.modalBackground .modalContainer .content-toggle .tabsModal--contentOne .add > div > span .one--content > div > span > p {
+  color: white;
+  font-size: 12px;
+  margin: auto 0;
+}
+
+.modalBackground .modalContainer .content-toggle .tabsModal--contentOne .add > div > span .one--content > div > span i.far.fa-heart {
+  color: white;
+  margin: auto 0;
+}
+
+.modalBackground .modalContainer .content-toggle .tabsModal--contentOne .add > div > span .one--content > div > img {
+  width: 161px;
+  height: 150px;
+  border-radius: 14px;
+}
+
+.modalBackground .modalContainer .content-toggle .tabsModal--contentOne .add > div .fav--added {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
+}
+
+.modalBackground .modalContainer .content-toggle .tabsModal--contentOne .add > div .fav--added .item--fav {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin: 5px;
+}
+
+.modalBackground .modalContainer .content-toggle .tabsModal--contentOne .add > div .fav--added .item--fav > img {
+  width: 161px;
+  height: 150px;
+  border-radius: 14px;
+}
+
+.modalBackground .modalContainer .content-toggle .tabsModal--contentOne .add > div .fav--added .item--fav > span {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+.modalBackground .modalContainer .content-toggle .tabsModal--contentOne .add > div .fav--added .item--fav > span > p {
+  color: white;
+  font-size: 12px;
+  margin: auto 0;
+}
+
+.modalBackground .modalContainer .content-toggle .tabsModal--contentOne .add > div .fav--added .item--fav > span i.far.fa-heart {
+  color: white;
+  margin: auto 0;
+}
+
+.modalBackground .modalContainer .content-toggle .tabsModal--contentOne .add .all--categ--provider {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
+  padding: 28px 0px;
+}
+
+.modalBackground .modalContainer .content-toggle .tabsModal--contentOne .add .all--categ--provider .added--categ--provider {
+  color: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background: #0000003b;
+  padding: 5px 10px;
+  margin: 7px;
+  border-radius: 20px;
+}
+
+.modalBackground .modalContainer .content-toggle .tabsModal--contentOne .add .all--categ--provider .added--categ--provider > p {
+  margin: auto;
+}
+
+.modalBackground .modalContainer .content-toggle .tabsModal--contentOne .add .all--categ--provider .added--categ--provider i.fas.fa-times {
+  margin: auto;
+  margin-left: 10px;
+  width: 21px;
+  height: 22px;
+  color: #111111;
+  z-index: 1;
+  opacity: 1;
+  border-radius: 50%;
+  background-color: lightgray;
+  display: -ms-grid;
+  display: grid;
+  place-content: center;
+}
+
+.modalBackground .modalContainer .content-toggle .tabsModal--contentOne .add .all--categ--provider button {
+  color: #48a39d;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background: #0000003b;
+  padding: 5px 10px;
+  margin: 7px;
+  border-radius: 20px;
+  border: none;
+  outline: none;
+  cursor: pointer;
 }
 
 .modalBackground .modalContainer .content-toggle .two--content {
@@ -654,5 +1029,9 @@
   padding: 5px 12px;
   margin: 5px;
   cursor: pointer;
+}
+
+.add > div > span > p {
+  color: white;
 }
 /*# sourceMappingURL=style.css.map */

@@ -27,6 +27,8 @@ let initialState = {
   bet: { allConfig },
   sliderApiHome: [],
   LiveCasino: [],
+  Favorites: [],
+  CategOrProvider: [],
   userLog: false,
 };
 
@@ -40,6 +42,29 @@ const act = createSlice({
           Q.name === "" ? Q : Q.name.toLowerCase().includes(action.payload.name.toLowerCase())
         );
       });
+    },
+
+    addFavorites: (state, action) => {
+      state.Favorites.push(action.payload);
+    },
+
+    delFavorites: (state, action) => {
+      /* state.Favorites.pop(action.payload); */
+      const newList = state.Favorites.filter((I) => I.id !== action.payload.id);
+      state.Favorites = newList;
+    },
+
+    addCategProvid: (state, action) => {
+      state.CategOrProvider.push(action.payload);
+    },
+
+    delCategProvid: (state, action) => {
+      const newListCategOrProv = state.CategOrProvider.filter((I) => I.id !== action.payload.id);
+      state.CategOrProvider = newListCategOrProv;
+    },
+
+    delAllProvidrCateg: (state, action) => {
+      state.CategOrProvider = [];
     },
   },
 
@@ -56,5 +81,6 @@ const act = createSlice({
   },
 });
 
-export const { filterGames } = act.actions;
+export const { filterGames, addFavorites, delFavorites, addCategProvid, delCategProvid, delAllProvidrCateg } =
+  act.actions;
 export default act.reducer;
