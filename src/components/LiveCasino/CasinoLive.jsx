@@ -159,6 +159,12 @@ function CasinoLive() {
 export default CasinoLive;
 
 const ToggleSlots = ({ Slots, myindex, heartIcon, mytxt, loadMore, loadKey, moreSlots, dispatch }) => {
+    const [openPopup, setOpenPopup] = useState(false);
+
+    const handleChangePopup = () => {
+        setOpenPopup(false);
+    };
+
     return (
         <div className="Slot">
             <div className="sort-category">
@@ -187,58 +193,38 @@ const ToggleSlots = ({ Slots, myindex, heartIcon, mytxt, loadMore, loadKey, more
                                                 JSON.parse(F.categories || "{}")
                                                     .sort((a, b) => (a.name > b.name ? -1 : 1))
                                                     .filter((Y) => Y.id === myindex)
-                                                    .map((R) => <>{R.id === myindex && <ItemSlots R={R} F={F} heartIcon={heartIcon} />}</>)
+                                                    .map((R) => (
+                                                        <>
+                                                            {R.id === myindex && (
+                                                                <ItemSlots
+                                                                    R={R}
+                                                                    F={F}
+                                                                    heartIcon={heartIcon}
+                                                                    openPopup={openPopup}
+                                                                    setOpenPopup={setOpenPopup}
+                                                                    handleChangePopup={handleChangePopup}
+                                                                />
+                                                            )}
+                                                        </>
+                                                    ))
                                             )
                                         ) : (
                                             <>
                                                 {Object.values(
                                                     JSON.parse(F.categories || "{}").map((R) => (
                                                         <>
-                                                            {R.name === "Top Games" && (
-                                                                <div className="allslots">
-                                                                    <h2>{R.name}</h2>
-                                                                    <AllSlots catId={R.id} R={R} F={F} heartIcon={heartIcon} />
-                                                                </div>
-                                                            )}
-
-                                                            {R.name === "Roulette" && (
-                                                                <div className="allslots">
-                                                                    <h2>{R.name}</h2>
-
-                                                                    <AllSlots catId={R.id} R={R} F={F} heartIcon={heartIcon} />
-                                                                </div>
-                                                            )}
-
-                                                            {R.name === "Blackjack" && (
-                                                                <div className="allslots">
-                                                                    <h2>{R.name}</h2>
-
-                                                                    <AllSlots catId={R.id} R={R} F={F} heartIcon={heartIcon} />
-                                                                </div>
-                                                            )}
-
-                                                            {R.name === "Baccarat" && (
-                                                                <div className="allslots">
-                                                                    <h2>{R.name}</h2>
-
-                                                                    <AllSlots catId={R.id} R={R} F={F} heartIcon={heartIcon} />
-                                                                </div>
-                                                            )}
-                                                            {R.name === "Poker & Sic Bo" && (
-                                                                <div className="allslots">
-                                                                    <h2>{R.name}</h2>
-
-                                                                    <AllSlots catId={R.id} R={R} F={F} heartIcon={heartIcon} />
-                                                                </div>
-                                                            )}
-
-                                                            {R.name === "Game Show" && (
-                                                                <div className="allslots">
-                                                                    <h2>{R.name}</h2>
-
-                                                                    <AllSlots catId={R.id} R={R} F={F} heartIcon={heartIcon} />
-                                                                </div>
-                                                            )}
+                                                            <div className="allslots">
+                                                                <h2 style={{ color: "white" }}>{R.name}</h2>
+                                                                <AllSlots
+                                                                    catId={R.id}
+                                                                    R={R}
+                                                                    F={F}
+                                                                    heartIcon={heartIcon}
+                                                                    openPopup={openPopup}
+                                                                    setOpenPopup={setOpenPopup}
+                                                                    handleChangePopup={handleChangePopup}
+                                                                />
+                                                            </div>
                                                         </>
                                                     ))
                                                 )}
@@ -247,7 +233,6 @@ const ToggleSlots = ({ Slots, myindex, heartIcon, mytxt, loadMore, loadKey, more
                                     </>
                                 );
                             })}
-                        {/* <Providers T={T} /> */}
                     </>
                 ))}
             </div>

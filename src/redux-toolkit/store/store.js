@@ -27,8 +27,8 @@ let initialState = {
   bet: { allConfig },
   sliderApiHome: [],
   LiveCasino: [],
-  Favorites: [],
-  CategOrProvider: [],
+  Favorites: localStorage.getItem("fav") ? JSON.parse(localStorage.getItem("fav")) : [],
+  CategOrProvider: localStorage.getItem("catPro") ? JSON.parse(localStorage.getItem("catPro")) : [],
   userLog: false,
 };
 
@@ -37,48 +37,66 @@ const act = createSlice({
   initialState,
   reducers: {
     filterGames: (state, action) => {
-      Object.values(state.LiveCasino?.result?.providers || {}).map((E) => {
+      /*   Object.values(state.LiveCasino?.result?.providers || {}).map((E) => {
         return Object.values(E.slots || {}).filter((Q) =>
           Q.name === "" ? Q : Q.name.toLowerCase().includes(action.payload.name.toLowerCase())
         );
-      });
+      }); */
     },
 
     addFavorites: (state, action) => {
-      /*       state.Favorites.push(action.payload);
-       */ state.Favorites = [
-        ...state.Favorites,
-        {
-          id: action.payload.id,
-          desktop_logo: action.payload.desktop_logo,
-          name: action.payload.name,
-        },
-      ];
+      const ekzistoIndex = state.Favorites.findIndex((item) => item.id === action.payload.id);
+
+      if (ekzistoIndex >= 0) {
+        state.Favorites[ekzistoIndex] = { ...state.Favorites[ekzistoIndex] };
+      } else {
+        state.Favorites = [
+          ...state.Favorites,
+          {
+            id: action.payload.id,
+            desktop_logo: action.payload.desktop_logo,
+            name: action.payload.name,
+          },
+        ];
+      }
+
+      localStorage.setItem("fav", JSON.stringify(state.Favorites));
     },
 
     delFavorites: (state, action) => {
-      /* state.Favorites.pop(action.payload); */
       const newList = state.Favorites.filter((I) => I.id !== action.payload.id);
       state.Favorites = newList;
+      localStorage.setItem("fav", JSON.stringify(state.Favorites));
     },
 
     addCategProvid: (state, action) => {
-      state.CategOrProvider = [
-        ...state.CategOrProvider,
-        {
-          id: action.payload.id,
-          name: action.payload.name,
-        },
-      ];
+      const ekzistoCatProv = state.CategOrProvider.findIndex((I) => I.id === action.payload.id);
+
+      if (ekzistoCatProv >= 0) {
+        state.CategOrProvider[ekzistoCatProv] = { ...state.CategOrProvider[ekzistoCatProv] };
+      } else {
+        state.CategOrProvider = [
+          ...state.CategOrProvider,
+          {
+            id: action.payload.id,
+            name: action.payload.name,
+          },
+        ];
+      }
+
+      localStorage.setItem("catPro", JSON.stringify(state.CategOrProvider));
     },
 
     delCategProvid: (state, action) => {
       const newListCategOrProv = state.CategOrProvider.filter((I) => I.id !== action.payload.id);
       state.CategOrProvider = newListCategOrProv;
+
+      localStorage.setItem("catPro", JSON.stringify(state.CategOrProvider));
     },
 
     delAllProvidrCateg: (state, action) => {
       state.CategOrProvider = [];
+      localStorage.setItem("catPro", JSON.stringify(state.Favorites));
     },
   },
 

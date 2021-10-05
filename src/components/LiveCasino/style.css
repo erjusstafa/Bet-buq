@@ -593,6 +593,7 @@
       -ms-flex-pack: justify;
           justify-content: space-between;
   width: 100%;
+  height: 50%;
 }
 
 .modalBackground .modalContainer .content .tabsModal--contentOne .add .all--categ--provider {
@@ -672,11 +673,16 @@
       -ms-flex-direction: row;
           flex-direction: row;
   width: 100%;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  background: #2f3f3e;
 }
 
 .modalBackground .modalContainer .content .tabsModal--contentOne .add > span > span {
   color: #afaeae;
   cursor: pointer;
+  font-weight: bolder;
 }
 
 .modalBackground .modalContainer .content .tabsModal--contentOne .add > span > span:last-child {
@@ -817,6 +823,7 @@
       -ms-flex-pack: justify;
           justify-content: space-between;
   width: 100%;
+  height: 50%;
 }
 
 .modalBackground .modalContainer .content-toggle .tabsModal--contentOne .add > span {
@@ -829,11 +836,16 @@
       -ms-flex-direction: row;
           flex-direction: row;
   width: 100%;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  background: #2f3f3e;
 }
 
 .modalBackground .modalContainer .content-toggle .tabsModal--contentOne .add > span > span {
   color: #afaeae;
   cursor: pointer;
+  font-weight: bolder;
 }
 
 .modalBackground .modalContainer .content-toggle .tabsModal--contentOne .add > span > span:last-child {
@@ -857,6 +869,10 @@
 .modalBackground .modalContainer .content-toggle .tabsModal--contentOne .add > div > span .one--content > p {
   padding: 30px 20px;
   color: white;
+  display: -ms-grid;
+  display: grid;
+  place-content: center;
+  place-items: center;
 }
 
 .modalBackground .modalContainer .content-toggle .tabsModal--contentOne .add > div > span .one--content > div {
@@ -876,6 +892,10 @@
   color: white;
   font-size: 12px;
   margin: auto 0;
+  display: -ms-grid;
+  display: grid;
+  place-content: center;
+  place-items: center;
 }
 
 .modalBackground .modalContainer .content-toggle .tabsModal--contentOne .add > div > span .one--content > div > span i.far.fa-heart {

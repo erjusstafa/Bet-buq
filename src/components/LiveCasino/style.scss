@@ -419,6 +419,7 @@
           top: 10px;
           justify-content: space-between;
           width: 100%;
+          height: 50%;
 
           .all--categ--provider {
             display: flex;
@@ -471,11 +472,14 @@
             padding: 10px;
             flex-direction: row;
             width: 100%;
-
+            position: sticky;
+            top: 0;
+            background: #2f3f3e;
             > span {
               color: #afaeae;
               cursor: pointer;
 
+              font-weight: bolder;
               &:last-child {
                 margin-left: 30px;
               }
@@ -575,16 +579,21 @@
           top: 10px;
           justify-content: space-between;
           width: 100%;
+          height: 50%;
 
           > span {
             display: flex;
             padding: 10px;
             flex-direction: row;
             width: 100%;
+            position: sticky;
+            top: 0;
+            background: #2f3f3e;
 
             > span {
               color: #afaeae;
               cursor: pointer;
+              font-weight: bolder;
 
               &:last-child {
                 margin-left: 30px;
@@ -604,6 +613,9 @@
                 > p {
                   padding: 30px 20px;
                   color: white;
+                  display: grid;
+                  place-content: center;
+                  place-items: center;
                 }
 
                 > div {
@@ -617,6 +629,9 @@
                       color: white;
                       font-size: 12px;
                       margin: auto 0;
+                      display: grid;
+                      place-content: center;
+                      place-items: center;
                     }
                     i.far.fa-heart {
                       color: white;

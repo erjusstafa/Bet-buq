@@ -8,11 +8,17 @@ import {
   delFavorites,
   filterGames,
 } from "../../redux-toolkit/store/store";
+import PopupLoginRegister from "../LoginRegister/PopupLoginRegister";
 
 const ModalCasino = ({ setOpenModal, allDataCasinoLive, searchFor, searchIcon, alignRight, heartIcon }) => {
   const [val, setVal] = useState("");
   const [tabsModal, setTabsModal] = useState(0);
   const [toggle, setToggle] = useState(false);
+  const [openPopup, setOpenPopup] = useState(false);
+
+  const handleChangePopup = () => {
+    setOpenPopup(false);
+  };
   /*   const [idFav, setIdFav] = useState(null);
    */
 
@@ -31,25 +37,20 @@ const ModalCasino = ({ setOpenModal, allDataCasinoLive, searchFor, searchIcon, a
 
   const [myindex, setMyIndex] = useState({ isActive: null });
 
-  const setActiveClass = (id, name) => {
+  const setActiveAddProCat = (id, name) => {
     setMyIndex({ isActive: id });
     dispatch(addCategProvid({ id: id, name: name }))
   };
 
   const dispatch = useDispatch();
 
-
-  const delAddFav = (id) => {
-    dispatch(delFavorites({ id: id }))
-    setToggle(!toggle)
-  }
   let providersData = Object.values(allDataCasinoLive?.providers || {}).map((D) => (
     <>
       {/*   <input
         checked={checkBox}
         onChange={(e) => setCheckBox(e.target.checked)}
         type="checkbox"
-      />   */}    <p className={myindex.isActive === D.id && "active"} key={D.id} onClick={() => setActiveClass(D.id, D.name)}>
+      />   */}    <p className={myindex.isActive === D.id && "active"} key={D.id} onClick={() => setActiveAddProCat(D.id, D.name)}>
         {" "}
         {D.name}
       </p>
@@ -57,7 +58,7 @@ const ModalCasino = ({ setOpenModal, allDataCasinoLive, searchFor, searchIcon, a
   ));
 
   let categoriesData = Object.values(allDataCasinoLive?.categories || {}).map((C) => (
-    <p className={myindex.isActive === C.id && "active"} key={C.id} onClick={() => setActiveClass(C.id, C.name)}>
+    <p className={myindex.isActive === C.id && "active"} key={C.id} onClick={() => setActiveAddProCat(C.id, C.name)}>
       {" "}
       {C.name}
     </p>
@@ -77,10 +78,10 @@ const ModalCasino = ({ setOpenModal, allDataCasinoLive, searchFor, searchIcon, a
       {Object.values(E.slots || {})
         .filter((Q) => (val === "" ? Q : Q.name.toLowerCase().includes(val.toLowerCase())))
         .map((Q) => (
-          <div>
+          <div key={Q.id} >
             {console.log("Q", Q)}
 
-            <img src={Q.desktop_logo} alt="" />
+            <img onClick={() => setOpenPopup(true)} src={Q.desktop_logo} alt="" style={{ cursor: "pointer" }} />
             <span>
               <p>{Q.name.length > 20 ? Q.name.substring(0, 19) + "..." : Q.name}</p>
               <i
@@ -92,6 +93,15 @@ const ModalCasino = ({ setOpenModal, allDataCasinoLive, searchFor, searchIcon, a
                 }
               />
             </span>
+
+            {openPopup && (
+              <PopupLoginRegister
+                handleChangePopup={handleChangePopup}
+
+                open={openPopup}
+              />
+            )}
+
           </div>
         ))}
     </>
@@ -169,7 +179,7 @@ const ModalCasino = ({ setOpenModal, allDataCasinoLive, searchFor, searchIcon, a
                                 <img src={P.desktop_logo} alt="" />
                                 <span>
                                   <p>{P.name}</p>
-                                  <i className={heartIcon} to onClick={() => delAddFav(P.id)} />
+                                  <i className={heartIcon} to onClick={() => dispatch(delFavorites((P)))} />
                                 </span>
                               </div>
                             ))}
