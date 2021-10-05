@@ -156,7 +156,6 @@ function CasinoLive() {
                             searchFor={searchFor}
                             searchIcon={searchIcon}
                             alignRight={alignRight}
-                            categories={categories}
                             heartIcon={heartIcon}
                         />
                     )}
