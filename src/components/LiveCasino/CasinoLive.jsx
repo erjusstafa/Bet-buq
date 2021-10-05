@@ -15,13 +15,9 @@ function CasinoLive() {
         setLoading(true);
     }, [dispatch]);
 
-    const bannerCasinoLive = useSelector(
-        (state) => state.betbuqsport.sliderApiHome.result?.casino_live
-    );
+    const bannerCasinoLive = useSelector((state) => state.betbuqsport.sliderApiHome.result?.casino_live);
 
-    const allDataCasinoLive = useSelector(
-        (state) => state?.betbuqsport?.LiveCasino?.result
-    );
+    const allDataCasinoLive = useSelector((state) => state?.betbuqsport?.LiveCasino?.result);
 
     const [isLoading, setLoading] = useState(true);
     const [colorHeart, setColorHeart] = useState("");
@@ -65,8 +61,7 @@ function CasinoLive() {
                             key={A.id}
                             onClick={() => ChangeIndex(A.id, A.name)}
                             className={
-                                A?.name.split(" ")[0].replace(/\s+/g, "").toLowerCase() +
-                                (myindex.isActive === A.id ? " active" : "")
+                                A?.name.split(" ")[0].replace(/\s+/g, "").toLowerCase() + (myindex.isActive === A.id ? " active" : "")
                             }
                         >
                             {A.name}
@@ -96,33 +91,29 @@ function CasinoLive() {
                                         onClick={() => ChangeIndex()}
                                         className={
                                             "heart " +
-                                            (myindex.isActive !== myindex.favouriteId ||
-                                                myindex.idAllGames !== myindex.favouriteId
+                                            (myindex.isActive !== myindex.favouriteId || myindex.idAllGames !== myindex.favouriteId
                                                 ? "active"
                                                 : "")
                                         }
                                     >
                                         {" "}
-                                        <i
-                                            style={{ color: `${colorHeart}` }}
-                                            className={heartIcon}
-                                        />
+                                        <i style={{ color: `${colorHeart}` }} className={heartIcon} />
                                     </span>
                                     <p
                                         onClick={() => ChangeIndex()}
-                                        className={
-                                            "all-games " +
-                                            (myindex.isActive === myindex.idAllGames ? "active" : "")
-                                        }
+                                        className={"all-games " + (myindex.isActive === myindex.idAllGames ? "active" : "")}
                                     >
                                         All Games
                                     </p>
                                     {categories}
                                 </div>
                                 <div className="search-game">
-                                    <span className="search" onClick={() => {
-                                        setModalOpen(true);
-                                    }}>
+                                    <span
+                                        className="search"
+                                        onClick={() => {
+                                            setModalOpen(true);
+                                        }}
+                                    >
                                         <i className={searchIcon} />
                                         <p>{searchFor}</p>
                                     </span>
@@ -167,16 +158,7 @@ function CasinoLive() {
 
 export default CasinoLive;
 
-const ToggleSlots = ({
-    Slots,
-    myindex,
-    heartIcon,
-    mytxt,
-    loadMore,
-    loadKey,
-    moreSlots,
-    dispatch,
-}) => {
+const ToggleSlots = ({ Slots, myindex, heartIcon, mytxt, loadMore, loadKey, moreSlots, dispatch }) => {
     return (
         <div className="Slot">
             <div className="sort-category">
@@ -205,13 +187,7 @@ const ToggleSlots = ({
                                                 JSON.parse(F.categories || "{}")
                                                     .sort((a, b) => (a.name > b.name ? -1 : 1))
                                                     .filter((Y) => Y.id === myindex)
-                                                    .map((R) => (
-                                                        <>
-                                                            {R.id === myindex && (
-                                                                <ItemSlots R={R} F={F} heartIcon={heartIcon} />
-                                                            )}
-                                                        </>
-                                                    ))
+                                                    .map((R) => <>{R.id === myindex && <ItemSlots R={R} F={F} heartIcon={heartIcon} />}</>)
                                             )
                                         ) : (
                                             <>
@@ -221,12 +197,7 @@ const ToggleSlots = ({
                                                             {R.name === "Top Games" && (
                                                                 <div className="allslots">
                                                                     <h2>{R.name}</h2>
-                                                                    <AllSlots
-                                                                        catId={R.id}
-                                                                        R={R}
-                                                                        F={F}
-                                                                        heartIcon={heartIcon}
-                                                                    />
+                                                                    <AllSlots catId={R.id} R={R} F={F} heartIcon={heartIcon} />
                                                                 </div>
                                                             )}
 
@@ -234,12 +205,7 @@ const ToggleSlots = ({
                                                                 <div className="allslots">
                                                                     <h2>{R.name}</h2>
 
-                                                                    <AllSlots
-                                                                        catId={R.id}
-                                                                        R={R}
-                                                                        F={F}
-                                                                        heartIcon={heartIcon}
-                                                                    />
+                                                                    <AllSlots catId={R.id} R={R} F={F} heartIcon={heartIcon} />
                                                                 </div>
                                                             )}
 
@@ -247,12 +213,7 @@ const ToggleSlots = ({
                                                                 <div className="allslots">
                                                                     <h2>{R.name}</h2>
 
-                                                                    <AllSlots
-                                                                        catId={R.id}
-                                                                        R={R}
-                                                                        F={F}
-                                                                        heartIcon={heartIcon}
-                                                                    />
+                                                                    <AllSlots catId={R.id} R={R} F={F} heartIcon={heartIcon} />
                                                                 </div>
                                                             )}
 
@@ -260,24 +221,14 @@ const ToggleSlots = ({
                                                                 <div className="allslots">
                                                                     <h2>{R.name}</h2>
 
-                                                                    <AllSlots
-                                                                        catId={R.id}
-                                                                        R={R}
-                                                                        F={F}
-                                                                        heartIcon={heartIcon}
-                                                                    />
+                                                                    <AllSlots catId={R.id} R={R} F={F} heartIcon={heartIcon} />
                                                                 </div>
                                                             )}
                                                             {R.name === "Poker & Sic Bo" && (
                                                                 <div className="allslots">
                                                                     <h2>{R.name}</h2>
 
-                                                                    <AllSlots
-                                                                        catId={R.id}
-                                                                        R={R}
-                                                                        F={F}
-                                                                        heartIcon={heartIcon}
-                                                                    />
+                                                                    <AllSlots catId={R.id} R={R} F={F} heartIcon={heartIcon} />
                                                                 </div>
                                                             )}
 
@@ -285,12 +236,7 @@ const ToggleSlots = ({
                                                                 <div className="allslots">
                                                                     <h2>{R.name}</h2>
 
-                                                                    <AllSlots
-                                                                        catId={R.id}
-                                                                        R={R}
-                                                                        F={F}
-                                                                        heartIcon={heartIcon}
-                                                                    />
+                                                                    <AllSlots catId={R.id} R={R} F={F} heartIcon={heartIcon} />
                                                                 </div>
                                                             )}
                                                         </>

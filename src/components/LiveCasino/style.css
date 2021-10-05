@@ -423,6 +423,22 @@
           transform: translate(-50%, -50%);
 }
 
+@media (max-width: 1440px) {
+  .modalBackground .modalContainer {
+    min-width: 880px;
+    max-width: 1000px;
+    height: 400px;
+  }
+}
+
+@media (max-width: 930px) {
+  .modalBackground .modalContainer {
+    min-width: 680px;
+    max-width: 800px;
+    height: 400px;
+  }
+}
+
 .modalBackground .modalContainer .titleCloseBtn {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -588,7 +604,6 @@
   -webkit-box-direction: normal;
       -ms-flex-flow: row wrap;
           flex-flow: row wrap;
-  padding: 28px 0px;
 }
 
 .modalBackground .modalContainer .content .tabsModal--contentOne .add .all--categ--provider .added--categ--provider {
@@ -929,7 +944,6 @@
   -webkit-box-direction: normal;
       -ms-flex-flow: row wrap;
           flex-flow: row wrap;
-  padding: 28px 0px;
 }
 
 .modalBackground .modalContainer .content-toggle .tabsModal--contentOne .add .all--categ--provider .added--categ--provider {
@@ -998,6 +1012,68 @@
           flex-direction: column;
   padding: 20px 16px;
   background: white;
+}
+
+.modalBackground .modalContainer .content-toggle .two--content button {
+  color: #606161;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background: rgba(0, 0, 0, 0.12);
+  border-radius: 20px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  width: 140px;
+  padding: 5px 0;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.modalBackground .modalContainer .content-toggle .two--content > div > span {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.modalBackground .modalContainer .content-toggle .two--content > div > span button {
+  color: #ffffff;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background: #2f3f3e;
+  border-radius: 20px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  width: 140px;
+  /* padding: 5px 0; */
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: 35px;
+  align-items: center;
+  margin: auto;
+}
+
+.modalBackground .modalContainer .content-toggle .two--content > div > span > h1 {
+  color: rgba(0, 0, 0, 0.87);
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: 50px;
+  text-transform: capitalize;
 }
 
 .modalBackground .modalContainer .content-toggle .two--content > div > h1 {

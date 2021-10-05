@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import {
   addCategProvid,
   addFavorites,
@@ -10,26 +9,58 @@ import {
   filterGames,
 } from "../../redux-toolkit/store/store";
 
-const ModalCasino = ({ setOpenModal, allDataCasinoLive, searchFor, searchIcon, alignRight, heartIcon, Provider }) => {
+const ModalCasino = ({ setOpenModal, allDataCasinoLive, searchFor, searchIcon, alignRight, heartIcon }) => {
   const [val, setVal] = useState("");
+  const [tabsModal, setTabsModal] = useState(0);
   const [toggle, setToggle] = useState(false);
+  /*   const [idFav, setIdFav] = useState(null);
+   */
+
+  /* const [checkBox, setCheckBox] = useState(false)
+  function checkedValue(value) {
+    return !value;
+  } */
 
   const handleToggle = () => {
     setToggle(!toggle);
   };
 
-  const [tabsModal, setTabsModal] = useState(0);
-
   const handleTabs = (tabsModal) => {
     setTabsModal(tabsModal);
   };
 
+  const [myindex, setMyIndex] = useState({ isActive: null });
+
+  const setActiveClass = (id, name) => {
+    setMyIndex({ isActive: id });
+    dispatch(addCategProvid({ id: id, name: name }))
+  };
+
   const dispatch = useDispatch();
-  let providers = Object.values(allDataCasinoLive?.providers || {}).map((D) => (
-    <p onClick={() => dispatch(addCategProvid(D.name))}> {D.name}</p>
+
+
+  const delAddFav = (id) => {
+    dispatch(delFavorites({ id: id }))
+    setToggle(!toggle)
+  }
+  let providersData = Object.values(allDataCasinoLive?.providers || {}).map((D) => (
+    <>
+      {/*   <input
+        checked={checkBox}
+        onChange={(e) => setCheckBox(e.target.checked)}
+        type="checkbox"
+      />   */}    <p className={myindex.isActive === D.id && "active"} key={D.id} onClick={() => setActiveClass(D.id, D.name)}>
+        {" "}
+        {D.name}
+      </p>
+    </>
   ));
-  let categories = Object.values(allDataCasinoLive?.categories || {}).map((C) => (
-    <p onClick={() => dispatch(addCategProvid(C.name))}> {C.name}</p>
+
+  let categoriesData = Object.values(allDataCasinoLive?.categories || {}).map((C) => (
+    <p className={myindex.isActive === C.id && "active"} key={C.id} onClick={() => setActiveClass(C.id, C.name)}>
+      {" "}
+      {C.name}
+    </p>
   ));
 
   let counterFavorites = useSelector((state) => state.betbuqsport.Favorites);
@@ -41,16 +72,25 @@ const ModalCasino = ({ setOpenModal, allDataCasinoLive, searchFor, searchIcon, a
     setVal(searchWord);
   };
 
-  const displaySlots = Object.values(allDataCasinoLive.providers || "{}").map((E) => (
+  const displaySlots = Object.values(allDataCasinoLive?.providers || {}).map((E) => (
     <>
       {Object.values(E.slots || {})
         .filter((Q) => (val === "" ? Q : Q.name.toLowerCase().includes(val.toLowerCase())))
         .map((Q) => (
           <div>
+            {console.log("Q", Q)}
+
             <img src={Q.desktop_logo} alt="" />
             <span>
-              <p>{Q.name}</p>
-              <i className={heartIcon} onClick={() => dispatch(addFavorites(Q))} />
+              <p>{Q.name.length > 20 ? Q.name.substring(0, 19) + "..." : Q.name}</p>
+              <i
+                className={`${heartIcon}`/*  + (Q.id === idFav ? " active" : "")*/}
+                onClick={() =>
+                  /*   setIdFav(idFav) || */ dispatch(
+                  addFavorites({ id: Q.id, desktop_logo: Q.desktop_logo, name: Q.name })
+                )
+                }
+              />
             </span>
           </div>
         ))}
@@ -93,11 +133,12 @@ const ModalCasino = ({ setOpenModal, allDataCasinoLive, searchFor, searchIcon, a
                 </span>
               </span>
               <div className="all--categ--provider">
-                {Object.values(counterFilter || []).map((F) => (
+                {Object.values(counterFilter || {}).map((F) => (
                   <>
+                    {console.log("counterFilter", F)}
                     <span className="added--categ--provider">
-                      <p onClick={() => dispatch(delCategProvid(F))}>{F}</p>
-                      <i className="fas fa-times" />
+                      <p>{F.name}</p>
+                      <i onClick={() => dispatch(delCategProvid(F))} className="fas fa-times" />
                     </span>
                   </>
                 ))}
@@ -128,7 +169,7 @@ const ModalCasino = ({ setOpenModal, allDataCasinoLive, searchFor, searchIcon, a
                                 <img src={P.desktop_logo} alt="" />
                                 <span>
                                   <p>{P.name}</p>
-                                  <i className={heartIcon} onClick={() => dispatch(delFavorites(P))} />
+                                  <i className={heartIcon} to onClick={() => delAddFav(P.id)} />
                                 </span>
                               </div>
                             ))}
@@ -149,25 +190,35 @@ const ModalCasino = ({ setOpenModal, allDataCasinoLive, searchFor, searchIcon, a
                   <>
                     <br />
                     <br />
-                    <div>
-                      {R === "categories" && (
-                        <>
-                          <h1>{R}</h1>
-                          <span key={R.id}>{categories}</span>
-                        </>
-                      )}
-                    </div>
 
-                    <div>
+                    <>
                       {" "}
-                      {R === "providers" && (
-                        <>
-                          <h1>{R}</h1>
-                          {console.log("providers", R.name)}
-                          <span key={R.id}>{providers}</span>
-                        </>
-                      )}
-                    </div>
+                      <div>
+                        {R === "categories" && (
+                          <>
+                            <h1>{R}</h1>
+                            <span key={R.id}>{categoriesData}</span>
+                          </>
+                        )}
+                      </div>
+                      <div>
+                        {" "}
+                        {R === "providers" && (
+                          <>
+                            <span>
+                              {" "}
+                              <h1>{R}</h1>{" "}
+                              {counterFilter.length > 0 && (
+                                <button onClick={() => dispatch(delAllProvidrCateg())}>Clear Filters!</button>
+                              )}
+                            </span>
+
+                            {console.log("providers", R.name)}
+                            <span key={R.id}>{providersData}</span>
+                          </>
+                        )}
+                      </div>
+                    </>
                   </>
                 ))}
             </div>

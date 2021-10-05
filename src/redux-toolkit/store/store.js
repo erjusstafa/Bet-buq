@@ -45,7 +45,15 @@ const act = createSlice({
     },
 
     addFavorites: (state, action) => {
-      state.Favorites.push(action.payload);
+      /*       state.Favorites.push(action.payload);
+       */ state.Favorites = [
+        ...state.Favorites,
+        {
+          id: action.payload.id,
+          desktop_logo: action.payload.desktop_logo,
+          name: action.payload.name,
+        },
+      ];
     },
 
     delFavorites: (state, action) => {
@@ -55,7 +63,13 @@ const act = createSlice({
     },
 
     addCategProvid: (state, action) => {
-      state.CategOrProvider.push(action.payload);
+      state.CategOrProvider = [
+        ...state.CategOrProvider,
+        {
+          id: action.payload.id,
+          name: action.payload.name,
+        },
+      ];
     },
 
     delCategProvid: (state, action) => {

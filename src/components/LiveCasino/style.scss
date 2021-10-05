@@ -307,7 +307,17 @@
     left: 50%;
     height: 500px;
     transform: translate(-50%, -50%);
+    @media (max-width: 1440px) {
+      min-width: 880px;
+      max-width: 1000px;
+      height: 400px;
+    }
 
+    @media (max-width: 930px) {
+      min-width: 680px;
+      max-width: 800px;
+      height: 400px;
+    }
     .titleCloseBtn {
       display: flex;
       justify-content: center;
@@ -414,7 +424,6 @@
             display: flex;
             width: 100%;
             flex-flow: row wrap;
-            padding: 28px 0px;
             .added--categ--provider {
               color: white;
               display: flex;
@@ -656,7 +665,6 @@
             display: flex;
             width: 100%;
             flex-flow: row wrap;
-            padding: 28px 0px;
             .added--categ--provider {
               color: white;
               display: flex;
@@ -706,7 +714,51 @@
         flex-direction: column;
         padding: 20px 16px;
         background: white;
+
+        button {
+          color: #606161;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          background: rgba(0, 0, 0, 0.12);
+          border-radius: 20px;
+          border: none;
+          outline: none;
+          cursor: pointer;
+          width: 140px;
+          padding: 5px 0;
+          justify-content: center;
+        }
         > div {
+          > span {
+            display: flex;
+
+            button {
+              color: #ffffff;
+              justify-content: space-between;
+              align-items: center;
+              background: rgb(47, 63, 62);
+              border-radius: 20px;
+              border: none;
+              outline: none;
+              cursor: pointer;
+              width: 140px;
+              /* padding: 5px 0; */
+              justify-content: center;
+              height: 35px;
+              align-items: center;
+              margin: auto;
+            }
+            > h1 {
+              color: rgba(0, 0, 0, 0.87);
+              font-family: Roboto;
+              font-size: 16px;
+              font-weight: 500;
+              letter-spacing: 0;
+              line-height: 50px;
+              text-transform: capitalize;
+            }
+          }
           > h1 {
             color: rgba(0, 0, 0, 0.87);
             font-family: Roboto;
