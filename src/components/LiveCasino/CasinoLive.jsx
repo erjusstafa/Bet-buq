@@ -135,7 +135,6 @@ function CasinoLive() {
                                 heartIcon={heartIcon}
                                 mytxt={myindex.isActiveText}
                                 loadMore={loadMore.load}
-                                loadKey={loadMore}
                                 moreSlots={moreSlots}
                                 dispatch={dispatch}
                             />
@@ -158,7 +157,7 @@ function CasinoLive() {
 
 export default CasinoLive;
 
-const ToggleSlots = ({ Slots, myindex, heartIcon, mytxt, loadMore, loadKey, moreSlots, dispatch }) => {
+const ToggleSlots = ({ Slots, myindex, heartIcon, mytxt, loadMore, moreSlots, dispatch }) => {
     const [openPopup, setOpenPopup] = useState(false);
 
     const handleChangePopup = () => {
@@ -236,7 +235,7 @@ const ToggleSlots = ({ Slots, myindex, heartIcon, mytxt, loadMore, loadKey, more
                     </>
                 ))}
             </div>
-            <span className={"more"} onClick={() => moreSlots()}>
+            <span className={"more"} onClick={() => moreSlots(myindex)}>
                 <i className="fas fa-sync-alt"></i>
             </span>
         </div>

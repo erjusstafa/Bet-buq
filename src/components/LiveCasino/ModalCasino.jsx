@@ -6,7 +6,6 @@ import {
   delAllProvidrCateg,
   delCategProvid,
   delFavorites,
-  filterGames,
 } from "../../redux-toolkit/store/store";
 import PopupLoginRegister from "../LoginRegister/PopupLoginRegister";
 
@@ -19,13 +18,6 @@ const ModalCasino = ({ setOpenModal, allDataCasinoLive, searchFor, searchIcon, a
   const handleChangePopup = () => {
     setOpenPopup(false);
   };
-  /*   const [idFav, setIdFav] = useState(null);
-   */
-
-  /* const [checkBox, setCheckBox] = useState(false)
-  function checkedValue(value) {
-    return !value;
-  } */
 
   const handleToggle = () => {
     setToggle(!toggle);
@@ -39,18 +31,14 @@ const ModalCasino = ({ setOpenModal, allDataCasinoLive, searchFor, searchIcon, a
 
   const setActiveAddProCat = (id, name) => {
     setMyIndex({ isActive: id });
-    dispatch(addCategProvid({ id: id, name: name }))
+    dispatch(addCategProvid({ id: id, name: name }));
   };
 
   const dispatch = useDispatch();
 
   let providersData = Object.values(allDataCasinoLive?.providers || {}).map((D) => (
     <>
-      {/*   <input
-        checked={checkBox}
-        onChange={(e) => setCheckBox(e.target.checked)}
-        type="checkbox"
-      />   */}    <p className={myindex.isActive === D.id && "active"} key={D.id} onClick={() => setActiveAddProCat(D.id, D.name)}>
+      <p className={myindex.isActive === D.id && "active"} key={D.id} onClick={() => setActiveAddProCat(D.id, D.name)}>
         {" "}
         {D.name}
       </p>
@@ -78,30 +66,19 @@ const ModalCasino = ({ setOpenModal, allDataCasinoLive, searchFor, searchIcon, a
       {Object.values(E.slots || {})
         .filter((Q) => (val === "" ? Q : Q.name.toLowerCase().includes(val.toLowerCase())))
         .map((Q) => (
-          <div key={Q.id} >
+          <div key={Q.id}>
             {console.log("Q", Q)}
 
             <img onClick={() => setOpenPopup(true)} src={Q.desktop_logo} alt="" style={{ cursor: "pointer" }} />
             <span>
               <p>{Q.name.length > 20 ? Q.name.substring(0, 19) + "..." : Q.name}</p>
               <i
-                className={`${heartIcon}`/*  + (Q.id === idFav ? " active" : "")*/}
-                onClick={() =>
-                  /*   setIdFav(idFav) || */ dispatch(
-                  addFavorites({ id: Q.id, desktop_logo: Q.desktop_logo, name: Q.name })
-                )
-                }
+                className={`${heartIcon}`}
+                onClick={() => dispatch(addFavorites({ id: Q.id, desktop_logo: Q.desktop_logo, name: Q.name }))}
               />
             </span>
 
-            {openPopup && (
-              <PopupLoginRegister
-                handleChangePopup={handleChangePopup}
-
-                open={openPopup}
-              />
-            )}
-
+            {openPopup && <PopupLoginRegister handleChangePopup={handleChangePopup} open={openPopup} />}
           </div>
         ))}
     </>
@@ -179,7 +156,7 @@ const ModalCasino = ({ setOpenModal, allDataCasinoLive, searchFor, searchIcon, a
                                 <img src={P.desktop_logo} alt="" />
                                 <span>
                                   <p>{P.name}</p>
-                                  <i className={heartIcon} to onClick={() => dispatch(delFavorites((P)))} />
+                                  <i className={heartIcon} to onClick={() => dispatch(delFavorites(P))} />
                                 </span>
                               </div>
                             ))}
@@ -222,8 +199,6 @@ const ModalCasino = ({ setOpenModal, allDataCasinoLive, searchFor, searchIcon, a
                                 <button onClick={() => dispatch(delAllProvidrCateg())}>Clear Filters!</button>
                               )}
                             </span>
-
-                            {console.log("providers", R.name)}
                             <span key={R.id}>{providersData}</span>
                           </>
                         )}

@@ -250,10 +250,14 @@
 }
 
 .Slot .slot-images {
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-columns: (auto)[7];
-      grid-template-columns: repeat(7, auto);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
+  justify-items: flex-start;
 }
 
 .Slot .slot-images div.item-slots {
@@ -286,10 +290,17 @@
 }
 
 .Slot .all-slot-images {
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-columns: (auto)[4];
-      grid-template-columns: repeat(4, auto);
+  padding: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
+  justify-items: flex-start;
+  background: #4e5d63;
+  border-radius: 10px;
 }
 
 .Slot div.item-slots-all {
@@ -680,8 +691,9 @@
 }
 
 .modalBackground .modalContainer .content .tabsModal--contentOne .add > span > span {
-  color: #afaeae;
   cursor: pointer;
+  font-weight: bolder;
+  color: #c8c6c6;
   font-weight: bolder;
 }
 
@@ -742,6 +754,11 @@
   border-radius: 14px;
 }
 
+.modalBackground .modalContainer .content .tabsModal--contentOne .add > div > span .one--content > div > img:hover {
+  -webkit-filter: brightness(0.7);
+          filter: brightness(0.7);
+}
+
 .modalBackground .modalContainer .content .tabsModal--contentOne .add > div .fav--added {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -767,6 +784,11 @@
   width: 161px;
   height: 150px;
   border-radius: 14px;
+}
+
+.modalBackground .modalContainer .content .tabsModal--contentOne .add > div .fav--added .item--fav > img:hover {
+  -webkit-filter: brightness(0.7);
+          filter: brightness(0.7);
 }
 
 .modalBackground .modalContainer .content .tabsModal--contentOne .add > div .fav--added .item--fav > span {
@@ -843,9 +865,9 @@
 }
 
 .modalBackground .modalContainer .content-toggle .tabsModal--contentOne .add > span > span {
-  color: #afaeae;
   cursor: pointer;
   font-weight: bolder;
+  color: #c8c6c6;
 }
 
 .modalBackground .modalContainer .content-toggle .tabsModal--contentOne .add > span > span:last-child {
@@ -909,6 +931,11 @@
   border-radius: 14px;
 }
 
+.modalBackground .modalContainer .content-toggle .tabsModal--contentOne .add > div > span .one--content > div > img:hover {
+  -webkit-filter: brightness(0.7);
+          filter: brightness(0.7);
+}
+
 .modalBackground .modalContainer .content-toggle .tabsModal--contentOne .add > div .fav--added {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -934,6 +961,11 @@
   width: 161px;
   height: 150px;
   border-radius: 14px;
+}
+
+.modalBackground .modalContainer .content-toggle .tabsModal--contentOne .add > div .fav--added .item--fav > img:hover {
+  -webkit-filter: brightness(0.7);
+          filter: brightness(0.7);
 }
 
 .modalBackground .modalContainer .content-toggle .tabsModal--contentOne .add > div .fav--added .item--fav > span {

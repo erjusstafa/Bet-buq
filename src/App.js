@@ -7,6 +7,8 @@ import Footer from "../src/components/Footer/Footer";
 import { useDispatch } from "react-redux";
 import { thunkApiHome } from "./redux-toolkit/store/store";
 import CasinoLive from "./components/LiveCasino/CasinoLive";
+import Prematch from "./components/Prematch/Prematch";
+import allConfig from "./config/allConfig";
 
 function App() {
   const dispatch = useDispatch();
@@ -22,11 +24,8 @@ function App() {
         <Header />
         <Switch>
           <Route exact path="/" component={() => <Home />} />
-          <Route
-            exact
-            path="/live-casino"
-            component={() => <CasinoLive />}
-          />{" "}
+          <Route exact path={`${allConfig["routes"]["LiveCasino"]["link"]}`} component={() => <CasinoLive />} />{" "}
+          <Route exact path={`/${allConfig["routePrematch"]}`} component={() => <Prematch />} />
         </Switch>
         <Footer />
       </Router>

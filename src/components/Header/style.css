@@ -200,6 +200,7 @@
 @media (max-width: 617px) {
   .home__other .other .log {
     margin: auto;
+    padding: 20px 0;
   }
 }
 
@@ -225,7 +226,7 @@
   height: 40px;
 }
 
-@media (max-width: 810px) {
+@media (max-width: 943px) {
   .home__other .other .hour-top .top > img {
     display: none;
   }
@@ -242,7 +243,7 @@
   border: 1px solid #737c80;
 }
 
-@media (max-width: 810px) {
+@media (max-width: 943px) {
   .home__other .other .hour-top .before,
   .home__other .other .hour-top .after {
     display: none;
@@ -299,7 +300,7 @@
         } */
 }
 
-@media (max-width: 810px) {
+@media (max-width: 943px) {
   .home__other .other .hour-top .date {
     display: none;
   }

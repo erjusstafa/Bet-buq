@@ -157,9 +157,13 @@
     flex-flow: row wrap;
     justify-content: space-between;
 
+    @media (max-width: 942px) {
+    }
+
     .log {
       @media (max-width: 617px) {
         margin: auto;
+        padding: 20px 0;
       }
       > img {
         height: 43px;
@@ -175,7 +179,7 @@
 
       .top > img {
         height: 40px;
-        @media (max-width: 810px) {
+        @media (max-width: 943px) {
           display: none;
         }
       }
@@ -189,7 +193,7 @@
         height: 30px;
         background: #414d52;
         border: 1px solid #737c80;
-        @media (max-width: 810px) {
+        @media (max-width: 943px) {
           display: none;
         }
       }
@@ -216,7 +220,7 @@
         border: 1px solid #346c6a;
         width: calc(100% - 115px);
 
-        @media (max-width: 810px) {
+        @media (max-width: 943px) {
           display: none;
         }
         #hour,

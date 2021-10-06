@@ -1,0 +1,47 @@
+.sport {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  background: #313d42;
+  line-height: 42px;
+}
+
+.sport__max {
+  width: 100%;
+  max-width: 1352px;
+  margin: auto;
+}
+
+.sport__max .navigation-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  background-color: #313d42;
+}
+
+.sport__max .navigation-container-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 30%;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.sport__max .navigation-container-wrapper .sport-home,
+.sport__max .navigation-container-wrapper .daily-events,
+.sport__max .navigation-container-wrapper .all-events,
+.sport__max .navigation-container-wrapper .in-play-calendar {
+  font-size: 12px;
+  color: #b4b3b3;
+}
+
+.sport__max .navigation-container > span {
+  color: #c7c3c3;
+}
+/*# sourceMappingURL=style.css.map */

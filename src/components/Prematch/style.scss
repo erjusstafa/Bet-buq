@@ -1,0 +1,299 @@
+.sport {
+  width: 100%;
+  display: flex;
+  background: #313d42;
+  line-height: 42px;
+
+  &__max {
+    width: 100%;
+    max-width: 1352px;
+    margin: auto;
+    border-left: 1px solid #425057;
+    border-right: 1px solid #425057;
+
+    .navigation-container {
+      display: flex;
+      justify-content: space-between;
+      background-color: #313d42;
+      border-bottom: 2px solid #425057;
+
+      @media (max-width: 441px) {
+        flex-direction: column;
+      }
+      &-wrapper {
+        display: inline-block !important;
+        width: auto;
+        @media (max-width: 441px) {
+          background: #4d5d64;
+          border-bottom: 1px solid #6d7174;
+        }
+        .sport-home,
+        .daily-events,
+        .all-events,
+        .in-play-calendar {
+          font-size: 11px;
+          height: 100%;
+          font-weight: 700;
+          padding: 3px 11px 0;
+          display: inline-block;
+          cursor: pointer;
+          text-shadow: 0 -1px 0 rgb(0 0 0 / 25%);
+          color: rgb(199, 195, 195);
+        }
+      }
+
+      > span {
+        font-size: 11px;
+        height: 100%;
+        font-weight: 700;
+        padding: 3px 11px 0;
+        display: inline-block;
+        cursor: pointer;
+        text-shadow: 0 -1px 0 rgb(0 0 0 / 25%);
+        color: rgb(199, 195, 195);
+        border-left: 1px solid #6d7174;
+        height: 100%;
+        @media (max-width: 441px) {
+          border: none;
+          text-align: center;
+          background: #4d5d64;
+        }
+      }
+    }
+  }
+
+  .all-container-sportbook {
+    display: grid;
+    grid-template-columns: 20% auto 20%;
+
+    //left Menu
+    .left-menu-sportbook {
+      min-width: 243px;
+      z-index: 99999;
+      .sport-menu-toggle {
+        background: #3c494e;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 10px;
+        line-height: 20px;
+        border-bottom: 2px solid #425057;
+
+        > p {
+          margin: auto 0;
+          color: #ffba24;
+          font-weight: bolder;
+          font-size: 12px;
+        }
+        > i.fas.fa-align-right {
+          background: #313d42;
+          color: white;
+          padding: 10px;
+          border: 1px solid #475a61;
+          cursor: pointer;
+          &:hover {
+            color: #1ab7af;
+          }
+        }
+      }
+
+      .event-toggle {
+        padding: 0 10px;
+        background: #3c494e;
+        border-bottom: 2px solid #425057;
+
+        .search-event-toggle {
+          background: #3c494e;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          line-height: 20px;
+          > p {
+            margin: auto 0;
+            color: #ffba24;
+            font-weight: bolder;
+            font-size: 12px;
+          }
+
+          i.fas.fa-angle-up,
+          i.fas.fa-angle-down {
+            color: white;
+            padding: 10px;
+            cursor: pointer;
+
+            &:hover {
+              color: #1ab7af;
+            }
+          }
+        }
+
+        .desc-box {
+          padding: 10px 30px;
+          background-color: #313d42;
+          line-height: 18px;
+          margin-top: 12px;
+          > p {
+            font-size: 12px;
+            text-align: center;
+            color: rgb(209, 209, 209);
+            font-weight: 400;
+          }
+
+          > span {
+            position: relative;
+            input[type="text"] {
+              box-sizing: border-box;
+              line-height: 21px;
+              font-size: 12px;
+              padding-left: 35px;
+              background-color: #45545a;
+              z-index: 1;
+              border: 1px solid #45545a;
+              outline: none;
+              color: white;
+              -webkit-text-fill-color: white;
+            }
+            .fa.fa-search {
+              position: absolute;
+              left: 12px;
+              z-index: 1;
+              top: 2px;
+              color: white;
+              line-height: 100%;
+            }
+          }
+        }
+      }
+
+      .quick-filter {
+        background: #3c494e;
+        padding: 0 10px;
+        line-height: 20px;
+        border-bottom: 2px solid #425057;
+
+        > p {
+          margin: auto 0;
+          color: #ffba24;
+          font-weight: bolder;
+          font-size: 12px;
+          line-height: 30px;
+        }
+
+        .tabs-for-hour {
+          display: grid;
+          grid-template-columns: repeat(6, auto);
+
+          > span {
+            border: 1px solid #2a373c;
+            cursor: pointer;
+
+            &.active {
+              background: #2a373c;
+
+              > p {
+                color: #ffba24;
+              }
+            }
+            > p {
+              margin: auto;
+              color: rgb(199, 195, 195);
+              text-align: center;
+              font-size: 12px;
+            }
+          }
+        }
+      }
+
+      .in-play-button {
+        background: #2a373c;
+        padding: 0 10px;
+        line-height: 20px;
+        border-bottom: 2px solid #425057;
+        display: flex;
+        justify-content: center;
+        color: #ffba24;
+        cursor: pointer;
+
+        &:hover {
+          color: #1ab7af;
+        }
+
+        > p {
+          margin-top: 1em;
+          font-weight: 700;
+        }
+        i.fas.fa-stopwatch {
+          margin: auto 10px;
+        }
+      }
+    }
+
+    .middle-menu-sportbook {
+      min-width: 243px;
+      .image-menu {
+        position: relative;
+        > img {
+          width: 100%;
+          height: 282px;
+          object-fit: cover;
+        }
+        > span {
+          position: absolute;
+          top: 20px;
+          left: 40px;
+          line-height: 40px;
+
+          @media (max-width: 1123px) {
+            left: 80px;
+          }
+
+          @media (max-width: 9123px) {
+            left: 110px;
+          }
+          > h1 {
+            font-size: 30px;
+            font-weight: 700;
+            color: white;
+            /* @media (max-width: 700px) {
+              font-size: 29px;
+            } */
+          }
+
+          p {
+            font-size: 20px;
+            font-weight: 500;
+            color: white;
+            /*  @media (max-width: 700px) {
+              font-size: 19px;
+            } */
+          }
+
+          .button__Link {
+            position: relative;
+            top: 70px;
+            font-size: 18px;
+            color: #f2f2f2;
+            white-space: nowrap;
+            background: #1ab7af;
+            border-radius: 3px;
+            padding: 7px 40px;
+            outline: none;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            @media (max-width: 700px) {
+              font-size: 20px;
+              padding: 8px 40px;
+            }
+          }
+        }
+      }
+    }
+
+    .right-menu-sportbook {
+      background: yellow !important;
+      min-width: 243px;
+      z-index: 99999;
+    }
+  }
+}

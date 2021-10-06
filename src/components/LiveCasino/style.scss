@@ -182,8 +182,9 @@
     }
   }
   .slot-images {
-    display: grid;
-    grid-template-columns: repeat(7, auto);
+    display: flex;
+    flex-flow: row wrap;
+    justify-items: flex-start;
 
     div.item-slots {
       padding: 0 3px;
@@ -212,8 +213,12 @@
   }
 
   .all-slot-images {
-    display: grid;
-    grid-template-columns: repeat(4, auto);
+    padding: 20px;
+    display: flex;
+    flex-flow: row wrap;
+    justify-items: flex-start;
+    background: #4e5d63;
+    border-radius: 10px;
     @media (max-width: 1375px) {
     }
   }
@@ -476,9 +481,9 @@
             top: 0;
             background: #2f3f3e;
             > span {
-              color: #afaeae;
               cursor: pointer;
-
+              font-weight: bolder;
+              color: rgb(200, 198, 198);
               font-weight: bolder;
               &:last-child {
                 margin-left: 30px;
@@ -524,6 +529,10 @@
                     width: 161px;
                     height: 150px;
                     border-radius: 14px;
+
+                    &:hover {
+                      filter: brightness(0.7);
+                    }
                   }
                 }
               }
@@ -539,6 +548,9 @@
                   width: 161px;
                   height: 150px;
                   border-radius: 14px;
+                  &:hover {
+                    filter: brightness(0.7);
+                  }
                 }
                 > span {
                   display: flex;
@@ -591,9 +603,9 @@
             background: #2f3f3e;
 
             > span {
-              color: #afaeae;
               cursor: pointer;
               font-weight: bolder;
+              color: rgb(200, 198, 198);
 
               &:last-child {
                 margin-left: 30px;
@@ -642,6 +654,10 @@
                     width: 161px;
                     height: 150px;
                     border-radius: 14px;
+
+                    &:hover {
+                      filter: brightness(0.7);
+                    }
                   }
                 }
               }
@@ -658,6 +674,10 @@
                   width: 161px;
                   height: 150px;
                   border-radius: 14px;
+
+                  &:hover {
+                    filter: brightness(0.7);
+                  }
                 }
                 > span {
                   display: flex;
