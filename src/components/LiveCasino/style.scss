@@ -198,6 +198,9 @@
       }
 
       .link-slot {
+        overflow: hidden;
+        border-radius: 10px;
+
         > img {
           width: 187px;
           height: 142px;
@@ -206,6 +209,8 @@
 
           &:hover {
             filter: brightness(0.7);
+            transform: scale(1.2);
+            transition: 0.2s linear;
           }
         }
       }
@@ -231,13 +236,17 @@
       font-weight: bold;
     }
     .link-slot-all {
+      overflow: hidden;
+      border-radius: 10px;
+
       > img {
         width: 321px;
         height: 235px;
-        border-radius: 10px;
         &:hover {
           filter: brightness(0.7);
           z-index: -1;
+          transform: scale(1.2);
+          transition: 0.2s linear;
         }
       }
     }
@@ -480,6 +489,7 @@
             position: sticky;
             top: 0;
             background: #2f3f3e;
+            z-index: 9;
             > span {
               cursor: pointer;
               font-weight: bolder;
@@ -509,6 +519,7 @@
                 }
 
                 > div {
+                  border-radius: 14px;
                   display: block;
                   padding: 5px;
                   > span {
@@ -601,7 +612,7 @@
             position: sticky;
             top: 0;
             background: #2f3f3e;
-
+            z-index: 9;
             > span {
               cursor: pointer;
               font-weight: bolder;

@@ -5,10 +5,11 @@ const allConfig = {
   esportLiveApi: "wss://esports.betfire.com/live-feed",
   betConstructWidget: true,
   routePrematch: "prematch",
-
+  count: [1261, 341, 83],
   paymentHubAPI: "payment.betbuq.com",
   contentManagementAPI: "https://content.betbuq.com",
   skinName: "Betbuq",
+  sportBookApi: "https://apisport.playlogiq.com",
   skin: {
     id: 3,
     name: "Betbuq",
@@ -82,8 +83,9 @@ const allConfig = {
       name: "Sport",
       link: "/prematch",
       path: "/prematch/:path1?/:eventSlug?",
-      tag: "New Style",
+      tag: "New ",
       target: "_self",
+      id: 1,
     },
     Live: {
       name: "Livebetting",
@@ -91,30 +93,33 @@ const allConfig = {
       path: "/live/:path1?/:eventid?",
       tag: "New",
       target: "_self",
+      id: 2,
     },
     // Esports: {
     //   name: 'Esports', link: '/esports', path: "/esports", tag: "", target: '_self'
     // },
-    Casino: {
+    /*     Casino: {
       name: "Casino",
       link: "/casino",
       path: "/casino/:path1?/:path2?",
       tag: "Bonus",
       target: "_self",
-    },
+    }, */
     LiveCasino: {
       name: "Live Casino",
       link: "/live-casino",
       path: "/live-casino/:path1?/:path2?",
-      tag: "",
+      tag: "New Style",
       target: "_self",
+      id: 3,
     },
     Contents: {
       name: "Bonus",
       link: "/pages/promos/General",
       path: "/pages/:path1?/:path2?/:path3?/:path4?",
-      tag: "",
+      tag: "Bonus",
       target: "_self",
+      id: 4,
     },
     /*  Contact: {
              name: "contact",

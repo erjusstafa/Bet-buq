@@ -277,6 +277,11 @@
   color: #d4d4d4;
 }
 
+.Slot .slot-images div.item-slots .link-slot {
+  overflow: hidden;
+  border-radius: 10px;
+}
+
 .Slot .slot-images div.item-slots .link-slot > img {
   width: 187px;
   height: 142px;
@@ -287,6 +292,10 @@
 .Slot .slot-images div.item-slots .link-slot > img:hover {
   -webkit-filter: brightness(0.7);
           filter: brightness(0.7);
+  -webkit-transform: scale(1.2);
+          transform: scale(1.2);
+  -webkit-transition: 0.2s linear;
+  transition: 0.2s linear;
 }
 
 .Slot .all-slot-images {
@@ -313,16 +322,24 @@
   font-weight: bold;
 }
 
+.Slot div.item-slots-all .link-slot-all {
+  overflow: hidden;
+  border-radius: 10px;
+}
+
 .Slot div.item-slots-all .link-slot-all > img {
   width: 321px;
   height: 235px;
-  border-radius: 10px;
 }
 
 .Slot div.item-slots-all .link-slot-all > img:hover {
   -webkit-filter: brightness(0.7);
           filter: brightness(0.7);
   z-index: -1;
+  -webkit-transform: scale(1.2);
+          transform: scale(1.2);
+  -webkit-transition: 0.2s linear;
+  transition: 0.2s linear;
 }
 
 .Slot div.item-slots-all .span {
@@ -688,6 +705,7 @@
   position: sticky;
   top: 0;
   background: #2f3f3e;
+  z-index: 9;
 }
 
 .modalBackground .modalContainer .content .tabsModal--contentOne .add > span > span {
@@ -725,6 +743,7 @@
 }
 
 .modalBackground .modalContainer .content .tabsModal--contentOne .add > div > span .one--content > div {
+  border-radius: 14px;
   display: block;
   padding: 5px;
 }
@@ -862,6 +881,7 @@
   position: sticky;
   top: 0;
   background: #2f3f3e;
+  z-index: 9;
 }
 
 .modalBackground .modalContainer .content-toggle .tabsModal--contentOne .add > span > span {

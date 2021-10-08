@@ -6,7 +6,6 @@
   background: #3c494e;
   border-bottom: 1px solid #475a61;
   padding: 5px 0;
-  line-height: 42px;
 }
 
 .header__max {
@@ -53,12 +52,12 @@
 
 .header__max .form #pikpytje {
   width: 30px;
-  height: 26px;
-  margin: 0 20px;
-  background: #4a5c64;
+  height: 24px;
+  margin-left: 10px;
+  background: #364146;
   border: 1px solid #313d42;
   color: white;
-  line-height: 21px;
+  line-height: 20px;
   cursor: pointer;
 }
 
@@ -69,7 +68,6 @@
   width: auto;
   position: relative;
   height: 26px;
-  line-height: 21px;
   margin: 0 10px;
   padding: 0 20px;
   background: #ffba24;
@@ -86,13 +84,15 @@
   display: flex;
   -ms-flex-pack: distribute;
       justify-content: space-around;
-  color: white;
+  color: #e0dede;
 }
 
 .header__max .social .support,
 .header__max .social .socials {
   border-right: 1px solid #354044;
   cursor: pointer;
+  font-weight: 600;
+  padding: 0 5px;
 }
 
 .header__max .social .support:hover,
@@ -114,9 +114,9 @@
 .header__max .social .socials i.fab.fa-instagram,
 .header__max .social .socials i.fab.fa-facebook {
   color: #dfdfdf;
-  font-size: 26px;
-  margin: 0px 10px;
-  line-height: 44px;
+  font-size: 16px;
+  margin: auto 10px;
+  line-height: 28px;
 }
 
 .header__max .social .support {
@@ -174,7 +174,7 @@
   display: grid;
   background: #3c494e;
   border-bottom: 1px solid #475a61;
-  min-height: 100px;
+  min-height: 80px;
   padding: 10px 0;
   place-items: center;
 }
@@ -345,13 +345,33 @@
   font-size: 18px;
 }
 
-.home__other .other .route .tag {
+.home__other .other .route .route-link > h2 {
+  display: block;
+  text-decoration: none;
+  padding: 0 6px;
+  text-transform: uppercase;
+  font-size: 14px;
+  color: var(--text-color-light);
+  text-align: center;
+  font-family: Doppio One, sans-serif;
+  line-height: 21px;
+  border-radius: 2px;
+  font-weight: bolder;
+}
+
+.home__other .other .route .route-link .active {
+  color: #ffba24;
+  text-shadow: 2px 4px 2px #69808a;
+}
+
+.home__other .other .route .route-link .tag {
   position: absolute;
   top: -17px;
-  word-spacing: 264px;
+  word-spacing: 11px;
+  margin-left: 4px;
   color: #ffba24;
   font-size: 11px;
   font-weight: 800;
-  letter-spacing: 3px;
+  letter-spacing: 1px;
 }
 /*# sourceMappingURL=style.css.map */

@@ -6,6 +6,7 @@ import { PrematchApi } from "../../redux-toolkit/store/store";
 import { Link } from "react-router-dom";
 import LeftMenu from "./LeftMenu";
 import MiddleMenu from "./MiddleMenu";
+import RightMenu from "./RightMenu";
 
 function Prematch() {
     const dispatch = useDispatch();
@@ -20,31 +21,31 @@ function Prematch() {
             <div className="sport__max">
                 <div className="navigation-container">
                     <div className="navigation-container-wrapper">
-                        {Object.values(allConfig.NavigationWrapper || []).map((N) => (
+                        {Object.values(allConfig.NavigationWrapper || []).map((N, index) => (
                             <>
-                                <Link className={N.text.toLowerCase().replace(" ", "-")} to={N.link}>
+                                <Link key={index} className={N.text.toLowerCase().replace(" ", "-")} to={N.link}>
                                     {N.text}
                                 </Link>
                             </>
                         ))}
                     </div>
-                    <span>Help</span>
+                    <span>
+                        <i className="fas fa-question" />
+                        Help
+                    </span>
                 </div>
 
                 <div className="all-container-sportbook">
                     <div className="left-menu-sportbook">
-                        <LeftMenu descTextBox={allConfig.descriptionBox} />
+                        <LeftMenu allConfig={allConfig} />
                     </div>
 
                     <div className="middle-menu-sportbook">
                         <MiddleMenu allConfig={allConfig} />
                     </div>
-                    {/*  <div className="right-menu-sportbook">
-                        <div className="sport-menu-toggle">
-                            <p>Sports Menu</p>
-                            <i className="fas fa-align-right" />
-                        </div>
-                    </div> */}
+                    <div className="right-menu-sportbook">
+                        <RightMenu allConfig={allConfig} />
+                    </div>
                 </div>
             </div>
         </div>

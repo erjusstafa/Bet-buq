@@ -1,25 +1,30 @@
 import React, { Fragment, useState } from "react";
 import { useSelector } from "react-redux";
 
-function LeftMenu({ descTextBox }) {
+function LeftMenu({ allConfig }) {
     const [toggleUpDownIcon, setToggleUpDownIcon] = useState(false);
-
+    const [value, setValue] = useState("");
     const [tabsHourToggle, setTabsHourToggle] = useState(0);
+    const [more, setMore] = useState(10)
 
-    const handleTabsToggle = (tabsHourToggle) => {
-        setTabsHourToggle(tabsHourToggle);
+    let moreSport = () => {
+        setMore(more + 1)
+        toggleUpDownIcon(!setToggleUpDownIcon)
+    }
+
+    const handleTabsToggle = (tabs) => {
+        setTabsHourToggle(tabs);
     };
 
-    const [myindex, setMyIndex] = useState({ isActive: null });
+    /* const [myindex, setMyIndex] = useState({ isActive: 1 });
 
     const activeTabs = (id) => {
         setMyIndex({ isActive: id });
-    };
+    }; */
 
-    const SportsItem = useSelector((state) => state.betbuqsport.PrematchData.schedules);
+    const SportsItem = useSelector((state) => state.betbuqsport.PrematchData);
 
-    console.log("tabsHour", SportsItem);
-
+    console.log("SportsItem", SportsItem);
     return (
         <Fragment>
             <div className="sport-menu-toggle">
@@ -36,10 +41,16 @@ function LeftMenu({ descTextBox }) {
                 </div>
                 {!toggleUpDownIcon ? (
                     <div className="desc-box">
-                        <p>{descTextBox}</p>
+                        <p>{allConfig.descriptionBox}</p>
                         <span>
-                            <i class="fa fa-search" aria-hidden="true" />
-                            <input type="text" value="" placeholder="Search Event" className="search-event" />
+                            <i className="fa fa-search" aria-hidden="true" />
+                            <input
+                                type="text"
+                                className="search-event"
+                                value={value}
+                                onChange={(e) => setValue(e.target.value)}
+                                placeholder="Search Event"
+                            />
                         </span>
                     </div>
                 ) : null}
@@ -48,22 +59,22 @@ function LeftMenu({ descTextBox }) {
             <div className="quick-filter">
                 <p>Quick Filter</p>
                 <div className="tabs-for-hour">
-                    <span onClick={() => handleTabsToggle(0)} className={tabsHourToggle === 0 ? "active" : ""}>
+                    <span onClick={() => handleTabsToggle(0)} className={tabsHourToggle === 0 ? "active" : null}>
                         <p>All</p>
                     </span>
-                    <span onClick={() => handleTabsToggle(3)} className={tabsHourToggle === 3 ? "active" : ""}>
+                    <span onClick={() => handleTabsToggle(3)} className={tabsHourToggle === 3 ? "active" : null}>
                         <p>3H</p>
                     </span>
-                    <span onClick={() => handleTabsToggle(6)} className={tabsHourToggle === 6 ? "active" : ""}>
+                    <span onClick={() => handleTabsToggle(6)} className={tabsHourToggle === 6 ? "active" : null}>
                         <p>6H</p>
                     </span>
-                    <span onClick={() => handleTabsToggle(9)} className={tabsHourToggle === 9 ? "active" : ""}>
+                    <span onClick={() => handleTabsToggle(9)} className={tabsHourToggle === 9 ? "active" : null}>
                         <p>9H</p>
                     </span>
-                    <span onClick={() => handleTabsToggle(12)} className={tabsHourToggle === 12 ? "active" : ""}>
+                    <span onClick={() => handleTabsToggle(12)} className={tabsHourToggle === 12 ? "active" : null}>
                         <p>12H</p>
                     </span>
-                    <span onClick={() => handleTabsToggle(24)} className={tabsHourToggle === 24 ? "active" : ""}>
+                    <span onClick={() => handleTabsToggle(24)} className={tabsHourToggle === 24 ? "active" : null}>
                         <p>24H</p>
                     </span>
                 </div>
@@ -75,25 +86,33 @@ function LeftMenu({ descTextBox }) {
             </div>
 
             <div className="left-sport">
-                {Object.keys(SportsItem || {})
-                    .sort((a, b) => a.id - b.id)
-                    .map((S, index) => (
-                        <>
-                            {console.log("S", S)}
-                            <p key={index}>{S}</p>
+                {Object.keys(SportsItem.schedules || "[]")
+                    .slice(0, more).reduce((A, B) => {
+                        return (
+                            <>
+                                <div >
+                                    <p>{A}</p>
+                                    <p>{B}</p>
+                                    {/* <span>
+                                        {Object.values(SportsItem.schedules || {})
+                                            .map((G) => (
+                                                <>
+                                                    <p>{G.count}</p>
+                                                </>
+                                            ))}
+                                    </span> */}
+                                </div>
+                            </>
+                        );
+                    })}
 
-                            {/*     {
-                                Object.values(SportsItem || {}).map(D => (
-                                    <>
-                                        <h5>{D.id}</h5></>
-                                ))
-                            } */}
+                <p onClick={moreSport}  > more Sport </p>
 
-                        </>
-                    ))}
+                {tabsHourToggle === 9 && <h3>9 ore</h3>}
+                {tabsHourToggle === 12 && <h3>12 ore</h3>}
+                {tabsHourToggle === 24 && <h3>24 ore</h3>}
             </div>
         </Fragment>
     );
 }
-
 export default LeftMenu;

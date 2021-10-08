@@ -96,6 +96,7 @@ const Header = () => {
           <div className="social">
             <span className="support">
               <i className="fas fa-sms"></i>
+              SUPPORT
             </span>
             <span className="socials">
               {social &&
@@ -127,9 +128,7 @@ class HeaderBottom extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      hour: null,
-      minute: null,
-      seconds: null,
+      idLink: null
     };
   }
 
@@ -143,7 +142,17 @@ class HeaderBottom extends React.Component {
     }, 1000);
   }
 
+
+  handleId = this.handleId.bind(this);
+  handleId(id) {
+    this.setState({ idLink: id })
+  }
+
   render() {
+
+
+
+
     let styleDate = {
       margin: "auto 5px",
       marginLeft: " 5px",
@@ -214,11 +223,13 @@ class HeaderBottom extends React.Component {
           <div className="route">
             {Object.values(allConfig.routes).map((L, index) => (
               <Link
+
+                onClick={() => this.handleId(L.id)}
                 key={index}
                 className={L.name !== null ? "route-link" : ""}
                 to={L.link}
               >
-                {L.name}
+                <h2 className={this.state.idLink === L["id"] ? "active" : null}>{L.name}</h2>
                 <p className={L.tag && "tag"}>{L.tag}</p>
               </Link>
             ))}

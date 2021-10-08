@@ -14,7 +14,7 @@
     .navigation-container {
       display: flex;
       justify-content: space-between;
-      background-color: #313d42;
+      background-color: #3c494e;
       border-bottom: 2px solid #425057;
 
       @media (max-width: 441px) {
@@ -37,8 +37,10 @@
           padding: 3px 11px 0;
           display: inline-block;
           cursor: pointer;
-          text-shadow: 0 -1px 0 rgb(0 0 0 / 25%);
-          color: rgb(199, 195, 195);
+          color: rgb(235, 235, 235);
+          &:hover {
+            color: #1ab7af;
+          }
         }
       }
 
@@ -49,14 +51,28 @@
         padding: 3px 11px 0;
         display: inline-block;
         cursor: pointer;
-        text-shadow: 0 -1px 0 rgb(0 0 0 / 25%);
-        color: rgb(199, 195, 195);
+        color: rgb(235, 235, 235);
         border-left: 1px solid #6d7174;
         height: 100%;
         @media (max-width: 441px) {
           border: none;
           text-align: center;
           background: #4d5d64;
+        }
+        &:hover {
+          color: #1ab7af;
+        }
+
+        > i.fas.fa-question {
+          color: #3c494e;
+          background-color: rgb(235, 235, 235);
+          padding: 4px;
+          font-size: 10px;
+          border-radius: 50px;
+          margin: 0 4px;
+          &:hover {
+            color: #1ab7af;
+          }
         }
       }
     }
@@ -66,6 +82,11 @@
     display: grid;
     grid-template-columns: 20% auto 20%;
 
+    .left-sport {
+      > p {
+        color: white;
+      }
+    }
     //left Menu
     .left-menu-sportbook {
       min-width: 243px;
@@ -86,7 +107,7 @@
           font-size: 12px;
         }
         > i.fas.fa-align-right {
-          background: #313d42;
+          background: #3f4d52;
           color: white;
           padding: 10px;
           border: 1px solid #475a61;
@@ -135,7 +156,7 @@
           > p {
             font-size: 12px;
             text-align: center;
-            color: rgb(209, 209, 209);
+            color: rgb(235, 235, 235);
             font-weight: 400;
           }
 
@@ -196,7 +217,7 @@
             }
             > p {
               margin: auto;
-              color: rgb(199, 195, 195);
+              color: rgb(235, 235, 235);
               text-align: center;
               font-size: 12px;
             }
@@ -291,9 +312,101 @@
     }
 
     .right-menu-sportbook {
-      background: yellow !important;
-      min-width: 243px;
+      background: #3c494e;
+      min-width: 200px;
       z-index: 99999;
+
+      .betting-left-menu {
+        border: 1px solid #3d4c52;
+        padding: 10px;
+        display: grid;
+        grid-template-columns: 50% 50%;
+        color: #1ab7af;
+        font-weight: bolder;
+        font-size: 12px;
+        line-height: 12px;
+
+        > span.betslip {
+          display: flex;
+          justify-content: space-between;
+          border-right: 1px solid #3c545d;
+          height: 100%;
+          .counter {
+            margin: 0 6px;
+            color: whitesmoke;
+            display: flex;
+            justify-content: center;
+            margin-top: 1px;
+            width: 14px;
+            height: 14px;
+            background-color: #1ab7af;
+            border-radius: 50px;
+          }
+        }
+        > span#betting {
+          color: whitesmoke;
+          margin: 0 6px;
+        }
+      }
+
+      .desc-box {
+        padding: 10px 30px;
+        background-color: #313d42;
+        line-height: 18px;
+        margin-top: 12px;
+        > p {
+          font-size: 13px;
+          text-align: center;
+          color: #ebebeb;
+          font-weight: 400;
+        }
+      }
+
+      .left {
+        margin: auto 0;
+        color: #ffba24;
+        font-weight: bolder;
+        font-size: 12px;
+
+        > span {
+          padding: 0 10px;
+        }
+        .last-winnings-table {
+          margin: auto;
+          width: 100%;
+          text-align: center;
+          border: 1px solid #2e393d;
+          color: rgb(235, 232, 232);
+
+          .last-winnings-thead {
+            background-color: #47565c;
+            display: table-row-group;
+            > td {
+              border-bottom: 1px solid #2d424a;
+              border-top: 1px solid #42545a;
+              border-left: 1px solid #2d424a;
+              border-right: 1px solid #3d4c52;
+              line-height: 28px;
+              font-size: 11px;
+              font-weight: 500;
+            }
+          }
+
+          .last-winnings-body {
+            background: #3c494e;
+            line-height: 28px;
+            font-size: 12px;
+            font-weight: 500;
+
+            .last-winnings-title-heading-desc > td {
+              border-bottom: 1px solid #2d424a;
+              border-top: 1px solid #42545a;
+              border-left: 1px solid #3c545d;
+              border-right: 1px solid #3c545d;
+            }
+          }
+        }
+      }
     }
   }
 }

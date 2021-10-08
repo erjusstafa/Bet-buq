@@ -27,10 +27,14 @@ export const LiveCasinoApi = createAsyncThunk("betBuq/LiveCasinoApi", async () =
 export const PrematchApi = createAsyncThunk("betbuq/PrematchApi", async () => {
   let prematchP = {
     link: "main?json&l=en",
+    link1: "sporttree_new",
   };
-  return fetch(`https://api-new.betbuq.com/prematch/${prematchP["link"]}`)
-    .then((res) => res.json())
-    .catch((err) => console.log("has error bro"));
+  return (
+    fetch(`https://api-new.betbuq.com/prematch/${prematchP["link"]}`)
+      /*   return fetch(`${allConfig["sportBookApi"]}/${prematchP["link1"]}`) */
+      .then((res) => res.json())
+      .catch((err) => console.log("has error bro"))
+  );
 });
 
 let initialState = {

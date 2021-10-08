@@ -102,6 +102,7 @@
   color: white;
   cursor: pointer;
   font-weight: 800;
+  padding: 15px 0;
 }
 
 .popupBackground .popupContainer .login--Popup .form--login .create--acc:hover,
@@ -197,6 +198,7 @@
   color: white;
   cursor: pointer;
   font-weight: 800;
+  padding: 15px 0;
 }
 
 .popupBackground .create--account--form .login--Popup .form--login .create--acc:hover,
