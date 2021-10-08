@@ -45,6 +45,7 @@ export default RightMenu */
 
 import React, { useState, useEffect, Fragment } from "react";
 import PopupLoginRegister from "../LoginRegister/PopupLoginRegister";
+import ModalSearch from "./ModalSearch";
 
 function RightMenu({ allConfig }) {
     const [WinData, setWinData] = useState([]);
@@ -63,7 +64,7 @@ function RightMenu({ allConfig }) {
 
     useEffect(() => {
         LastWinApi();
-    }, [WinData]);
+    }, []);
 
     const handleChangePopup = () => {
         setOpenPopup(false);
@@ -112,6 +113,8 @@ function RightMenu({ allConfig }) {
                     </tbody>
                 </table>
             </div>
+
+
         </Fragment>
     );
 }

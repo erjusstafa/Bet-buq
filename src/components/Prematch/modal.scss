@@ -1,0 +1,60 @@
+.modal-container-prematch {
+  min-width: 510px;
+  height: 300px;
+  background-color: #47565c;
+  box-shadow: rgb(0 0 0 / 35%) 0px 5px 15px;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 38%;
+  left: 14.5%;
+  border: 1px solid #1ab7af;
+  z-index: 99;
+
+  > i.fas.fa-sort-up {
+    position: relative;
+    top: -7px;
+    left: 14px;
+    color: #1ab7af;
+    z-index: 999;
+  }
+
+  &::before {
+    content: "\f0de";
+    font-family: "Font Awesome 5 Free";
+    position: absolute;
+    z-index: 99;
+    top: -3px;
+    color: red;
+  }
+  @media (max-width: 1440px) {
+    z-index: 99;
+  }
+
+  @media (max-width: 930px) {
+    z-index: 99;
+  }
+
+  .close {
+    display: flex;
+    justify-content: flex-end;
+    position: relative;
+    color: white;
+    font-size: 20px;
+    background-color: #3c494e;
+    line-height: 38px;
+    top: -14px;
+
+    > p {
+      margin-right: 10px;
+      margin-top: auto;
+      margin-bottom: auto;
+      cursor: pointer;
+    }
+  }
+
+  .data-search {
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+  }
+}

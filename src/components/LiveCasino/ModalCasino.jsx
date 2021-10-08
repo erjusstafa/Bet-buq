@@ -84,8 +84,8 @@ const ModalCasino = ({ setOpenModal, allDataCasinoLive, searchFor, searchIcon, a
     </>
   ));
   return (
-    <div className="modalBackground">
-      <div className="modalContainer">
+    <div className="modalBackground ">
+      <div className="modalContainer animate__zoomInRight">
         <div className="titleCloseBtn">
           <button
             onClick={() => {

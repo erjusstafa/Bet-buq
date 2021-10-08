@@ -1,6 +1,7 @@
 import React from "react";
 import image from "../../images/images";
 import { Link } from "react-router-dom";
+import SliderHome from "../Home/SliderHome";
 
 const MiddleMenu = ({ allConfig }) => {
     return (
@@ -20,6 +21,10 @@ const MiddleMenu = ({ allConfig }) => {
                 </span>
             ) : null}
         </div>
+
+
+
+
     );
 };
 

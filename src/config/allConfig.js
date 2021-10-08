@@ -185,6 +185,8 @@ const allConfig = {
     },
   ],
 
+  iconSport: ["fas fa-basketball-ball"],
+
   paths: {},
   //useSoftionWirecard: 'https://betbuq.com',
   defaults: {
@@ -244,6 +246,94 @@ const allConfig = {
       "Europe - ",
       "World - ",
     ],
+  },
+
+  //modal search prewmtch
+  info: {
+    1019: {
+      data_evento: "2021-10-28 17:44:00",
+      desc_manifestazione: "FIFA Premier League",
+      desc_palinsesto: "England",
+      desc_sport: "E-Football",
+      indice_ricerca: "1019",
+      slug: "8-384-1295-17394165-1019",
+      sport: "8",
+      team_casa: "Liverpool (Jekos)",
+      team_ospite: "Tottenham Hotspur (Luntik)",
+    },
+
+    1139: {
+      data_evento: "2021-10-30 17:40:00",
+      desc_manifestazione: "ITT CUP Group B",
+      desc_palinsesto: "Armenia",
+      desc_sport: "Table Tennis",
+      indice_ricerca: "1139",
+      slug: "9-306-1168-17276099-1139",
+      sport: "9",
+      team_casa: "Hovhannes Julhakyan",
+      team_ospite: "Andranik Sahakyan",
+    },
+    1279: {
+      data_evento: "2021-10-18 17:40:00",
+      desc_manifestazione: "TT Cup",
+      desc_palinsesto: "Ukraine",
+      desc_sport: "Table Tennis",
+      indice_ricerca: "1279",
+      slug: "9-228-1023-17401960-1279",
+      sport: "9",
+      team_casa: "Mikhail Marchuk",
+      team_ospite: "Maksim Naumchuk",
+    },
+
+    1420: {
+      data_evento: "2021-10-24 17:45:00",
+      desc_manifestazione: "Win Cup",
+      desc_palinsesto: "World",
+      desc_sport: "Table Tennis",
+      indice_ricerca: "1420",
+      slug: "9-284-1099-17428918-1420",
+      sport: "9",
+      team_casa: "Vadym Khorolsky",
+      team_ospite: "Aleksandr Antonenko",
+    },
+
+    1426: {
+      data_evento: "2021-10-19 17:36:00",
+      desc_manifestazione: "Esoccer Battle",
+      desc_palinsesto: "World",
+      desc_sport: "Football",
+      indice_ricerca: "1426",
+      slug: "1-237-2277-17539034-1426",
+      sport: "1",
+      team_casa: "Inter Milan (Kaison)",
+      team_ospite: "Manchester City (cenblz)",
+    },
+
+    1435: {
+      data_evento: "2021-10-12 17:40:00",
+      desc_manifestazione: "ITF Men - Ithaca - Hard (Doubles)",
+      desc_palinsesto: "USA",
+      desc_sport: "Tennis",
+      indice_ricerca: "1435",
+      slug: "7-337-6731-17437811-1435",
+      sport: "7",
+      team_casa: "Toby Kodat/Mark Whitehouse",
+      team_ospite: "Charles Broom/Henry Patten",
+    },
+  },
+
+  list: {
+    1019: "Liverpool (Jekos) v Tottenham Hotspur (Luntik) | 08 Oct 2021, 17:44",
+    1139: "Hovhannes Julhakyan v Andranik Sahakyan | 08 Oct 2021, 17:40",
+    1279: "Mikhail Marchuk v Maksim Naumchuk | 08 Oct 2021, 17:40",
+    1420: "Vadym Khorolsky v Aleksandr Antonenko | 08 Oct 2021, 17:45",
+    1426: "Inter Milan (Kaison) v Manchester City (cenblz) | 08 Oct 2021, 17:36",
+    1435: "Toby Kodat/Mark Whitehouse v Charles Broom/Henry Patten | 08 Oct 2021, 17:40",
+    1451: "Chelsea (Liha) v Atletico Madrid (Nicolas_Rage) | 08 Oct 2021, 17:36",
+    1672: "Belgium (Arta) v Netherlands (Hank) | 08 Oct 2021, 17:45",
+    1983: "Valya Asoyan v Asya Poghosyan | 08 Oct 2021, 17:40",
+    2009: "1 Italy v 2 Netherlands | 08 Oct 2021, 17:39",
+    2080: "Arthur Goradze v Sergey Kovalenko | 08 Oct 2021, 17:45",
   },
 };
 
