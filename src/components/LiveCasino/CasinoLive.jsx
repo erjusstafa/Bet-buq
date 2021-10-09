@@ -110,7 +110,7 @@ function CasinoLive() {
                     />
                   </span>
                   <p
-                    onClick={() => ChangeIndex()}
+                    onClick={() => ChangeIndex(myindex.idAllGames)}
                     className={
                       "all-games " +
                       (myindex.isActive === myindex.idAllGames ? "active" : "")
@@ -153,14 +153,19 @@ function CasinoLive() {
               />
             </div>
           ) : (
-            <ModalCasino
-              setOpenModal={setModalOpen}
-              allDataCasinoLive={allDataCasinoLive}
-              searchFor={searchFor}
-              searchIcon={searchIcon}
-              alignRight={alignRight}
-              heartIcon={heartIcon}
-            />
+            <>
+              {modalOpen && (
+                <ModalCasino
+                  setOpenModal={setModalOpen}
+                  allDataCasinoLive={allDataCasinoLive}
+                  searchFor={searchFor}
+                  searchIcon={searchIcon}
+                  alignRight={alignRight}
+                  heartIcon={heartIcon}
+                  onclose={() => setModalOpen(false)}
+                />
+              )}
+            </>
           )}
         </>
       )}
@@ -233,7 +238,7 @@ const ToggleSlots = ({
                         {Object.values(
                           JSON.parse(F.categories || "{}").map((R) => (
                             <>
-                              <div className="allslots">
+                              <div className="allslots" key={R && R.id}>
                                 <h2 style={{ color: "white" }}>{R.name}</h2>
                                 <AllSlots
                                   catId={R.id}

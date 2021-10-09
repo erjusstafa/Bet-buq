@@ -11,7 +11,7 @@
     .banner_desc {
       max-width: 1352px;
       margin: 0 auto;
-      padding: 100px 0px 6px 0px;
+      padding: 100px 10px 6px 10px;
       position: relative;
 
       > h4 {
@@ -38,7 +38,9 @@
         border: none;
         cursor: pointer;
         font-weight: 600;
-
+        @media (max-width: 700px) {
+          font-size: 13px;
+        }
         &:hover {
           background-color: #32e7de;
         }
@@ -67,10 +69,10 @@
     padding: 30px 0;
     min-width: 70%;
     @media (max-width: 1088px) {
-      padding: unset;
-      flex-flow: row wrap;
+      padding: 10px 0;
+      width: 100%;
+      overflow-x: scroll;
     }
-
     > p {
       margin-left: 20px;
       cursor: pointer;
@@ -78,6 +80,10 @@
       margin-bottom: revert !important;
       color: rgb(167, 167, 167);
       font-weight: bolder;
+
+      @media (max-width: 665px) {
+        min-width: 100px;
+      }
     }
 
     .heart.active,
@@ -115,7 +121,7 @@
       background: #4e5d63;
       padding: 20px;
       border-right: 1px solid rgb(153, 152, 152);
-      @media (max-width: 1088px) {
+      @media (max-width: 1338px) {
         width: 80%;
       }
       > p,
@@ -123,6 +129,9 @@
         margin: auto 0;
         padding: 0 5px;
         color: rgb(197, 197, 197);
+        @media (max-width: 1338px) {
+          padding: 0 2px;
+        }
       }
     }
 
@@ -165,6 +174,10 @@
       font-weight: bold;
       font-size: 28px;
       color: rgb(245, 245, 245);
+
+      @media (max-width: 600px) {
+        font-size: 20px;
+      }
     }
 
     > span {
@@ -226,6 +239,9 @@
     border-radius: 10px;
     @media (max-width: 1375px) {
     }
+    .allslots {
+      margin: auto;
+    }
   }
 
   div.item-slots-all {
@@ -242,6 +258,16 @@
       > img {
         width: 321px;
         height: 235px;
+
+        @media (max-width: 1021px) {
+          width: 271px;
+          height: 205px;
+        }
+
+        @media (max-width: 600px) {
+          width: 241px;
+          height: 185px;
+        }
         &:hover {
           filter: brightness(0.7);
           z-index: -1;
@@ -296,15 +322,13 @@
 
 //modal
 .modalBackground {
+  cursor: pointer;
   position: fixed;
   top: 0;
   left: 0;
   bottom: 0;
   right: 0;
-  /* height: 50%; */
   background: rgba(0, 0, 0, 0.5);
-  /* min-width: 1080px;
-  max-width: 1200px; */
   z-index: 999999;
   transition: 2s linear;
   .modalContainer {
@@ -334,6 +358,28 @@
       height: 400px;
       z-index: 99;
     }
+
+    @media (max-width: 700px) {
+      min-width: 480px;
+      max-width: 600px;
+      height: 400px;
+      z-index: 99;
+    }
+
+    @media (max-width: 520px) {
+      min-width: 380px;
+      max-width: 500px;
+      height: 400px;
+      z-index: 99;
+    }
+
+    @media (max-width: 390px) {
+      min-width: 280px;
+      max-width: 400px;
+      height: 400px;
+      z-index: 99;
+    }
+
     .titleCloseBtn {
       display: flex;
       justify-content: center;
@@ -341,6 +387,11 @@
       right: -581px;
       top: -44px;
       border-radius: 50%;
+
+      @media (max-width: 1440px) {
+        right: -477px;
+        top: -40px;
+      }
       > button {
         background-color: white;
         border: none;
@@ -351,6 +402,14 @@
         font-size: 17px;
         font-weight: bold;
         border-radius: 50%;
+        @media (max-width: 1250px) {
+          width: 30px;
+          height: 30px;
+          font-size: 14px;
+        }
+        @media (max-width: 1000px) {
+          display: none;
+        }
       }
     }
 
@@ -418,12 +477,16 @@
 
     .content {
       width: 100%;
-      padding: 17px;
+      padding: 19px;
       display: flex !important;
       flex-flow: wrap row;
       overflow-y: scroll;
       background: rgb(47, 63, 62);
       height: 100%;
+
+      @media (max-width: 1000px) {
+        padding: 47px 0;
+      }
 
       .tabsModal--contentOne {
         display: flex;
@@ -524,6 +587,7 @@
                   border-radius: 14px;
                   display: block;
                   padding: 5px;
+                  margin: auto;
                   > span {
                     display: flex;
                     justify-content: space-around;
@@ -591,9 +655,11 @@
       grid-template-columns: 70% 30%;
       width: 100%;
       overflow-y: scroll;
-      padding: 17px 0;
+      padding: 19px 0;
       padding-left: 17px;
-
+      @media (max-width: 1000px) {
+        padding: 47px 0;
+      }
       .tabsModal--contentOne {
         display: flex;
         flex-direction: column;
@@ -646,6 +712,7 @@
                 > div {
                   display: block;
                   padding: 5px;
+                  margin: auto;
                   > span {
                     display: flex;
                     justify-content: space-around;
@@ -823,13 +890,18 @@
 
             > p {
               font-weight: bold;
-              font-style: 13px;
+              font-size: 12px;
               font-weight: normal;
               border-radius: 16px;
               background-color: rgba(0, 0, 0, 0.12);
               padding: 5px 12px;
               margin: 5px;
               cursor: pointer;
+
+              @media (max-width: 400px) {
+                padding: 5px;
+                font-size: 10px;
+              }
             }
           }
         }

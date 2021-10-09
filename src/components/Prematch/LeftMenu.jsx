@@ -5,7 +5,7 @@ import ModalSearch from "./ModalSearch";
 function LeftMenu({ allConfig, iconSport, toggleIcon }) {
   const [toggleUpDownIcon, setToggleUpDownIcon] = useState(false);
   const [value, setValue] = useState("");
-  const [tabsHourToggle, setTabsHourToggle] = useState(1);
+  const [tabsHourToggle, setTabsHourToggle] = useState(0);
   const [modal, setModal] = useState(false);
 
   const handleChangeInputSearch = (e) => {

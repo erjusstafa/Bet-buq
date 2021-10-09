@@ -10,11 +10,10 @@
     max-width: 1352px;
     margin: 0 auto;
     display: flex;
-    flex-flow: row wrap;
     justify-content: space-evenly;
 
-    @media (min-width: 204px) and (max-width: 700px) {
-      justify-content: flex-start;
+    @media (max-width: 598px) {
+      flex-direction: column;
     }
 
     .all__link {
@@ -22,7 +21,9 @@
       line-height: 13px;
       padding: 20px;
       align-content: center;
-      align-items: end;
+      @media (max-width: 596px) {
+        justify-content: center;
+      }
 
       > i {
         display: grid;
@@ -31,6 +32,10 @@
         font-size: 30px;
         color: rgb(240, 240, 240);
         margin-bottom: 18px;
+        @media (max-width: 700px) {
+          padding: 0 10px;
+          font-size: 25px;
+        }
       }
 
       > span {
@@ -38,6 +43,9 @@
           font-weight: bold;
           color: white;
           font-size: 23px;
+          @media (max-width: 700px) {
+            font-size: 20px;
+          }
         }
         > p {
           color: #3fa7a1;
@@ -55,11 +63,11 @@
   padding-bottom: 35px;
   &__all {
     width: 100%;
-    max-width: 1243px;
+    max-width: 1352px;
     margin: 0 auto;
     display: flex;
     flex-flow: row wrap;
-    justify-content: space-evenly;
+    justify-content: space-between;
 
     @media (max-width: 1235px) {
       margin: 0 auto;
@@ -72,7 +80,7 @@
       width: 380px;
       border-radius: 7px;
       @media (max-width: 1235px) {
-        margin: 20px auto;
+        margin: 20px;
       }
       @media (max-width: 443px) {
         width: 100%;
@@ -143,12 +151,18 @@
   > span {
     position: absolute;
     top: 64px;
-    left: calc(23% - 30px);
+    left: 0;
+    right: 0;
     line-height: 40px;
+    width: 100%;
+    max-width: 1352px;
+    margin: auto;
+    @media (max-width: 1123px) {
+      left: 80px;
+    }
 
-    @media (max-width: 700px) {
-      top: 50px;
-      left: 60px;
+    @media (max-width: 923px) {
+      left: 10px;
     }
 
     > h1 {
