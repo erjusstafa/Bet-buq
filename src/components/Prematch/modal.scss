@@ -56,5 +56,12 @@
   .data-search {
     overflow-y: scroll;
     scroll-behavior: smooth;
+
+    > p {
+      color: white;
+      border: 1px solid #3c494e;
+      margin-top: -15px;
+      line-height: 53px;
+    }
   }
 }

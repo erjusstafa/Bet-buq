@@ -82,6 +82,10 @@
     display: grid;
     grid-template-columns: 20% auto 20%;
 
+    @media (max-width: 1000px) {
+      display: flex;
+      flex-direction: column;
+    }
     .left-sport {
       background-color: #47565c;
       .all-sport-item {
@@ -309,12 +313,11 @@
       }
     }
 
-    ///hap toggl3
-
-    ///mbyll toggle
-
     .middle-menu-sportbook {
       min-width: 243px;
+      @media (max-width: 1000px) {
+        order: -1;
+      }
       .image-menu {
         position: relative;
         > img {
@@ -445,7 +448,7 @@
           .last-winnings-thead {
             background-color: #47565c;
             display: table-row-group;
-            > td {
+            > tr > th {
               border-bottom: 1px solid #2d424a;
               border-top: 1px solid #42545a;
               border-left: 1px solid #2d424a;
@@ -586,6 +589,10 @@
 
     .middle {
       min-width: 243px;
+
+      @media (max-width: 1000px) {
+        order: -1;
+      }
       .image-menu {
         position: relative;
         > img {

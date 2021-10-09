@@ -143,7 +143,7 @@
   > span {
     position: absolute;
     top: 64px;
-    left: 110px;
+    left: calc(23% - 30px);
     line-height: 40px;
 
     @media (max-width: 700px) {

@@ -18,7 +18,8 @@ const allConfig = {
     "currency-symbol": "€",
   },
 
-  descriptionBox: "Insert the events name on at least one team in the form below",
+  descriptionBox:
+    "Insert the events name on at least one team in the form below",
   getSlider: true,
   slider: {
     slider1: {

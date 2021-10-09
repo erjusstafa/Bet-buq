@@ -19,6 +19,7 @@ const Header = () => {
   };
 
   const [lang, setLang] = useState(true);
+  const [clickTopHeader, setClickTopHeader] = React.useState(false);
 
   const changeLang = () => {
     setLang(!lang);
@@ -29,9 +30,8 @@ const Header = () => {
 
   const handleChangePopup = () => {
     setOpenPopup(false);
-    setOpenPopupRegister(false)
+    setOpenPopupRegister(false);
   };
-
 
   const social = useSelector(
     (state) => state.betbuqsport.bet.allConfig.socials
@@ -48,41 +48,60 @@ const Header = () => {
   return (
     <>
       <div className="header">
-        <div className="header__max">
+        <div
+          className="menu-top-header"
+          onClick={() => setClickTopHeader(!clickTopHeader)}
+        >
+          {clickTopHeader ? (
+            <i className="fas fa-times" />
+          ) : (
+            <i className="fas fa-align-left" />
+          )}
+        </div>
+        <div className={clickTopHeader ? "header__max active" : "header__max"}>
           <div className="form">
-            <form onSubmit={handleSubmit}>
-              <span style={{ position: "relative" }}>
-                <input
-                  type="text"
-                  value={form.name}
-                  onChange={(e) => setForm({ name: e.target.value })}
-                  placeholder={
-                    lang
-                      ? inputIcon.Name.placeholderEN
-                      : inputIcon.Name.placeholderIT
-                  }
-                />
-                <i className={inputIcon && inputIcon.Name.icon} />
-              </span>
-              <span style={{ position: "relative" }}>
-                <input
-                  type="password"
-                  name=""
-                  value={form.password}
-                  onChange={(e) => setForm({ password: e.target.value })}
-                  placeholder={
-                    lang
-                      ? inputIcon.Password.placeholderEN
-                      : inputIcon.Password.placeholderIT
-                  }
-                />
-                <i className={inputIcon && inputIcon.Password.icon} />
-              </span>
-              <button id="pikpytje">?</button>
-              <button id="login" onClick={() => setOpenPopup(true)}>
-                {lang ? "Login" : "Accedere"}
-              </button>
-              <button id="register" onClick={() => setOpenPopupRegister(true)}>{lang ? "Register" : "Registrati"}</button>
+            <form onSubmit={handleSubmit} className="form-wrapper">
+              <div className="input-form-header">
+                <span style={{ position: "relative" }}>
+                  <input
+                    type="text"
+                    value={form.name}
+                    onChange={(e) => setForm({ name: e.target.value })}
+                    placeholder={
+                      lang
+                        ? inputIcon.Name.placeholderEN
+                        : inputIcon.Name.placeholderIT
+                    }
+                  />
+                  <i className={inputIcon && inputIcon.Name.icon} />
+                </span>
+                <span style={{ position: "relative" }}>
+                  <input
+                    type="password"
+                    name=""
+                    value={form.password}
+                    onChange={(e) => setForm({ password: e.target.value })}
+                    placeholder={
+                      lang
+                        ? inputIcon.Password.placeholderEN
+                        : inputIcon.Password.placeholderIT
+                    }
+                  />
+                  <i className={inputIcon && inputIcon.Password.icon} />
+                </span>
+              </div>
+              <div className="button-header">
+                <button id="pikpytje">?</button>
+                <button id="login" onClick={() => setOpenPopup(true)}>
+                  {lang ? "Login" : "Accedere"}
+                </button>
+                <button
+                  id="register"
+                  onClick={() => setOpenPopupRegister(true)}
+                >
+                  {lang ? "Register" : "Registrati"}
+                </button>
+              </div>
             </form>
           </div>
           {(openPopup || openPopupRegister) && (
@@ -128,8 +147,12 @@ class HeaderBottom extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      idLink: null
+      idLink: null,
+      click: false,
     };
+
+    this.handleId = this.handleId.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
   componentDidMount() {
@@ -141,18 +164,14 @@ class HeaderBottom extends React.Component {
       });
     }, 1000);
   }
-
-
-  handleId = this.handleId.bind(this);
   handleId(id) {
-    this.setState({ idLink: id })
+    this.setState({ idLink: id });
   }
 
-  render() {
-
-
-
-
+  handleClick() {
+    this.setState({ click: !this.state.click });
+  }
+  render(props) {
     let styleDate = {
       margin: "auto 5px",
       marginLeft: " 5px",
@@ -220,16 +239,24 @@ class HeaderBottom extends React.Component {
             </div>
             <span className="after"></span>
           </div>
-          <div className="route">
+          <div className="menu-icon" onClick={this.handleClick}>
+            {this.state.click ? (
+              <i className="fas fa-times" />
+            ) : (
+              <i className="fas fa-align-right" />
+            )}
+          </div>
+          <div className={this.state.click ? "route active" : "route"}>
             {Object.values(allConfig.routes).map((L, index) => (
               <Link
-
                 onClick={() => this.handleId(L.id)}
                 key={index}
                 className={L.name !== null ? "route-link" : ""}
                 to={L.link}
               >
-                <h2 className={this.state.idLink === L["id"] ? "active" : null}>{L.name}</h2>
+                <h2 className={this.state.idLink === L["id"] ? "active" : null}>
+                  {L.name}
+                </h2>
                 <p className={L.tag && "tag"}>{L.tag}</p>
               </Link>
             ))}
