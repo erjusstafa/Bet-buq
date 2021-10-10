@@ -27,15 +27,13 @@ function Prematch() {
           <div className="navigation-container-wrapper">
             {Object.values(allConfig.NavigationWrapper || []).map(
               (N, index) => (
-                <>
-                  <Link
-                    key={index}
-                    className={N.text.toLowerCase().replace(" ", "-")}
-                    to={N.link}
-                  >
-                    {N.text}
-                  </Link>
-                </>
+                <Link
+                  key={index}
+                  className={N.text.toLowerCase().replace(" ", "-")}
+                  to={N.link}
+                >
+                  {N.text}
+                </Link>
               )
             )}
           </div>

@@ -56,118 +56,106 @@ function CasinoLive() {
   let searchFor = "Search for a game";
 
   let categories = Object.values(allDataCasinoLive?.categories || {})
-    /*         .sort((a, b) => a.name.toLowerCase() > b.name.toLowerCase() ? 1 : -1)
-     */ .filter((A) => A.id !== 70 || ![70].includes(A.id))
-    .map((A) => {
+    .filter((A) => A.id !== 70 || ![70].includes(A.id))
+    .map((A, index) => {
       return (
-        <>
-          {A.name && (
-            <p
-              key={A.id}
-              onClick={() => ChangeIndex(A.id, A.name)}
-              className={
-                A?.name.split(" ")[0].replace(/\s+/g, "").toLowerCase() +
-                (myindex.isActive === A.id ? " active" : "")
-              }
-            >
-              {A.name}
-            </p>
-          )}
-        </>
+        A.name && (
+          <p
+            key={A ? A.id : index}
+            onClick={() => ChangeIndex(A.id, A.name)}
+            className={
+              A?.name.split(" ")[0].replace(/\s+/g, "").toLowerCase() +
+              (myindex.isActive === A.id ? " active" : "")
+            }
+          >
+            {A.name}
+          </p>
+        )
       );
     });
 
-  return (
+  return !isLoading ? (
+    <LoadedCasino />
+  ) : (
     <>
-      {!isLoading ? (
-        <LoadedCasino />
-      ) : (
-        <>
-          <div className="livecasino">
-            {Object.values(bannerCasinoLive || {}).map((B, b) => (
-              <BannerLiveCasino B={B} b={b} />
-            ))}
+      <div className="livecasino">
+        {Object.values(bannerCasinoLive || {}).map((B, b) => (
+          <BannerLiveCasino B={B} b={b} />
+        ))}
+      </div>
+
+      {!modalOpen ? (
+        <div style={{ background: "#313d42" }}>
+          <div className="link">
+            <div className="link-live">
+              <span
+                onClick={() => ChangeIndex()}
+                className={
+                  "heart " +
+                  (myindex.isActive !== myindex.favouriteId ||
+                  myindex.idAllGames !== myindex.favouriteId
+                    ? "active"
+                    : "")
+                }
+              >
+                {" "}
+                <i style={{ color: `${colorHeart}` }} className={heartIcon} />
+              </span>
+              <p
+                onClick={() => ChangeIndex(myindex.idAllGames)}
+                className={
+                  "all-games " +
+                  (myindex.isActive === myindex.idAllGames ? "active" : "")
+                }
+              >
+                All Games
+              </p>
+              {categories}
+            </div>
+            <div className="search-game">
+              <span
+                className="search"
+                onClick={() => {
+                  setModalOpen(true);
+                }}
+              >
+                <i className={searchIcon} />
+                <p>{searchFor}</p>
+              </span>
+              <span
+                className="provider "
+                onClick={() => {
+                  setModalOpen(true);
+                }}
+              >
+                <p>Providers</p>
+                <i className={alignRight} />
+              </span>
+            </div>
           </div>
 
-          {!modalOpen ? (
-            <div style={{ background: "#313d42" }}>
-              <div className="link">
-                <div className="link-live">
-                  <span
-                    onClick={() => ChangeIndex()}
-                    className={
-                      "heart " +
-                      (myindex.isActive !== myindex.favouriteId ||
-                      myindex.idAllGames !== myindex.favouriteId
-                        ? "active"
-                        : "")
-                    }
-                  >
-                    {" "}
-                    <i
-                      style={{ color: `${colorHeart}` }}
-                      className={heartIcon}
-                    />
-                  </span>
-                  <p
-                    onClick={() => ChangeIndex(myindex.idAllGames)}
-                    className={
-                      "all-games " +
-                      (myindex.isActive === myindex.idAllGames ? "active" : "")
-                    }
-                  >
-                    All Games
-                  </p>
-                  {categories}
-                </div>
-                <div className="search-game">
-                  <span
-                    className="search"
-                    onClick={() => {
-                      setModalOpen(true);
-                    }}
-                  >
-                    <i className={searchIcon} />
-                    <p>{searchFor}</p>
-                  </span>
-                  <span
-                    className="provider "
-                    onClick={() => {
-                      setModalOpen(true);
-                    }}
-                  >
-                    <p>Providers</p>
-                    <i className={alignRight} />
-                  </span>
-                </div>
-              </div>
-
-              <ToggleSlots
-                Slots={allDataCasinoLive}
-                myindex={myindex.isActive}
-                heartIcon={heartIcon}
-                mytxt={myindex.isActiveText}
-                loadMore={loadMore.load}
-                moreSlots={moreSlots}
-                dispatch={dispatch}
-              />
-            </div>
-          ) : (
-            <>
-              {modalOpen && (
-                <ModalCasino
-                  setOpenModal={setModalOpen}
-                  allDataCasinoLive={allDataCasinoLive}
-                  searchFor={searchFor}
-                  searchIcon={searchIcon}
-                  alignRight={alignRight}
-                  heartIcon={heartIcon}
-                  onclose={() => setModalOpen(false)}
-                />
-              )}
-            </>
-          )}
-        </>
+          <ToggleSlots
+            Slots={allDataCasinoLive}
+            myindex={myindex.isActive}
+            heartIcon={heartIcon}
+            mytxt={myindex.isActiveText}
+            loadMore={loadMore.load}
+            moreSlots={moreSlots}
+            dispatch={dispatch}
+          />
+        </div>
+      ) : (
+        modalOpen && (
+          <ModalCasino
+            setOpenModal={setModalOpen}
+            allDataCasinoLive={allDataCasinoLive}
+            searchFor={searchFor}
+            searchIcon={searchIcon}
+            alignRight={alignRight}
+            heartIcon={heartIcon}
+            onclose={() => setModalOpen(false)}
+          />
+        )
       )}
     </>
   );
@@ -193,73 +181,50 @@ const ToggleSlots = ({
   return (
     <div className="Slot">
       <div className="sort-category">
-        {myindex ? (
-          <>
-            <h2>{mytxt}</h2>
-            <span>
-              <p>Sort By</p>
-              <h3>A-Z</h3>
-            </span>
-          </>
-        ) : (
-          <h2>{mytxt}</h2>
-        )}
+        {myindex ? <h2>{mytxt}</h2> : <h2>{mytxt}</h2>}
       </div>
       <div className={mytxt ? "slot-images" : "all-slot-images"}>
-        {Object.values(Slots?.providers || {}).map((T) => (
-          <>
-            {Object.values(T?.slots || {})
-              .slice(0, loadMore)
-              .map((F, f) => {
-                return (
-                  <>
-                    {myindex ? (
-                      Object.values(
-                        JSON.parse(F.categories || "{}")
-                          .sort((a, b) => (a.name > b.name ? -1 : 1))
-                          .filter((Y) => Y.id === myindex)
-                          .map((R) => (
-                            <>
-                              {R.id === myindex && (
-                                <ItemSlots
-                                  R={R}
-                                  F={F}
-                                  heartIcon={heartIcon}
-                                  openPopup={openPopup}
-                                  setOpenPopup={setOpenPopup}
-                                  handleChangePopup={handleChangePopup}
-                                />
-                              )}
-                            </>
-                          ))
+        {Object.values(Slots?.providers || {}).map((T) =>
+          Object.values(T?.slots || {})
+            .slice(0, loadMore)
+            .map((F, f) => {
+              return myindex
+                ? Object.values(
+                    JSON.parse(F.categories || "{}")
+                      .sort((a, b) => (a.name > b.name ? -1 : 1))
+                      .filter((Y) => Y.id === myindex)
+                      .map(
+                        (R) =>
+                          R.id === myindex && (
+                            <ItemSlots
+                              R={R}
+                              F={F}
+                              heartIcon={heartIcon}
+                              openPopup={openPopup}
+                              setOpenPopup={setOpenPopup}
+                              handleChangePopup={handleChangePopup}
+                            />
+                          )
                       )
-                    ) : (
-                      <>
-                        {Object.values(
-                          JSON.parse(F.categories || "{}").map((R) => (
-                            <>
-                              <div className="allslots" key={R && R.id}>
-                                <h2 style={{ color: "white" }}>{R.name}</h2>
-                                <AllSlots
-                                  catId={R.id}
-                                  R={R}
-                                  F={F}
-                                  heartIcon={heartIcon}
-                                  openPopup={openPopup}
-                                  setOpenPopup={setOpenPopup}
-                                  handleChangePopup={handleChangePopup}
-                                />
-                              </div>
-                            </>
-                          ))
-                        )}
-                      </>
-                    )}
-                  </>
-                );
-              })}
-          </>
-        ))}
+                  )
+                : Object.values(
+                    JSON.parse(F.categories || "{}").map((R) => (
+                      <div className="allslots" key={R && R.id}>
+                        <h2 style={{ color: "white" }}>{R.name}</h2>
+                        <AllSlots
+                          catId={R.id}
+                          R={R}
+                          F={F}
+                          heartIcon={heartIcon}
+                          openPopup={openPopup}
+                          setOpenPopup={setOpenPopup}
+                          handleChangePopup={handleChangePopup}
+                        />
+                      </div>
+                    ))
+                  );
+            })
+        )}
       </div>
       <span className={"more"} onClick={() => moreSlots(myindex)}>
         <i className="fas fa-sync-alt"></i>

@@ -56,19 +56,17 @@ function RightMenu({ allConfig }) {
             {Object.values(WinData.data || [])
               .slice(0, 7)
               .map((L, index) => (
-                <>
-                  <tr className="last-winnings-title-heading-desc" key={index}>
-                    <td>
-                      {parseFloat(L.win).toFixed(2)}{" "}
-                      {allConfig["skin"]["currency-symbol"]}
-                    </td>
-                    <td>
-                      {parseFloat(L.bet).toFixed(2)}{" "}
-                      {allConfig["skin"]["currency-symbol"]}
-                    </td>
-                    <td>{new Date(L.date).toLocaleDateString()}</td>
-                  </tr>
-                </>
+                <tr className="last-winnings-title-heading-desc" key={index}>
+                  <td>
+                    {parseFloat(L.win).toFixed(2)}{" "}
+                    {allConfig["skin"]["currency-symbol"]}
+                  </td>
+                  <td>
+                    {parseFloat(L.bet).toFixed(2)}{" "}
+                    {allConfig["skin"]["currency-symbol"]}
+                  </td>
+                  <td>{new Date(L.date).toLocaleDateString()}</td>
+                </tr>
               ))}
           </tbody>
         </table>

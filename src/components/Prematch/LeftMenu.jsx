@@ -131,57 +131,47 @@ function LeftMenu({ allConfig, iconSport, toggleIcon }) {
       <div className="left-sport">
         {Object.values(Sport || []).map((R, index) => {
           return (
-            <>
+            <Fragment>
               {tabsHourToggle === R.order && (
                 <div key={R ? R.id : index} className="all-sport-item">
-                  <>
-                    {!iconSport ? (
-                      <span id="item-sport">
-                        <p id="counter-item">{R.count}</p>
-                        <span id="dot"> • </span>
-                        <p className="sport-name">{R.name}</p>
-                      </span>
-                    ) : null}
-
-                    <span className="icon">
-                      {allConfig["iconSport"].map((C) => (
-                        <i
-                          className={
-                            allConfig["betConstructWidget"] ? C : "icon"
-                          }
-                        />
-                      ))}
+                  {!iconSport ? (
+                    <span id="item-sport">
+                      <p id="counter-item">{R.count}</p>
+                      <span id="dot"> • </span>
+                      <p className="sport-name">{R.name}</p>
                     </span>
-                  </>
+                  ) : null}
+
+                  <span className="icon">
+                    {allConfig["iconSport"].map((C) => (
+                      <i
+                        className={allConfig["betConstructWidget"] ? C : "icon"}
+                      />
+                    ))}
+                  </span>
                 </div>
               )}
-              <>
-                {tabsHourToggle === 0 && (
-                  <div key={R ? R.id : index} className="all-sport-item">
-                    <>
-                      {!iconSport ? (
-                        <span id="item-sport">
-                          <p id="counter-item">{R.count}</p>
-                          <span id="dot"> • </span>
-                          <p className="sport-name">{R.name}</p>
-                        </span>
-                      ) : null}
+              {tabsHourToggle === 0 && (
+                <div key={R ? R.id : index} className="all-sport-item">
+                  {!iconSport ? (
+                    <span id="item-sport">
+                      <p id="counter-item">{R.count}</p>
+                      <span id="dot"> • </span>
+                      <p className="sport-name">{R.name}</p>
+                    </span>
+                  ) : null}
 
-                      <span className="icon">
-                        {allConfig["iconSport"].map((C, index) => (
-                          <i
-                            key={index}
-                            className={
-                              allConfig["betConstructWidget"] ? C : "icon"
-                            }
-                          />
-                        ))}
-                      </span>
-                    </>
-                  </div>
-                )}
-              </>
-            </>
+                  <span className="icon">
+                    {allConfig["iconSport"].map((C, index) => (
+                      <i
+                        key={index}
+                        className={allConfig["betConstructWidget"] ? C : "icon"}
+                      />
+                    ))}
+                  </span>
+                </div>
+              )}
+            </Fragment>
           );
         })}
       </div>

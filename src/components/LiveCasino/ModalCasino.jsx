@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, Fragment } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
   addCategProvid,
@@ -8,7 +8,7 @@ import {
   delFavorites,
 } from "../../redux-toolkit/store/store";
 import PopupLoginRegister from "../LoginRegister/PopupLoginRegister";
-import { Link } from "react-router-dom";
+
 const ModalCasino = ({
   setOpenModal,
   allDataCasinoLive,
@@ -59,23 +59,21 @@ const ModalCasino = ({
   const dispatch = useDispatch();
   let providersData = Object.values(allDataCasinoLive?.providers || {}).map(
     (D) => (
-      <>
-        <p
-          className={myindex.isActive === D.id && "active"}
-          key={D.id}
-          onClick={() => setActiveAddProCat(D.id, D.name)}
-        >
-          {" "}
-          {D.name}
-        </p>
-      </>
+      <p
+        className={myindex.isActive === D.id ? "active" : ""}
+        key={D.id}
+        onClick={() => setActiveAddProCat(D.id, D.name)}
+      >
+        {" "}
+        {D.name}
+      </p>
     )
   );
 
   let categoriesData = Object.values(allDataCasinoLive?.categories || {}).map(
     (C) => (
       <p
-        className={myindex.isActive === C.id && "active"}
+        className={myindex.isActive === C.id ? "active" : ""}
         key={C.id}
         onClick={() => setActiveAddProCat(C.id, C.name)}
       >
@@ -95,52 +93,47 @@ const ModalCasino = ({
   };
 
   const displaySlots = Object.values(allDataCasinoLive?.providers || {}).map(
-    (E) => (
-      <>
-        {Object.values(E.slots || {})
-          .filter((Q) =>
-            val === "" ? Q : Q.name.toLowerCase().includes(val.toLowerCase())
-          )
-          .map((Q) => (
-            <div key={Q.id}>
-              {console.log("Q", Q)}
+    (E) =>
+      Object.values(E.slots || {})
+        .filter((Q) =>
+          val === "" ? Q : Q.name.toLowerCase().includes(val.toLowerCase())
+        )
+        .map((Q) => (
+          <div key={Q.id}>
+            {console.log("Q", Q)}
 
-              <img
-                onClick={() => setOpenPopup(true)}
-                src={Q.desktop_logo}
-                alt=""
-                style={{ cursor: "pointer" }}
+            <img
+              onClick={() => setOpenPopup(true)}
+              src={Q.desktop_logo}
+              alt=""
+              style={{ cursor: "pointer" }}
+            />
+            <span>
+              <p>
+                {Q.name.length > 20 ? Q.name.substring(0, 19) + "..." : Q.name}
+              </p>
+              <i
+                className={`${heartIcon}`}
+                onClick={() =>
+                  dispatch(
+                    addFavorites({
+                      id: Q.id,
+                      desktop_logo: Q.desktop_logo,
+                      name: Q.name,
+                    })
+                  )
+                }
               />
-              <span>
-                <p>
-                  {Q.name.length > 20
-                    ? Q.name.substring(0, 19) + "..."
-                    : Q.name}
-                </p>
-                <i
-                  className={`${heartIcon}`}
-                  onClick={() =>
-                    dispatch(
-                      addFavorites({
-                        id: Q.id,
-                        desktop_logo: Q.desktop_logo,
-                        name: Q.name,
-                      })
-                    )
-                  }
-                />
-              </span>
+            </span>
 
-              {openPopup && (
-                <PopupLoginRegister
-                  handleChangePopup={handleChangePopup}
-                  open={openPopup}
-                />
-              )}
-            </div>
-          ))}
-      </>
-    )
+            {openPopup && (
+              <PopupLoginRegister
+                handleChangePopup={handleChangePopup}
+                open={openPopup}
+              />
+            )}
+          </div>
+        ))
   );
   return (
     <div className="modalBackground ">
@@ -193,16 +186,13 @@ const ModalCasino = ({
               </span>
               <div className="all--categ--provider">
                 {Object.values(counterFilter || {}).map((F) => (
-                  <>
-                    {console.log("counterFilter", F)}
-                    <span className="added--categ--provider">
-                      <p>{F.name}</p>
-                      <i
-                        onClick={() => dispatch(delCategProvid(F))}
-                        className="fas fa-times"
-                      />
-                    </span>
-                  </>
+                  <span className="added--categ--provider">
+                    <p>{F.name}</p>
+                    <i
+                      onClick={() => dispatch(delCategProvid(F))}
+                      className="fas fa-times"
+                    />
+                  </span>
                 ))}
                 {counterFilter.length >= 1 ? (
                   <button onClick={() => dispatch(delAllProvidrCateg())}>
@@ -224,36 +214,31 @@ const ModalCasino = ({
                 </span>
                 <span>
                   {tabsModal === 1 ? (
-                    <>
-                      {" "}
-                      {counterFavorites.length <= 0 ? (
-                        <p>Opss! Sorry , no results for this criteria</p>
-                      ) : (
-                        <div className="fav--added">
-                          {Object.values(counterFavorites || {})
-                            .filter((P) =>
-                              val === ""
-                                ? P
-                                : P.name
-                                    .toLowerCase()
-                                    .includes(val.toLowerCase())
-                            )
-                            .map((P) => (
-                              <div className="item--fav">
-                                <img src={P.desktop_logo} alt="" />
-                                <span>
-                                  <p>{P.name}</p>
-                                  <i
-                                    className={heartIcon}
-                                    to
-                                    onClick={() => dispatch(delFavorites(P))}
-                                  />
-                                </span>
-                              </div>
-                            ))}
-                        </div>
-                      )}{" "}
-                    </>
+                    counterFavorites.length <= 0 ? (
+                      <p>Opss! Sorry , no results for this criteria</p>
+                    ) : (
+                      <div className="fav--added">
+                        {Object.values(counterFavorites || {})
+                          .filter((P) =>
+                            val === ""
+                              ? P
+                              : P.name.toLowerCase().includes(val.toLowerCase())
+                          )
+                          .map((P) => (
+                            <div className="item--fav">
+                              <img src={P.desktop_logo} alt="" />
+                              <span>
+                                <p>{P.name}</p>
+                                <i
+                                  className={heartIcon}
+                                  to
+                                  onClick={() => dispatch(delFavorites(P))}
+                                />
+                              </span>
+                            </div>
+                          ))}
+                      </div>
+                    )
                   ) : null}
                 </span>
               </div>
@@ -265,24 +250,24 @@ const ModalCasino = ({
               {Object.keys(allDataCasinoLive)
                 .sort((a, b) => (a < b ? 1 : -1))
                 .map((R) => (
-                  <>
+                  <Fragment>
                     <br />
                     <br />
 
-                    <>
+                    <Fragment>
                       {" "}
                       <div>
                         {R === "categories" && (
-                          <>
+                          <Fragment>
                             <h1>{R}</h1>
                             <span key={R.id}>{categoriesData}</span>
-                          </>
+                          </Fragment>
                         )}
                       </div>
                       <div>
                         {" "}
                         {R === "providers" && (
-                          <>
+                          <Fragment>
                             <span>
                               {" "}
                               <h1>{R}</h1>{" "}
@@ -295,11 +280,11 @@ const ModalCasino = ({
                               )}
                             </span>
                             <span key={R.id}>{providersData}</span>
-                          </>
+                          </Fragment>
                         )}
                       </div>
-                    </>
-                  </>
+                    </Fragment>
+                  </Fragment>
                 ))}
             </div>
           ) : null}
