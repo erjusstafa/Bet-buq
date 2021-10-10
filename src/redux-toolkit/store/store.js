@@ -2,47 +2,53 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import allConfig from "../../config/allConfig";
 
 //thunkApiHome
-export const thunkApiHome = createAsyncThunk("betBuq/thunkApiHome", async () => {
-  let prapashtes = {
-    home: "get_sliders",
-    /*       liveCasino: `/get_slots/${allConfig.skinName}/casino_live/ios?lang=en`,
-     */
-  };
-  return fetch(`${allConfig.contentManagementAPI}/${prapashtes.home}/`)
-    .then((res) => res.json())
-    .catch((err) => console.log("has error bro"));
-});
+export const thunkApiHome = createAsyncThunk(
+  "betBuq/thunkApiHome",
+  async () => {
+    let prapashtes = {
+      home: "get_sliders",
+      /*       liveCasino: `/get_slots/${allConfig.skinName}/casino_live/ios?lang=en`,
+       */
+    };
+    return fetch(`${allConfig.contentManagementAPI}/${prapashtes.home}/`)
+      .then((res) => res.json())
+      .catch((err) => console.log("has error bro"));
+  }
+);
 
 //LiveCasinoApi
-export const LiveCasinoApi = createAsyncThunk("betBuq/LiveCasinoApi", async () => {
-  let casinoLive = {
-    casino: `get_slots/${allConfig.skinName}/casino_live/ios?lang=en`,
-  };
-  return fetch(`${allConfig.contentManagementAPI}/${casinoLive.casino}`)
-    .then((res) => res.json())
-    .catch((err) => console.log("has error bro"));
-});
+export const LiveCasinoApi = createAsyncThunk(
+  "betBuq/LiveCasinoApi",
+  async () => {
+    let casinoLive = {
+      casino: `get_slots/${allConfig.skinName}/casino_live/ios?lang=en`,
+    };
+    return fetch(`${allConfig.contentManagementAPI}/${casinoLive.casino}`)
+      .then((res) => res.json())
+      .catch((err) => console.log("has error bro"));
+  }
+);
 
 //PrematchApi
 export const PrematchApi = createAsyncThunk("betbuq/PrematchApi", async () => {
   let prematchP = {
     link: "main?json&l=en",
-    link1: "sporttree_new",
   };
-  return (
-    fetch(`https://api-new.betbuq.com/prematch/${prematchP["link"]}`)
-      /*   return fetch(`${allConfig["sportBookApi"]}/${prematchP["link1"]}`) */
-      .then((res) => res.json())
-      .catch((err) => console.log("has error bro"))
-  );
+  return fetch(`https://api-new.betbuq.com/prematch/${prematchP["link"]}`)
+    .then((res) => res.json())
+    .catch((err) => console.log("has error bro"));
 });
 
 let initialState = {
   bet: { allConfig },
   sliderApiHome: [],
   LiveCasino: [],
-  Favorites: localStorage.getItem("fav") ? JSON.parse(localStorage.getItem("fav")) : [],
-  CategOrProvider: localStorage.getItem("catPro") ? JSON.parse(localStorage.getItem("catPro")) : [],
+  Favorites: localStorage.getItem("fav")
+    ? JSON.parse(localStorage.getItem("fav"))
+    : [],
+  CategOrProvider: localStorage.getItem("catPro")
+    ? JSON.parse(localStorage.getItem("catPro"))
+    : [],
   userLog: false,
   PrematchData: [],
 };
@@ -52,7 +58,9 @@ const act = createSlice({
   initialState,
   reducers: {
     addFavorites: (state, action) => {
-      const ekzistoIndex = state.Favorites.findIndex((item) => item.id === action.payload.id);
+      const ekzistoIndex = state.Favorites.findIndex(
+        (item) => item.id === action.payload.id
+      );
 
       if (ekzistoIndex >= 0) {
         state.Favorites[ekzistoIndex] = { ...state.Favorites[ekzistoIndex] };
@@ -77,10 +85,14 @@ const act = createSlice({
     },
 
     addCategProvid: (state, action) => {
-      const ekzistoCatProv = state.CategOrProvider.findIndex((I) => I.id === action.payload.id);
+      const ekzistoCatProv = state.CategOrProvider.findIndex(
+        (I) => I.id === action.payload.id
+      );
 
       if (ekzistoCatProv >= 0) {
-        state.CategOrProvider[ekzistoCatProv] = { ...state.CategOrProvider[ekzistoCatProv] };
+        state.CategOrProvider[ekzistoCatProv] = {
+          ...state.CategOrProvider[ekzistoCatProv],
+        };
       } else {
         state.CategOrProvider = [
           ...state.CategOrProvider,
@@ -95,7 +107,9 @@ const act = createSlice({
     },
 
     delCategProvid: (state, action) => {
-      const newListCategOrProv = state.CategOrProvider.filter((I) => I.id !== action.payload.id);
+      const newListCategOrProv = state.CategOrProvider.filter(
+        (I) => I.id !== action.payload.id
+      );
       state.CategOrProvider = newListCategOrProv;
 
       localStorage.setItem("catPro", JSON.stringify(state.CategOrProvider));
@@ -125,5 +139,11 @@ const act = createSlice({
   },
 });
 
-export const { addFavorites, delFavorites, addCategProvid, delCategProvid, delAllProvidrCateg } = act.actions;
+export const {
+  addFavorites,
+  delFavorites,
+  addCategProvid,
+  delCategProvid,
+  delAllProvidrCateg,
+} = act.actions;
 export default act.reducer;

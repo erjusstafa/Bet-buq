@@ -1,51 +1,5 @@
-/* import React, { Component } from 'react'
-
-class RightMenu extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            dataRightMenu: []
-        };
-    }
-
-    componentDidMount() {
-        const fullFooterHome = async () => {
-            return await fetch(" https://api-new.betbuq.com/api_user/bestWinnings")
-                .then((res) => res.json())
-                .then((menu) => this.setState({ ...this.state, dataRightMenu: menu }))
-                .catch((err) => console.log("has error bro "));
-
-        };
-        return fullFooterHome;
-
-    }
-
-
-
-
-    render() {
-        console.log("right", this.state.dataRightMenu);
-        return (
-            <div className="sport-menu-toggle">
-                {
-                    Object.values(this.props.dataRightMenu || []).map(E => (
-
-
-                        <span>
-                            {E.bet}
-                        </span>
-                    ))
-                }
-            </div>
-        )
-    }
-}
-
-export default RightMenu */
-
 import React, { useState, useEffect, Fragment } from "react";
 import PopupLoginRegister from "../LoginRegister/PopupLoginRegister";
-import ModalSearch from "./ModalSearch";
 
 function RightMenu({ allConfig }) {
   const [WinData, setWinData] = useState([]);
@@ -59,8 +13,6 @@ function RightMenu({ allConfig }) {
 
     return fetchApi;
   };
-
-  console.log("win", WinData);
 
   useEffect(() => {
     LastWinApi();
@@ -105,8 +57,7 @@ function RightMenu({ allConfig }) {
               .slice(0, 7)
               .map((L, index) => (
                 <>
-                  {console.log("L", L)}
-                  <tr className="last-winnings-title-heading-desc">
+                  <tr className="last-winnings-title-heading-desc" key={index}>
                     <td>
                       {parseFloat(L.win).toFixed(2)}{" "}
                       {allConfig["skin"]["currency-symbol"]}

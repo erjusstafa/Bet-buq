@@ -1,0 +1,179 @@
+.promo-wrapper {
+  width: 100%;
+  background: #313d42;
+
+  &-max {
+    max-width: 1352px;
+    margin: 0 auto;
+    position: relative;
+    .navigation-container {
+      display: flex;
+      justify-content: space-between;
+      background-color: #3c494e;
+      border-bottom: 2px solid #425057;
+
+      @media (max-width: 441px) {
+        flex-direction: column;
+      }
+      &-wrapper {
+        display: inline-block !important;
+        width: auto;
+        @media (max-width: 441px) {
+          background: #4d5d64;
+          border-bottom: 1px solid #6d7174;
+        }
+        .sport-home,
+        .daily-events,
+        .all-events,
+        .in-play-calendar {
+          font-size: 11px;
+          height: 100%;
+          font-weight: 700;
+          padding: 3px 11px 0;
+          display: inline-block;
+          cursor: pointer;
+          color: rgb(235, 235, 235);
+          &:hover {
+            color: #1ab7af;
+          }
+        }
+      }
+
+      > span {
+        font-size: 11px;
+        height: 100%;
+        font-weight: 700;
+        padding: 3px 11px 0;
+        display: inline-block;
+        cursor: pointer;
+        color: rgb(235, 235, 235);
+        border-left: 1px solid #6d7174;
+        height: 100%;
+        @media (max-width: 441px) {
+          border: none;
+          text-align: center;
+          background: #4d5d64;
+        }
+        &:hover {
+          color: #1ab7af;
+        }
+
+        > i.fas.fa-question {
+          color: #3c494e;
+          background-color: rgb(235, 235, 235);
+          padding: 4px;
+          font-size: 10px;
+          border-radius: 50px;
+          margin: 0 4px;
+          &:hover {
+            color: #1ab7af;
+          }
+        }
+      }
+    }
+    .promotion {
+      width: 100%;
+      display: flex;
+      background: #3c494e;
+      line-height: 42px;
+
+      &__max {
+        width: 100%;
+        max-width: 1352px;
+        margin: auto;
+
+        padding: 40px 0;
+
+        > div {
+          display: flex;
+          flex-flow: row wrap;
+          justify-content: center;
+
+          @media (max-width: 800px) {
+            flex-flow: wrap column;
+            justify-content: center;
+            justify-items: center;
+          }
+          .card {
+            width: calc(30% - 10px);
+            display: flex;
+            flex-direction: column;
+            margin: 0 0 40px;
+            box-shadow: 0 0 14px 3px rgb(0 0 0 / 60%);
+            border-radius: 3px;
+            margin: 20px;
+            height: 190px;
+            color: aliceblue;
+
+            @media (max-width: 800px) {
+              width: auto;
+              padding: 10px 20px;
+            }
+            .text-logo {
+              display: inline-flex;
+              justify-content: space-between;
+              > img {
+                display: block;
+                width: 40%;
+                float: left;
+                box-shadow: 1px 1px 20px 0 rgb(0 0 0 / 40%);
+                border-radius: 5px;
+                position: relative;
+                top: -15px;
+                left: -15px;
+                object-fit: cover;
+
+                @media (max-width: 1045px) {
+                  width: 30%;
+                }
+              }
+              .slug-subtittle {
+                margin: auto;
+                padding: 10px 0;
+                #paragraph-promo {
+                  > p {
+                    line-height: 1;
+                    text-align: center;
+                  }
+                  p:first-child {
+                    font-weight: 700;
+                    font-size: 18px;
+                    text-transform: uppercase;
+                    text-align: center;
+
+                    @media (max-width: 1045px) {
+                      font-size: 15px;
+                    }
+                  }
+                }
+
+                #read-more {
+                  font-size: 14px;
+                  line-height: 20px;
+                  padding: 8px;
+                  border-radius: 3px;
+                  display: block;
+                  width: 150px;
+                  text-align: center;
+                  cursor: pointer;
+                  margin-left: auto;
+                  background-color: #1ab7af;
+                  outline: none;
+                  border: none;
+                  align-items: flex-end;
+                  margin: auto;
+                  position: relative;
+                  bottom: -40px;
+                  @media (max-width: 1045px) {
+                    padding: 6px;
+                    width: 110px;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

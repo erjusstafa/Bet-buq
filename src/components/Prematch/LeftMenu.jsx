@@ -1,5 +1,4 @@
 import React, { Fragment, useState } from "react";
-import { useSelector } from "react-redux";
 import ModalSearch from "./ModalSearch";
 
 function LeftMenu({ allConfig, iconSport, toggleIcon }) {
@@ -23,11 +22,6 @@ function LeftMenu({ allConfig, iconSport, toggleIcon }) {
     setTabsHourToggle(tabs);
   };
 
-  const SportsItem = useSelector((state) => state.betbuqsport.PrematchData);
-
-  console.log("SportsItem", SportsItem);
-
-  ///////////
   const [Sport, setSport] = useState([]);
 
   const SportApi = async () => {
@@ -39,11 +33,9 @@ function LeftMenu({ allConfig, iconSport, toggleIcon }) {
     return fetchApi;
   };
 
-  console.log("Sport", Sport);
-
   React.useEffect(() => {
     SportApi();
-  }, []);
+  });
 
   return (
     <Fragment>
@@ -138,7 +130,6 @@ function LeftMenu({ allConfig, iconSport, toggleIcon }) {
 
       <div className="left-sport">
         {Object.values(Sport || []).map((R, index) => {
-          console.log("R", R);
           return (
             <>
               {tabsHourToggle === R.order && (
@@ -177,8 +168,9 @@ function LeftMenu({ allConfig, iconSport, toggleIcon }) {
                       ) : null}
 
                       <span className="icon">
-                        {allConfig["iconSport"].map((C) => (
+                        {allConfig["iconSport"].map((C, index) => (
                           <i
+                            key={index}
                             className={
                               allConfig["betConstructWidget"] ? C : "icon"
                             }

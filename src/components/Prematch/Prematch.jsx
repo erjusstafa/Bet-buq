@@ -1,23 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./style.scss";
-import { useDispatch } from "react-redux";
 import allConfig from "../../config/allConfig";
-import { PrematchApi } from "../../redux-toolkit/store/store";
 import { Link } from "react-router-dom";
 import LeftMenu from "./LeftMenu";
 import MiddleMenu from "./MiddleMenu";
 import RightMenu from "./RightMenu";
+import MiddleQuotaPrematch from "./MiddleQuotaPrematch";
 
 function Prematch() {
-  const dispatch = useDispatch();
   const [iconSport, setIconSport] = useState(false);
 
   const toggleIcon = () => {
     setIconSport(!iconSport);
   };
-  useEffect(() => {
-    dispatch(PrematchApi());
-  }, [dispatch]);
+
   return (
     <div
       className={
@@ -66,6 +62,7 @@ function Prematch() {
 
           <div className={!iconSport ? "middle-menu-sportbook" : "middle"}>
             <MiddleMenu allConfig={allConfig} />
+            <MiddleQuotaPrematch />
           </div>
           <div className="right-menu-sportbook">
             <RightMenu allConfig={allConfig} />

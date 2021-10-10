@@ -62,7 +62,7 @@
       top: 0;
       left: -100%;
       opacity: 1;
-      transition: all 0.9s ease;
+      transition: all 0.5s ease;
 
       &.active {
         background-color: #47565c;
@@ -391,7 +391,7 @@
         top: 0;
         right: -100%;
         opacity: 1;
-        transition: all 0.9s ease;
+        transition: all 0.5s ease;
 
         &.active {
           display: flex;

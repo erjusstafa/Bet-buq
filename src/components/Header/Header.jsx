@@ -73,7 +73,7 @@ const Header = () => {
                         : inputIcon.Name.placeholderIT
                     }
                   />
-                  <i className={inputIcon && inputIcon.Name.icon} />
+                  <i className={inputIcon ? inputIcon.Name.icon : undefined} />
                 </span>
                 <span style={{ position: "relative" }}>
                   <input
@@ -87,7 +87,9 @@ const Header = () => {
                         : inputIcon.Password.placeholderIT
                     }
                   />
-                  <i className={inputIcon && inputIcon.Password.icon} />
+                  <i
+                    className={inputIcon ? inputIcon.Password.icon : undefined}
+                  />
                 </span>
               </div>
               <div className="button-header">
@@ -257,7 +259,7 @@ class HeaderBottom extends React.Component {
                 <h2 className={this.state.idLink === L["id"] ? "active" : null}>
                   {L.name}
                 </h2>
-                <p className={L.tag && "tag"}>{L.tag}</p>
+                <p className={L.tag ? "tag" : ""}>{L.tag}</p>
               </Link>
             ))}
           </div>

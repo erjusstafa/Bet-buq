@@ -6,7 +6,6 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 function Home() {
-  /*     const link = useSelector((state) => state.betbuqsport.bet.allConfig.routes); */
   const linkSlot = useSelector(
     (state) => state.betbuqsport.bet.allConfig.linkSlots
   );
