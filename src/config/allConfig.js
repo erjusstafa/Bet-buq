@@ -10,6 +10,7 @@ const allConfig = {
   contentManagementAPI: "https://content.betbuq.com",
   skinName: "Betbuq",
   sportBookApi: "https://apisport.playlogiq.com",
+
   skin: {
     id: 3,
     name: "Betbuq",
@@ -18,8 +19,7 @@ const allConfig = {
     "currency-symbol": "€",
   },
 
-  descriptionBox:
-    "Insert the events name on at least one team in the form below",
+  descriptionBox: "Insert the events name on at least one team in the form below",
   getSlider: true,
   slider: {
     slider1: {
@@ -99,13 +99,13 @@ const allConfig = {
     // Esports: {
     //   name: 'Esports', link: '/esports', path: "/esports", tag: "", target: '_self'
     // },
-    /*     Casino: {
+    Casino: {
       name: "Casino",
       link: "/casino",
       path: "/casino/:path1?/:path2?",
       tag: "Bonus",
       target: "_self",
-    }, */
+    },
     LiveCasino: {
       name: "Live Casino",
       link: "/live-casino",

@@ -1,33 +1,38 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import allConfig from "../../config/allConfig";
-
+import axios from "axios";
 //thunkApiHome
-export const thunkApiHome = createAsyncThunk(
-  "betBuq/thunkApiHome",
-  async () => {
-    let prapashtes = {
-      home: "get_sliders",
-      /*       liveCasino: `/get_slots/${allConfig.skinName}/casino_live/ios?lang=en`,
-       */
-    };
-    return fetch(`${allConfig.contentManagementAPI}/${prapashtes.home}/`)
-      .then((res) => res.json())
-      .catch((err) => console.log("has error bro"));
-  }
-);
+export const thunkApiHome = createAsyncThunk("betBuq/thunkApiHome", async () => {
+  let prapashtes = {
+    home: "get_sliders",
+    /*       liveCasino: `/get_slots/${allConfig.skinName}/casino_live/ios?lang=en`,
+     */
+  };
+  return fetch(`${allConfig.contentManagementAPI}/${prapashtes.home}/`)
+    .then((res) => res.json())
+    .catch((err) => console.log(" error bro"));
+});
+
+//CasinoApi
+export const CasinoApi = createAsyncThunk("betBuq/CasinoApi", async () => {
+  let casino = {
+    casino: `get_slots/casino/ios?lang=en`,
+  };
+
+  return fetch("https://stagingbackoffice.playlogiq.com/Betbuq/get_slots/casino/ios?lang=en")
+    .then((res) => res.json())
+    .catch((err) => console.log(" error bro"));
+});
 
 //LiveCasinoApi
-export const LiveCasinoApi = createAsyncThunk(
-  "betBuq/LiveCasinoApi",
-  async () => {
-    let casinoLive = {
-      casino: `get_slots/${allConfig.skinName}/casino_live/ios?lang=en`,
-    };
-    return fetch(`${allConfig.contentManagementAPI}/${casinoLive.casino}`)
-      .then((res) => res.json())
-      .catch((err) => console.log("has error bro"));
-  }
-);
+export const LiveCasinoApi = createAsyncThunk("betBuq/LiveCasinoApi", async () => {
+  let casinoLive = {
+    casino: `get_slots/${allConfig.skinName}/casino_live/ios?lang=en`,
+  };
+  return fetch(`${allConfig.contentManagementAPI}/${casinoLive.casino}`)
+    .then((res) => res.json())
+    .catch((err) => console.log(" error bro"));
+});
 
 //PrematchApi
 export const PrematchApi = createAsyncThunk("betbuq/PrematchApi", async () => {
@@ -42,13 +47,10 @@ export const PrematchApi = createAsyncThunk("betbuq/PrematchApi", async () => {
 let initialState = {
   bet: { allConfig },
   sliderApiHome: [],
+  CasinoData: [],
   LiveCasino: [],
-  Favorites: localStorage.getItem("fav")
-    ? JSON.parse(localStorage.getItem("fav"))
-    : [],
-  CategOrProvider: localStorage.getItem("catPro")
-    ? JSON.parse(localStorage.getItem("catPro"))
-    : [],
+  Favorites: localStorage.getItem("fav") ? JSON.parse(localStorage.getItem("fav")) : [],
+  CategOrProvider: localStorage.getItem("catPro") ? JSON.parse(localStorage.getItem("catPro")) : [],
   userLog: false,
   PrematchData: [],
 };
@@ -58,9 +60,7 @@ const act = createSlice({
   initialState,
   reducers: {
     addFavorites: (state, action) => {
-      const ekzistoIndex = state.Favorites.findIndex(
-        (item) => item.id === action.payload.id
-      );
+      const ekzistoIndex = state.Favorites.findIndex((item) => item.id === action.payload.id);
 
       if (ekzistoIndex >= 0) {
         state.Favorites[ekzistoIndex] = { ...state.Favorites[ekzistoIndex] };
@@ -85,9 +85,7 @@ const act = createSlice({
     },
 
     addCategProvid: (state, action) => {
-      const ekzistoCatProv = state.CategOrProvider.findIndex(
-        (I) => I.id === action.payload.id
-      );
+      const ekzistoCatProv = state.CategOrProvider.findIndex((I) => I.id === action.payload.id);
 
       if (ekzistoCatProv >= 0) {
         state.CategOrProvider[ekzistoCatProv] = {
@@ -107,9 +105,7 @@ const act = createSlice({
     },
 
     delCategProvid: (state, action) => {
-      const newListCategOrProv = state.CategOrProvider.filter(
-        (I) => I.id !== action.payload.id
-      );
+      const newListCategOrProv = state.CategOrProvider.filter((I) => I.id !== action.payload.id);
       state.CategOrProvider = newListCategOrProv;
 
       localStorage.setItem("catPro", JSON.stringify(state.CategOrProvider));
@@ -136,14 +132,13 @@ const act = createSlice({
       state.PrematchData = payload;
       state.status = "success";
     },
+
+    [CasinoApi.fulfilled]: (state, { payload }) => {
+      state.CasinoData = payload;
+      state.status = "success";
+    },
   },
 });
 
-export const {
-  addFavorites,
-  delFavorites,
-  addCategProvid,
-  delCategProvid,
-  delAllProvidrCateg,
-} = act.actions;
+export const { addFavorites, delFavorites, addCategProvid, delCategProvid, delAllProvidrCateg } = act.actions;
 export default act.reducer;

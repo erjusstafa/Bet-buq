@@ -93,7 +93,7 @@ function CasinoLive() {
                 className={
                   "heart " +
                   (myindex.isActive !== myindex.favouriteId ||
-                  myindex.idAllGames !== myindex.favouriteId
+                    myindex.idAllGames !== myindex.favouriteId
                     ? "active"
                     : "")
                 }
@@ -190,39 +190,39 @@ const ToggleSlots = ({
             .map((F, f) => {
               return myindex
                 ? Object.values(
-                    JSON.parse(F.categories || "{}")
-                      .sort((a, b) => (a.name > b.name ? -1 : 1))
-                      .filter((Y) => Y.id === myindex)
-                      .map(
-                        (R) =>
-                          R.id === myindex && (
-                            <ItemSlots
-                              R={R}
-                              F={F}
-                              heartIcon={heartIcon}
-                              openPopup={openPopup}
-                              setOpenPopup={setOpenPopup}
-                              handleChangePopup={handleChangePopup}
-                            />
-                          )
-                      )
-                  )
+                  JSON.parse(F.categories || "{}")
+                    .sort((a, b) => (a.name > b.name ? -1 : 1))
+                    .filter((Y) => Y.id === myindex)
+                    .map(
+                      (R) =>
+                        R.id === myindex && (
+                          <ItemSlots
+                            R={R}
+                            F={F}
+                            heartIcon={heartIcon}
+                            openPopup={openPopup}
+                            setOpenPopup={setOpenPopup}
+                            handleChangePopup={handleChangePopup}
+                          />
+                        )
+                    )
+                )
                 : Object.values(
-                    JSON.parse(F.categories || "{}").map((R) => (
-                      <div className="allslots" key={R && R.id}>
-                        <h2 style={{ color: "white" }}>{R.name}</h2>
-                        <AllSlots
-                          catId={R.id}
-                          R={R}
-                          F={F}
-                          heartIcon={heartIcon}
-                          openPopup={openPopup}
-                          setOpenPopup={setOpenPopup}
-                          handleChangePopup={handleChangePopup}
-                        />
-                      </div>
-                    ))
-                  );
+                  JSON.parse(F.categories || "{}").map((R) => (
+                    <div className="allslots" key={R && R.id}>
+                      <h2 style={{ color: "white" }}>{R.name}</h2>
+                      <AllSlots
+                        catId={R.id}
+                        R={R}
+                        F={F}
+                        heartIcon={heartIcon}
+                        openPopup={openPopup}
+                        setOpenPopup={setOpenPopup}
+                        handleChangePopup={handleChangePopup}
+                      />
+                    </div>
+                  ))
+                );
             })
         )}
       </div>

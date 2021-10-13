@@ -42,7 +42,7 @@ const ModalCasino = ({
     dispatch(addCategProvid({ id: id, name: name }));
   };
 
-  const ref = useRef();
+  /* const ref = useRef();
   useEffect(() => {
     const clickOutSide = (e) => {
       if (ref.current && !ref.current.contains(e.target)) {
@@ -54,7 +54,7 @@ const ModalCasino = ({
     return () => {
       document.removeEventListener("click", clickOutSide);
     };
-  }, [onclose]);
+  }, [onclose]); */
 
   const dispatch = useDispatch();
   let providersData = Object.values(allDataCasinoLive?.providers || {}).map(
@@ -137,7 +137,7 @@ const ModalCasino = ({
   );
   return (
     <div className="modalBackground ">
-      <div className="modalContainer " ref={ref}>
+      <div className="modalContainer "/*  ref={ref} */>
         <div className="titleCloseBtn">
           <button
             onClick={() => {

@@ -49,8 +49,8 @@
     transition: width 0.5s ease 0s;
     display: flex;
     justify-content: space-between;
-    @media (max-width: 778px) {
-      flex-direction: column;
+    @media (max-width: 788px) {
+      flex-direction: column !important;
       justify-content: center;
     }
     @media (max-width: 660px) {
@@ -253,7 +253,7 @@
   display: grid;
   background: #3c494e;
   border-bottom: 1px solid #475a61;
-  min-height: 80px;
+  min-height: 48px;
   padding: 10px;
   place-items: center;
 

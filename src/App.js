@@ -11,6 +11,7 @@ import Prematch from "./components/Prematch/Prematch";
 import allConfig from "./config/allConfig";
 import Promo from "./components/Promo/Promo";
 import Livebeting from "./components/Live/Livebeting";
+import Casino from "./components/Casino/Casino";
 
 function App() {
   const dispatch = useDispatch();
@@ -26,26 +27,11 @@ function App() {
         <Header />
         <Switch>
           <Route exact path="/" component={() => <Home />} />
-          <Route
-            exact
-            path={`${allConfig["routes"]["Prematch"]["link"]}`}
-            component={() => <Prematch />}
-          />
-          <Route
-            exact
-            path={`${allConfig["routes"]["Live"]["link"]}`}
-            component={() => <Livebeting />}
-          />
-          <Route
-            exact
-            path={`${allConfig["routes"]["LiveCasino"]["link"]}`}
-            component={() => <CasinoLive />}
-          />{" "}
-          <Route
-            exact
-            path={`${allConfig["routes"]["Contents"].link}`}
-            component={() => <Promo />}
-          />
+          <Route exact path={`${allConfig["routes"]["Prematch"]["link"]}`} component={() => <Prematch />} />
+          <Route exact path={`${allConfig["routes"]["Live"]["link"]}`} component={() => <Livebeting />} />
+          <Route exact path={`${allConfig["routes"]["Casino"].link}`} component={() => <Casino />} />
+          <Route exact path={`${allConfig["routes"]["LiveCasino"]["link"]}`} component={() => <CasinoLive />} />{" "}
+          <Route exact path={`${allConfig["routes"]["Contents"].link}`} component={() => <Promo />} />
         </Switch>
         <Footer />
       </Router>
