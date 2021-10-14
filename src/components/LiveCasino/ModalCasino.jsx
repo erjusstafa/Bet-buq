@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect, Fragment } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import allConfig from "../../config/allConfig";
 import {
   addCategProvid,
   addFavorites,
@@ -26,6 +27,7 @@ const ModalCasino = ({
   const handleChangePopup = () => {
     setOpenPopup(false);
   };
+
 
   const handleToggle = () => {
     setToggle(!toggle);
@@ -169,80 +171,85 @@ const ModalCasino = ({
         {/**  modal content */}
         <div className={!toggle ? "content" : "content-toggle"}>
           <div className="tabsModal--contentOne">
-            <div className="add">
-              <span>
-                <span
-                  className={tabsModal === 0 ? "active" : ""}
-                  onClick={() => handleTabs(0)}
-                >
-                  Search Result
-                </span>
-                <span
-                  className={tabsModal === 1 ? "active" : ""}
-                  onClick={() => handleTabs(1)}
-                >
-                  Favorites({counterFavorites.length})
-                </span>
-              </span>
-              <div className="all--categ--provider">
-                {Object.values(counterFilter || {}).map((F) => (
-                  <span className="added--categ--provider">
-                    <p>{F.name}</p>
-                    <i
-                      onClick={() => dispatch(delCategProvid(F))}
-                      className="fas fa-times"
-                    />
+            {
+              //////////////////////////////////////////////////////////
+              window.location.href.match(`http://localhost:3000${allConfig.routes["LiveCasino"]["link"]}`) ?
+                <div className="add">
+                  <span>
+                    <span
+                      className={tabsModal === 0 ? "active" : ""}
+                      onClick={() => handleTabs(0)}
+                    >
+                      Search Result
+                    </span>
+                    <span
+                      className={tabsModal === 1 ? "active" : ""}
+                      onClick={() => handleTabs(1)}
+                    >
+                      Favorites({counterFavorites.length})
+                    </span>
                   </span>
-                ))}
-                {counterFilter.length >= 1 ? (
-                  <button onClick={() => dispatch(delAllProvidrCateg())}>
-                    Clear Filters !
-                  </button>
-                ) : null}
-              </div>
-              <div>
-                <span>
-                  {tabsModal === 0 && (
-                    <div className="one--content">
-                      {displaySlots.length <= 0 ? (
-                        <p>Opss! Sorry , no results for this criteria</p>
-                      ) : (
-                        displaySlots
+                  <div className="all--categ--provider">
+                    {Object.values(counterFilter || {}).map((F) => (
+                      <span className="added--categ--provider">
+                        <p>{F.name}</p>
+                        <i
+                          onClick={() => dispatch(delCategProvid(F))}
+                          className="fas fa-times"
+                        />
+                      </span>
+                    ))}
+                    {counterFilter.length >= 1 ? (
+                      <button onClick={() => dispatch(delAllProvidrCateg())}>
+                        Clear Filters !
+                      </button>
+                    ) : null}
+                  </div>
+                  <div>
+                    <span>
+                      {tabsModal === 0 && (
+                        <div className="one--content">
+                          {displaySlots.length <= 0 ? (
+                            <p>{allConfig["dangerText"]}</p>
+                          ) : (
+                            displaySlots
+                          )}
+                        </div>
                       )}
-                    </div>
-                  )}
-                </span>
-                <span>
-                  {tabsModal === 1 ? (
-                    counterFavorites.length <= 0 ? (
-                      <p>Opss! Sorry , no results for this criteria</p>
-                    ) : (
-                      <div className="fav--added">
-                        {Object.values(counterFavorites || {})
-                          .filter((P) =>
-                            val === ""
-                              ? P
-                              : P.name.toLowerCase().includes(val.toLowerCase())
-                          )
-                          .map((P) => (
-                            <div className="item--fav">
-                              <img src={P.desktop_logo} alt="" />
-                              <span>
-                                <p>{P.name}</p>
-                                <i
-                                  className={heartIcon}
-                                  to
-                                  onClick={() => dispatch(delFavorites(P))}
-                                />
-                              </span>
-                            </div>
-                          ))}
-                      </div>
-                    )
-                  ) : null}
-                </span>
-              </div>
-            </div>
+                    </span>
+                    <span>
+                      {tabsModal === 1 ? (
+                        counterFavorites.length <= 0 ? (
+                          <p>{allConfig["dangerText"]}</p>
+                        ) : (
+                          <div className="fav--added">
+                            {Object.values(counterFavorites || {})
+                              .filter((P) =>
+                                val === ""
+                                  ? P
+                                  : P.name.toLowerCase().includes(val.toLowerCase())
+                              )
+                              .map((P) => (
+                                <div className="item--fav">
+                                  <img src={P.desktop_logo} alt="" />
+                                  <span>
+                                    <p>{P.name}</p>
+                                    <i
+                                      className={heartIcon}
+                                      to
+                                      onClick={() => dispatch(delFavorites(P))}
+                                    />
+                                  </span>
+                                </div>
+                              ))}
+                          </div>
+                        )
+                      ) : null}
+                    </span>
+                  </div>
+                </div>
+                : null
+            }
           </div>
 
           {toggle ? (

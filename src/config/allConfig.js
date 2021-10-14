@@ -187,7 +187,7 @@ const allConfig = {
   ],
 
   iconSport: ["fas fa-basketball-ball"],
-
+  dangerText: "Opss! Sorry , no results for this criteria",
   paths: {},
   //useSoftionWirecard: 'https://betbuq.com',
   defaults: {

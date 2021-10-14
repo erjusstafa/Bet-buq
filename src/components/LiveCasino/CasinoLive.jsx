@@ -16,13 +16,9 @@ function CasinoLive() {
     setLoading(true);
   }, [dispatch]);
 
-  const bannerCasinoLive = useSelector(
-    (state) => state.betbuqsport.sliderApiHome.result?.casino_live
-  );
+  const bannerCasinoLive = useSelector((state) => state.betbuqsport.sliderApiHome.result?.casino_live);
 
-  const allDataCasinoLive = useSelector(
-    (state) => state?.betbuqsport?.LiveCasino?.result
-  );
+  const allDataCasinoLive = useSelector((state) => state?.betbuqsport?.LiveCasino?.result);
 
   const [isLoading, setLoading] = useState(true);
   const [colorHeart, setColorHeart] = useState("");
@@ -50,7 +46,7 @@ function CasinoLive() {
   const [modalOpen, setModalOpen] = useState(false);
 
   //icon
-  let heartIcon = "far fa-heart";
+  let heartIcon = "fas fa-heart";
   let searchIcon = "fas fa-search";
   let alignRight = "fas fa-align-right";
   let searchFor = "Search for a game";
@@ -64,8 +60,7 @@ function CasinoLive() {
             key={A ? A.id : index}
             onClick={() => ChangeIndex(A.id, A.name)}
             className={
-              A?.name.split(" ")[0].replace(/\s+/g, "").toLowerCase() +
-              (myindex.isActive === A.id ? " active" : "")
+              A?.name.split(" ")[0].replace(/\s+/g, "").toLowerCase() + (myindex.isActive === A.id ? " active" : "")
             }
           >
             {A.name}
@@ -92,8 +87,7 @@ function CasinoLive() {
                 onClick={() => ChangeIndex()}
                 className={
                   "heart " +
-                  (myindex.isActive !== myindex.favouriteId ||
-                    myindex.idAllGames !== myindex.favouriteId
+                  (myindex.isActive !== myindex.favouriteId || myindex.idAllGames !== myindex.favouriteId
                     ? "active"
                     : "")
                 }
@@ -103,31 +97,23 @@ function CasinoLive() {
               </span>
               <p
                 onClick={() => ChangeIndex(myindex.idAllGames)}
-                className={
-                  "all-games " +
-                  (myindex.isActive === myindex.idAllGames ? "active" : "")
-                }
+                className={"all-games " + (myindex.isActive === myindex.idAllGames ? "active" : "")}
               >
                 All Games
               </p>
               {categories}
             </div>
-            <div className="search-game">
-              <span
-                className="search"
-                onClick={() => {
-                  setModalOpen(true);
-                }}
-              >
+            <div
+              className="search-game"
+              onClick={() => {
+                setModalOpen(true);
+              }}
+            >
+              <span className="search">
                 <i className={searchIcon} />
                 <p>{searchFor}</p>
               </span>
-              <span
-                className="provider "
-                onClick={() => {
-                  setModalOpen(true);
-                }}
-              >
+              <span className="provider ">
                 <p>Providers</p>
                 <i className={alignRight} />
               </span>
@@ -163,15 +149,7 @@ function CasinoLive() {
 
 export default CasinoLive;
 
-const ToggleSlots = ({
-  Slots,
-  myindex,
-  heartIcon,
-  mytxt,
-  loadMore,
-  moreSlots,
-  dispatch,
-}) => {
+const ToggleSlots = ({ Slots, myindex, heartIcon, mytxt, loadMore, moreSlots, dispatch }) => {
   const [openPopup, setOpenPopup] = useState(false);
 
   const handleChangePopup = () => {
@@ -181,7 +159,10 @@ const ToggleSlots = ({
   return (
     <div className="Slot">
       <div className="sort-category">
-        {myindex ? <h2>{mytxt}</h2> : <h2>{mytxt}</h2>}
+        {myindex ?
+          <h2>{mytxt}</h2>
+          :
+          <h2>{mytxt}</h2>}
       </div>
       <div className={mytxt ? "slot-images" : "all-slot-images"}>
         {Object.values(Slots?.providers || {}).map((T) =>

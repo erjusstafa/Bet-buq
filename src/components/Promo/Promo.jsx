@@ -109,7 +109,7 @@ class PromoItem extends Component {
     } */
 
   render() {
-    console.log("SSSSluggggg", this.state.data);
+    console.log("Slug", this.state.data);
 
     return (
       <Fragment>
