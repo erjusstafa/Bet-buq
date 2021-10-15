@@ -5,6 +5,8 @@ import { CasinoApi } from "../../redux-toolkit/store/store";
 import BannerLiveCasino from "../LiveCasino/BannerLiveCasino";
 import "./casino.scss";
 import ModalCasino from "../LiveCasino/ModalCasino";
+import CasinoAllGames from "./CasinoAllGames";
+
 function Casino() {
     const dispatch = useDispatch();
 
@@ -30,7 +32,7 @@ function Casino() {
     };
 
     let categories = Object.values(displayNameCateg?.categories || {})
-        .slice(0, 9)
+        .filter((F) => F.id !== 13 && F.id !== 12 && F.id !== 28)
         .map((C) => (
             <p
                 className={idLink.link === C.id && C.name === idLink.activeText ? "active" : ""}
@@ -64,6 +66,9 @@ function Casino() {
                             All Games
                         </p>
                         {categories ? categories : null}
+                        <p onClick={() => changeId(7777, idLink.activeText)} className={idLink.other === 7777 ? "active" : ""}>
+                            Providers
+                        </p>
                     </div>
                     <div
                         className="search-game"
@@ -112,26 +117,49 @@ function CasinoWrapper({ displayNameCateg, idFavAllImag, link, text, categories,
         <div className="Slot">
             {idFavAllImag === 8888 && <p>{idFavAllImag}</p>}
 
+            <CasinoAllGames
+                allConfig={allConfig}
+                idFavAllImag={idFavAllImag}
+                displayNameCateg={displayNameCateg}
+                categoriesZero={categories[0]?.props?.children}
+                categoriesOne={categories[1]?.props?.children}
+                categoriesTwo={categories[2]?.props?.children}
+                categoriesThree={categories[3]?.props.children}
+                categoriesFour={categories[4]?.props?.children}
+                categoriesFive={categories[5]?.props?.children}
+                categoriesSix={categories[6]?.props?.children}
+                categoriesSeven={categories[7]?.props?.children}
+                heartIcon={heartIcon}
+            />
 
-            {idFavAllImag === 9999 ? (
-                <div className="category-all-games">
-                    <>
-
-                        <div className="category-item-games">
-                            <CasinoAllGames displayNameCateg={displayNameCateg} heartIcon={heartIcon} link={link} />
-                        </div>
-                    </>
-                </div>
-            ) : null}
-
-            {link && (
+            {link ? (
                 <>
                     <p>{text}</p>
                     <div className="category-item-games">
                         <CasinoItemGames displayNameCateg={displayNameCateg} heartIcon={heartIcon} link={link} />
                     </div>
                 </>
-            )}
+            ) : null}
+
+            {idFavAllImag === 7777 ? (
+
+                <>
+                    <p>Providers</p>
+                    <div className="category-item-games">
+
+                        {Object.values(displayNameCateg?.providers || {}).map((H, index) => (
+                            <Fragment key={index}>
+                                <div className="images-name">
+                                    <img src={H?.provider_logo} alt="" />
+                                    <span>
+                                        <p>{H.name}</p>
+                                    </span>
+                                </div>
+                            </Fragment>
+                        ))}
+                    </div>
+                </>
+            ) : null}
         </div>
     );
 }
@@ -147,10 +175,12 @@ class CasinoItemGames extends Component {
     }
 
     handleAddActive(activeFav) {
-        this.setState(this.setState({
-            activeFav: activeFav,
-            colorFav: !this.state.colorFav
-        }));
+        this.setState(
+            this.setState({
+                activeFav: activeFav,
+                colorFav: !this.state.colorFav,
+            })
+        );
     }
     render() {
         return Object.values(this.props.displayNameCateg?.providers || {}).map((H, index) => (
@@ -159,7 +189,7 @@ class CasinoItemGames extends Component {
                     <Fragment key={S.id}>
                         {this.props.link &&
                             Object.values(JSON.parse(S.categories || "{}"))
-                                .filter((N) => N.id === this.props.link || N.name === this.props.text)
+                                .filter((N) => N.id === this.props.link)
                                 .map((N) => (
                                     <div className="images-name">
                                         <img src={S?.desktop_logo} alt="" />
@@ -167,52 +197,9 @@ class CasinoItemGames extends Component {
                                             <p>{S.name.length > 20 ? S.name.substring(0, 19) + "..." : S.name}</p>
                                             <i
                                                 onClick={this.handleAddActive}
-                                                className={`${this.props.heartIcon + ` ${this.state.activeFav ? "addedd" : ""}`}`}
+                                                className={`${this.props.heartIcon} `}
                                                 style={{ color: `${!this.state.colorFav ? "" : "#1ab7af"}` }}
                                             />
-                                        </span>
-                                    </div>
-                                ))
-
-                          /*   : Object.values(JSON.parse(S.categories || "{}"))
-                                .map((N) => (
-                                    <div className="images-name">
-                                        <img src={S.desktop_logo} alt="" />
-                                        <span>
-                                            <p>{S.name.length > 20 ? S.name.substring(0, 19) + "..." : S.name}</p>
-                                            <i
-                                                onClick={this.handleAddActive}
-                                                className={`${this.props.heartIcon + ` ${this.state.activeFav ? "addedd" : ""}`}`}
-                                                style={{ color: `${!this.state.colorFav ? "" : "#1ab7af"}` }}
-                                            />
-                                        </span>
-                                    </div>
-                                )) */}
-                    </Fragment>
-                ))}
-            </Fragment>
-        ));
-    }
-}
-
-class CasinoAllGames extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {};
-    }
-    render() {
-        return Object.values(this.props.displayNameCateg?.providers || {}).map((H, index) => (
-            <Fragment key={index}>
-                {Object.values(H.slots || {}).map((S) => (
-                    <Fragment key={S.id}>
-                        {
-                            Object.values(JSON.parse(S.categories || "{}"))
-                                .map((N) => (
-                                    <div className="images-name">
-                                        <img src={S?.desktop_logo} alt="" />
-                                        <span>
-                                            <p>{S.name.length > 10 ? S.name.substring(0, 19) + "..." : S.name}</p>
-                                            <i className={this.props.heartIcon} />
                                         </span>
                                     </div>
                                 ))}
@@ -222,3 +209,40 @@ class CasinoAllGames extends Component {
         ));
     }
 }
+/* 
+class CasinoAllGames extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {};
+    }
+    render() {
+
+        <div className="category-item-games">
+                            <p className={"categ-name" + categories[0]?.props?.children}>{categories[0]?.props?.children}</p>
+                            <div className="all-images-text">
+                                {Object.values(displayNameCateg?.providers || {}).map((H, index) => (
+                                    <div key={index} className="all">
+                                        {Object.values(H.slots || {}).map((S) => (
+                                            <Fragment key={S.id}>
+                                                {Object.values(JSON.parse(S.categories || "{}"))
+                                                    .slice(0, 2)
+                                                    .filter((N) => N.name === categories[0]?.props?.children)
+                                                    .map((N) => (
+                                                        <div className="images-name">
+                                                            <img src={S?.desktop_logo} alt="" />
+                                                            <span>
+                                                                <p>{S.name.length > 20 ? S.name.substring(0, 19) + "..." : S.name}</p>
+                                                                <i className={heartIcon} />
+                                                            </span>
+                                                        </div>
+                                                    ))}
+                                            </Fragment>
+                                        ))}
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+        return 
+    }
+}
+ */
