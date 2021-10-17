@@ -1,7 +1,7 @@
-import { Carousel } from "antd";
 import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
 import image from "../../images/images";
+import Slider from "react-slick";
 
 function CasinoAllGames({
   allConfig,
@@ -21,6 +21,42 @@ function CasinoAllGames({
   /*  let wave = setTimeout(() => {
     <img src={image.wave} alt="" />;
   }, 4000); */
+
+  var settings = {
+    dots: true,
+    infinite: false,
+    speed: 500,
+    slidesToShow: 4,
+    slidesToScroll: 4,
+    initialSlide: 0,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+          infinite: true,
+          dots: true,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          initialSlide: 2,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
+  };
+
   return (
     <Fragment>
       {idFavAllImag === 9999 ? (
@@ -30,7 +66,7 @@ function CasinoAllGames({
               <span style={{ padding: "0 20px" }}>
                 <p className="categ-name">{categoriesFive}</p>
                 <Link id="link">
-                  All Games <i class="fas fa-angle-right" />
+                  All Games <i className="fas fa-angle-right" />
                 </Link>
               </span>
               <div className="all-images-text">
@@ -72,7 +108,7 @@ function CasinoAllGames({
                   {categoriesZero}
                 </p>
                 <Link id="link">
-                  All Games <i class="fas fa-angle-right" />
+                  All Games <i className="fas fa-angle-right" />
                 </Link>
               </span>
               <div className="all-images-text">
@@ -115,7 +151,7 @@ function CasinoAllGames({
               <span>
                 <p className="categ-name">{categoriesOne}</p>
                 <Link id="link">
-                  All Games <i class="fas fa-angle-right" />
+                  All Games <i className="fas fa-angle-right" />
                 </Link>
               </span>
               <div className="all-images-text">
@@ -155,7 +191,7 @@ function CasinoAllGames({
               <span>
                 <p className="categ-name">{categoriesTwo}</p>
                 <Link id="link">
-                  All Games <i class="fas fa-angle-right" />
+                  All Games <i className="fas fa-angle-right" />
                 </Link>
               </span>
               <div className="all-images-text">
@@ -192,7 +228,7 @@ function CasinoAllGames({
               <span>
                 <p className="categ-name">{categoriesThree}</p>
                 <Link id="link">
-                  All Games <i class="fas fa-angle-right" />
+                  All Games <i className="fas fa-angle-right" />
                 </Link>
               </span>
               <div className="all-images-text">
@@ -229,7 +265,7 @@ function CasinoAllGames({
               <span>
                 <p className="categ-name">{categoriesFour}</p>
                 <Link id="link">
-                  All Games <i class="fas fa-angle-right" />
+                  All Games <i className="fas fa-angle-right" />
                 </Link>
               </span>
               <div className="all-images-text">
@@ -266,7 +302,7 @@ function CasinoAllGames({
               <span>
                 <p className="categ-name">{categoriesSix}</p>
                 <Link id="link">
-                  All Games <i class="fas fa-angle-right" />
+                  All Games <i className="fas fa-angle-right" />
                 </Link>
               </span>
               <div className="all-images-text">
@@ -303,7 +339,7 @@ function CasinoAllGames({
               <span>
                 <p className="categ-name">{categoriesSeven}</p>
                 <Link id="link">
-                  All Games <i class="fas fa-angle-right" />
+                  All Games <i className="fas fa-angle-right" />
                 </Link>
               </span>
               <div className="all-images-text">
@@ -350,41 +386,29 @@ function CasinoAllGames({
                 .slice(0, 5)
                 .map((H, index) => (
                   <div key={index} className="all">
-                    <Carousel
-                      style={{
-                        width: "100%",
-                        height: "400px",
-                        color: "#fff",
-                        lineHeight: "160px",
-                        textAlign: "center",
-                        objectFit: "cover",
-                      }}
-                      dotPosition="bottom"
-                      autoplay
-                      easing="linear"
-                    >
-                      <div className="images-name">
-                        <img
-                          style={{ width: "270px" }}
-                          src={H?.provider_logo}
-                          alt=""
-                        />
-                        <span className="end-desc">
-                          <span id="text">
-                            <p>
-                              {H.name.length > 20
-                                ? H.name.substring(0, 19) + "..."
-                                : H.name.split(" ")[0]}
-                            </p>
-                            <p> {H.name.split(" ")[0] + "!"}</p>
-                          </span>
-
-                          <span id="icon">
-                            <i class="fas fa-angle-right" />
-                          </span>
+                    {/*  <Slider {...settings}> */}
+                    <div className="images-name">
+                      <img
+                        style={{ width: "270px" }}
+                        src={H?.provider_logo}
+                        alt=""
+                      />
+                      <span className="end-desc">
+                        <span id="text">
+                          <p>
+                            {H.name.length > 20
+                              ? H.name.substring(0, 19) + "..."
+                              : H.name.split(" ")[0]}
+                          </p>
+                          <p> {H.name.split(" ")[0] + "!"}</p>
                         </span>
-                      </div>
-                    </Carousel>
+
+                        <span id="icon">
+                          <i className="fas fa-angle-right" />
+                        </span>
+                      </span>
+                    </div>
+                    {/* </Slider> */}
                   </div>
                 ))}
             </div>
