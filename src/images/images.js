@@ -8,6 +8,8 @@ export const image = {
   images: require("../assetss/footer.png").default,
   fund: require("../assetss/fund.png").default,
   topHours: require("../assetss/top-hours.png").default,
+  provider: require("../assetss/provider.svg").default,
+  wave: require("../assetss/wave.svg").default,
 };
 
 export default image;
