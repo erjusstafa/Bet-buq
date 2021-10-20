@@ -39,23 +39,11 @@ class ModalSearch extends Component {
                   E.toLowerCase().includes(this.props.value.toLowerCase())
                 )
                 .map((E) => (
-                  <>
-                    {/*  {Object.values(this.props.allConfig["info"] || {}).map(
-                      (D) => (
-                        <>
-                          {" "}
-                          <p>{D.desc_palinsesto}</p>-<p>{D.desc_sport}</p>
-                          {console.log("DD", D)}
-                        </>
-                      )
-                    )} */}
-
-                    {this.props.allConfig["list"].length <= 0 ? (
-                      <span>nuk ka te dhena</span>
-                    ) : (
-                      <p>{E}</p>
-                    )}
-                  </>
+                  this.props.allConfig["list"].length <= 0 ? (
+                    <span>nuk ka te dhena</span>
+                  ) : (
+                    <p>{E}</p>
+                  )
                 ))}
             </div>
           </div>

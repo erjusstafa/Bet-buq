@@ -76,7 +76,7 @@
     > p {
       margin-left: 20px;
       cursor: pointer;
-      margin-top: revert !important;
+      margin-top: 15px !important;
       margin-bottom: revert !important;
       color: rgb(167, 167, 167);
       font-weight: bolder;
@@ -93,6 +93,9 @@
       color: rgb(255, 255, 255);
       opacity: 1;
       font-weight: bold;
+      font-size: 13px;
+      top: -2px;
+      position: relative;
     }
 
     .heart {

@@ -79,7 +79,6 @@ const ModalCasino = ({
         key={C.id}
         onClick={() => setActiveAddProCat(C.id, C.name)}
       >
-        {" "}
         {C.name}
       </p>
     )
@@ -98,7 +97,7 @@ const ModalCasino = ({
     (E) =>
       Object.values(E.slots || {})
         .filter((Q) =>
-          val === "" ? Q : Q.name.toLowerCase().includes(val.toLowerCase())
+          val === null ? Q : Q.name.toLowerCase().includes(val.toLowerCase())
         )
         .map((Q) => (
           <div key={Q.id}>

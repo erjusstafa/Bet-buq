@@ -1,6 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import allConfig from "../../config/allConfig";
-import axios from "axios";
 //thunkApiHome
 export const thunkApiHome = createAsyncThunk("betBuq/thunkApiHome", async () => {
   let prapashtes = {
@@ -48,6 +47,7 @@ let initialState = {
   bet: { allConfig },
   sliderApiHome: [],
   CasinoData: [],
+  CasinoFav: localStorage.getItem("casFav") ? JSON.parse(localStorage.getItem("casFav")) : [],
   LiveCasino: [],
   Favorites: localStorage.getItem("fav") ? JSON.parse(localStorage.getItem("fav")) : [],
   CategOrProvider: localStorage.getItem("catPro") ? JSON.parse(localStorage.getItem("catPro")) : [],
@@ -115,6 +115,42 @@ const act = createSlice({
       state.CategOrProvider = [];
       localStorage.setItem("catPro", JSON.stringify(state.Favorites));
     },
+
+    /* sortItemCateg: (state, { payload }) => {
+      const newCasinoData = Object.values(state.CasinoData.result.providers || {}).sort((H, index) => (
+        <>
+          {Object.values(H.slots || {}).sort((a, b) => {
+            return a.payload.name > b.payload.name ? 1 : -1;
+          })}
+        </>
+      ));
+
+      state.CasinoData = newCasinoData;
+    }, */
+
+    addFavouriteCasino: (state, action) => {
+      const ekzistoIndex = state.CasinoFav.findIndex((item) => item.id === action.payload.id);
+
+      if (ekzistoIndex >= 0) {
+        const nextCasinoFav = state.CasinoFav.filter((item) => item.id !== action.payload.id);
+        state.CasinoFav = nextCasinoFav;
+      } else {
+        state.CasinoFav = [
+          ...state.CasinoFav,
+          {
+            id: action.payload.id,
+            desktop_logo: action.payload.desktop_logo,
+            name: action.payload.name,
+          },
+        ];
+      }
+      localStorage.setItem("casFav", JSON.stringify(state.CasinoFav));
+    },
+    delFavouriteCasino: (state, action) => {
+      const newCasinoFav = state.CasinoFav.filter((I) => I.id !== action.payload.id);
+      state.CasinoFav = newCasinoFav;
+      localStorage.setItem("casFav", JSON.stringify(state.CasinoFav));
+    },
   },
 
   extraReducers: {
@@ -140,5 +176,14 @@ const act = createSlice({
   },
 });
 
-export const { addFavorites, delFavorites, addCategProvid, delCategProvid, delAllProvidrCateg } = act.actions;
+export const {
+  addFavorites,
+  delFavorites,
+  addCategProvid,
+  delCategProvid,
+  delAllProvidrCateg,
+  sortItemCateg,
+  addFavouriteCasino,
+  delFavouriteCasino,
+} = act.actions;
 export default act.reducer;

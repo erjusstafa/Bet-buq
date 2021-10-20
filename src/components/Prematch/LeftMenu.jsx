@@ -48,20 +48,12 @@ function LeftMenu({ allConfig, iconSport, toggleIcon }) {
           <div className="search-event-toggle">
             <p>Search Event</p>
             <i
-              className={
-                toggleUpDownIcon ? "fas fa-angle-up" : "fas fa-angle-down"
-              }
+              className={toggleUpDownIcon ? "fas fa-angle-up" : "fas fa-angle-down"}
               onClick={() => setToggleUpDownIcon(!toggleUpDownIcon)}
             />
           </div>
 
-          <ModalSearch
-            modal={modal}
-            setModal={setModal}
-            Sport={Sport}
-            allConfig={allConfig}
-            value={value}
-          />
+          <ModalSearch modal={modal} setModal={setModal} Sport={Sport} allConfig={allConfig} value={value} />
           {!toggleUpDownIcon ? (
             <div className="desc-box">
               <p>{allConfig.descriptionBox}</p>
@@ -83,47 +75,29 @@ function LeftMenu({ allConfig, iconSport, toggleIcon }) {
         <div className="quick-filter">
           <p>Quick Filter</p>
           <div className="tabs-for-hour">
-            <span
-              onClick={() => handleTabsToggle(0)}
-              className={tabsHourToggle === 0 ? "active" : null}
-            >
+            <span onClick={() => handleTabsToggle(0)} className={tabsHourToggle === 0 ? "active" : null}>
               <p>All</p>
             </span>
-            <span
-              onClick={() => handleTabsToggle(1)}
-              className={tabsHourToggle === 1 ? "active" : null}
-            >
+            <span onClick={() => handleTabsToggle(1)} className={tabsHourToggle === 1 ? "active" : null}>
               <p>3H</p>
             </span>
-            <span
-              onClick={() => handleTabsToggle(2)}
-              className={tabsHourToggle === 2 ? "active" : null}
-            >
+            <span onClick={() => handleTabsToggle(2)} className={tabsHourToggle === 2 ? "active" : null}>
               <p>6H</p>
             </span>
-            <span
-              onClick={() => handleTabsToggle(3)}
-              className={tabsHourToggle === 3 ? "active" : null}
-            >
+            <span onClick={() => handleTabsToggle(3)} className={tabsHourToggle === 3 ? "active" : null}>
               <p>9H</p>
             </span>
-            <span
-              onClick={() => handleTabsToggle(4)}
-              className={tabsHourToggle === 4 ? "active" : null}
-            >
+            <span onClick={() => handleTabsToggle(4)} className={tabsHourToggle === 4 ? "active" : null}>
               <p>12H</p>
             </span>
-            <span
-              onClick={() => handleTabsToggle(18)}
-              className={tabsHourToggle === 18 ? "active" : null}
-            >
+            <span onClick={() => handleTabsToggle(18)} className={tabsHourToggle === 18 ? "active" : null}>
               <p>24H</p>
             </span>
           </div>
         </div>
       ) : null}
 
-      <div className="in-play-button" onClick={() => window.location.hash()}>
+      <div className="in-play-button" /* onClick={() => window.location.hash()} */>
         <i className="fas fa-stopwatch" />
         {!iconSport ? <p>IN-PLAY</p> : null}{" "}
       </div>
@@ -140,13 +114,11 @@ function LeftMenu({ allConfig, iconSport, toggleIcon }) {
                       <span id="dot"> • </span>
                       <p className="sport-name">{R.name}</p>
                     </span>
-                  ) : null}
+                  ) : "null"}
 
                   <span className="icon">
-                    {allConfig["iconSport"].map((C) => (
-                      <i
-                        className={allConfig["betConstructWidget"] ? C : "icon"}
-                      />
+                    {allConfig?.iconSport.map((C) => (
+                      <i className={allConfig?.betConstructWidget ? C : "icon"} />
                     ))}
                   </span>
                 </div>
@@ -162,11 +134,8 @@ function LeftMenu({ allConfig, iconSport, toggleIcon }) {
                   ) : null}
 
                   <span className="icon">
-                    {allConfig["iconSport"].map((C, index) => (
-                      <i
-                        key={index}
-                        className={allConfig["betConstructWidget"] ? C : "icon"}
-                      />
+                    {allConfig?.iconSport.map((C, index) => (
+                      <i key={index} className={allConfig["betConstructWidget"] ? C : "icon"} />
                     ))}
                   </span>
                 </div>

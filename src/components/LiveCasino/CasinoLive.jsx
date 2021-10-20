@@ -7,21 +7,27 @@ import LoadedCasino from "./LoadedCasino";
 import AllSlots from "./AllSlots";
 import ItemSlots from "./ItemSlots";
 import ModalCasino from "./ModalCasino";
+import { Spin, Alert } from "antd";
 
 function CasinoLive() {
   const dispatch = useDispatch();
 
+  const [isLoading, setLoading] = useState(true);
+  const [colorHeart, setColorHeart] = useState("");
   useEffect(() => {
-    dispatch(LiveCasinoApi());
-    setLoading(true);
+    setTimeout(() => {
+
+      dispatch(LiveCasinoApi());
+      setLoading(true);
+    }, 1000);
+
   }, [dispatch]);
 
   const bannerCasinoLive = useSelector((state) => state.betbuqsport.sliderApiHome.result?.casino_live);
 
   const allDataCasinoLive = useSelector((state) => state?.betbuqsport?.LiveCasino?.result);
 
-  const [isLoading, setLoading] = useState(true);
-  const [colorHeart, setColorHeart] = useState("");
+
 
   const [myindex, setMyIndex] = useState({
     favouriteId: (Math.random() * 10000000).toFixed(),
@@ -70,7 +76,14 @@ function CasinoLive() {
     });
 
   return !isLoading ? (
-    <LoadedCasino />
+    /*  <LoadedCasino /> */
+    <Spin tip="Loading...">
+      <Alert
+        message="Alert message title"
+        description="Further details about the context of this alert."
+        type="info"
+      />
+    </Spin>
   ) : (
     <>
       <div className="livecasino">

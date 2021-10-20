@@ -10,6 +10,9 @@ export const image = {
   topHours: require("../assetss/top-hours.png").default,
   provider: require("../assetss/provider.svg").default,
   wave: require("../assetss/wave.svg").default,
+  sliderCasino1: require("../assetss/slider-casino-1.png").default,
+  sliderCasino2: require("../assetss/slider-casino-2.png").default,
+  sliderCasino3: require("../assetss/slider-casino-3.png").default,
 };
 
 export default image;
