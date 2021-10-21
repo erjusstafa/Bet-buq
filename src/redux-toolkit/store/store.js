@@ -14,10 +14,6 @@ export const thunkApiHome = createAsyncThunk("betBuq/thunkApiHome", async () => 
 
 //CasinoApi
 export const CasinoApi = createAsyncThunk("betBuq/CasinoApi", async () => {
-  let casino = {
-    casino: `get_slots/casino/ios?lang=en`,
-  };
-
   return fetch("https://stagingbackoffice.playlogiq.com/Betbuq/get_slots/casino/ios?lang=en")
     .then((res) => res.json())
     .catch((err) => console.log(" error bro"));

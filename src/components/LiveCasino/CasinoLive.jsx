@@ -14,6 +14,7 @@ function CasinoLive() {
 
   const [isLoading, setLoading] = useState(true);
   const [colorHeart, setColorHeart] = useState("");
+  const display = true
   useEffect(() => {
     setTimeout(() => {
 
@@ -152,7 +153,7 @@ function CasinoLive() {
             searchIcon={searchIcon}
             alignRight={alignRight}
             heartIcon={heartIcon}
-            onclose={() => setModalOpen(false)}
+            display={display}
           />
         )
       )}

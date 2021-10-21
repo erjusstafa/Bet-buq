@@ -13,9 +13,10 @@ function Home() {
     (state) => state.betbuqsport.sliderApiHome?.result?.landing_page?.mini
   );
 
+  const displayBanner = true
   return (
     <>
-      <SliderHome />
+      <SliderHome displayBanner={displayBanner} />
       <SlotHome linkSlot={linkSlot} />
       <CardSlot BetLiveBook={BetLiveBook} />
     </>

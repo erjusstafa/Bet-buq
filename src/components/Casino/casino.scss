@@ -140,6 +140,43 @@
   margin: 0 auto;
   padding: 20px 0;
 
+  #prov-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 15px;
+
+    .provider-text {
+      color: #ececec;
+      font-weight: bold;
+    }
+
+    > span {
+      cursor: pointer;
+      display: flex;
+      font-weight: normal !important;
+      > p {
+        color: #ececec;
+
+        margin: 0 15px;
+
+        &.active {
+          color: white;
+          font-size: 15px;
+        }
+      }
+    }
+  }
+  #more {
+    display: block;
+    text-align: center;
+    cursor: pointer;
+    > i {
+      color: #22dbd1;
+    }
+    > p {
+      color: #cccaca;
+    }
+  }
   > p:last-child {
     color: rgb(172, 173, 170);
     font-size: 12px;
@@ -162,13 +199,11 @@
       justify-content: space-evenly;
       > p {
         margin: 0 20px;
-        font-weight: 600;
-      }
-
-      p.active {
-        color: white;
-        font-size: 15px;
-        font-weight: 700;
+        &.active {
+          color: #b3dbd8;
+          font-size: 15px;
+          font-weight: 600;
+        }
       }
     }
   }
@@ -189,12 +224,9 @@
     }
 
     .provider-item-games {
-      display: flex;
-      flex-direction: column;
       font-weight: bolder;
       font-size: 22px;
       color: white;
-      display: flex;
       padding: 35px 0;
 
       #icon-text {
@@ -229,7 +261,7 @@
       }
       .all-images-text {
         display: flex;
-        flex-flow: wrap row;
+        flex-flow: row wrap;
         justify-content: space-between;
 
         .slick-slider {
@@ -243,6 +275,12 @@
               > .slick-slide {
                 > div {
                   > .all {
+                    display: grid;
+                    grid-template-columns: repeat(7, auto);
+                    @media (max-width: 1380px) {
+                      display: flex;
+                      flex-flow: row wrap;
+                    }
                     .images-name {
                       padding: 15px 0;
                       > img {
@@ -358,6 +396,7 @@
         display: flex;
         flex-flow: wrap row;
         margin: 0 auto;
+        justify-content: center;
 
         > .all {
           display: grid;
@@ -406,7 +445,7 @@
               padding: 0 3px;
               font-size: 13px;
               > i {
-                line-height: 30px;
+                line-height: 13px;
               }
             }
           }
@@ -416,9 +455,9 @@
   }
 
   .category-item-games {
-    padding: 35px 0;
     display: grid;
     grid-template-columns: repeat(7, auto);
+    justify-content: flex-start;
     @media (max-width: 1380px) {
       display: flex;
       flex-flow: row wrap;
@@ -440,11 +479,12 @@
       @media (max-width: 1380px) {
         display: flex;
         flex-flow: row wrap;
+        place-content: center;
       }
     }
     .images-name {
       display: block;
-      margin: auto;
+      margin: auto 6px;
 
       > img {
         width: 180px;
@@ -461,12 +501,13 @@
         font-size: 13px;
         > i.fas.fa-heart {
           margin-top: 5px;
-        }
-        i.fas.fa-heart.added {
-          color: #22dbd1;
-        }
-        i.fas.fa-heart.deleted {
-          color: rgb(251, 251, 251);
+
+          &.added {
+            color: #22dbd1;
+          }
+          &.deleted {
+            color: #ffffff;
+          }
         }
       }
     }
