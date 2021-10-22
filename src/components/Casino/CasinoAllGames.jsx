@@ -338,36 +338,37 @@ function CasinoAllGames({
                   .slice(0, 10)
                   .map((H, index) => (
                     <div key={index} className="all">
-                      {Object.values(H.slots || {}).map((S) => (
-                        <Fragment key={S.id}>
-                          {Object.values(JSON.parse(S.categories || "{}"))
-                            .filter((N) => N.name === categoriesTwo)
-                            .map((N, index) => (
-                              <div className="images-name" key={index}>
-                                <img src={S?.mobile_logo} alt="" />
-                                <span>
-                                  <p>{S.name.length > 20 ? S.name.substring(0, 19) + "..." : S.name}</p>
-                                  <i
-                                    className={`${heartIcon}` + (activeFav.includes(S.id) ? !colorFav ? " added" : " added" : "")}
+                      {Object.values(H.slots || {}).slice(0, 15)
+                        .map((S) => (
+                          <Fragment key={S.id}>
+                            {Object.values(JSON.parse(S.categories || "{}"))
+                              .filter((N) => N.name === categoriesTwo)
+                              .map((N, index) => (
+                                <div className="images-name" key={index}>
+                                  <img src={S?.mobile_logo} alt="" />
+                                  <span>
+                                    <p>{S.name.length > 20 ? S.name.substring(0, 19) + "..." : S.name}</p>
+                                    <i
+                                      className={`${heartIcon}` + (activeFav.includes(S.id) ? !colorFav ? " added" : " added" : "")}
 
-                                    onClick={() =>
-                                      dispatch(
-                                        addFavouriteCasino({
-                                          id: S.id,
-                                          desktop_logo: S.desktop_logo,
-                                          name: S.name,
-                                        })
-                                      ) && handleAddActive(S.id)
-                                    }
-                                  />
-                                </span>
-                                <div id="svg">
-                                  <Svg />
+                                      onClick={() =>
+                                        dispatch(
+                                          addFavouriteCasino({
+                                            id: S.id,
+                                            desktop_logo: S.desktop_logo,
+                                            name: S.name,
+                                          })
+                                        ) && handleAddActive(S.id)
+                                      }
+                                    />
+                                  </span>
+                                  <div id="svg">
+                                    <Svg />
+                                  </div>
                                 </div>
-                              </div>
-                            ))}
-                        </Fragment>
-                      ))}
+                              ))}
+                          </Fragment>
+                        ))}
                     </div>
                   ))}
               </div>

@@ -10,7 +10,6 @@ import SliderHome from "../Home/SliderHome";
 
 function Casino() {
   const dispatch = useDispatch();
-
   const [modalOpen, setModalOpen] = useState(false);
   const [loader, setLoader] = useState(false);
   const [idLink, setIdLink] = useState({
@@ -26,32 +25,29 @@ function Casino() {
       setLoader(true);
     }, 1000);
   }, [dispatch]);
-
   let bannerCasinoLive = useSelector((state) => state.betbuqsport.sliderApiHome.result?.casino_live);
   let displayNameCateg = useSelector((state) => state?.betbuqsport?.CasinoData?.result);
   let FavItem = useSelector((state) => state?.betbuqsport?.CasinoFav);
-
   const changeId = (idLink, text) => {
     setIdLink({ link: idLink, other: idLink, activeText: text });
   };
-
   let categories = Object.values(displayNameCateg?.categories || {})
     .flat()
     .filter((F) => (allConfig["betConstructWidget"] ? !allConfig.dontshowCateg.includes(F.id) : false))
     .map((C) => (
       <p
-        className={idLink.link === C.id || C.name === idLink.activeText ? "active" : null}
+        className={idLink.link === C.id || C.name === idLink.activeText ? "active" : ""}
         key={C.id}
         onClick={() => changeId(C.id, C.name)}
       >
         {C.name}
       </p>
     ));
-
   let heartIcon = "fas fa-heart";
   let searchIcon = "fas fa-search";
   let alignRight = "fas fa-align-right";
   let searchFor = "Search for a game";
+
   return (
     <Fragment>
       <div className="casino">
@@ -61,18 +57,19 @@ function Casino() {
           </Fragment>
         ))}
       </div>
-      {loader ? (
+      {!modalOpen ? (
         <div style={{ background: "#313d42" }}>
           <div className="link">
             <div className="link-live">
-              <span onClick={() => changeId(8888)} className={"heart " + (idLink.other === 8888 ? "active" : null)}>
+              <span onClick={() => changeId(8888)} className={"heart " + (idLink.other === 8888 ? "active" : "")}>
                 <i className={heartIcon} style={{ color: FavItem.length < 1 ? "" : "#22dbd1" }} />
               </span>
-              <p onClick={() => changeId(9999)} className={idLink.other === 9999 ? "active" : null}>
+              <p onClick={() => changeId(9999)} className={idLink.other === 9999 ? "active" : ""}>
                 All Games
               </p>
+              {/*loink from API */}
               {categories ? categories : null}
-              <p onClick={() => changeId(7777)} className={idLink.other === 7777 ? "active" : null}>
+              <p onClick={() => changeId(7777)} className={idLink.other === 7777 ? "active" : ""}>
                 Providers
               </p>
             </div>
@@ -116,12 +113,22 @@ function Casino() {
           )}
         </div>
       ) : (
-        <Spin />
-      )}
+
+        modalOpen && (
+          <ModalCasino
+            setOpenModal={setModalOpen}
+            searchFor={searchFor}
+            searchIcon={searchIcon}
+            alignRight={alignRight}
+            heartIcon={heartIcon}
+            categories={categories}
+            displayNameCateg={displayNameCateg}
+          />
+          /*    <Spin /> */
+        ))}
     </Fragment>
   );
 }
-
 export default Casino;
 
 function CasinoWrapper({
@@ -139,10 +146,9 @@ function CasinoWrapper({
   const [more, setMore] = useState(12);
   let [activeFav, setActiveFav] = useState([]);
   const [colorFav, setColorFav] = useState(true);
-  let GET_LOCALSTORAGE = localStorage.getItem("activeFav")
+  const [provider, setProvider] = useState({ item: null });
 
   let handleAddActive = (id) => {
-
     let ekzistoCatProv = activeFav.findIndex((I) => I === id);
 
     if (ekzistoCatProv >= 0) {
@@ -153,19 +159,19 @@ function CasinoWrapper({
       setActiveFav([...activeFav, id]);
       setColorFav(!colorFav);
     }
-
-    localStorage.setItem("activeFav", activeFav)
-
   };
 
-  const handleIdSort = (idSort) => {
+  const handleIdSort = (idSort, provider) => {
     setIdSort(idSort);
+  };
+  let handleProv = () => {
+    Object.values(displayNameCateg?.providers || {})
+      .slice(0, more)
+      .map((H, index) => <Fragment key={index}>{Object.values(H.slots || {}).sort((a, b) => a.id - b.id)}</Fragment>);
   };
   const handleIdMore = () => {
     setMore(more + 7);
   };
-
-  console.log("activeFavactiveFav", activeFav);
   return (
     <div className="Slot">
       <CasinoAllGames
@@ -187,7 +193,6 @@ function CasinoWrapper({
         colorFav={colorFav}
         activeFav={activeFav}
       />
-
       {link ? (
         <Fragment>
           <div className={"item-sort " + link}>
@@ -198,7 +203,13 @@ function CasinoWrapper({
                 <p className={idSort === 0 ? "active" : ""} onClick={() => handleIdSort(0)}>
                   A-Z
                 </p>
-                <p className={idSort === 1 ? "active" : ""} onClick={() => handleIdSort(1)}>
+                <p
+                  className={idSort === 1 ? "active" : ""}
+                  onClick={() => {
+                    handleIdSort(1);
+                    handleProv();
+                  }}
+                >
                   Providers
                 </p>
               </span>
@@ -216,7 +227,6 @@ function CasinoWrapper({
               activeFav={activeFav}
             />
           </div>
-
           {/* show  'Load more games' only on link  */}
           {idFavAllImag === 7777 || idFavAllImag === 8888 || idFavAllImag === 9999 ? (
             ""
@@ -228,17 +238,16 @@ function CasinoWrapper({
           )}
         </Fragment>
       ) : null}
-
       {idFavAllImag === 7777 && (
         <Fragment>
           <div id="prov-item">
             <p className="provider-text">Providers</p>
             <span>
               <p>Sort By</p>
-              <p className={idSort === 0 ? "active" : null} onClick={() => handleIdSort(0)}>
+              <p className={idSort === 0 ? "active" : ""} onClick={() => handleIdSort(0)}>
                 A-Z
               </p>
-              <p className={idSort === 1 ? "active" : null} onClick={() => handleIdSort(1)}>
+              <p className={idSort === 1 ? "active" : ""} onClick={() => handleIdSort(1)}>
                 Providers
               </p>
             </span>
@@ -259,7 +268,7 @@ function CasinoWrapper({
                         })
                       ) && handleAddActive(H.id)
                     }
-                    className={`${heartIcon}` + (activeFav.includes(H.id) ? !colorFav ? " added" : " added" : "")}
+                    className={`${heartIcon}` + (activeFav.includes(H.id) ? (!colorFav ? " added" : " added") : "")}
                   />
                 </span>
               </div>
@@ -267,7 +276,6 @@ function CasinoWrapper({
           </div>
         </Fragment>
       )}
-
       {idFavAllImag === 8888 &&
         (FavItem.length > 0 ? (
           <div className="category-item-games">
@@ -294,20 +302,12 @@ function CasinoWrapper({
   );
 }
 
-function CasinoItemGames({
-  link,
-  displayNameCateg,
-  heartIcon,
-  dispatch,
-  more,
-  handleAddActive,
-  colorFav,
-  activeFav,
-}) {
+function CasinoItemGames({ link, displayNameCateg, heartIcon, dispatch, more, handleAddActive, colorFav, activeFav }) {
   return Object.values(displayNameCateg?.providers || {})
     .slice(0, more)
     .map((H, index) => (
       <Fragment key={index}>
+        {console.log("no Flat", H)}
         {Object.values(H.slots || {})
           .sort((a, b) => (a.name.toLowerCase() > b.name.toLowerCase() ? 1 : -1))
           .map((S) => (
@@ -332,9 +332,10 @@ function CasinoItemGames({
                             );
                             handleAddActive(S.id);
                           }}
-                          className={`${heartIcon}` + (activeFav.includes(S.id) ? !colorFav ? " added" : " added" : "")}
+                          className={
+                            `${heartIcon}` + (activeFav.includes(S.id) ? (!colorFav ? " added" : " added") : "")
+                          }
                         />
-                        {console.log("color", colorFav)}
                       </span>
                     </div>
                   ))}

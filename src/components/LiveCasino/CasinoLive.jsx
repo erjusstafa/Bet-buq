@@ -14,7 +14,24 @@ function CasinoLive() {
 
   const [isLoading, setLoading] = useState(true);
   const [colorHeart, setColorHeart] = useState("");
+  const [loadMore, setLoadMore] = useState({ load: 4 });
+  const [myindex, setMyIndex] = useState({
+    favouriteId: (Math.random() * 10000000).toFixed(),
+    idAllGames: (Math.random() * 1000).toFixed(),
+    isActive: null,
+    isActiveText: "",
+    textAllGames: "",
+  });
   const display = true
+  //modal
+  const [modalOpen, setModalOpen] = useState(false);
+
+  //icon
+  let heartIcon = "fas fa-heart";
+  let searchIcon = "fas fa-search";
+  let alignRight = "fas fa-align-right";
+  let searchFor = "Search for a game";
+
   useEffect(() => {
     setTimeout(() => {
 
@@ -30,13 +47,7 @@ function CasinoLive() {
 
 
 
-  const [myindex, setMyIndex] = useState({
-    favouriteId: (Math.random() * 10000000).toFixed(),
-    idAllGames: (Math.random() * 1000).toFixed(),
-    isActive: null,
-    isActiveText: "",
-    textAllGames: "",
-  });
+
 
   const ChangeIndex = (id, name) => {
     setMyIndex({ isActive: id, isActiveText: name });
@@ -44,19 +55,11 @@ function CasinoLive() {
   };
 
   //load more
-  const [loadMore, setLoadMore] = useState({ load: 4 });
   const moreSlots = () => {
     setLoadMore({ load: (loadMore.load += loadMore.load) });
   };
 
-  //modal
-  const [modalOpen, setModalOpen] = useState(false);
 
-  //icon
-  let heartIcon = "fas fa-heart";
-  let searchIcon = "fas fa-search";
-  let alignRight = "fas fa-align-right";
-  let searchFor = "Search for a game";
 
   let categories = Object.values(allDataCasinoLive?.categories || {})
     .filter((A) => A.id !== 70 || ![70].includes(A.id))

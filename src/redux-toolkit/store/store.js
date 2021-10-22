@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import allConfig from "../../config/allConfig";
 //thunkApiHome
@@ -43,6 +44,10 @@ let initialState = {
   bet: { allConfig },
   sliderApiHome: [],
   CasinoData: [],
+  CategProvidCasinoModal: localStorage.getItem("CategProvidCasinoModal")
+    ? JSON.parse(localStorage.getItem("CategProvidCasinoModal"))
+    : [],
+  CasinoModal: localStorage.getItem("CasinoModal") ? JSON.parse(localStorage.getItem("CasinoModal")) : [],
   CasinoFav: localStorage.getItem("casFav") ? JSON.parse(localStorage.getItem("casFav")) : [],
   LiveCasino: [],
   Favorites: localStorage.getItem("fav") ? JSON.parse(localStorage.getItem("fav")) : [],
@@ -112,21 +117,15 @@ const act = createSlice({
       localStorage.setItem("catPro", JSON.stringify(state.Favorites));
     },
 
-    /* sortItemCateg: (state, { payload }) => {
-      const newCasinoData = Object.values(state.CasinoData.result.providers || {}).sort((H, index) => (
-        <>
-          {Object.values(H.slots || {}).sort((a, b) => {
-            return a.payload.name > b.payload.name ? 1 : -1;
-          })}
-        </>
-      ));
+    sortItemCateg: (state, { payload }) => {
+      Object.values(state?.CasinoData?.result?.providers || {}).map((H, index) =>
+        Object.values(H.slots || {}).sort((a, b) => (a.name.toLowerCase() > b.name.toLowerCase() ? 1 : -1))
+      );
+    },
 
-      state.CasinoData = newCasinoData;
-    }, */
-
+    //CASINO
     addFavouriteCasino: (state, action) => {
       const ekzistoIndex = state.CasinoFav.findIndex((item) => item.id === action.payload.id);
-
       if (ekzistoIndex >= 0) {
         const nextCasinoFav = state.CasinoFav.filter((item) => item.id !== action.payload.id);
         state.CasinoFav = nextCasinoFav;
@@ -146,6 +145,58 @@ const act = createSlice({
       const newCasinoFav = state.CasinoFav.filter((I) => I.id !== action.payload.id);
       state.CasinoFav = newCasinoFav;
       localStorage.setItem("casFav", JSON.stringify(state.CasinoFav));
+    },
+
+    addFavouriteCasinoModal: (state, action) => {
+      const ekzistoIndexCasinoModal = state.CasinoModal.findIndex((item) => item.id === action.payload.id);
+
+      if (ekzistoIndexCasinoModal >= 0) {
+        const nextCasinoFav = state.CasinoModal.filter((item) => item.id !== action.payload.id);
+        state.CasinoModal = nextCasinoFav;
+      } else {
+        state.CasinoModal = [
+          ...state.CasinoModal,
+          {
+            id: action.payload.id,
+            desktop_logo: action.payload.desktop_logo,
+            name: action.payload.name,
+          },
+        ];
+      }
+      localStorage.setItem("CasinoModal", JSON.stringify(state.CasinoModal));
+    },
+
+    delFavoritesCasinoModal: (state, action) => {
+      const newList = state.CasinoModal.filter((I) => I.id !== action.payload.id);
+      state.CasinoModal = newList;
+      localStorage.setItem("CasinoModal", JSON.stringify(state.CasinoModal));
+    },
+
+    addCategProvidCasinoModal: (state, action) => {
+      const ekzistoCatProv = state.CategProvidCasinoModal.findIndex((I) => I.id === action.payload.id);
+
+      if (ekzistoCatProv >= 0) {
+        state.CategProvidCasinoModal[ekzistoCatProv] = {
+          ...state.CategProvidCasinoModal[ekzistoCatProv],
+        };
+      } else {
+        state.CategProvidCasinoModal = [
+          ...state.CategProvidCasinoModal,
+          {
+            id: action.payload.id,
+            name: action.payload.name,
+          },
+        ];
+      }
+
+      localStorage.setItem("CategProvidCasinoModal", JSON.stringify(state.CategProvidCasinoModal));
+    },
+
+    delCategProvidCasino: (state, action) => {
+      const newListCategOrProv = state.CategProvidCasinoModal.filter((I) => I.id !== action.payload.id);
+      state.CategProvidCasinoModal = newListCategOrProv;
+
+      localStorage.setItem("catPro", JSON.stringify(state.CategOrProvider));
     },
   },
 
@@ -181,5 +232,9 @@ export const {
   sortItemCateg,
   addFavouriteCasino,
   delFavouriteCasino,
+  addFavouriteCasinoModal,
+  delFavoritesCasinoModal,
+  addCategProvidCasinoModal,
+  delCategProvidCasino,
 } = act.actions;
 export default act.reducer;
