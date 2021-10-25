@@ -44,9 +44,7 @@ let initialState = {
   bet: { allConfig },
   sliderApiHome: [],
   CasinoData: [],
-  CategProvidCasinoModal: localStorage.getItem("CategProvidCasinoModal")
-    ? JSON.parse(localStorage.getItem("CategProvidCasinoModal"))
-    : [],
+  CategProvidCasinoModal: localStorage.getItem("CasinoModal") ? JSON.parse(localStorage.getItem("CasinoModal")) : [],
   CasinoModal: localStorage.getItem("CasinoModal") ? JSON.parse(localStorage.getItem("CasinoModal")) : [],
   CasinoFav: localStorage.getItem("casFav") ? JSON.parse(localStorage.getItem("casFav")) : [],
   LiveCasino: [],
@@ -60,11 +58,17 @@ const act = createSlice({
   name: "betBuq",
   initialState,
   reducers: {
+    //LIVE CASINO
     addFavorites: (state, action) => {
       const ekzistoIndex = state.Favorites.findIndex((item) => item.id === action.payload.id);
 
       if (ekzistoIndex >= 0) {
-        state.Favorites[ekzistoIndex] = { ...state.Favorites[ekzistoIndex] };
+        /*         state.Favorites[ekzistoIndex] = { ...state.Favorites[ekzistoIndex] };
+         */
+
+        let Fav = action.Favorites.filter((F) => F.id !== action.payload.id);
+        action.Favorites = Fav;
+        localStorage.setItem("fav", JSON.stringify(state.Favorites));
       } else {
         state.Favorites = [
           ...state.Favorites,
@@ -74,9 +78,8 @@ const act = createSlice({
             name: action.payload.name,
           },
         ];
+        localStorage.setItem("fav", JSON.stringify(state.Favorites));
       }
-
-      localStorage.setItem("fav", JSON.stringify(state.Favorites));
     },
 
     delFavorites: (state, action) => {
@@ -89,9 +92,13 @@ const act = createSlice({
       const ekzistoCatProv = state.CategOrProvider.findIndex((I) => I.id === action.payload.id);
 
       if (ekzistoCatProv >= 0) {
-        state.CategOrProvider[ekzistoCatProv] = {
+        /*  state.CategOrProvider[ekzistoCatProv] = {
           ...state.CategOrProvider[ekzistoCatProv],
-        };
+        }; */
+
+        let myCatProv = state.CategOrProvider.filter((R) => R.id !== action.payload.id);
+        state.CategOrProvider = myCatProv;
+        localStorage.setItem("catPro", JSON.stringify(state.CategOrProvider));
       } else {
         state.CategOrProvider = [
           ...state.CategOrProvider,
@@ -100,9 +107,9 @@ const act = createSlice({
             name: action.payload.name,
           },
         ];
-      }
 
-      localStorage.setItem("catPro", JSON.stringify(state.CategOrProvider));
+        localStorage.setItem("catPro", JSON.stringify(state.CategOrProvider));
+      }
     },
 
     delCategProvid: (state, action) => {
@@ -173,12 +180,13 @@ const act = createSlice({
     },
 
     addCategProvidCasinoModal: (state, action) => {
-      const ekzistoCatProv = state.CategProvidCasinoModal.findIndex((I) => I.id === action.payload.id);
+      const findItem = state.CategProvidCasinoModal.findIndex((T) => T.id === action.payload.id);
 
-      if (ekzistoCatProv >= 0) {
-        state.CategProvidCasinoModal[ekzistoCatProv] = {
-          ...state.CategProvidCasinoModal[ekzistoCatProv],
-        };
+      if (findItem >= 0) {
+        let filterAdded = state.CategProvidCasinoModal.filter((G) => G.id !== action.payload.id);
+        state.CategProvidCasinoModal = filterAdded;
+
+        localStorage.setItem("CasinoModal", JSON.stringify(state.CategProvidCasinoModal));
       } else {
         state.CategProvidCasinoModal = [
           ...state.CategProvidCasinoModal,
@@ -189,14 +197,19 @@ const act = createSlice({
         ];
       }
 
-      localStorage.setItem("CategProvidCasinoModal", JSON.stringify(state.CategProvidCasinoModal));
+      localStorage.setItem("CasinoModal", JSON.stringify(state.CategProvidCasinoModal));
     },
 
     delCategProvidCasino: (state, action) => {
       const newListCategOrProv = state.CategProvidCasinoModal.filter((I) => I.id !== action.payload.id);
       state.CategProvidCasinoModal = newListCategOrProv;
 
-      localStorage.setItem("catPro", JSON.stringify(state.CategOrProvider));
+      localStorage.setItem("CasinoModal", JSON.stringify(state.CategOrProvider));
+    },
+
+    delAllProvidrCategCasino: (state, action) => {
+      state.CategProvidCasinoModal = [];
+      localStorage.setItem("CasinoModal", JSON.stringify(state.CategProvidCasinoModal));
     },
   },
 
@@ -236,5 +249,6 @@ export const {
   delFavoritesCasinoModal,
   addCategProvidCasinoModal,
   delCategProvidCasino,
+  delAllProvidrCategCasino,
 } = act.actions;
 export default act.reducer;

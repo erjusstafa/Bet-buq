@@ -496,7 +496,7 @@
           display: flex;
           flex-direction: column;
           position: relative;
-          top: 10px;
+          top: 0;
           justify-content: space-between;
           width: 100%;
           height: 50%;
@@ -673,7 +673,7 @@
           display: flex;
           flex-direction: column;
           position: relative;
-          top: 10px;
+          top: 19px;
           justify-content: space-between;
           width: 100%;
           height: 50%;
@@ -875,6 +875,19 @@
               align-items: center;
               margin: auto;
             }
+
+            > p.added {
+              background-color: #48a39d;
+              color: #000000;
+              cursor: pointer;
+              &::before {
+                content: "\f14a";
+                font-family: "Font Awesome 5 Free";
+                color: #000000;
+                margin: 0px 7px;
+              }
+            }
+
             > h1 {
               color: rgba(0, 0, 0, 0.87);
               font-family: Roboto;

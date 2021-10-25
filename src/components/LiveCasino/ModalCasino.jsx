@@ -13,6 +13,7 @@ import {
   delFavoritesCasinoModal,
   addCategProvidCasinoModal,
   delCategProvidCasino,
+  delAllProvidrCategCasino,
 } from "../../redux-toolkit/store/store";
 
 function ModalCasino({
@@ -23,7 +24,7 @@ function ModalCasino({
   alignRight,
   heartIcon,
   display,
-  categories,
+
   displayNameCateg,
 }) {
   let counterFavorites = useSelector((state) => state.betbuqsport.Favorites);
@@ -72,17 +73,26 @@ function ModalCasino({
   const dispatch = useDispatch();
 
   //display poviders on modal using cond conditional rendering, if "display is true" , will display providers for LIVE CASINO else  providers for  CASINO
-  let providersData = Object.values(
-    display ? allDataCasinoLive?.providers || {} : displayNameCateg?.providers || {}
-  ).map((D) => (
+  let providersData = Object.values(allDataCasinoLive?.providers || {}).map((D) => (
     <p
       className={myindex.isActive === D.id ? "active" : ""}
       key={D.id}
-      onClick={() => {
-        display ? setActiveAddProCat(D.id, D.name) : dispatch(addCategProvidCasinoModal(D.id, D.name));
-      }}
+      onClick={() => setActiveAddProCat(D.id, D.name)}
     >
       {D.name}
+    </p>
+  ));
+
+  let providersDataLiveCasino = Object.values(displayNameCateg?.providers || {}).map((C) => (
+    <p
+      /*   className={myindex.isActive === C.id ? "active" : ""} */
+
+      className={arrayHeartActive.includes(C.id) ? (!activeHeart ? " added" : " added") : ""}
+
+      key={C.id}
+      onClick={() => dispatch(addCategProvidCasinoModal({ id: C.id, name: C.name })) && handleChangeActiveHeart(C.id)}
+    >
+      {C.name}
     </p>
   ));
   let categoriesData = Object.values(allDataCasinoLive?.categories || {}).map((C) => (
@@ -94,6 +104,19 @@ function ModalCasino({
       {C.name}
     </p>
   ));
+
+  let categoriesCasino = Object.values(displayNameCateg?.categories || {})
+    .map((C) => (
+      <p
+        className={myindex.isActive === C.id ? "active" : ""}
+        key={C.id}
+        onClick={() =>
+          dispatch(addCategProvidCasinoModal({ id: C.id, name: C.name }))
+        }
+      >
+        {C.name}
+      </p>
+    ));
 
   const displaySlotsLiveCasino = Object.values(allDataCasinoLive?.providers || {}).map((E) =>
     Object.values(E.slots || {})
@@ -260,7 +283,9 @@ function ModalCasino({
                           <i onClick={() => dispatch(delCategProvidCasino(F))} className="fas fa-times" />
                         </span>
                       ))}
-                      {CategProvidCasinoModal.length > 0 ? <button>Clear Filters !</button> : null}
+                      {CategProvidCasinoModal.length > 0 ? (
+                        <button onClick={() => dispatch(delAllProvidrCategCasino())}>Clear Filters !</button>
+                      ) : null}
                     </div>
                     <div>
                       <span>
@@ -299,37 +324,65 @@ function ModalCasino({
 
             {toggle ? (
               <div className="two--content">
-                {Object.keys(display ? allDataCasinoLive : displayNameCateg)
-                  .sort((a, b) => (a < b ? 1 : -1))
-                  .map((R) => (
-                    <Fragment>
-                      <br />
-                      <br />
-                      <div>
-                        {R === "categories" && (
-                          <Fragment>
-                            <h1>{R}</h1>
-                            <span key={R.id}>{display ? categoriesData : categories}</span>
-                          </Fragment>
-                        )}
-                      </div>
-                      <div>
-                        {R === "providers" && (
-                          <Fragment>
-                            <span>
+                {display
+                  ? Object.keys(allDataCasinoLive || "{}")
+                    .sort((a, b) => (a < b ? 1 : -1))
+                    .map((R) => (
+                      <Fragment>
+                        <br />
+                        <br />
+                        <div>
+                          {R === "categories" && (
+                            <Fragment>
                               <h1>{R}</h1>
-                              {display
-                                ? counterFilter.length > 0
-                                : null && (
+                              <span key={R.id}>{categoriesData}</span>
+                            </Fragment>
+                          )}
+                        </div>
+                        <div>
+                          {R === "providers" && (
+                            <Fragment>
+                              <span>
+                                <h1>{R}</h1>
+                                {counterFilter.length > 0 && (
                                   <button onClick={() => dispatch(delAllProvidrCateg())}>Clear Filters!</button>
                                 )}
-                            </span>
-                            <span key={R.id}>{providersData} </span>
-                          </Fragment>
-                        )}
-                      </div>
-                    </Fragment>
-                  ))}
+                              </span>
+                              <span key={R.id}>{providersData} </span>
+                            </Fragment>
+                          )}
+                        </div>
+                      </Fragment>
+                    ))
+                  : Object.keys(displayNameCateg || "{}")
+                    .sort((a, b) => (a < b ? 1 : -1))
+                    .map((R) => (
+                      <Fragment>
+                        <br />
+                        <br />
+                        <div>
+                          {R === "categories" && (
+                            <Fragment>
+                              <h1>{R}</h1>
+                              <span key={R.id}>{categoriesCasino}</span>
+                            </Fragment>
+                          )}
+                        </div>
+                        <div>
+                          {R === "providers" && (
+                            <Fragment>
+                              <span>
+                                <h1>{R}</h1>
+                                {CategProvidCasinoModal.length > 0 && (
+                                  <button onClick={() => dispatch(delAllProvidrCategCasino())}>Clear Filters!</button>
+                                )}
+                              </span>
+                              <span key={R.id}>{providersDataLiveCasino} </span>
+                            </Fragment>
+                          )}
+                        </div>
+                      </Fragment>
+                    ))}
               </div>
             ) : null}
           </div>
