@@ -88,7 +88,6 @@ function ModalCasino({
       /*   className={myindex.isActive === C.id ? "active" : ""} */
 
       className={arrayHeartActive.includes(C.id) ? (!activeHeart ? " added" : " added") : ""}
-
       key={C.id}
       onClick={() => dispatch(addCategProvidCasinoModal({ id: C.id, name: C.name })) && handleChangeActiveHeart(C.id)}
     >
@@ -105,18 +104,15 @@ function ModalCasino({
     </p>
   ));
 
-  let categoriesCasino = Object.values(displayNameCateg?.categories || {})
-    .map((C) => (
-      <p
-        className={myindex.isActive === C.id ? "active" : ""}
-        key={C.id}
-        onClick={() =>
-          dispatch(addCategProvidCasinoModal({ id: C.id, name: C.name }))
-        }
-      >
-        {C.name}
-      </p>
-    ));
+  let categoriesCasino = Object.values(displayNameCateg?.categories || {}).map((C) => (
+    <p
+      className={myindex.isActive === C.id ? "active" : ""}
+      key={C.id}
+      onClick={() => dispatch(addCategProvidCasinoModal({ id: C.id, name: C.name }))}
+    >
+      {C.name}
+    </p>
+  ));
 
   const displaySlotsLiveCasino = Object.values(allDataCasinoLive?.providers || {}).map((E) =>
     Object.values(E.slots || {})
