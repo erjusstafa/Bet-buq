@@ -33,14 +33,10 @@ const Header = () => {
     setOpenPopupRegister(false);
   };
 
-  const social = useSelector(
-    (state) => state.betbuqsport.bet.allConfig.socials
-  );
+  const social = useSelector((state) => state.betbuqsport.bet.allConfig.socials);
   //const link = useSelector((state) => state.betbuqsport.bet.allConfig.routes);
   /*     const user = useSelector((state) => state.betbuqsport.bet.allConfig.login);
-   */ const inputIcon = useSelector(
-    (state) => state.betbuqsport.bet.allConfig.login
-  );
+   */ const inputIcon = useSelector((state) => state.betbuqsport.bet.allConfig.login);
   const handleSubmit = (e) => {
     e.preventDefault();
   };
@@ -48,15 +44,8 @@ const Header = () => {
   return (
     <>
       <div className="header">
-        <div
-          className="menu-top-header"
-          onClick={() => setClickTopHeader(!clickTopHeader)}
-        >
-          {clickTopHeader ? (
-            <i className="fas fa-times" />
-          ) : (
-            <i className="fas fa-align-left" />
-          )}
+        <div className="menu-top-header" onClick={() => setClickTopHeader(!clickTopHeader)}>
+          {clickTopHeader ? <i className="fas fa-times" /> : <i className="fas fa-align-left" />}
         </div>
         <div className={clickTopHeader ? "header__max active" : "header__max"}>
           <div className="form">
@@ -67,11 +56,7 @@ const Header = () => {
                     type="text"
                     value={form.name}
                     onChange={(e) => setForm({ name: e.target.value })}
-                    placeholder={
-                      lang
-                        ? inputIcon.Name.placeholderEN
-                        : inputIcon.Name.placeholderIT
-                    }
+                    placeholder={lang ? inputIcon.Name.placeholderEN : inputIcon.Name.placeholderIT}
                   />
                   <i className={inputIcon ? inputIcon.Name.icon : undefined} />
                 </span>
@@ -81,15 +66,9 @@ const Header = () => {
                     name=""
                     value={form.password}
                     onChange={(e) => setForm({ password: e.target.value })}
-                    placeholder={
-                      lang
-                        ? inputIcon.Password.placeholderEN
-                        : inputIcon.Password.placeholderIT
-                    }
+                    placeholder={lang ? inputIcon.Password.placeholderEN : inputIcon.Password.placeholderIT}
                   />
-                  <i
-                    className={inputIcon ? inputIcon.Password.icon : undefined}
-                  />
+                  <i className={inputIcon ? inputIcon.Password.icon : undefined} />
                 </span>
               </div>
               <div className="button-header">
@@ -97,10 +76,7 @@ const Header = () => {
                 <button id="login" onClick={() => setOpenPopup(true)}>
                   {lang ? "Login" : "Accedere"}
                 </button>
-                <button
-                  id="register"
-                  onClick={() => setOpenPopupRegister(true)}
-                >
+                <button id="register" onClick={() => setOpenPopupRegister(true)}>
                   {lang ? "Register" : "Registrati"}
                 </button>
               </div>
@@ -214,39 +190,25 @@ class HeaderBottom extends React.Component {
             <div className="date">
               <div style={dataOra}>
                 <p style={styleDate}>H</p>
-                <span id="hour">
-                  {this.state.hour < 10
-                    ? parseInt("0") + this.state.hour
-                    : this.state.hour}
-                </span>
+                <span id="hour">{this.state.hour < 10 ? parseInt("0") + this.state.hour : this.state.hour}</span>
               </div>
               <span style={dotted}>:</span>
               <div style={dataOra}>
                 <p style={styleDate}>M</p>
-                <span id="hour">
-                  {this.state.minute < 10
-                    ? parseInt("0") + this.state.minute
-                    : this.state.minute}
-                </span>
+                <span id="hour">{this.state.minute < 10 ? parseInt("0") + this.state.minute : this.state.minute}</span>
               </div>
               <span style={dotted}>:</span>{" "}
               <div style={dataOra}>
                 <p style={styleDate}>S</p>
                 <span id="hour">
-                  {this.state.seconds < 10
-                    ? parseInt("0") + this.state.seconds
-                    : this.state.seconds}
+                  {this.state.seconds < 10 ? parseInt("0") + this.state.seconds : this.state.seconds}
                 </span>
               </div>
             </div>
             <span className="after"></span>
           </div>
           <div className="menu-icon" onClick={this.handleClick}>
-            {this.state.click ? (
-              <i className="fas fa-times" />
-            ) : (
-              <i className="fas fa-align-right" />
-            )}
+            {this.state.click ? <i className="fas fa-times" /> : <i className="fas fa-align-right" />}
           </div>
           <div className={this.state.click ? "route active" : "route"}>
             {Object.values(allConfig.routes).map((L, index) => (
@@ -256,9 +218,7 @@ class HeaderBottom extends React.Component {
                 className={L.name !== null ? "route-link" : ""}
                 to={L.link}
               >
-                <h2 className={this.state.idLink === L["id"] ? "active" : null}>
-                  {L.name}
-                </h2>
+                <h2 className={this.state.idLink === L["id"] ? "active" : null}>{L.name}</h2>
                 <p className={L.tag ? "tag" : ""}>{L.tag}</p>
               </Link>
             ))}

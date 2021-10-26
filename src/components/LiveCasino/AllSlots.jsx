@@ -11,8 +11,8 @@ const AllSlots = ({ R, F, heartIcon, openPopup, setOpenPopup, handleChangePopup 
                     </div>
                     {openPopup && <PopupLoginRegister handleChangePopup={handleChangePopup} open={openPopup} />}
                     <span className="span">
-                        {/*                         <p>{F.name}</p>
- */}                        <i className={heartIcon} style={{ marginTop: "-11px" }} />
+                        <p>{F.name}</p>
+                        <i className={heartIcon} style={{ marginTop: "-11px" }} />
                     </span>
                 </div>
             }

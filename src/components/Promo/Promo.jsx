@@ -3,9 +3,15 @@ import allConfig from "../../config/allConfig";
 import "./style.scss";
 import { Link } from "react-router-dom";
 
-
 function Promo() {
   const [promoApi, setPromoApi] = useState([]);
+  const [setId, setSetId] = useState({
+    general: 9999,
+    id: null,
+    title: "",
+    imageItem: null,
+    slugItem: null,
+  });
 
   const fetchPromo = async () => {
     let promo = "promotions?lang=en";
@@ -19,18 +25,9 @@ function Promo() {
 
   useEffect(() => {
     fetchPromo();
-
   }, []);
 
   console.log("promo", promoApi);
-
-  const [setId, setSetId] = useState({
-    general: 9999,
-    id: null,
-    title: "",
-    imageItem: null,
-    slugItem: null
-  });
 
   const handleClickID = (setId, name, image, slug) => {
     setSetId({ id: setId, title: name, imageItem: image, slugItem: slug });
@@ -59,16 +56,14 @@ function Promo() {
                 <div className="grid-promo" key={index}>
                   <div className="tabs-promo">
                     <a href onClick={() => setSetId({ general: 9999 })}>
-                      <p className={setId.general === 9999 ? "general " : "general"}
-                      >
-                        {P["name"]}{" "}
-                      </p>
+                      <p className={setId.general === 9999 ? "general " : "general"}>{P["name"]} </p>
                     </a>
                     {Object.values(P["posts"] || []).map((T) => (
-                      <a /* href={"/pages/promos/general/" + T.slug} */ key={T.id} onClick={() => handleClickID(T.id, T.title, T.image, T.slug)}>
-                        <p className={setId.id === T.id ? "active" : ""}>
-                          {T.title}
-                        </p>
+                      <a
+                        /* href={"/pages/promos/general/" + T.slug} */ key={T.id}
+                        onClick={() => handleClickID(T.id, T.title, T.image, T.slug)}
+                      >
+                        <p className={setId.id === T.id ? "active" : ""}>{T.title}</p>
                       </a>
                     ))}
                   </div>
@@ -87,7 +82,7 @@ function Promo() {
           </div>
         </div>
       </div>
-    </div >
+    </div>
   );
 }
 
@@ -96,32 +91,17 @@ export default Promo;
 class PromoItem extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      /*   data: [] */
-    };
+    this.state = {};
   }
-  /* 
-    componentDidMount() {
-      fetch(`https://stagingbackoffice.playlogiq.com/Betbuq/promotions/general/${this.props.slug}?menu=false&lang=en`)
-        .then(res => res.json())
-        .then(data => this.setState({ data: data }))
-        .catch((error) => console.log(error));
-    } */
-
   render() {
-    console.log("Slug", this.state.data);
-
     return (
       <Fragment>
         {this.props.setId ? (
           <div className="subtitle">
             <p
               className={
-                this.props.title ?
-                  `subtitle-item active ${this.props.title
-                    .toLowerCase()
-                    .replace(" ", "-")
-                    .split("-")[0]}`
+                this.props.title
+                  ? `subtitle-item active ${this.props.title.toLowerCase().replace(" ", "-").split("-")[0]}`
                   : ""
               }
             >
@@ -131,10 +111,10 @@ class PromoItem extends Component {
           </div>
         ) : (
           <div key={this.props.index} className="post-slot">
-            {Object.values(this.props.P["posts"] || []).map(M => (
+            {Object.values(this.props.P["posts"] || []).map((M) => (
               <div className="card-item" key={M.id}>
-                <div className="card" >
-                  <div className="text-logo" >
+                <div className="card">
+                  <div className="text-logo">
                     <img src={M.image} alt="" />
                     <div className="slug-subtittle">
                       <span id="paragraph-promo">
@@ -149,8 +129,7 @@ class PromoItem extends Component {
               </div>
             ))}
           </div>
-        )
-        }
+        )}
       </Fragment>
     );
   }

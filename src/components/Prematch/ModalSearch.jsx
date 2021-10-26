@@ -8,17 +8,6 @@ class ModalSearch extends Component {
       match: [],
     };
   }
-
-  /*  async componentDidMount() {
-   
-           const url = "https://api-new.betbuq.com/schedina/suggest?json&l=en"
-   
-           const response = await fetch(url);
-           const data = await response.json()
-   
-           this.setState({ match: data })
-           console.log("match", this.state.match);
-       } */
   render(props) {
     return (
       <>
@@ -35,16 +24,8 @@ class ModalSearch extends Component {
             </div>
             <div className="data-search">
               {Object.values(this.props.allConfig["list"] || {})
-                .filter((E) =>
-                  E.toLowerCase().includes(this.props.value.toLowerCase())
-                )
-                .map((E) => (
-                  this.props.allConfig["list"].length <= 0 ? (
-                    <span>nuk ka te dhena</span>
-                  ) : (
-                    <p>{E}</p>
-                  )
-                ))}
+                .filter((E) => E.toLowerCase().includes(this.props.value.toLowerCase()))
+                .map((E) => (this.props.allConfig["list"].length < 1 ? <span>nuk ka te dhena</span> : <p>{E}</p>))}
             </div>
           </div>
         )}

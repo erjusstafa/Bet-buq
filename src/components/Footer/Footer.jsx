@@ -35,41 +35,6 @@ const Footer = () => {
 };
 export default Footer;
 
-/* class Footer extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      footerApi: [],
-    };
-  }
-
-  componentDidMount() {
-    const fullFooterHome = async () => {
-      return await fetch(" https://content.betbuq.com/pages/links?lang=pt")
-        .then((res) => res.json())
-        .then((data) => this.setState(data))
-        .catch((err) => console.log("has error bro "));
-    };
-    return fullFooterHome;
-  }
-  render() {
-    return (
-      <div className="footer">
-        <div className="footer__max">
-          {this.props.footerApi &&
-            Object.values(this.props.footerApi).map((F, index) => (
-              <div key={index}>
-                <FooterMain F={F} />
-                <FooterEnd F={F} />
-              </div>
-            ))}
-        </div>
-      </div>
-    );
-  }
-}
-export default Footer;
- */
 const FooterMain = (props) => {
   return (
     <div className="big__link">
@@ -110,17 +75,16 @@ const FooterEnd = ({ F }) => {
           ))}
         </div>
         <p>
-          Al acceder, seguir utilizando o navegar a través de este sitio, acepta
-          que utilicemos ciertas cookies del navegador para mejorar su
-          experiencia con nosotros. Solo utilizamos Cookies que mejorarán su
-          experiencia con nosotros y no interferirán con su privacidad.
+          Al acceder, seguir utilizando o navegar a través de este sitio, acepta que utilicemos ciertas cookies del
+          navegador para mejorar su experiencia con nosotros. Solo utilizamos Cookies que mejorarán su experiencia con
+          nosotros y no interferirán con su privacidad.
           <br />
           Consulte nuestra{" "}
           <Link to="/" className="p">
             Política de cookies
           </Link>
-          para obtener más información sobre nuestro uso de cookies y cómo puede
-          deshabilitar o administrar su uso si lo desea.
+          para obtener más información sobre nuestro uso de cookies y cómo puede deshabilitar o administrar su uso si lo
+          desea.
         </p>
         <div className={image === null ? "nuk ka te imazhe" : "foot__img"}>
           <img src={image["images"]} alt={""} />

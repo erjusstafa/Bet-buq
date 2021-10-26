@@ -36,12 +36,7 @@ function RightMenu({ allConfig }) {
       <div className="desc-box">
         <p>{allConfig.descriptionBox}</p>
       </div>
-      {openPopup && (
-        <PopupLoginRegister
-          handleChangePopup={handleChangePopup}
-          open={openPopup}
-        />
-      )}
+      {openPopup && <PopupLoginRegister handleChangePopup={handleChangePopup} open={openPopup} />}
       <div className="left">
         <span>Last Winnings</span>
         <table className="last-winnings-table">
@@ -58,12 +53,10 @@ function RightMenu({ allConfig }) {
               .map((L, index) => (
                 <tr className="last-winnings-title-heading-desc" key={index}>
                   <td>
-                    {parseFloat(L.win).toFixed(2)}{" "}
-                    {allConfig["skin"]["currency-symbol"]}
+                    {parseFloat(L.win).toFixed(2)} {allConfig["skin"]["currency-symbol"]}
                   </td>
                   <td>
-                    {parseFloat(L.bet).toFixed(2)}{" "}
-                    {allConfig["skin"]["currency-symbol"]}
+                    {parseFloat(L.bet).toFixed(2)} {allConfig["skin"]["currency-symbol"]}
                   </td>
                   <td>{new Date(L.date).toLocaleDateString()}</td>
                 </tr>

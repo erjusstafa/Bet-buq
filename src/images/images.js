@@ -14,5 +14,4 @@ export const image = {
   sliderCasino2: require("../assetss/slider-casino-2.png").default,
   sliderCasino3: require("../assetss/slider-casino-3.png").default,
 };
-
 export default image;

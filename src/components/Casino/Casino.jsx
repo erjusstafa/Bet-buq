@@ -7,6 +7,7 @@ import ModalCasino from "../LiveCasino/ModalCasino";
 import CasinoAllGames from "./CasinoAllGames";
 import { Spin } from "antd";
 import SliderHome from "../Home/SliderHome";
+import CasinoItemGames from "./CasinoItemGames";
 
 function Casino() {
   const dispatch = useDispatch();
@@ -28,11 +29,11 @@ function Casino() {
   let bannerCasinoLive = useSelector((state) => state.betbuqsport.sliderApiHome.result?.casino_live);
   let displayNameCateg = useSelector((state) => state?.betbuqsport?.CasinoData?.result);
   let FavItem = useSelector((state) => state?.betbuqsport?.CasinoFav);
+
   const changeId = (idLink, text) => {
     setIdLink({ link: idLink, other: idLink, activeText: text });
   };
   let categories = Object.values(displayNameCateg?.categories || {})
-    .flat()
     .filter((F) => (allConfig["betConstructWidget"] ? !allConfig.dontshowCateg.includes(F.id) : false))
     .map((C) => (
       <p
@@ -47,6 +48,8 @@ function Casino() {
   let searchIcon = "fas fa-search";
   let alignRight = "fas fa-align-right";
   let searchFor = "Search for a game";
+
+  console.log("categoriescategories", categories);
 
   return (
     <Fragment>
@@ -67,7 +70,7 @@ function Casino() {
               <p onClick={() => changeId(9999)} className={idLink.other === 9999 ? "active" : ""}>
                 All Games
               </p>
-              {/*loink from API */}
+              {/*link from API */}
               {categories ? categories : null}
               <p onClick={() => changeId(7777)} className={idLink.other === 7777 ? "active" : ""}>
                 Providers
@@ -101,19 +104,8 @@ function Casino() {
             changeId={changeId}
             FavItem={FavItem}
           />
-          {modalOpen && (
-            <ModalCasino
-              setOpenModal={setModalOpen}
-              allDataCasinoLive={categories}
-              searchIcon={searchIcon}
-              alignRight={alignRight}
-              heartIcon={heartIcon}
-              onclose={() => setModalOpen(false)}
-            />
-          )}
         </div>
       ) : (
-
         modalOpen && (
           <ModalCasino
             setOpenModal={setModalOpen}
@@ -124,8 +116,8 @@ function Casino() {
             categories={categories}
             displayNameCateg={displayNameCateg}
           />
-          /*    <Spin /> */
-        ))}
+        )
+      )}
     </Fragment>
   );
 }
@@ -146,11 +138,10 @@ function CasinoWrapper({
   const [more, setMore] = useState(12);
   let [activeFav, setActiveFav] = useState([]);
   const [colorFav, setColorFav] = useState(true);
-  const [provider, setProvider] = useState({ item: null });
-
+  /*   const [provider, setProvider] = useState({ item: null });
+   */
   let handleAddActive = (id) => {
     let ekzistoCatProv = activeFav.findIndex((I) => I === id);
-
     if (ekzistoCatProv >= 0) {
       let nextCasinoFav = activeFav.pop();
       activeFav = nextCasinoFav;
@@ -172,72 +163,102 @@ function CasinoWrapper({
   const handleIdMore = () => {
     setMore(more + 7);
   };
+
+  let kezId = [
+    categories[0]?.key,
+    categories[1]?.key,
+    categories[2]?.key,
+    categories[3]?.key,
+    categories[4]?.key,
+    categories[5]?.key,
+    categories[6]?.key,
+    categories[7]?.key,
+  ];
+
+  let nameCat = [
+    categories[1]?.props?.children,
+    categories[2]?.props?.children,
+    categories[3]?.props?.children,
+    categories[4]?.props?.children,
+    categories[6]?.props?.children,
+    categories[7]?.props?.children,
+  ];
+
+  console.log("kezId", kezId);
+  console.log("nameCat", nameCat);
+
   return (
     <div className="Slot">
       <CasinoAllGames
         allConfig={allConfig}
         idFavAllImag={idFavAllImag}
         link={link}
+        text={text}
         displayNameCateg={displayNameCateg}
         categoriesZero={categories[0]?.props?.children}
         categoriesOne={categories[1]?.props?.children}
         categoriesTwo={categories[2]?.props?.children}
-        categoriesThree={categories[3]?.props.children}
+        categoriesThree={categories[3]?.props?.children}
         categoriesFour={categories[4]?.props?.children}
         categoriesFive={categories[5]?.props?.children}
         categoriesSix={categories[6]?.props?.children}
         categoriesSeven={categories[7]?.props?.children}
+        kezId={kezId}
+        nameCat={nameCat}
         heartIcon={heartIcon}
         changeId={changeId}
         handleAddActive={handleAddActive}
         colorFav={colorFav}
         activeFav={activeFav}
       />
-      {link ? (
-        <Fragment>
-          <div className={"item-sort " + link}>
-            <p>{text}</p>
-            {text && (
-              <span>
-                <p>Sort By</p>
-                <p className={idSort === 0 ? "active" : ""} onClick={() => handleIdSort(0)}>
-                  A-Z
-                </p>
-                <p
-                  className={idSort === 1 ? "active" : ""}
-                  onClick={() => {
-                    handleIdSort(1);
-                    handleProv();
-                  }}
-                >
-                  Providers
-                </p>
-              </span>
-            )}
-          </div>
-          <div className="category-item-games">
-            <CasinoItemGames
-              displayNameCateg={displayNameCateg}
-              heartIcon={heartIcon}
-              link={link}
-              dispatch={dispatch}
-              more={more}
-              handleAddActive={handleAddActive}
-              colorFav={colorFav}
-              activeFav={activeFav}
-            />
-          </div>
-          {/* show  'Load more games' only on link  */}
-          {idFavAllImag === 7777 || idFavAllImag === 8888 || idFavAllImag === 9999 ? (
-            ""
-          ) : (
-            <div id="more" onClick={handleIdMore}>
-              <i className="fas fa-sync-alt"></i>
-              <p> Load more games</p>
-            </div>
+
+      {console.log("linklinklinklink", link)}
+
+      {/*  { link ?( */}
+      <Fragment>
+        <div className={"item-sort " + link}>
+          <p>{text}</p>
+          {text && (
+            <span>
+              <p>Sort By</p>
+              <p className={idSort === 0 ? "active" : ""} onClick={() => handleIdSort(0)}>
+                A-Z
+              </p>
+              <p
+                className={idSort === 1 ? "active" : ""}
+                onClick={() => {
+                  handleIdSort(1);
+                  handleProv();
+                }}
+              >
+                Providers
+              </p>
+            </span>
           )}
-        </Fragment>
-      ) : null}
+        </div>
+        <div className="category-item-games">
+          <CasinoItemGames
+            displayNameCateg={displayNameCateg}
+            heartIcon={heartIcon}
+            link={link}
+            dispatch={dispatch}
+            more={more}
+            handleAddActive={handleAddActive}
+            colorFav={colorFav}
+            activeFav={activeFav}
+          />
+        </div>
+        {/* show  'Load more games' only on link  */}
+        {idFavAllImag === 7777 || idFavAllImag === 8888 || idFavAllImag === 9999 ? (
+          ""
+        ) : (
+          <div id="more" onClick={handleIdMore}>
+            <i className="fas fa-sync-alt"></i>
+            <p> Load more games</p>
+          </div>
+        )}
+      </Fragment>
+      {/* ) : null}  */}
       {idFavAllImag === 7777 && (
         <Fragment>
           <div id="prov-item">
@@ -300,47 +321,4 @@ function CasinoWrapper({
         ))}
     </div>
   );
-}
-
-function CasinoItemGames({ link, displayNameCateg, heartIcon, dispatch, more, handleAddActive, colorFav, activeFav }) {
-  return Object.values(displayNameCateg?.providers || {})
-    .slice(0, more)
-    .map((H, index) => (
-      <Fragment key={index}>
-        {console.log("no Flat", H)}
-        {Object.values(H.slots || {})
-          .sort((a, b) => (a.name.toLowerCase() > b.name.toLowerCase() ? 1 : -1))
-          .map((S) => (
-            <Fragment key={S.id}>
-              {link &&
-                Object.values(JSON.parse(S.categories || "{}"))
-                  .splice(0, more)
-                  .filter((N) => N.id === link)
-                  .map((N) => (
-                    <div className="images-name" key={N.id}>
-                      <img src={S?.desktop_logo} alt="" />
-                      <span>
-                        <p>{S.name.length > 20 ? S.name.substring(0, 19) + "..." : S?.name}</p>
-                        <i
-                          onClick={() => {
-                            dispatch(
-                              addFavouriteCasino({
-                                id: S.id,
-                                desktop_logo: S.desktop_logo,
-                                name: S.name,
-                              })
-                            );
-                            handleAddActive(S.id);
-                          }}
-                          className={
-                            `${heartIcon}` + (activeFav.includes(S.id) ? (!colorFav ? " added" : " added") : "")
-                          }
-                        />
-                      </span>
-                    </div>
-                  ))}
-            </Fragment>
-          ))}
-      </Fragment>
-    ));
 }

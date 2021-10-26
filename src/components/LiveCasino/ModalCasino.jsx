@@ -24,9 +24,10 @@ function ModalCasino({
   alignRight,
   heartIcon,
   display,
-
   displayNameCateg,
 }) {
+  const dispatch = useDispatch();
+
   let counterFavorites = useSelector((state) => state.betbuqsport.Favorites);
   let counterFilter = useSelector((state) => state.betbuqsport.CategOrProvider);
   let CasinoModal = useSelector((state) => state.betbuqsport.CasinoModal);
@@ -38,20 +39,26 @@ function ModalCasino({
   const [openPopup, setOpenPopup] = useState(false);
   const [myindex, setMyIndex] = useState({ isActive: null });
   let [arrayHeartActive, setArrayHeartActive] = useState([]);
-  let [activeHeart, setActiveHeart] = useState(true);
+  let [activeHeart, setActiveHeart] = useState(false);
+  const [sortAccordProv, setSortAccordProv] = useState({
+    link: null,
+    value: false,
+  });
 
   let handleChangeActiveHeart = (id) => {
     const findIndexHeart = arrayHeartActive.findIndex((arr) => arr === id);
+    setSortAccordProv({ link: id, value: true });
     if (findIndexHeart >= 0) {
       let NextFavModal = arrayHeartActive.pop();
       arrayHeartActive = NextFavModal;
-      /*    setArrayHeartActive([...arrayHeartActive, id].pop()); */
       setActiveHeart(!activeHeart);
     } else {
       setArrayHeartActive([...arrayHeartActive, id]);
       setActiveHeart(!activeHeart);
+      setSortAccordProv({ link: id, value: !sortAccordProv.value });
     }
   };
+
   //filter data
   const handleChange = (e) => {
     const searchWord = e.target.value;
@@ -70,9 +77,8 @@ function ModalCasino({
     setMyIndex({ isActive: id });
     dispatch(addCategProvid({ id: id, name: name }));
   };
-  const dispatch = useDispatch();
 
-  //display poviders on modal using cond conditional rendering, if "display is true" , will display providers for LIVE CASINO else  providers for  CASINO
+  //dispaly categ and prov to Live Casino Component
   let providersData = Object.values(allDataCasinoLive?.providers || {}).map((D) => (
     <p
       className={myindex.isActive === D.id ? "active" : ""}
@@ -83,17 +89,6 @@ function ModalCasino({
     </p>
   ));
 
-  let providersDataLiveCasino = Object.values(displayNameCateg?.providers || {}).map((C) => (
-    <p
-      /*   className={myindex.isActive === C.id ? "active" : ""} */
-
-      className={arrayHeartActive.includes(C.id) ? (!activeHeart ? " added" : " added") : ""}
-      key={C.id}
-      onClick={() => dispatch(addCategProvidCasinoModal({ id: C.id, name: C.name })) && handleChangeActiveHeart(C.id)}
-    >
-      {C.name}
-    </p>
-  ));
   let categoriesData = Object.values(allDataCasinoLive?.categories || {}).map((C) => (
     <p
       className={myindex.isActive === C.id ? "active" : ""}
@@ -104,6 +99,19 @@ function ModalCasino({
     </p>
   ));
 
+  //dispaly categ and prov to Casino Component
+  let providersDataLiveCasino = Object.values(displayNameCateg?.providers || {}).map((C) => (
+    <p
+      className={arrayHeartActive.includes(C.id) ? (activeHeart ? " added" : " added") : ""}
+      key={C.id}
+      onClick={() => {
+        dispatch(addCategProvidCasinoModal({ id: C.id, name: C.name }));
+        handleChangeActiveHeart(C.id);
+      }}
+    >
+      {C.name}
+    </p>
+  ));
   let categoriesCasino = Object.values(displayNameCateg?.categories || {}).map((C) => (
     <p
       className={myindex.isActive === C.id ? "active" : ""}
@@ -114,6 +122,7 @@ function ModalCasino({
     </p>
   ));
 
+  //dispaly categ and prov to Live Casino Component
   const displaySlotsLiveCasino = Object.values(allDataCasinoLive?.providers || {}).map((E) =>
     Object.values(E.slots || {})
       .filter((Q) => (val === "" ? Q : Q.name.toLowerCase().includes(val.toLowerCase())))
@@ -135,40 +144,48 @@ function ModalCasino({
               }
             />
           </span>
-
           {openPopup && <PopupLoginRegister handleChangePopup={handleChangePopup} open={openPopup} />}
         </div>
       ))
   );
 
   //data modal for Casino
-  const displaySlotsCasino = Object.values(displayNameCateg?.providers || []).map((acc) =>
-    Object.values(acc.slots || [])
-      .filter((Q) => (val === null ? Q : Q.name.toLowerCase().includes(val.toLowerCase())))
-      .map((F) => (
-        <div key={F.id}>
-          <img onClick={() => setOpenPopup(true)} src={F.desktop_logo} alt="" style={{ cursor: "pointer" }} />
-          <span>
-            <p>{F.name.length > 20 ? F.name.substring(0, 19) + "..." : F.name}</p>
-            <i
-              onClick={() => {
-                dispatch(
-                  addFavouriteCasinoModal({
-                    id: F.id,
-                    desktop_logo: F.desktop_logo,
-                    name: F.name,
-                  })
-                );
-                handleChangeActiveHeart(F.id);
-              }}
-              className={`${heartIcon}` + (arrayHeartActive.includes(F.id) ? (!activeHeart ? " added" : " added") : "")}
-            />
-          </span>
+  const displaySlotsCasino = Object.values(displayNameCateg?.providers || [])
+    .filter((acc) => (sortAccordProv.value ? acc.id === sortAccordProv.link : !sortAccordProv.value))
+    .map((acc) => (
+      <Fragment>
+        {Object.values(acc.slots || [])
+          .filter((Q) => (val === null ? Q : Q.name.toLowerCase().includes(val.toLowerCase())))
+          .map((F) => (
+            <div key={F.id}>
+              <img onClick={() => setOpenPopup(true)} src={F.desktop_logo} alt="" style={{ cursor: "pointer" }} />
+              <span>
+                <p>{F.name.length > 20 ? F.name.substring(0, 19) + "..." : F.name}</p>
+                <i
+                  onClick={() => {
+                    dispatch(
+                      addFavouriteCasinoModal({
+                        id: F.id,
+                        desktop_logo: F.desktop_logo,
+                        name: F.name,
+                      })
+                    );
+                    /*    handleChangeActiveHeart(F.id); */
+                  }}
+                  className={
+                    `${heartIcon}` + (arrayHeartActive.includes(F.id) ? (!activeHeart ? " added" : " added") : "")
+                  }
+                />
+              </span>
 
-          {openPopup && <PopupLoginRegister handleChangePopup={handleChangePopup} open={openPopup} />}
-        </div>
-      ))
-  );
+              {openPopup && <PopupLoginRegister handleChangePopup={handleChangePopup} open={openPopup} />}
+            </div>
+          ))}
+      </Fragment>
+    ));
+
+
+
   return (
     <div
       className="modalBackground "
@@ -287,7 +304,7 @@ function ModalCasino({
                       <span>
                         {tabsModal === 0 && (
                           <div className="one--content">
-                            {displaySlotsCasino.length < 1 ? <p>{allConfig["dangerText"]}</p> : displaySlotsCasino}
+                            {displaySlotsCasino < 1 ? <p>{allConfig["dangerText"]}</p> : displaySlotsCasino}
                           </div>
                         )}
                       </span>
@@ -354,16 +371,6 @@ function ModalCasino({
                     .sort((a, b) => (a < b ? 1 : -1))
                     .map((R) => (
                       <Fragment>
-                        <br />
-                        <br />
-                        <div>
-                          {R === "categories" && (
-                            <Fragment>
-                              <h1>{R}</h1>
-                              <span key={R.id}>{categoriesCasino}</span>
-                            </Fragment>
-                          )}
-                        </div>
                         <div>
                           {R === "providers" && (
                             <Fragment>
@@ -374,6 +381,16 @@ function ModalCasino({
                                 )}
                               </span>
                               <span key={R.id}>{providersDataLiveCasino} </span>
+                            </Fragment>
+                          )}
+                        </div>
+
+                        <br />
+                        <div>
+                          {R === "categories" && (
+                            <Fragment>
+                              <h1>{R}</h1>
+                              <span key={R.id}> {categoriesCasino}</span>
                             </Fragment>
                           )}
                         </div>

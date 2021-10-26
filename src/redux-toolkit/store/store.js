@@ -1,4 +1,3 @@
-import { Fragment } from "react";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import allConfig from "../../config/allConfig";
 //thunkApiHome
@@ -45,7 +44,7 @@ let initialState = {
   sliderApiHome: [],
   CasinoData: [],
   CategProvidCasinoModal: localStorage.getItem("CasinoModal") ? JSON.parse(localStorage.getItem("CasinoModal")) : [],
-  CasinoModal: localStorage.getItem("CasinoModal") ? JSON.parse(localStorage.getItem("CasinoModal")) : [],
+  CasinoModal: localStorage.getItem("cas") ? JSON.parse(localStorage.getItem("cas")) : [],
   CasinoFav: localStorage.getItem("casFav") ? JSON.parse(localStorage.getItem("casFav")) : [],
   LiveCasino: [],
   Favorites: localStorage.getItem("fav") ? JSON.parse(localStorage.getItem("fav")) : [],
@@ -148,6 +147,7 @@ const act = createSlice({
       }
       localStorage.setItem("casFav", JSON.stringify(state.CasinoFav));
     },
+
     delFavouriteCasino: (state, action) => {
       const newCasinoFav = state.CasinoFav.filter((I) => I.id !== action.payload.id);
       state.CasinoFav = newCasinoFav;
@@ -170,13 +170,13 @@ const act = createSlice({
           },
         ];
       }
-      localStorage.setItem("CasinoModal", JSON.stringify(state.CasinoModal));
+      localStorage.setItem("cas", JSON.stringify(state.CasinoModal));
     },
 
     delFavoritesCasinoModal: (state, action) => {
       const newList = state.CasinoModal.filter((I) => I.id !== action.payload.id);
       state.CasinoModal = newList;
-      localStorage.setItem("CasinoModal", JSON.stringify(state.CasinoModal));
+      localStorage.setItem("cas", JSON.stringify(state.CasinoModal));
     },
 
     addCategProvidCasinoModal: (state, action) => {

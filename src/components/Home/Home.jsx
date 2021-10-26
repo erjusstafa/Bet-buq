@@ -6,14 +6,10 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 function Home() {
-  const linkSlot = useSelector(
-    (state) => state.betbuqsport.bet.allConfig.linkSlots
-  );
-  const BetLiveBook = useSelector(
-    (state) => state.betbuqsport.sliderApiHome?.result?.landing_page?.mini
-  );
+  const linkSlot = useSelector((state) => state.betbuqsport.bet.allConfig.linkSlots);
+  const BetLiveBook = useSelector((state) => state.betbuqsport.sliderApiHome?.result?.landing_page?.mini);
 
-  const displayBanner = true
+  const displayBanner = true;
   return (
     <>
       <SliderHome displayBanner={displayBanner} />
@@ -31,9 +27,7 @@ function SlotHome({ linkSlot }) {
         <div className="slotHome__all">
           {linkSlot &&
             Object.values(linkSlot)
-              .sort((a, b) =>
-                a.name === b.name ? 0 : a.name > b.name ? 1 : -1
-              )
+              .sort((a, b) => (a.name === b.name ? 0 : a.name > b.name ? 1 : -1))
               .map((I, index) => (
                 <Link to={I.link} key={index} className="all__link">
                   <i className={I ? I.icon : ""} />

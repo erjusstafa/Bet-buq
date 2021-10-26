@@ -19,13 +19,14 @@ function CasinoAllGames({
   categoriesFive,
   categoriesSix,
   categoriesSeven,
+  kezId,
   displayNameCateg,
   heartIcon,
   changeId,
   colorFav,
   activeFav,
   handleAddActive,
-
+  nameCat,
 }) {
   //prev-next button
   const sliderRefNextPrev = useRef();
@@ -115,25 +116,25 @@ function CasinoAllGames({
           slidesToShow: 3,
           slidesToScroll: 3,
           infinite: true,
-          dots: true
-        }
+          dots: true,
+        },
       },
       {
         breakpoint: 600,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2,
-          initialSlide: 2
-        }
+          initialSlide: 2,
+        },
       },
       {
         breakpoint: 480,
         settings: {
           slidesToShow: 1,
-          slidesToScroll: 1
-        }
-      }
-    ]
+          slidesToScroll: 1,
+        },
+      },
+    ],
   };
 
   return (
@@ -174,7 +175,6 @@ function CasinoAllGames({
                                   <span>
                                     <p>{S.name.length > 20 ? S.name.substring(0, 19) + "..." : S.name}</p>
                                     <i
-
                                       onClick={() =>
                                         dispatch(
                                           addFavouriteCasino({
@@ -184,9 +184,10 @@ function CasinoAllGames({
                                           })
                                         ) && handleAddActive(S.id)
                                       }
-
-                                      className={`${heartIcon}` + (activeFav.includes(S.id) ? !colorFav ? " added" : " added" : "")}
-
+                                      className={
+                                        `${heartIcon}` +
+                                        (activeFav.includes(S.id) ? (!colorFav ? " added" : " added") : "")
+                                      }
                                     />
                                   </span>
                                   <Svg />
@@ -203,7 +204,7 @@ function CasinoAllGames({
           {categoriesZero && (
             <div className="category-item-games">
               <span>
-                <p className={"categ-name " + categoriesZero.toLowerCase()}>{categoriesZero}</p>
+                <p className={"categ-name " + categoriesZero.toLowerCase()}>Tournaments</p>
                 <div
                   id="link"
                   onClick={() =>
@@ -220,7 +221,7 @@ function CasinoAllGames({
               <div className="all-images-text">
                 {Object.values(displayNameCateg?.providers || {}).map((H, index) =>
                   Object.values(H.slots || {})
-                    .slice(0, 8)
+                    .slice(0, 4)
                     .map((S) => (
                       <Fragment key={S.id}>
                         {Object.values(JSON.parse(S.categories || "{}"))
@@ -231,8 +232,9 @@ function CasinoAllGames({
                               <span>
                                 <p>{S.name.length > 20 ? S.name.substring(0, 19) + "..." : S.name}</p>
                                 <i
-                                  className={`${heartIcon}` + (activeFav.includes(S.id) ? !colorFav ? " added" : " added" : "")}
-
+                                  className={
+                                    `${heartIcon}` + (activeFav.includes(S.id) ? (!colorFav ? " added" : " added") : "")
+                                  }
                                   onClick={() =>
                                     dispatch(
                                       addFavouriteCasino({
@@ -256,67 +258,79 @@ function CasinoAllGames({
           )}
 
 
-          {categoriesOne === "Hot Games" && (
-            <div className="category-item-games" style={stylePadd}>
-              <span>
-                <p className="categ-name">{categoriesOne}</p>
-                <div
-                  id="link"
-                  onClick={() =>
-                    changeId(7) ||
-                    window.scrollTo({
-                      top: 0,
-                      behavior: "smooth",
-                    })
-                  }
-                >
-                  All Games <i className="fas fa-angle-right" />
-                </div>
-              </span>
-              <div className="all-images-text">
-                {Object.values(displayNameCateg?.providers || {})
-                  .splice(0, 25)
-                  .sort((a, b) => a["order"] - b["order"])
-                  .map((H, index) => (
-                    <div key={index} className="all">
-                      {Object.values(H.slots || {})
-                        .splice(0, 14)
-                        .map((S) => (
-                          <Fragment key={S.id}>
-                            {Object.values(JSON.parse(S.categories || "{}"))
-                              .filter((N) => N.name === categoriesOne)
-                              .map((N, index) => (
-                                <div className="images-name" key={index}>
-                                  <img src={S?.desktop_logo} alt="" />
-                                  <span>
-                                    <p>{S.name.length > 20 ? S.name.substring(0, 19) + "..." : S.name}</p>
-                                    <i
-                                      className={`${heartIcon}` + (activeFav.includes(S.id) ? !colorFav ? " added" : " added" : "")}
 
-                                      onClick={() =>
-                                        dispatch(
-                                          addFavouriteCasino({
-                                            id: S.id,
-                                            desktop_logo: S.desktop_logo,
-                                            name: S.name,
-                                          })
-                                        ) && handleAddActive(S.id)
-                                      }
-                                    />
-                                  </span>
-                                  <div id="svg">
-                                    <Svg />
-                                  </div>
-                                </div>
-                              ))}
-                          </Fragment>
-                        ))}
+
+
+          {allConfig.displaySlotsCategories &&
+            <Fragment>
+              <div className="category-item-games" style={stylePadd}>
+                {nameCat && (
+                  <span>
+                    <p className="categ-name">{nameCat}</p>
+                    <div
+                      id="link"
+                      onClick={() =>
+                        changeId(7) ||
+                        window.scrollTo({
+                          top: 0,
+                          behavior: "smooth",
+                        })
+                      }
+                    >
+                      All Games <i className="fas fa-angle-right" />
                     </div>
-                  ))}
+                  </span>
+                )}
+
+                {(
+                  <div className="all-images-text">
+                    {Object.values(displayNameCateg?.providers || {}).map((H, index) => (
+                      <div key={index} className="all">
+                        {Object.values(H.slots || {})
+                          .splice(0, 4)
+                          .map((S) => (
+                            <Fragment key={S.id}>
+                              {allConfig.displaySlotsCategories && Object.values(JSON.parse(S.categories || "{}"))
+                                .filter((N) =>
+                                  allConfig.betConstructWidget ? allConfig.displaySlotsCategories.includes(N.id) : false
+                                )
+                                .map((N, index) => (
+                                  <div className="images-name" key={index}>
+                                    <img src={S?.desktop_logo} alt="" />
+                                    <span>
+                                      <p>{S.name.length > 20 ? S.name.substring(0, 19) + "..." : S.name}</p>
+                                      <i
+                                        className={
+                                          `${heartIcon}` +
+                                          (activeFav.includes(S.id) ? (!colorFav ? " added" : " added") : "")
+                                        }
+                                        onClick={() =>
+                                          dispatch(
+                                            addFavouriteCasino({
+                                              id: S.id,
+                                              desktop_logo: S.desktop_logo,
+                                              name: S.name,
+                                            })
+                                          ) && handleAddActive(S.id)
+                                        }
+                                      />
+                                    </span>
+                                    <div id="svg">
+                                      <Svg />
+                                    </div>
+                                  </div>
+                                ))}
+                            </Fragment>
+                          ))}
+                      </div>
+                    ))}
+                  </div>
+                )}
               </div>
-            </div>
-          )}
-          {categoriesTwo === "New Entry" && (
+            </Fragment>
+          }
+
+          {/*  {categoriesTwo === "New Entry" && (
             <div className="category-item-games" style={stylePadd}>
               <span>
                 <p className="categ-name">{categoriesTwo}</p>
@@ -601,7 +615,7 @@ function CasinoAllGames({
                   ))}
               </div>
             </div>
-          )}
+          )} */}
           <div className="provider-item-games" style={stylePadd}>
             <span id="icon-text">
               <span>
