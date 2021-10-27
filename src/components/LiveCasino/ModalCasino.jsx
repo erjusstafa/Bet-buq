@@ -246,8 +246,8 @@ function ModalCasino({
                       </span>
                     </span>
                     <div className="all--categ--provider">
-                      {Object.values(counterFilter || {}).map((F) => (
-                        <span className="added--categ--provider">
+                      {Object.values(counterFilter || {}).map((F, index) => (
+                        <span className="added--categ--provider" key={index}>
                           <p>{F.name}</p>
                           <i onClick={() => dispatch(delCategProvid(F))} className="fas fa-times" />
                         </span>
@@ -277,7 +277,7 @@ function ModalCasino({
                               {Object.values(counterFavorites || {})
                                 .filter((P) => (val === "" ? P : P.name.toLowerCase().includes(val.toLowerCase())))
                                 .map((P) => (
-                                  <div className="item--fav">
+                                  <div className="item--fav" key={P.id}>
                                     <img src={P.desktop_logo} alt="" />
                                     <span>
                                       <p>{P.name}</p>
@@ -303,8 +303,8 @@ function ModalCasino({
                       </span>
                     </span>
                     <div className="all--categ--provider">
-                      {Object.values(CategProvidCasinoModal || {}).map((F) => (
-                        <span className="added--categ--provider">
+                      {Object.values(CategProvidCasinoModal || {}).map((F, index) => (
+                        <span className="added--categ--provider" key={index}>
                           <p>{F.name}</p>
                           <i onClick={() => dispatch(delCategProvidCasino(F))} className="fas fa-times" />
                         </span>
@@ -336,7 +336,7 @@ function ModalCasino({
                               {Object.values(CasinoModal || {})
                                 .filter((P) => (val === "" ? P : P.name.toLowerCase().includes(val.toLowerCase())))
                                 .map((P) => (
-                                  <div className="item--fav">
+                                  <div className="item--fav" key={P.id}>
                                     <img src={P.desktop_logo} alt="" />
                                     <span>
                                       <p>{P.name}</p>
@@ -358,6 +358,7 @@ function ModalCasino({
               <div className="two--content">
                 {display
                   ? Object.keys(allDataCasinoLive || "{}")
+                    .sort((a, b) => (a.toLowerCase() < b.toLowerCase() ? 1 : -1))
                     .map((R) => (
                       <Fragment>
                         <br />
@@ -386,7 +387,7 @@ function ModalCasino({
                       </Fragment>
                     ))
                   : Object.keys(displayNameCateg || "{}")
-                    .sort((a, b) => (a < b ? 1 : -1))
+                    .sort((a, b) => (a.toLowerCase() < b.toLowerCase() ? 1 : -1))
                     .map((R) => (
                       <Fragment>
                         <div>
