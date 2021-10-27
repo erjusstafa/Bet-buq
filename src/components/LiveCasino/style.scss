@@ -59,7 +59,6 @@
   max-width: 1352px;
   margin: 0 auto;
   border-bottom: 2px dashed rgb(144, 143, 143);
-  line-height: 0;
   color: rgb(226, 226, 226);
   @media (max-width: 1088px) {
     flex-direction: column-reverse;
@@ -74,12 +73,16 @@
       overflow-x: scroll;
     }
     > p {
-      margin-left: 20px;
-      cursor: pointer;
-      margin-top: 15px !important;
-      margin-bottom: revert !important;
-      color: rgb(167, 167, 167);
-      font-weight: bolder;
+      white-space: nowrap;
+      margin-right: 9px;
+      color: hsla(0, 0%, 100%, 0.38);
+      font-family: Roboto;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0;
+      line-height: 33px;
+      position: relative;
+      display: inline-block;
 
       @media (max-width: 665px) {
         min-width: 100px;
@@ -88,20 +91,56 @@
 
     .heart.active,
     .link-category,
-    .all-games.active,
-    > p.active {
+    .all-games.active {
       color: rgb(255, 255, 255);
       opacity: 1;
       font-weight: bold;
       font-size: 13px;
       position: relative;
     }
+    > p.active {
+      color: rgb(255, 255, 255);
+      opacity: 1;
+      font-weight: bold;
+      font-size: 13px;
+      position: relative;
 
+      &:after {
+        content: "";
+        width: 17%;
+        background: #1ab7af;
+        right: 2%;
+        top: 10px;
+        position: absolute;
+        display: inline-block;
+        border-width: 2px;
+        border-style: solid;
+        border-color: #1ab7af transparent transparent;
+      }
+
+      &:before {
+        content: "";
+        width: 17%;
+        background: #1ab7af;
+        right: 26%;
+        top: 10px;
+        position: absolute;
+        display: inline-block;
+        border-width: 2px;
+        border-style: solid;
+        border-color: #1ab7af transparent transparent;
+      }
+    }
     .heart {
       padding: 10px;
       background: #4a5c64;
       border-radius: 50px;
       cursor: pointer;
+
+      &::before,
+      &::after {
+        content: none;
+      }
 
       > i {
         display: grid;
