@@ -1,17 +1,15 @@
-import React, { Fragment } from "react";
+/* import React, { Fragment } from "react";
 import { addFavouriteCasino } from "../../redux-toolkit/store/store";
 
 function CasinoItemGames({ link, displayNameCateg, heartIcon, dispatch, more, handleAddActive, colorFav, activeFav }) {
     return Object.values(displayNameCateg?.providers || {})
-        .slice(0, more)
         .map((H, index) => (
             <Fragment key={index}>
                 {Object.values(H.slots || {})
-                    .sort((a, b) => (a.name.toLowerCase() > b.name.toLowerCase() ? 1 : -1))
+                    .splice(0, more)
                     .map((S) => (
                         <Fragment key={S.id}>
                             {Object.values(JSON.parse(S.categories || "{}"))
-                                .splice(0, more)
                                 .filter((N) => N.id === link)
                                 .map((N) => (
                                     <div className="images-name" key={N.id}>
@@ -41,3 +39,4 @@ function CasinoItemGames({ link, displayNameCateg, heartIcon, dispatch, more, ha
 }
 
 export default CasinoItemGames;
+ */

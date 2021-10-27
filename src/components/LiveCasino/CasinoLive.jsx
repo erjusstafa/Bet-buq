@@ -8,6 +8,7 @@ import AllSlots from "./AllSlots";
 import ItemSlots from "./ItemSlots";
 import ModalCasino from "./ModalCasino";
 import { Spin, Alert } from "antd";
+import allConfig from "../../config/allConfig";
 
 function CasinoLive() {
   const dispatch = useDispatch();
@@ -27,10 +28,7 @@ function CasinoLive() {
   const [modalOpen, setModalOpen] = useState(false);
 
   //icon
-  let heartIcon = "fas fa-heart";
-  let searchIcon = "fas fa-search";
-  let alignRight = "fas fa-align-right";
-  let searchFor = "Search for a game";
+
 
   useEffect(() => {
     setTimeout(() => {
@@ -110,7 +108,7 @@ function CasinoLive() {
                 }
               >
                 {" "}
-                <i style={{ color: `${colorHeart}` }} className={heartIcon} />
+                <i style={{ color: `${colorHeart}` }} className={allConfig.heartIcon} />
               </span>
               <p
                 onClick={() => ChangeIndex(myindex.idAllGames)}
@@ -127,12 +125,12 @@ function CasinoLive() {
               }}
             >
               <span className="search">
-                <i className={searchIcon} />
-                <p>{searchFor}</p>
+                <i className={allConfig.searchIcon} />
+                <p>{allConfig.searchFor}</p>
               </span>
               <span className="provider ">
                 <p>Providers</p>
-                <i className={alignRight} />
+                <i className={allConfig.alignRight} />
               </span>
             </div>
           </div>
@@ -140,7 +138,7 @@ function CasinoLive() {
           <ToggleSlots
             Slots={allDataCasinoLive}
             myindex={myindex.isActive}
-            heartIcon={heartIcon}
+            heartIcon={allConfig.heartIcon}
             mytxt={myindex.isActiveText}
             loadMore={loadMore.load}
             moreSlots={moreSlots}
@@ -152,10 +150,10 @@ function CasinoLive() {
           <ModalCasino
             setOpenModal={setModalOpen}
             allDataCasinoLive={allDataCasinoLive}
-            searchFor={searchFor}
-            searchIcon={searchIcon}
-            alignRight={alignRight}
-            heartIcon={heartIcon}
+            searchFor={allConfig.searchFor}
+            searchIcon={allConfig.searchIcon}
+            alignRight={allConfig.alignRight}
+            heartIcon={allConfig.heartIcon}
             display={display}
           />
         )

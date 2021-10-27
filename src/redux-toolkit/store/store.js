@@ -193,6 +193,7 @@ const act = createSlice({
           {
             id: action.payload.id,
             name: action.payload.name,
+            desktop_logo: action.payload.desktop_logo,
           },
         ];
       }

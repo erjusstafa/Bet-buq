@@ -25,6 +25,8 @@ function ModalCasino({
   heartIcon,
   display,
   displayNameCateg,
+  more,
+  handleIdMore,
 }) {
   const dispatch = useDispatch();
 
@@ -40,24 +42,35 @@ function ModalCasino({
   const [myindex, setMyIndex] = useState({ isActive: null });
   let [arrayHeartActive, setArrayHeartActive] = useState([]);
   let [activeHeart, setActiveHeart] = useState(false);
-  const [sortAccordProv, setSortAccordProv] = useState({
-    link: null,
-    value: false,
-  });
+  let [sortAccordProv, setSortAccordProv] = useState([]);
+  let [trueFalse, setTrueFalse] = useState(true);
+
+
 
   let handleChangeActiveHeart = (id) => {
     const findIndexHeart = arrayHeartActive.findIndex((arr) => arr === id);
-    setSortAccordProv({ link: id, value: true });
-    if (findIndexHeart >= 0) {
+    const findSortAccordProv = sortAccordProv.findIndex((arr) => arr === id);
+    setTrueFalse(false)
+
+    if (findIndexHeart >= 0 && findSortAccordProv >= 0) {
       let NextFavModal = arrayHeartActive.pop();
       arrayHeartActive = NextFavModal;
       setActiveHeart(!activeHeart);
+
+      let NextSortAccordProv = sortAccordProv.pop();
+      sortAccordProv = NextSortAccordProv;
+
     } else {
       setArrayHeartActive([...arrayHeartActive, id]);
       setActiveHeart(!activeHeart);
-      setSortAccordProv({ link: id, value: !sortAccordProv.value });
+      setSortAccordProv([...sortAccordProv, id]);
     }
   };
+
+
+
+  console.log(" sortAccordProv.link", sortAccordProv);
+  console.log("arrayHeartActive", arrayHeartActive);
 
   //filter data
   const handleChange = (e) => {
@@ -99,7 +112,7 @@ function ModalCasino({
     </p>
   ));
 
-  //dispaly categ and prov to Casino Component
+  //display categ and prov to Casino Component
   let providersDataLiveCasino = Object.values(displayNameCateg?.providers || {}).map((C) => (
     <p
       className={arrayHeartActive.includes(C.id) ? (activeHeart ? " added" : " added") : ""}
@@ -122,7 +135,7 @@ function ModalCasino({
     </p>
   ));
 
-  //dispaly categ and prov to Live Casino Component
+  //display categ and prov to Live Casino Component
   const displaySlotsLiveCasino = Object.values(allDataCasinoLive?.providers || {}).map((E) =>
     Object.values(E.slots || {})
       .filter((Q) => (val === "" ? Q : Q.name.toLowerCase().includes(val.toLowerCase())))
@@ -149,12 +162,14 @@ function ModalCasino({
       ))
   );
 
-  //data modal for Casino
+  //display categ and prov to  CASINO 
   const displaySlotsCasino = Object.values(displayNameCateg?.providers || [])
-    .filter((acc) => (sortAccordProv.value ? acc.id === sortAccordProv.link : !sortAccordProv.value))
+    .splice(!trueFalse && (0, 1))
+    .filter((acc) => (!trueFalse ? sortAccordProv.includes(acc.id) : trueFalse))
     .map((acc) => (
       <Fragment>
         {Object.values(acc.slots || [])
+          .splice(0, more)
           .filter((Q) => (val === null ? Q : Q.name.toLowerCase().includes(val.toLowerCase())))
           .map((F) => (
             <div key={F.id}>
@@ -170,7 +185,7 @@ function ModalCasino({
                         name: F.name,
                       })
                     );
-                    /*    handleChangeActiveHeart(F.id); */
+                    handleChangeActiveHeart(F.id);
                   }}
                   className={
                     `${heartIcon}` + (arrayHeartActive.includes(F.id) ? (!activeHeart ? " added" : " added") : "")
@@ -183,8 +198,6 @@ function ModalCasino({
           ))}
       </Fragment>
     ));
-
-
 
   return (
     <div
@@ -303,11 +316,17 @@ function ModalCasino({
                     <div>
                       <span>
                         {tabsModal === 0 && (
-                          <div className="one--content">
-                            {displaySlotsCasino < 1 ? <p>{allConfig["dangerText"]}</p> : displaySlotsCasino}
-                          </div>
+                          <div className="one--content">{trueFalse ? displaySlotsCasino : displaySlotsCasino}</div>
                         )}
                       </span>
+
+                      {(tabsModal === 0 && displaySlotsCasino.length > 0) && (
+                        <div id="more" onClick={() => handleIdMore()}>
+                          <i className="fas fa-sync-alt"></i>
+                          <p> Load more games</p>
+                        </div>
+                      )}
+
                       <span>
                         {tabsModal === 1 ? (
                           CasinoModal.length <= 0 ? (
@@ -339,7 +358,6 @@ function ModalCasino({
               <div className="two--content">
                 {display
                   ? Object.keys(allDataCasinoLive || "{}")
-                    .sort((a, b) => (a < b ? 1 : -1))
                     .map((R) => (
                       <Fragment>
                         <br />
