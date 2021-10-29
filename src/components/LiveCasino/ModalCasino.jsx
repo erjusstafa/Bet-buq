@@ -45,12 +45,10 @@ function ModalCasino({
   let [sortAccordProv, setSortAccordProv] = useState([]);
   let [trueFalse, setTrueFalse] = useState(true);
 
-
-
   let handleChangeActiveHeart = (id) => {
     const findIndexHeart = arrayHeartActive.findIndex((arr) => arr === id);
     const findSortAccordProv = sortAccordProv.findIndex((arr) => arr === id);
-    setTrueFalse(false)
+    setTrueFalse(false);
 
     if (findIndexHeart >= 0 && findSortAccordProv >= 0) {
       let NextFavModal = arrayHeartActive.pop();
@@ -59,15 +57,14 @@ function ModalCasino({
 
       let NextSortAccordProv = sortAccordProv.pop();
       sortAccordProv = NextSortAccordProv;
-
     } else {
+      setTrueFalse(true);
+
       setArrayHeartActive([...arrayHeartActive, id]);
       setActiveHeart(!activeHeart);
       setSortAccordProv([...sortAccordProv, id]);
     }
   };
-
-
 
   console.log(" sortAccordProv.link", sortAccordProv);
   console.log("arrayHeartActive", arrayHeartActive);
@@ -162,7 +159,7 @@ function ModalCasino({
       ))
   );
 
-  //display categ and prov to  CASINO 
+  //display categ and prov to  CASINO
   const displaySlotsCasino = Object.values(displayNameCateg?.providers || [])
     .splice(!trueFalse && (0, 1))
     .filter((acc) => (!trueFalse ? sortAccordProv.includes(acc.id) : trueFalse))
@@ -320,7 +317,7 @@ function ModalCasino({
                         )}
                       </span>
 
-                      {(tabsModal === 0 && displaySlotsCasino.length > 0) && (
+                      {tabsModal === 0 && displaySlotsCasino.length > 0 && (
                         <div id="more" onClick={() => handleIdMore()}>
                           <i className="fas fa-sync-alt"></i>
                           <p> Load more games</p>

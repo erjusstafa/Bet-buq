@@ -187,7 +187,7 @@ function CasinoWrapper({
                             addFavouriteCasino({
                               id: S.id,
                               desktop_logo: S.desktop_logo,
-                              name: S.name,
+                              name: S.name
                             })
                           );
                           handleAddActive(S.id);
