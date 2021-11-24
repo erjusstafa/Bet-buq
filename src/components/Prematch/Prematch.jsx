@@ -14,6 +14,19 @@ function Prematch() {
     setIconSport(!iconSport);
   };
 
+  const [text, setText] = useState("");
+
+  const AddText = () => {
+    setText("erjus");
+  };
+
+  const [openOdds, setOpenOdds] = useState(false);
+
+  const openDialog = () => {
+    setOpenOdds(true);
+    AddText()
+
+  };
   return (
     <div
       className={allConfig?.defaults?.prematchExist ? allConfig["routes"]["Prematch"]["name"].toLocaleLowerCase() : ""}
@@ -40,10 +53,10 @@ function Prematch() {
 
           <div className={!iconSport ? "middle-menu-sportbook" : "middle"}>
             <MiddleMenu allConfig={allConfig} />
-            <MiddleQuotaPrematch />
+            <MiddleQuotaPrematch openDialog={openDialog} text={text} />
           </div>
           <div className="right-menu-sportbook">
-            <RightMenu allConfig={allConfig} />
+            <RightMenu allConfig={allConfig} openOdds={openOdds} text={text} />
           </div>
         </div>
       </div>

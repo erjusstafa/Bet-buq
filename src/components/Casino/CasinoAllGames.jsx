@@ -330,7 +330,7 @@ function CasinoAllGames({
             </Fragment>
           }
 
-          {/*  {categoriesTwo === "New Entry" && (
+          {categoriesTwo === "New Entry" && (
             <div className="category-item-games" style={stylePadd}>
               <span>
                 <p className="categ-name">{categoriesTwo}</p>
@@ -615,7 +615,7 @@ function CasinoAllGames({
                   ))}
               </div>
             </div>
-          )} */}
+          )}
           <div className="provider-item-games" style={stylePadd}>
             <span id="icon-text">
               <span>

@@ -2,7 +2,7 @@ import React from "react";
 import allEvents from "./data";
 import "./quota.scss";
 
-function MiddleQuotaPrematch() {
+function MiddleQuotaPrematch({ openDialog }) {
   return (
     <div className="quotes">
       <p> • • • Main Live Events</p>
@@ -58,7 +58,7 @@ function MiddleQuotaPrematch() {
                 <td>{Z.draw}</td>
                 <td>{Z.w2}</td>
 
-                <td>{Z.plus}</td>
+                <td onClick={openDialog}>{Z.plus}</td>
               </tr>
             ))}
         </tbody>

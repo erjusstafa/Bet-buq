@@ -48,17 +48,15 @@ function ModalCasino({
   let handleChangeActiveHeart = (id) => {
     const findIndexHeart = arrayHeartActive.findIndex((arr) => arr === id);
     const findSortAccordProv = sortAccordProv.findIndex((arr) => arr === id);
-    setTrueFalse(false);
+    setTrueFalse(true);
 
     if (findIndexHeart >= 0 && findSortAccordProv >= 0) {
       let NextFavModal = arrayHeartActive.pop();
       arrayHeartActive = NextFavModal;
       setActiveHeart(!activeHeart);
-
       let NextSortAccordProv = sortAccordProv.pop();
       sortAccordProv = NextSortAccordProv;
     } else {
-      setTrueFalse(true);
 
       setArrayHeartActive([...arrayHeartActive, id]);
       setActiveHeart(!activeHeart);

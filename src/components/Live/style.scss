@@ -1,0 +1,14 @@
+.live {
+  background: #313d42;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+
+  &__max {
+    display: flex;
+    max-width: 1352px;
+    margin: 0 auto;
+    color: rgb(226, 226, 226);
+  }
+}

@@ -43,6 +43,7 @@ function Casino() {
     setIdLink({ link: idLink, other: idLink, activeText: text });
   };
   let categories = Object.values(displayNameCateg?.categories || {})
+    .slice(0, 9)
     .filter((F) => (allConfig["betConstructWidget"] ? !allConfig.dontshowCateg.includes(F.id) : false))
     .map((C) => (
       <p
@@ -325,7 +326,6 @@ function CasinoWrapper({
         activeFav={activeFav}
       />
 
-      {console.log("linklinklinklink", link)}
 
       {/*  { link ?( */}
       <Fragment>

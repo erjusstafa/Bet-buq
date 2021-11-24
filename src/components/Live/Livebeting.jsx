@@ -1,16 +1,14 @@
-import React, { Component } from "react";
+import React from 'react'
+import "./style.scss"
 
-export default class Livebeting extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
-  render() {
-    return (
-      <div style={{ textAlign: "center", padding: "50px 0" }}>
-        <h2>Loading...</h2>
-        <h3>it's comming soon...</h3>
+function Livebeting() {
+  return (
+    <div className="live">
+      <div className="live__max">
+
       </div>
-    );
-  }
+    </div>
+  )
 }
+
+export default Livebeting

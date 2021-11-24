@@ -1,7 +1,8 @@
 import React, { useState, useEffect, Fragment } from "react";
 import PopupLoginRegister from "../LoginRegister/PopupLoginRegister";
+import ModalOdds from "./ModalOdds";
 
-function RightMenu({ allConfig }) {
+function RightMenu({ allConfig, openOdds, text }) {
   const [WinData, setWinData] = useState([]);
   const [openPopup, setOpenPopup] = useState(false);
 
@@ -36,6 +37,8 @@ function RightMenu({ allConfig }) {
       <div className="desc-box">
         <p>{allConfig.descriptionBox}</p>
       </div>
+      <ModalOdds text={text} />
+
       {openPopup && <PopupLoginRegister handleChangePopup={handleChangePopup} open={openPopup} />}
       <div className="left">
         <span>Last Winnings</span>
@@ -63,6 +66,8 @@ function RightMenu({ allConfig }) {
               ))}
           </tbody>
         </table>
+
+
       </div>
     </Fragment>
   );

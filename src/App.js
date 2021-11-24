@@ -17,7 +17,7 @@ function App() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(thunkApiHome());
-    /*     dispatch(thunkApiHome("get_sliders"));
+    /*     dispatch(thunkApiHome({ prapashtes: "get_sliders" }));
      */
   }, [dispatch]);
 

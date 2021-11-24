@@ -3,7 +3,6 @@ import "./style.scss";
 import { useSelector, useDispatch } from "react-redux";
 import { LiveCasinoApi, delFavouriteCasino, addFavouriteCasino } from "../../redux-toolkit/store/store";
 import BannerLiveCasino from "./BannerLiveCasino";
-import LoadedCasino from "./LoadedCasino";
 import AllSlots from "./AllSlots";
 import ItemSlots from "./ItemSlots";
 import ModalCasino from "./ModalCasino";
@@ -66,7 +65,6 @@ function CasinoLive() {
       );
     });
 
-  console.log("categoriescategoriescategoriescategories", categories);
 
   return !isLoading ? (
     /*  <LoadedCasino /> */
@@ -253,7 +251,7 @@ const ToggleSlots = ({
       </div>
 
       {other !== 99999 && other !== 88888 && (
-        <div id="more" >
+        <div id="more">
           <i className="fas fa-sync-alt"></i>
           <p> Load more games</p>
         </div>

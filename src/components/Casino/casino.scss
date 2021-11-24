@@ -461,6 +461,8 @@
     @media (max-width: 1380px) {
       display: flex;
       flex-flow: row wrap;
+      justify-content: center;
+      padding: 30px 0;
     }
 
     > p {
