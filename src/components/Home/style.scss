@@ -12,19 +12,23 @@
     display: flex;
     justify-content: space-evenly;
 
-    @media (max-width: 598px) {
-      flex-direction: column;
-    }
-
     .all__link {
-      display: flex;
+      display: grid;
+      grid-template-rows: repeat(3, auto);
       line-height: 13px;
       padding: 20px;
       align-content: center;
       @media (max-width: 596px) {
         justify-content: center;
+        line-height: 15px;
+        padding: 5px;
       }
 
+      @media (max-width: 596px) {
+        flex-direction: column;
+        text-align: center;
+        margin: 10px auto;
+      }
       > i {
         display: grid;
         place-items: center;
@@ -36,6 +40,9 @@
           padding: 0 10px;
           font-size: 25px;
         }
+        @media (max-width: 596px) {
+          font-size: 20px;
+        }
       }
 
       > span {
@@ -45,6 +52,9 @@
           font-size: 23px;
           @media (max-width: 700px) {
             font-size: 20px;
+          }
+          @media (max-width: 596px) {
+            font-size: 15px !important;
           }
         }
         > p {
@@ -202,4 +212,12 @@
       }
     }
   }
+}
+
+.slick-vertical .slick-slide {
+  border: none !important;
+}
+
+.slick-dots li button:before {
+  display: none !important;
 }

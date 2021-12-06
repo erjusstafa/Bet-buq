@@ -54,9 +54,11 @@ function ModalCasino({
       let NextFavModal = arrayHeartActive.pop();
       arrayHeartActive = NextFavModal;
       setActiveHeart(!activeHeart);
+
       let NextSortAccordProv = sortAccordProv.pop();
       sortAccordProv = NextSortAccordProv;
     } else {
+      setTrueFalse(true);
 
       setArrayHeartActive([...arrayHeartActive, id]);
       setActiveHeart(!activeHeart);

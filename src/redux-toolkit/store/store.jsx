@@ -12,12 +12,6 @@ export const thunkApiHome = createAsyncThunk("betBuq/thunkApiHome", async () => 
     .catch((err) => console.log(" error bro"));
 });
 
-/* export const thunkApiHome = createAsyncThunk("betBuq/thunkApiHome", async ({ prapashtes }, { dispatch, getState }) => {
-  const { betbuqsport } = getState();
-  return fetch(`${allConfig.contentManagementAPI}/${prapashtes}/`)
-    .then((res) => res.json())
-    .catch((err) => console.log(" error bro"));
-}); */
 //CasinoApi
 export const CasinoApi = createAsyncThunk("betBuq/CasinoApi", async () => {
   return fetch("https://stagingbackoffice.playlogiq.com/Betbuq/get_slots/casino/ios?lang=en")
@@ -59,7 +53,7 @@ let initialState = {
   PrematchData: [],
 };
 
-const betBuqSlice = createSlice({
+const act = createSlice({
   name: "betBuq",
   initialState,
   reducers: {
@@ -257,5 +251,5 @@ export const {
   addCategProvidCasinoModal,
   delCategProvidCasino,
   delAllProvidrCategCasino,
-} = betBuqSlice.actions;
-export default betBuqSlice.reducer;
+} = act.actions;
+export default act.reducer;

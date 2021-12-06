@@ -9,7 +9,11 @@ import MiddleQuotaPrematch from "./MiddleQuotaPrematch";
 
 function Prematch() {
   const [iconSport, setIconSport] = useState(false);
+  const [close, setClose] = useState(true);
 
+  const delModalOds = () => {
+    setOpenOdds(!close);
+  };
   const toggleIcon = () => {
     setIconSport(!iconSport);
   };
@@ -24,8 +28,7 @@ function Prematch() {
 
   const openDialog = () => {
     setOpenOdds(true);
-    AddText()
-
+    AddText();
   };
   return (
     <div
@@ -48,15 +51,31 @@ function Prematch() {
 
         <div className={!iconSport ? "all-container-sportbook" : "all-container-sportbook-toggle"}>
           <div className={!iconSport ? "left-menu-sportbook" : "toggle-sport"}>
-            <LeftMenu allConfig={allConfig} iconSport={iconSport} toggleIcon={toggleIcon} />
+            <LeftMenu
+              allConfig={allConfig}
+              iconSport={iconSport}
+              toggleIcon={toggleIcon}
+            />
           </div>
 
           <div className={!iconSport ? "middle-menu-sportbook" : "middle"}>
             <MiddleMenu allConfig={allConfig} />
-            <MiddleQuotaPrematch openDialog={openDialog} text={text} />
+            <MiddleQuotaPrematch
+              openDialog={openDialog}
+              text={text}
+              openOdds={openOdds}
+              delModalOds={delModalOds}
+            />
           </div>
           <div className="right-menu-sportbook">
-            <RightMenu allConfig={allConfig} openOdds={openOdds} text={text} />
+            <RightMenu
+              allConfig={allConfig}
+              setOpenOdds={setOpenOdds}
+              openOdds={openOdds}
+              delModalOds={delModalOds}
+              openDialog={openDialog}
+              text={text}
+            />
           </div>
         </div>
       </div>

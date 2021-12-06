@@ -1,8 +1,9 @@
 import React from "react";
 import allEvents from "./data";
+import ModalOdds from "./ModalOdds";
 import "./quota.scss";
 
-function MiddleQuotaPrematch({ openDialog }) {
+function MiddleQuotaPrematch({ openDialog, text, openOdds, delModalOds }) {
   return (
     <div className="quotes">
       <p> • • • Main Live Events</p>
@@ -58,7 +59,7 @@ function MiddleQuotaPrematch({ openDialog }) {
                 <td>{Z.draw}</td>
                 <td>{Z.w2}</td>
 
-                <td onClick={openDialog}>{Z.plus}</td>
+                <td className="tooltip" onClick={openDialog}>{Z.plus}</td>
               </tr>
             ))}
         </tbody>

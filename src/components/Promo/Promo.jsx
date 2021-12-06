@@ -59,8 +59,7 @@ function Promo() {
                       <p className={setId.general === 9999 ? "general " : "general"}>{P["name"]} </p>
                     </a>
                     {Object.values(P["posts"] || []).map((T) => (
-                      <a
-                        /* href={"/pages/promos/general/" + T.slug} */ key={T.id}
+                      <a key={T.id}
                         onClick={() => handleClickID(T.id, T.title, T.image, T.slug)}
                       >
                         <p className={setId.id === T.id ? "active" : ""}>{T.title}</p>
@@ -121,7 +120,7 @@ class PromoItem extends Component {
                         <p>{M.title.split("-")[0]}</p>
                         <p>{M.sub_title}</p>
                       </span>
-                      <a /* href={"/pages/promos/general/" + M.slug} */ id="read-more">Read More</a>
+                      <a id="read-more">Read More</a>
                     </div>
                   </div>
                 </div>
