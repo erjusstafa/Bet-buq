@@ -96,7 +96,7 @@
           z-index: 9999999;
           animation: tooltip 1.5s linear infinite;
           color: #1ab7af;
-          @media (max-width: 500px) {
+          @media (max-width: 1012px) {
             display: none;
           }
           @keyframes tooltip {

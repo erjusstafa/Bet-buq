@@ -32,7 +32,7 @@ function MiddleQuotaPrematch({ openDialog, text, openOdds, delModalOds }) {
               <td>{Z.draw}</td>
               <td>{Z.w2}</td>
 
-              <td>{Z.plus}</td>
+              <td onClick={() => openDialog()}>{Z.plus}</td>
             </tr>
           ))}
         </tbody>

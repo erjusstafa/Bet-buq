@@ -221,7 +221,7 @@ function CasinoAllGames({
               <div className="all-images-text">
                 {Object.values(displayNameCateg?.providers || {}).map((H, index) =>
                   Object.values(H.slots || {})
-                    .slice(0, 4)
+                    .slice(0, 16)
                     .map((S) => (
                       <Fragment key={S.id}>
                         {Object.values(JSON.parse(S.categories || "{}"))
@@ -287,7 +287,7 @@ function CasinoAllGames({
                     {Object.values(displayNameCateg?.providers || {}).map((H, index) => (
                       <div key={index} className="all">
                         {Object.values(H.slots || {})
-                          .splice(0, 4)
+                          .slice(0, 1)
                           .map((S) => (
                             <Fragment key={S.id}>
                               {allConfig.displaySlotsCategories && Object.values(JSON.parse(S.categories || "{}"))
@@ -349,7 +349,7 @@ function CasinoAllGames({
               </span>
               <div className="all-images-text">
                 {Object.values(displayNameCateg?.providers || {})
-                  .slice(0, 10)
+                  .slice(0, 8)
                   .map((H, index) => (
                     <div key={index} className="all">
                       {Object.values(H.slots || {}).slice(0, 15)
@@ -407,7 +407,7 @@ function CasinoAllGames({
               </span>
               <div className="all-images-text">
                 {Object.values(displayNameCateg?.providers || {})
-                  .slice(13, 17)
+                  .slice(0, 6)
                   .map((H, index) => (
                     <div key={index} className="all">
                       {Object.values(H.slots || {}).map((S) => (
