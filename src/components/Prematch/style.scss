@@ -193,6 +193,7 @@
           justify-content: space-between;
           align-items: center;
           line-height: 20px;
+          position: relative;
           > p {
             margin: auto 0;
             color: #ffba24;
@@ -539,7 +540,6 @@
     .toggle-sport {
       min-width: 43px;
       z-index: 99999;
-      background-color: #446d6b !important;
       .sport-menu-toggle {
         background: #3c494e;
         display: flex;

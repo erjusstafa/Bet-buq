@@ -34,9 +34,7 @@ const Header = () => {
   };
 
   const social = useSelector((state) => state.betbuqsport.bet.allConfig.socials);
-  //const link = useSelector((state) => state.betbuqsport.bet.allConfig.routes);
-  /*     const user = useSelector((state) => state.betbuqsport.bet.allConfig.login);
-   */ const inputIcon = useSelector((state) => state.betbuqsport.bet.allConfig.login);
+  const inputIcon = useSelector((state) => state.betbuqsport.bet.allConfig.login);
   const handleSubmit = (e) => {
     e.preventDefault();
   };

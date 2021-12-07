@@ -46,10 +46,13 @@
       }
 
       > span {
+        text-align: center;
+
         > h2 {
           font-weight: bold;
           color: white;
           font-size: 23px;
+          text-align: center;
           @media (max-width: 700px) {
             font-size: 20px;
           }

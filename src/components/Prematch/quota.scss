@@ -22,10 +22,10 @@
         padding-left: 20px !important;
       }
       > tr > th {
-        /*  border-bottom: 1px solid #2d424a;
+        border-bottom: 1px solid #2d424a;
         border-top: 1px solid #42545a;
         border-left: 1px solid #2d424a;
-        border-right: 1px solid #3d4c52; */
+        border-right: 1px solid #3d4c52;
         line-height: 28px;
         font-size: 12px;
         font-weight: 500;
@@ -38,6 +38,11 @@
       font-size: 12px;
       font-weight: normal;
 
+      .last-quota-title-heading-desc {
+        &:hover {
+          background-color: rgb(26, 160, 153) !important;
+        }
+      }
       .last-quota-title-heading-desc > td:nth-child(3) {
         text-align: start;
         padding-left: 20px !important;
@@ -61,8 +66,18 @@
           padding: 0 6px;
         }
       }
+      .last-quota-title-heading-desc > td {
+        border-bottom: 1px solid #2d424a !important;
+        border-top: 1px solid #33464d;
+        border-left: 1px solid #33464d;
+        border-right: 1px solid #3c545d;
+        position: relative;
+        &:hover {
+          background: #313d42;
+        }
+      }
       .tooltip {
-        border-bottom: 1px solid #2d424a;
+        border-bottom: 1px solid #2d424a !important;
         border-top: 1px solid #33464d;
         border-left: 1px solid #33464d;
         border-right: 1px solid #3c545d;
@@ -81,6 +96,9 @@
           z-index: 9999999;
           animation: tooltip 1.5s linear infinite;
           color: #1ab7af;
+          @media (max-width: 500px) {
+            display: none;
+          }
           @keyframes tooltip {
             0% {
               opacity: 0;

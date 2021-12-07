@@ -11,6 +11,18 @@
   border: 1px solid #1ab7af;
   z-index: 99;
 
+  @media (max-width: 500px) {
+    min-width: 100%;
+    background-color: #47565c;
+    box-shadow: rgb(0 0 0 / 35%) 1px 20px 20px 20px;
+    flex-direction: column;
+    position: absolute;
+    top: 161%;
+    left: 0%;
+    border: 1px solid #1ab7af;
+    z-index: 99;
+  }
+
   > i.fas.fa-sort-up {
     position: relative;
     top: -7px;

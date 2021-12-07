@@ -35,7 +35,7 @@ function LeftMenu({ allConfig, iconSport, toggleIcon }) {
 
   React.useEffect(() => {
     SportApi();
-  });
+  }, [Sport]);
 
   return (
     <Fragment>

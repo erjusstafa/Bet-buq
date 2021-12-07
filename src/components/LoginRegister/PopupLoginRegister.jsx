@@ -79,7 +79,6 @@ class PopupLoginRegister extends Component {
               ) : (
                 <button className="login--button">LOGIN</button>
               )}
-
               <p onClick={this.toggleFunc}>
                 {this.state.toggle ? " Log-In" : "Create Account"}
               </p>
