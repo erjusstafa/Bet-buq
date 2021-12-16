@@ -40,7 +40,7 @@
 
       .last-quota-title-heading-desc {
         &:hover {
-          background-color: rgb(26, 160, 153) !important;
+          background-color: #546267 !important;
         }
       }
       .last-quota-title-heading-desc > td:nth-child(3) {
@@ -85,7 +85,7 @@
         &:hover {
           background: #313d42;
         }
-        &::after {
+        /* &::after {
           content: "Please , click  '+' ";
           font-size: 10px;
           min-width: 100%;
@@ -110,7 +110,7 @@
               opacity: 0;
             }
           }
-        }
+        } */
       }
     }
   }

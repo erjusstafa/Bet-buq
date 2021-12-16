@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import allEvents from "./data";
 import "./quota.scss";
-
 function MiddleQuotaPrematch({ openDialog, text, openOdds, delModalOds }) {
 
   const [prov, setprov] = useState([])

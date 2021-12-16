@@ -417,6 +417,7 @@ function CasinoAllGames({
                             .map((N, index) => (
                               <div className="images-name" key={index}>
                                 <img src={S?.mobile_logo} alt="" />
+
                                 <span>
                                   <p>{S.name.length > 20 ? S.name.substring(0, 19) + "..." : S.name}</p>
                                   <i
