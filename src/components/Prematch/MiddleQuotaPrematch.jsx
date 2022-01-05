@@ -23,7 +23,7 @@ function MiddleQuotaPrematch({ openDialog, text, openOdds, delModalOds }) {
         </thead>
         <tbody className="last-quota-body">
           {Object.values(allEvents).map((Z, index) => (
-            <tr className="last-quota-title-heading-desc" key={index}>
+            <tr className="last-quota-title-heading-desc" key={index} onClick={() => openDialog()}>
               {/*               <td>{null}</td>
  */}              <td>{Z.time}</td>
               <td>{Z.event}</td>
@@ -56,7 +56,7 @@ function MiddleQuotaPrematch({ openDialog, text, openOdds, delModalOds }) {
 
               console.log("qwerty", allEvents);
               return (
-                <tr className="last-quota-title-heading-desc" key={index}>
+                <tr className="last-quota-title-heading-desc" key={index} onClick={() => openDialog()}>
                   {/*                   <td>{null}</td>
  */}                  <td>{Z.time}</td>
                   <td>{Z.event}</td>
@@ -64,7 +64,7 @@ function MiddleQuotaPrematch({ openDialog, text, openOdds, delModalOds }) {
                   <td>{Z.draw}</td>
                   <td>{Z.w2}</td>
 
-                  <td className="tooltip" onClick={() => openDialog()}>{Z.plus}</td>
+                  <td className="tooltip" >{Z.plus}</td>
                 </tr>)
             }
             )}

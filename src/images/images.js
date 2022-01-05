@@ -13,5 +13,6 @@ export const image = {
   sliderCasino1: require("../assetss/slider-casino-1.png").default,
   sliderCasino2: require("../assetss/slider-casino-2.png").default,
   sliderCasino3: require("../assetss/slider-casino-3.png").default,
+  svgImage: require("../assetss/svgImage.svg").default,
 };
 export default image;
