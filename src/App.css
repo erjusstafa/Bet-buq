@@ -4,3 +4,8 @@
   box-sizing: border-box;
   user-select: none;
 }
+
+.promo-wrapper-max .promotion__max .grid-promo > .post-slot .card-item:nth-child(2n) .card .text-logo > img {
+  position: relative;
+  left: 15px;
+}

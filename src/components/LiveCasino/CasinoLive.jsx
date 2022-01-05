@@ -8,6 +8,7 @@ import ItemSlots from "./ItemSlots";
 import ModalCasino from "./ModalCasino";
 import { Spin, Alert } from "antd";
 import allConfig from "../../config/allConfig";
+import Load from "../Loading";
 
 function CasinoLive() {
   const dispatch = useDispatch();
@@ -31,7 +32,9 @@ function CasinoLive() {
     setTimeout(() => {
       dispatch(LiveCasinoApi());
       setLoading(true);
-    }, 1000);
+    }, 4000);
+    setLoading(false);
+
   }, [dispatch]);
 
   const bannerCasinoLive = useSelector((state) => state.betbuqsport.sliderApiHome.result?.casino_live);
@@ -67,10 +70,7 @@ function CasinoLive() {
 
 
   return !isLoading ? (
-    /*  <LoadedCasino /> */
-    <Spin tip="Loading...">
-      <Alert message="Alert message title" description="Further details about the context of this alert." type="info" />
-    </Spin>
+    <Load />
   ) : (
     <>
       <div className="livecasino">

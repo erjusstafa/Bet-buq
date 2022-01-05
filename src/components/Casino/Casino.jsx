@@ -7,6 +7,7 @@ import ModalCasino from "../LiveCasino/ModalCasino";
 import CasinoAllGames from "./CasinoAllGames";
 /* import { Spin } from "antd";
  */import SliderHome from "../Home/SliderHome";
+import Load from "../Loading";
 /* import CasinoItemGames from "./CasinoItemGames";
  */
 function Casino() {
@@ -26,8 +27,12 @@ function Casino() {
       dispatch(CasinoApi());
 
       setLoader(true);
-    }, 1000);
+    }, 3000);
+    setLoader(false);
   }, [dispatch]);
+
+
+
   let bannerCasinoLive = useSelector((state) => state.betbuqsport.sliderApiHome.result?.casino_live);
   let displayNameCateg = useSelector((state) => state?.betbuqsport?.CasinoData?.result);
   let FavItem = useSelector((state) => state?.betbuqsport?.CasinoFav);
@@ -59,75 +64,82 @@ function Casino() {
 
   return (
     <Fragment>
-      <div className="casino">
-        {Object.values(bannerCasinoLive || {}).map((B, b) => (
-          <Fragment key={b}>
-            <SliderHome />
-          </Fragment>
-        ))}
-      </div>
-      {!modalOpen ? (
-        <div style={{ background: "#313d42" }}>
-          <div className="link">
-            <div className="link-live">
-              <span onClick={() => changeId(8888)} className={"heart " + (idLink.other === 8888 ? "active" : "")}>
-                <i className={allConfig.heartIcon} style={{ color: FavItem.length < 1 ? "" : "#22dbd1" }} />
-              </span>
-              <p onClick={() => changeId(9999)} className={idLink.other === 9999 ? "active" : ""}>
-                All Games
-              </p>
-              {/*link from API */}
-              {categories ? categories : null}
-              <p onClick={() => changeId(7777)} className={idLink.other === 7777 ? "active" : ""}>
-                Providers
-              </p>
+      {
+        !loader ? <Load />
+          :
+          <Fragment>
+            <div className="casino">
+              {Object.values(bannerCasinoLive || {}).map((B, b) => (
+                <Fragment key={b}>
+                  <SliderHome />
+                </Fragment>
+              ))}
             </div>
-            <div
-              className="search-game"
-              onClick={() => {
-                setModalOpen(true);
-              }}
-            >
-              <span className="search">
-                <i className={allConfig.searchIcon} />
-                <p>{allConfig.searchFor}</p>
-              </span>
-              <span className="provider ">
-                <p>Providers</p>
-                <i className={allConfig.alignRight} />
-              </span>
-            </div>
-          </div>
+            {!modalOpen ? (
+              <div style={{ background: "#313d42" }}>
+                <div className="link">
+                  <div className="link-live">
+                    <span onClick={() => changeId(8888)} className={"heart " + (idLink.other === 8888 ? "active" : "")}>
+                      <i className={allConfig.heartIcon} style={{ color: FavItem.length < 1 ? "" : "#22dbd1" }} />
+                    </span>
+                    <p onClick={() => changeId(9999)} className={idLink.other === 9999 ? "active" : ""}>
+                      All Games
+                    </p>
+                    {/*link from API */}
+                    {categories ? categories : null}
+                    <p onClick={() => changeId(7777)} className={idLink.other === 7777 ? "active" : ""}>
+                      Providers
+                    </p>
+                  </div>
+                  <div
+                    className="search-game"
+                    onClick={() => {
+                      setModalOpen(true);
+                    }}
+                  >
+                    <span className="search">
+                      <i className={allConfig.searchIcon} />
+                      <p>{allConfig.searchFor}</p>
+                    </span>
+                    <span className="provider ">
+                      <p>Providers</p>
+                      <i className={allConfig.alignRight} />
+                    </span>
+                  </div>
+                </div>
 
-          <CasinoWrapper
-            idFavAllImag={idLink.other}
-            link={idLink.link}
-            text={idLink.activeText}
-            displayNameCateg={displayNameCateg}
-            categories={categories}
-            heartIcon={allConfig.heartIcon}
-            dispatch={dispatch}
-            changeId={changeId}
-            FavItem={FavItem}
-            more={more}
-            handleIdMore={handleIdMore}
-          />
-        </div>
-      ) : (
-        modalOpen && (
-          <ModalCasino
-            setOpenModal={setModalOpen}
-            searchFor={allConfig.searchFor}
-            searchIcon={allConfig.searchIcon}
-            alignRight={allConfig.alignRight}
-            heartIcon={allConfig.heartIcon}
-            categories={categories}
-            displayNameCateg={displayNameCateg}
-            more={more}
-            handleIdMore={() => handleIdMore()}
-          />
-        )
-      )}
+                <CasinoWrapper
+                  idFavAllImag={idLink.other}
+                  link={idLink.link}
+                  text={idLink.activeText}
+                  displayNameCateg={displayNameCateg}
+                  categories={categories}
+                  heartIcon={allConfig.heartIcon}
+                  dispatch={dispatch}
+                  changeId={changeId}
+                  FavItem={FavItem}
+                  more={more}
+                  handleIdMore={handleIdMore}
+                />
+              </div>
+            ) : (
+              modalOpen && (
+                <ModalCasino
+                  setOpenModal={setModalOpen}
+                  searchFor={allConfig.searchFor}
+                  searchIcon={allConfig.searchIcon}
+                  alignRight={allConfig.alignRight}
+                  heartIcon={allConfig.heartIcon}
+                  categories={categories}
+                  displayNameCateg={displayNameCateg}
+                  more={more}
+                  handleIdMore={() => handleIdMore()}
+                />
+              )
+            )}
+
+          </Fragment>
+      }
     </Fragment>
   );
 }
