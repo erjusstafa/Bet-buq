@@ -9,3 +9,11 @@
   position: relative;
   left: 15px;
 }
+
+::-webkit-scrollbar {
+  background-color: #435258;
+  width: 5px;
+}
+::-webkit-scrollbar-thumb {
+  background: #1ab7af;
+}

@@ -221,7 +221,6 @@ function CasinoAllGames({
               <div className="all-images-text">
                 {Object.values(displayNameCateg?.providers || {}).map((H, index) =>
                   Object.values(H.slots || {})
-                    .slice(0, 16)
                     .map((S) => (
                       <Fragment key={S.id}>
                         {Object.values(JSON.parse(S.categories || "{}"))
@@ -349,10 +348,9 @@ function CasinoAllGames({
               </span>
               <div className="all-images-text">
                 {Object.values(displayNameCateg?.providers || {})
-                  .slice(0, 8)
                   .map((H, index) => (
                     <div key={index} className="all">
-                      {Object.values(H.slots || {}).slice(0, 15)
+                      {Object.values(H.slots || {}).slice(0, 25)
                         .map((S) => (
                           <Fragment key={S.id}>
                             {Object.values(JSON.parse(S.categories || "{}"))
