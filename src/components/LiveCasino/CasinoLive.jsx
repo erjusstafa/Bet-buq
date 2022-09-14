@@ -37,7 +37,7 @@ function CasinoLive() {
 
   }, [dispatch]);
 
-  const bannerCasinoLive = useSelector((state) => state.betbuqsport.sliderApiHome.result?.casino_live);
+  const bannerCasinoLive = useSelector((state) => state.betbuqsport.sliderApiHome?.result?.casino_live);
   const allDataCasinoLive = useSelector((state) => state?.betbuqsport?.LiveCasino?.result);
   let FavItem = useSelector((state) => state?.betbuqsport?.CasinoFav);
 
