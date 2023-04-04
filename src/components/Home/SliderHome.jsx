@@ -17,11 +17,12 @@ const contentStyle = {
 const SliderHome = ({ displayBanner }) => {
   const dotPosition = "right";
   const easing = "linear";
+  const effect = "fade"
 
   return (
     <>
       {displayBanner ? (
-        <Carousel dotPosition={dotPosition} autoplay easing={easing}>
+        <Carousel dotPosition={dotPosition} effect={effect} autoplay easing={easing}>
           <div className="banner1">
             <img
               style={contentStyle}

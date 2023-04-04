@@ -19,7 +19,7 @@
   .footer__links{
     display: grid;
       grid-template-columns: repeat(3, auto);
-      justify-content: center;
+      justify-content: space-evenly;
       column-gap: 10rem;
       @media (max-width: 992px) {
         grid-template-columns: repeat(3,auto);
@@ -37,6 +37,8 @@
 
       h3{
         color:rgb(207, 207, 207) !important; 
+
+       
       }
       .link__footer_link{
         display: flex;
@@ -47,6 +49,9 @@
           color: rgba(207, 207, 207,.6);
           font-size: 12px;
           font-weight: 400;
+          &:hover{
+            color: #ffba24;
+          }
         }
       }
    }
@@ -69,7 +74,7 @@
       .content__link {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        width: 600px;
+        width:max-content;
         @media (max-width: 992px) {
           grid-template-columns: repeat(3,auto);
            gap:  .4rem;

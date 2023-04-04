@@ -28,9 +28,9 @@ function App() {
         <Switch>
           <Route exact path="/" component={() => <Home />} />
           <Route exact path={`${allConfig["routes"]["Prematch"]["link"]}`} component={() => <Prematch />} />
-          <Route exact path={`${allConfig["routes"]["Live"]["link"]}`} component={() => <Livebeting />} />
-          <Route exact path={`${allConfig["routes"]["Casino"].link}`} component={() => <Casino />} />
-          <Route exact path={`${allConfig["routes"]["LiveCasino"]["link"]}`} component={() => <CasinoLive />} />{" "}
+{/*           <Route exact path={`${allConfig["routes"]["Live"]["link"]}`} component={() => <Livebeting />} />
+ */}          <Route exact path={`${allConfig["routes"]["Casino"].link}`} component={() => <Casino />} />
+      {/*     <Route exact path={`${allConfig["routes"]["LiveCasino"]["link"]}`} component={() => <CasinoLive />} />{" "} */}
           <Route exact path={`${allConfig["routes"]["Contents"].link}`} component={() => <Promo />} />
         </Switch>
         <Footer />

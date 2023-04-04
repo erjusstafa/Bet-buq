@@ -55,7 +55,7 @@ const allConfig = {
     },
     slider3: {
       title: "Button",
-      subtitle: "Some represantive placeholder content for thethird slide ",
+      subtitle: "Some representative placeholder content for the third slide ",
       image_url: "/storage/slider/16234141092628.jpeg",
       btn_text: "JOIN",
       btn_url: "https://www.betbuq.com/prematch",
@@ -107,14 +107,14 @@ const allConfig = {
       target: "_self",
       id: 1,
     },
-    Live: {
+   /*  Live: {
       name: "Livebetting",
       link: "/live",
       path: "/live/:path1?/:eventid?",
       tag: "New",
       target: "_self",
       id: 2,
-    },
+    }, */
     // Esports: {
     //   name: 'Esports', link: '/esports', path: "/esports", tag: "", target: '_self'
     // },
@@ -125,14 +125,14 @@ const allConfig = {
       tag: "Bonus",
       target: "_self",
     },
-    LiveCasino: {
+   /*  LiveCasino: {
       name: "Live Casino",
       link: "/live-casino",
       path: "/live-casino/:path1?/:path2?",
       tag: "New Style",
       target: "_self",
       id: 3,
-    },
+    }, */
     Contents: {
       name: "Bonus",
       link: "/pages/promos/General",

@@ -141,7 +141,7 @@ function CasinoAllGames({
               </div>
             </div>
           )}
-          <img src={image.wave} alt="" />
+          {/* <img src={image.wave} alt="" /> */}
           {categoriesZero && (
             <div className="category-item-games">
               <span>
