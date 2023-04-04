@@ -7,7 +7,7 @@ const allConfig = {
   routePrematch: "prematch",
   count: [1261, 341, 83],
   paymentHubAPI: "payment.betbuq.com",
-  contentManagementAPI: "https://backoffice-new.betbuq.com/Betbuq/",
+  contentManagementAPI: "https://backoffice-new.betbuq.com/Betbuq",
   skinName: "Betbuq",
   sportBookApi: "https://apisport.playlogiq.com",
   dontshowCateg: [13, 12, 28],
