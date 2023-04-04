@@ -25,7 +25,7 @@ const SliderHome = ({ displayBanner }) => {
           <div className="banner1">
             <img
               style={contentStyle}
-              src={allConfig.getSlider && (image["banner1"] || allConfig.slider["slider1"].image_url)}
+              src={allConfig.getSlider && (image["1"] )}
               alt="banner1"
             />
             {allConfig.getSlider ? (
@@ -45,7 +45,7 @@ const SliderHome = ({ displayBanner }) => {
           <div className="banner2">
             <img
               style={contentStyle}
-              src={allConfig.getSlider && (image["banner2"] || allConfig.slider["slider2"].image_url)}
+              src={allConfig.getSlider && (image["2"] )}
               alt="banner2"
             />
             {allConfig.getSlider ? (
@@ -61,6 +61,28 @@ const SliderHome = ({ displayBanner }) => {
                 </Link>
               </span>
             ) : null}
+            
+          </div>
+          <div className="banner3">
+            <img
+              style={contentStyle}
+              src={allConfig.getSlider && (image["3"] )}
+              alt="banner3"
+            />
+            {allConfig.getSlider ? (
+              <span>
+                <h1>{allConfig.slider["slider3"].title}</h1>
+                <p>{allConfig.slider["slider3"].subtitle}</p>
+                <Link
+                  to={allConfig.slider["slider3"].btn_url}
+                  target={allConfig.slider["slider3"].btn_target}
+                  className="button__Link"
+                >
+                  {allConfig.slider["slider3"].btn_text}
+                </Link>
+              </span>
+            ) : null}
+            
           </div>
         </Carousel>
       ) : (
@@ -109,6 +131,23 @@ const SliderHome = ({ displayBanner }) => {
                   className="button__Link"
                 >
                   {allConfig.slider["slider2"].btn_text}
+                </Link>
+              </span>
+            ) : null}
+          </div>
+
+          <div className="banner3">
+            <img style={contentStyle} src={allConfig.getSlider && image["sliderCasino3"]} alt="banner3" />
+            {allConfig.getSlider ? (
+              <span>
+                <h1>{allConfig.slider["slider3"].title}</h1>
+                <p>{allConfig.slider["slider3"].subtitle}</p>
+                <Link
+                  to={allConfig.slider["slider3"].btn_url}
+                  target={allConfig.slider["slider3"].btn_target}
+                  className="button__Link"
+                >
+                  {allConfig.slider["slider3"].btn_text}
                 </Link>
               </span>
             ) : null}

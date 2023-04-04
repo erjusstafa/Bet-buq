@@ -37,8 +37,7 @@ function Casino() {
   let displayNameCateg = useSelector((state) => state?.betbuqsport?.CasinoData?.result);
   let FavItem = useSelector((state) => state?.betbuqsport?.CasinoFav);
 
-
-
+console.log("---",bannerCasinoLive );
   const handleIdMore = () => {
     setMore(more + 24);
   };

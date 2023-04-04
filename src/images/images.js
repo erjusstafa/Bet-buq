@@ -1,5 +1,8 @@
 export const image = {
   logo: require("../assetss/logo.svg").default,
+  1: require("../assetss/1.jpg").default,
+  2: require("../assetss/2.jpg").default,
+  3: require("../assetss/3.jpg").default,
   banner1: require("../assetss/banner1.jpeg").default,
   banner2: require("../assetss/banner2.jpeg").default,
   bonus: require("../assetss/bonus.png").default,
