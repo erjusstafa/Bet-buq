@@ -14,6 +14,44 @@
     justify-content: space-between;
     flex-direction: column;
 
+
+    
+  .footer__links{
+    display: grid;
+      grid-template-columns: repeat(3, auto);
+      justify-content: center;
+      column-gap: 10rem;
+      @media (max-width: 992px) {
+        grid-template-columns: repeat(3,auto);
+        column-gap: 0;
+        gap:  4rem;
+        min-width:300px;
+      }
+      @media (max-width: 375px) {
+        display: flex;
+        flex-direction: column;      
+        justify-content: center;    
+        align-items: flex-start;
+        margin-left: 60px;
+      }
+
+      h3{
+        color:rgb(207, 207, 207) !important; 
+      }
+      .link__footer_link{
+        display: flex;
+        flex-direction: column;
+        line-height: 26px;
+
+        a{
+          color: rgba(207, 207, 207,.6);
+          font-size: 12px;
+          font-weight: 400;
+        }
+      }
+   }
+
+
     .big__link {
       width: 100%;
       display: grid;
@@ -28,7 +66,25 @@
         padding-left: 87px;
         border-bottom: none;
       }
-      .content {
+      .content__link {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        width: 600px;
+        @media (max-width: 992px) {
+          grid-template-columns: repeat(3,auto);
+           gap:  .4rem;
+          width: 450px;
+          margin-left: 40px;
+        }
+        @media (max-width: 375px) {
+          display: flex;
+          flex-direction: column;      
+          justify-content: flex-start;    
+          align-items: flex-start; 
+           position: relative;
+           right: 216px;
+           width: 500px !important;
+        }
         > h2 {
           display: flex;
           color: rgb(245, 245, 245);
@@ -37,12 +93,11 @@
         }
         > p.slug {
           line-height: 9px;
-          font-size: 11px;
-          color: #ffffff;
-          opacity: 0.6;
-          cursor: poi;
-          &:hover {
-            color: #1ab7af;
+          font-size: 15px;
+          color: #52a6af;
+          cursor: pointer;
+           &:hover {
+            color: #ffba24;
           }
         }
       }
@@ -95,7 +150,7 @@
       text-align: center;
       line-height: 25px;
       margin: 0 auto;
-      padding: 20px 0;
+      padding: 20px ;
 
       .p {
         color: #1ab7af;

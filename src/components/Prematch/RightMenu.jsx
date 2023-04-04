@@ -7,7 +7,7 @@ function RightMenu({ allConfig, setOpenOdds, openOdds, text, delModalOds }) {
   const [openPopup, setOpenPopup] = useState(false);
 
   const LastWinApi = async () => {
-    const fetchApi = fetch("https://api-new.betbuq.com/api_user/bestWinnings")
+    const fetchApi = fetch("https://if-playlogiq.sportstats.eu/api_user/bestWinnings")
       .then((res) => res.json())
       .then((data) => setWinData(data))
       .catch((err) => console.log(err));
@@ -23,7 +23,7 @@ function RightMenu({ allConfig, setOpenOdds, openOdds, text, delModalOds }) {
     setOpenPopup(false);
   };
 
-  return (
+   return (
     <Fragment>
       <div className="betting-left-menu">
         <span className="betslip">
